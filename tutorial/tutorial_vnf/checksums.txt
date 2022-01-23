@@ -1,4 +1,5 @@
-b245ace60d9287395386863a072d858a	tutorial_vnf/tutorial_vnfd.yaml
+ca5a6b93a2cd249a7e3baa0eea4d5dac	tutorial_vnf/tutorial_vnf.tar.gz
+2bf65233c70627799e41ed995708c822	tutorial_vnf/tutorial_vnfd.yaml
 b6a908d12ca0e274c07dafd413b1ab2d	tutorial_vnf/README.md
 00b9bbcebeadc09e2976be6cde622434	tutorial_vnf/cloud_init/cloud-init.cfg
 3a4799d01502c86f56b0412dc33cf647	tutorial_vnf/Scripts/cloud_init/cloud-config.txt
