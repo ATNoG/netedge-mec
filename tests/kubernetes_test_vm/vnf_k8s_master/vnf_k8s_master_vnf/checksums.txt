@@ -1,0 +1,3 @@
+066cf34817ab9521e9c5ccbd3142a8b9	vnf_k8s_master_vnf/vnf_k8s_master_vnfd.yaml
+8373829f4ff659ea21d6c6d4e99c46f0	vnf_k8s_master_vnf/README.md
+95afc92be9da71e2d352bc1da7e44c54	vnf_k8s_master_vnf/cloud_init/cloud-init.cfg
