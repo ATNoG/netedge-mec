@@ -1,0 +1,12 @@
+[submodule "tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/Scripts/charms/k8s_controller_installer/mod/operator"]
+	path = tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/Scripts/charms/k8s_controller_installer/mod/operator
+	url = https://github.com/canonical/operator
+[submodule "tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/Scripts/charms/k8s_controller_installer/mod/charms.osm"]
+	path = tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/Scripts/charms/k8s_controller_installer/mod/charms.osm
+	url = https://github.com/charmed-osm/charms.osm
+[submodule "tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/operator"]
+	path = tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/operator
+	url = https://github.com/canonical/operator
+[submodule "tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/charms.osm"]
+	path = tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/charms.osm
+	url = https://github.com/charmed-osm/charms.osm
