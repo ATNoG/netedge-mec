@@ -1,4 +1,4 @@
-name: k8s_controller_installer
+name: k8s-controller-installer
 summary: Kubernetes VNF controller installer
 maintainer: Pedro Escaleira <escaleira@av.it.pt>
 description: |
