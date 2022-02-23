@@ -1,1 +1,3 @@
 .vscode/
+.idea/
+**/local_config.yaml
