@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 
-from src.cmd import Command, Commands
+from command import Command, Commands
 
 sys.path.append("lib")
 
@@ -36,7 +36,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		self.framework.observe(self.on.start_service_action, self.start_service)
 		
 		# Custom actions
-		self.framework.observe(self.on.deploy_k8s_controller, self.on_deploy_k8s_controller)
+		self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
 
 	def on_config_changed(self, event):
 		"""Handle changes in configuration"""
@@ -49,6 +49,7 @@ class SampleProxyCharm(SSHProxyCharm):
 	def on_start(self, event):
 		"""Called when the charm is being started"""
 		super().on_start(event)
+		self.on_deploy_k8s_controller(event)
 
 	def configure_remote(self, event):
 		"""Configure remote action."""

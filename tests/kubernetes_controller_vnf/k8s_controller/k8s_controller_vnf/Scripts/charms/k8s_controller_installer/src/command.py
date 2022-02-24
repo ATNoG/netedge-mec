@@ -1,8 +1,12 @@
+import sys
 from logging import Logger
 from typing import List
 
+sys.path.append("lib")
+
+from charms.osm.sshproxy import SSHProxy
+
 from ops.model import (
-	SSHProxy,
 	StatusBase,
 	MaintenanceStatus,
  	BlockedStatus,
