@@ -238,8 +238,7 @@ class SampleProxyCharm(SSHProxyCharm):
 			error_status="Couldn't add GPG Docker key"
 		))
 		commands.add_command(Command(
-			cmd="""sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) 
-			stable""",
+			cmd="""sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable""",
 			initial_status="Adding Docker repository...",
 			ok_status="Docker repository added",
 			error_status="Couldn't add Docker repository"
