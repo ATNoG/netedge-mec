@@ -173,7 +173,9 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		result = commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		logger.info(self.unit.status)
+		return result
 
 	def __install_container_runtime(self, event):
 		# Containerd
@@ -355,8 +357,8 @@ class SampleProxyCharm(SSHProxyCharm):
 		commands = Commands()
 
 		commands.add_command(Command(
-			cmd="mkdir -p $HOME/.kube &&"
-			    "sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config"
+			cmd="mkdir -p $HOME/.kube && "
+			    "sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config && "
 			    "sudo chown $(id -u):$(id -g) $HOME/.kube/config",
 			initial_status="Configuring kubectl...",
 			ok_status="Kubectl configured",
@@ -371,7 +373,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
 		# Install Calico
 		commands.add_command(Command(
-			cmd="kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml &&"
+			cmd="kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml && "
 			    "kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml",
 			initial_status="Installing Calico network plugin...",
 			ok_status="Calico network plugin installed",
