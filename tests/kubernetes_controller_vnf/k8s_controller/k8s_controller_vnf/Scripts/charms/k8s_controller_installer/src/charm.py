@@ -160,7 +160,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
 		# Add the Kubernetes repository
 		commands.add_command(Command(
-			cmd="""sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab""",
+			cmd="""sudo sed -i '/ swap / s/^\(.*\)$/#\\1/g' /etc/fstab""",
 			initial_status="Saving swap off persistent configuration ...",
 			ok_status="Swap off persistent configuration saved",
 			error_status="Couldn't update swap off persistent configuration"
