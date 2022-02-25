@@ -54,7 +54,7 @@ class Commands:
 				logger.info(self.commands[i].ok_status)
 				unit_status = MaintenanceStatus(self.commands[i].ok_status)
 			except Exception as e:
-				logger.error("[Unable to Get the Prometheus Exporter Binary] Action failed {}. Stderr: {}".format(e, error))
+				logger.error(f"[{self.commands[i].error_status}] failed {e}. Stderr: {error}")
 				# raise Exception("[Unable to Get the Prometheus Exporter Binary] Action failed {}. Stderr: {}".format(e, error))
 				unit_status = BlockedStatus(self.commands[i].error_status)
 				return False
