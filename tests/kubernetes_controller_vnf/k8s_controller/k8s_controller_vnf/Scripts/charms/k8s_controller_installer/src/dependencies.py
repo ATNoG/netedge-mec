@@ -22,6 +22,3 @@ def install_dependencies(logger: Logger):
    if len(python_requirements) > 0:
       logger.info("Installing python3 modules")
       subprocess.check_call(["sudo", "python3", "-m", "pip", "install"] + python_requirements)
-
-# start by installing all the required dependencies
-install_dependencies()
