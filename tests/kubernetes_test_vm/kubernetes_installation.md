@@ -57,7 +57,7 @@
     # initialize master node
     $ lsmod | grep br_netfilter         # verify if true
     
-    $ sudo systemctl enable --now kubelet
+    $ sudo systemctl enable kubelet
     
     $ sudo kubeadm config images pull
     
