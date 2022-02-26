@@ -38,11 +38,11 @@ class SampleProxyCharm(SSHProxyCharm):
       self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
       
       # OSM actions (primitives)
-      self.framework.observe(self.on.start_action, self.on_start_action)
-      self.framework.observe(self.on.stop_action, self.on_stop_action)
-      self.framework.observe(self.on.restart_action, self.on_restart_action)
-      self.framework.observe(self.on.reboot_action, self.on_reboot_action)
-      self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
+      # self.framework.observe(self.on.start_action, self.on_start_action)
+      # self.framework.observe(self.on.stop_action, self.on_stop_action)
+      # self.framework.observe(self.on.restart_action, self.on_restart_action)
+      # self.framework.observe(self.on.reboot_action, self.on_reboot_action)
+      # self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
    def on_config_changed(self, event):
       """Handle changes in configuration"""
@@ -190,7 +190,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Add the Kubernetes repository
       commands.add_command(Command(
-         cmd="""sudo sed -i '/ swap / s/^/#/' /etc/fstab""",
+         cmd="""sudo sed -i "'/ swap / s/^/#/'" /etc/fstab""",
          initial_status="Saving swap off persistent configuration ...",
          ok_status="Swap off persistent configuration saved",
          error_status="Couldn't update swap off persistent configuration"
@@ -272,7 +272,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't add GPG Docker key"
       ))
       commands.add_command(Command(
-         cmd="""sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable""",
+         cmd="""sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" """,
          initial_status="Adding Docker repository...",
          ok_status="Docker repository added",
          error_status="Couldn't add Docker repository"
