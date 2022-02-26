@@ -153,14 +153,14 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Install Kubernetes", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __disable_swap(self, event) -> bool:
 		commands = Commands()
 
 		# Add the Kubernetes repository
 		commands.add_command(Command(
-			cmd="""sudo sed -i '/ swap / s/^\(.*\)$/#\\1/g' /etc/fstab""",
+			cmd="""sudo sed -i '/ swap / s/^/#/' /etc/fstab""",
 			initial_status="Saving swap off persistent configuration ...",
 			ok_status="Swap off persistent configuration saved",
 			error_status="Couldn't update swap off persistent configuration"
@@ -173,8 +173,8 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		result = commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
-		logger.info(self.unit.status)
+		result = commands.unit_run_command(component="Disable swap", logger=logger, proxy=proxy, unit_status=self.unit.status)
+		logger.info(f"status: {self.unit.status}")
 		return result
 
 	def __install_container_runtime(self, event):
@@ -192,6 +192,7 @@ class SampleProxyCharm(SSHProxyCharm):
 			error_status="Couldn't configure persistent loading of modules"
 		))
 
+		# Load at runtime
 		commands.add_command(Command(
 			cmd="sudo modprobe overlay",
 			initial_status="Adding <overlay> kernel module...",
@@ -205,7 +206,7 @@ class SampleProxyCharm(SSHProxyCharm):
 			error_status="Couldn't add <br_netfilter> module"
 		))
 
-		#
+		# Ensure sysctl params are set
 		commands.add_command(Command(
 			cmd="""sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
 					net.bridge.bridge-nf-call-ip6tables = 1
@@ -217,6 +218,7 @@ class SampleProxyCharm(SSHProxyCharm):
 			error_status="Couldn't update sysctl settings"
 		))
 
+		# Reload configs
 		commands.add_command(Command(
 			cmd="sudo sysctl --system",
 			initial_status="Reloading sysctl...",
@@ -291,7 +293,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Install Containerd", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __initialize_master_node(self, event):
 		commands = Commands()
@@ -313,7 +315,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __define_dns_name(self, event):
 		commands = Commands()
@@ -335,7 +337,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __create_cluster(self, event):
 		commands = Commands()
@@ -351,7 +353,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Create the cluster", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __configure_kubectl(self, event):
 		commands = Commands()
@@ -366,7 +368,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Configure kubectl", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 	def __install_network_plugin(self, event):
 		commands = Commands()
@@ -381,7 +383,7 @@ class SampleProxyCharm(SSHProxyCharm):
 		))
 
 		proxy = self.get_ssh_proxy()
-		return commands.unit_run_command(logger=logger, proxy=proxy, unit_status=self.unit.status)
+		return commands.unit_run_command(component="Install Calico's network plugin", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 
 if __name__ == "__main__":
