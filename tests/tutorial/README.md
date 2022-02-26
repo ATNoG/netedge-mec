@@ -103,7 +103,7 @@ In this NS descriptors you should, at least, change the virtual-link-desc to the
 The difference in NS and VNF package is small so **beware** when creating packages.
 NS package creation uses **nspkg-create**, while VNF package creation uses **nfpkg-create**
 ```
-osm nspkg-create ~/<package-name>/<package-name>_vnf
+osm nspkg-create ~/<package-name>/<package-name>_ns
 ```
 
 ### NS Instantiation
