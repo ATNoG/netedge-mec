@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import shlex
 import sys
 import logging
 
@@ -213,10 +214,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Configure persistent loading of modules
       commands.add_command(Command(
-         cmd="""sudo tee /etc/modules-load.d/containerd.conf <<EOF
-         overlay
-         br_netfilter
-         EOF""",
+         cmd="""echo -e "overlay\nbr_netfilter" | sudo tee /etc/modules-load.d/containerd.conf > /dev/null""",
          initial_status="Configuring persistent loading of modules...",
          ok_status="Persistent loading of modules configured",
          error_status="Couldn't configure persistent loading of modules"
@@ -238,11 +236,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Ensure sysctl params are set
       commands.add_command(Command(
-         cmd="""sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
-               net.bridge.bridge-nf-call-ip6tables = 1
-               net.bridge.bridge-nf-call-iptables = 1
-               net.ipv4.ip_forward = 1
-               EOF""",
+         cmd="""echo -e "net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
          initial_status="Updating sysctl settings...",
          ok_status="Sysctl settings updated",
          error_status="Couldn't update sysctl settings"
