@@ -111,14 +111,19 @@ EOF
 
 cat <<EOF > src/charm.py
 #!/usr/bin/env python3
+import shlex
 import sys
 import logging
 
-from command import Command, Commands
+# Logger
+logger = logging.getLogger(__name__)
+
 from dependencies import install_dependencies
+install_dependencies(logger=logger)
+
+from command import Command, Commands
 
 sys.path.append("lib")
-
 from charms.osm.sshproxy import SSHProxyCharm
 from ops.main import main
 from ops.model import (
@@ -129,8 +134,6 @@ from ops.model import (
    ModelError,
 )
 
-# Logger
-logger = logging.getLogger(__name__)
 
 class SampleProxyCharm(SSHProxyCharm):
     def __init__(self, framework, key):
@@ -195,7 +198,6 @@ class SampleProxyCharm(SSHProxyCharm):
 
 
 if __name__ == "__main__":
-    install_dependencies(logger=logger)
     main(SampleProxyCharm)
 EOF
 
