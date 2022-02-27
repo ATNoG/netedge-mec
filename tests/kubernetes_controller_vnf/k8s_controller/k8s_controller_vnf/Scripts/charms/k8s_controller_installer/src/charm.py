@@ -214,7 +214,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Configure persistent loading of modules
       commands.add_command(Command(
-         cmd="""echo -e "overlay\nbr_netfilter" | sudo tee /etc/modules-load.d/containerd.conf > /dev/null""",
+         cmd=""" "echo -e '"'overlay\nbr_netfilter'"'" | sudo tee /etc/modules-load.d/containerd.conf > /dev/null""",
          initial_status="Configuring persistent loading of modules...",
          ok_status="Persistent loading of modules configured",
          error_status="Couldn't configure persistent loading of modules"
@@ -288,7 +288,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Configure Containerd
       commands.add_command(Command(
-         cmd="sudo mkdir -p /etc/containerd && sudo containerd config default > /etc/containerd/config.toml",
+         cmd="sudo mkdir -p /etc/containerd && containerd config default | sudo tee /etc/containerd/config.toml > /dev/null",
          initial_status="Configuring Containerd...",
          ok_status="Containerd configured",
          error_status="Couldn't configure Containerd"
@@ -308,7 +308,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't enable Containerd service"
       ))
 
-      # TODO -> VER DISTO COM O DIREITO
+      # TODO -> VER DISTO
       commands.add_command(Command(
          cmd="while ! systemctl is-active --quiet containerd; do sleep 10; done",
          initial_status="Waiting for the Containerd service to be active...",
