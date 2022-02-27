@@ -272,7 +272,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't add GPG Docker key"
       ))
       commands.add_command(Command(
-         cmd="""sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" """,
+         cmd="""sudo add-apt-repository '"'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'"'""",
          initial_status="Adding Docker repository...",
          ok_status="Docker repository added",
          error_status="Couldn't add Docker repository"
@@ -294,7 +294,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Configure Containerd
       commands.add_command(Command(
-         cmd="sudo mkdir -p /etc/containerd && sudo containerd config default>/etc/containerd/config.toml",
+         cmd="sudo mkdir -p /etc/containerd && sudo containerd config default > /etc/containerd/config.toml",
          initial_status="Configuring Containerd...",
          ok_status="Containerd configured",
          error_status="Couldn't configure Containerd"

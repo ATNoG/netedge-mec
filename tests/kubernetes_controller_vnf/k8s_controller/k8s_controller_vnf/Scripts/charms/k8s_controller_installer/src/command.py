@@ -56,7 +56,6 @@ class Commands:
             logger.error(f"[{self.commands[i].error_status}] failed {e}. Stderr: {error}")
             unit_status = BlockedStatus(self.commands[i].error_status)
             raise Exception(f"[Unable to <{component}>]; Status: {self.commands[i].error_status}; Action failed {e}; Stderr: {error}")
-            # return False
 
       unit_status = ActiveStatus(f"<{component}> completed with success")
       return True

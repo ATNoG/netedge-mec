@@ -112,12 +112,25 @@ EOF
 cat <<EOF > src/charm.py
 #!/usr/bin/env python3
 import sys
+import logging
+
+from command import Command, Commands
+from dependencies import install_dependencies
 
 sys.path.append("lib")
 
 from charms.osm.sshproxy import SSHProxyCharm
 from ops.main import main
+from ops.model import (
+   ActiveStatus,
+   MaintenanceStatus,
+   BlockedStatus,
+   WaitingStatus,
+   ModelError,
+)
 
+# Logger
+logger = logging.getLogger(__name__)
 
 class SampleProxyCharm(SSHProxyCharm):
     def __init__(self, framework, key):
@@ -182,5 +195,100 @@ class SampleProxyCharm(SSHProxyCharm):
 
 
 if __name__ == "__main__":
+	 install_dependencies(logger=logger)
     main(SampleProxyCharm)
+
+EOF
+
+cat <<EOF > src/command.py
+import sys
+from logging import Logger
+from typing import List
+
+sys.path.append("lib")
+
+from charms.osm.sshproxy import SSHProxy
+
+from ops.model import (
+   StatusBase,
+   MaintenanceStatus,
+    BlockedStatus,
+     ActiveStatus
+)
+
+
+class Command:
+   def __init__(self, cmd: str, initial_status: str, ok_status: str, error_status: str) -> None:
+      self.cmd = cmd
+      self.initial_status = initial_status
+      self.ok_status = ok_status
+      self.error_status = error_status
+
+
+class Commands:
+   def __init__(self, commands: List[Command] = None) -> None:
+      self.commands = []
+
+      if commands:
+         self.commands = commands.copy()
+  
+   def __iter__(self) -> None:
+      self.n = 0
+      return self
+
+   def __next__(self) -> None:
+      if self.n < len(self.commands):
+         result = self.commands[self.n]
+         self.n += 1
+         return result
+      else:
+         raise StopIteration
+
+   def add_command(self, new_command: Command) -> None:
+      self.commands.append(new_command)
+
+   def unit_run_command(self, component: str, logger: Logger, proxy: SSHProxy, unit_status: StatusBase) -> bool:
+      for i in range(len(self.commands)):
+         result, error = None, None
+         unit_status = MaintenanceStatus(self.commands[i].initial_status)
+         try:
+            result, error = proxy.run(self.commands[i].cmd)
+            logger.info(f"Status: {self.commands[i].ok_status}; Output: {result}; Errors: {error}")
+            unit_status = MaintenanceStatus(self.commands[i].ok_status)
+         except Exception as e:
+            logger.error(f"[{self.commands[i].error_status}] failed {e}. Stderr: {error}")
+            unit_status = BlockedStatus(self.commands[i].error_status)
+            raise Exception(f"[Unable to <{component}>]; Status: {self.commands[i].error_status}; Action failed {e}; Stderr: {error}")
+
+      unit_status = ActiveStatus(f"<{component}> completed with success")
+      return True
+
+EOF
+
+cat <<EOF > src/dependencies.py
+import subprocess
+from logging import Logger
+
+def install_dependencies(logger: Logger):
+   python_requirements = ["packaging==21.3"]
+
+   # Update the apt cache
+   logger.info("Updating packages...")
+   subprocess.check_call(["sudo", "apt-get", "update"])
+
+   # Make sure Python3 + PIP are available
+   if not os.path.exists("/usr/bin/python3") or not os.path.exists("/usr/bin/pip3"):
+      # This is needed when running as a k8s charm, as the ubuntu:latest
+      # image doesn't include either package.
+      # Install the Python3 package
+      subprocess.check_call(["sudo", "apt-get", "install", "-y", "python3", "python3-pip"])
+
+   # Install the build dependencies for our requirements (paramiko)
+   logger.info("Installing libffi-dev and libssl-dev ...")
+   subprocess.check_call(["sudo", "apt-get", "install", "-y", "libffi-dev", "libssl-dev"])
+
+   if len(python_requirements) > 0:
+      logger.info("Installing python3 modules")
+      subprocess.check_call(["sudo", "python3", "-m", "pip", "install"] + python_requirements)
+
 EOF
