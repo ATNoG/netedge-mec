@@ -266,6 +266,7 @@ class Commands:
 EOF
 
 cat <<EOF > src/dependencies.py
+import os
 import subprocess
 from logging import Logger
 
