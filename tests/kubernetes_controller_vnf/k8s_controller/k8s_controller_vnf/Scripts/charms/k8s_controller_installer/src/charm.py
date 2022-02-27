@@ -236,7 +236,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Ensure sysctl params are set
       commands.add_command(Command(
-         cmd="""echo -e "net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
+         cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
          initial_status="Updating sysctl settings...",
          ok_status="Sysctl settings updated",
          error_status="Couldn't update sysctl settings"
