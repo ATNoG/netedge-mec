@@ -3,11 +3,15 @@ import shlex
 import sys
 import logging
 
-from command import Command, Commands
+# Logger
+logger = logging.getLogger(__name__)
+
 from dependencies import install_dependencies
+install_dependencies(logger=logger)
+
+from command import Command, Commands
 
 sys.path.append("lib")
-
 from charms.osm.sshproxy import SSHProxyCharm
 from ops.main import main
 from ops.model import (
@@ -17,9 +21,6 @@ from ops.model import (
    WaitingStatus,
    ModelError,
 )
-
-# Logger
-logger = logging.getLogger(__name__)
 
 class SampleProxyCharm(SSHProxyCharm):
    def __init__(self, framework, key):
@@ -57,7 +58,8 @@ class SampleProxyCharm(SSHProxyCharm):
    def on_start(self, event):
       """Called when the charm is being started"""
       super().on_start(event)
-      self.on_deploy_k8s_controller(event)
+      # self.on_deploy_k8s_controller(event)
+      self.on_deploy_k8s_workers(event)
 
    def configure_remote(self, event):
       """Configure remote action."""
@@ -422,5 +424,4 @@ class SampleProxyCharm(SSHProxyCharm):
 
 
 if __name__ == "__main__":
-   install_dependencies(logger=logger)
    main(SampleProxyCharm)
