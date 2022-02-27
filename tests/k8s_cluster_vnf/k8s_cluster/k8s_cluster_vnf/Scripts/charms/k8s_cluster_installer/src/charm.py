@@ -367,7 +367,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update the host's DNS name on the hosts file"
       ))
       commands.add_command(Command(
-         cmd="sudo hostnamectl set-hostname {name}",
+         cmd=f"sudo hostnamectl set-hostname {name}",
          initial_status="Updating the host's DNS name with hostnamectl...",
          ok_status="Host's DNS name updated with hostnamectl",
          error_status="Couldn't update the host's DNS name with hostnamectl"
