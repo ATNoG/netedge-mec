@@ -37,6 +37,7 @@ class SampleProxyCharm(SSHProxyCharm):
       
       # Custom actions
       self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
+      self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
       
       # OSM actions (primitives)
       # self.framework.observe(self.on.start_action, self.on_start_action)
@@ -125,11 +126,21 @@ class SampleProxyCharm(SSHProxyCharm):
       self.__disable_swap(event)
       self.__install_container_runtime(event)
       self.__initialize_master_node(event)
-      self.__define_dns_name(event)
+      self.__define_dns_name(event, name='controller')
       self.__create_cluster(event)
       self.__configure_kubectl(event)
       self.__install_network_plugin(event)
       
+   def on_deploy_k8s_workers(self, event):
+      self.__install_kubernetes(event)
+      self.__disable_swap(event)
+      self.__install_container_runtime(event)
+      
+      # TODO -> ver como meter vários depois
+      self.__define_dns_name(event, name='worker1')
+      
+      # TODO -> kubeadm join
+
    ##########################
    #        Functions       #
    ##########################
@@ -341,20 +352,20 @@ class SampleProxyCharm(SSHProxyCharm):
       proxy = self.get_ssh_proxy()
       return commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
-   def __define_dns_name(self, event):
+   def __define_dns_name(self, event, name):
       commands = Commands()
 
       commands.add_command(Command(
-         cmd="echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 controller | sudo tee "
-             "/etc/hosts;"
-             "echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 controller | sudo "
-             "tee /etc/hosts",
+         cmd=f"echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 {name} | sudo tee "
+             f"/etc/hosts;"
+             f"echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 {name} | sudo "
+             f"tee /etc/hosts",
          initial_status="Updating the host's DNS name on the hosts file...",
          ok_status="Host's DNS name updated on the hosts file",
          error_status="Couldn't update the host's DNS name on the hosts file"
       ))
       commands.add_command(Command(
-         cmd="sudo hostnamectl set-hostname controller",
+         cmd="sudo hostnamectl set-hostname {name}",
          initial_status="Updating the host's DNS name with hostnamectl...",
          ok_status="Host's DNS name updated with hostnamectl",
          error_status="Couldn't update the host's DNS name with hostnamectl"

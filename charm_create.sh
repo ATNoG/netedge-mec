@@ -195,9 +195,8 @@ class SampleProxyCharm(SSHProxyCharm):
 
 
 if __name__ == "__main__":
-	 install_dependencies(logger=logger)
+    install_dependencies(logger=logger)
     main(SampleProxyCharm)
-
 EOF
 
 cat <<EOF > src/command.py
@@ -262,7 +261,6 @@ class Commands:
 
       unit_status = ActiveStatus(f"<{component}> completed with success")
       return True
-
 EOF
 
 cat <<EOF > src/dependencies.py
@@ -291,5 +289,4 @@ def install_dependencies(logger: Logger):
    if len(python_requirements) > 0:
       logger.info("Installing python3 modules")
       subprocess.check_call(["sudo", "python3", "-m", "pip", "install"] + python_requirements)
-
 EOF
