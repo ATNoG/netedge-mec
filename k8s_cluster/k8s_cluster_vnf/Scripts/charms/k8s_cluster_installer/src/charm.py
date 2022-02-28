@@ -134,7 +134,7 @@ class SampleProxyCharm(SSHProxyCharm):
    #     Custom Actions     #
    #         Controller     #
    ##########################
-   def on_deploy_k8s_controller(self, event):
+   def on_deploy_k8s_controller(self, event) -> None:
       self.__install_kubernetes(event)
       self.__disable_swap(event)
       self.__install_container_runtime(event)
@@ -148,7 +148,7 @@ class SampleProxyCharm(SSHProxyCharm):
    #     Custom Actions     #
    #             Worker     #
    ########################## 
-   def on_deploy_k8s_workers(self, event):
+   def on_deploy_k8s_workers(self, event) -> None:
       self.__install_kubernetes(event)
       self.__disable_swap(event)
       self.__install_container_runtime(event)
@@ -156,7 +156,7 @@ class SampleProxyCharm(SSHProxyCharm):
       # TODO -> ver como meter vários depois
       self.__define_dns_name(event, name='worker1')
       
-   def on_get_k8s_controller_info(self, event):
+   def on_get_k8s_controller_info(self, event) -> None:
       # TODO How to get OUTPUT (stdout) from this command ?
       # TODO CHANGE COMMAND TO OBTAIN ONLY THE REQUESTED VALUES
       # CLUSTER INFO IP AND PORT
@@ -171,13 +171,13 @@ class SampleProxyCharm(SSHProxyCharm):
       # CA HASH
       self.__get_ca_cert_hash(event)
 
-   def on_join_k8s_workers(self, event):
+   def on_join_k8s_workers(self, event) -> None:
       self.__join_node_to_cluster(event)
       
    ##########################
    #        Functions       #
    ##########################
-   def __install_kubernetes(self, event) -> bool:
+   def __install_kubernetes(self, event) -> None:
       commands = Commands()
 
       # Add the Kubernetes repository
@@ -229,9 +229,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Install Kubernetes", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Install Kubernetes", logger=logger, proxy=proxy)
 
-   def __disable_swap(self, event) -> bool:
+   def __disable_swap(self, event) -> None:
       commands = Commands()
 
       # Add the Kubernetes repository
@@ -249,11 +249,10 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      result = commands.unit_run_command(component="Disable swap", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Disable swap", logger=logger, proxy=proxy)
       logger.info(f"status: {self.unit.status}")
-      return result
 
-   def __install_container_runtime(self, event):
+   def __install_container_runtime(self, event) -> None:
       # Containerd
       commands = Commands()
 
@@ -365,9 +364,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Install Containerd", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Install Containerd", logger=logger, proxy=proxy)
 
-   def __initialize_master_node(self, event):
+   def __initialize_master_node(self, event) -> None:
       commands = Commands()
 
       # Enable kubelet service
@@ -387,9 +386,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy)
 
-   def __define_dns_name(self, event, name):
+   def __define_dns_name(self, event, name) -> None:
       commands = Commands()
 
       commands.add_command(Command(
@@ -409,9 +408,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy)
 
-   def __create_cluster(self, event):
+   def __create_cluster(self, event) -> None:
       commands = Commands()
 
       commands.add_command(Command(
@@ -425,9 +424,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Create the cluster", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Create the cluster", logger=logger, proxy=proxy)
 
-   def __configure_kubectl(self, event):
+   def __configure_kubectl(self, event) -> None:
       commands = Commands()
 
       commands.add_command(Command(
@@ -440,9 +439,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Configure kubectl", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Configure kubectl", logger=logger, proxy=proxy)
 
-   def __install_network_plugin(self, event):
+   def __install_network_plugin(self, event) -> None:
       commands = Commands()
 
       # Install Calico
@@ -455,13 +454,13 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Install Calico's network plugin", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Install Calico's network plugin", logger=logger, proxy=proxy)
 
    ##########################
    #     Custom Actions     #
    #     For Cluster Join   #
    ##########################
-   def __generate__join__token(self,event):
+   def __generate__join__token(self, event):
       """Generates a new token for every node attempting to join"""
       commands = Commands()
 
@@ -473,9 +472,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Cluster join token generator", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Cluster join token generator", logger=logger, proxy=proxy)
 
-   def __get_ca_cert_hash(self,event):
+   def __get_ca_cert_hash(self,event) -> None:
       """Obtains the ca certificate hash of the master node"""
       commands = Commands()
 
@@ -487,9 +486,9 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Obtaining master ca cert hash", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Obtaining master ca cert hash", logger=logger, proxy=proxy)
 
-   def __get_cluster_info(self,event):
+   def __get_cluster_info(self,event) -> None:
       """
       Obtains information about the cluster information such as IP and PORT 
       Used by new worker nodes to connect to the cluster
@@ -504,10 +503,10 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy)
     
 
-   def __join_node_to_cluster(self, event):
+   def __join_node_to_cluster(self, event) -> None:
       """ Joins a node to a cluster """
       commands = Commands()
       
@@ -537,7 +536,7 @@ class SampleProxyCharm(SSHProxyCharm):
       ))
 
       proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Joining a node to the cluster", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      self.unit.status = commands.unit_run_command(component="Joining a node to the cluster", logger=logger, proxy=proxy)
       
       
 if __name__ == "__main__":
