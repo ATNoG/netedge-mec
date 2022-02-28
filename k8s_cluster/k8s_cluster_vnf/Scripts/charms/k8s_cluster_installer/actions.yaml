@@ -34,3 +34,9 @@ deploy-k8s-controller:
 
 deploy-k8s-workers:
   description: "Deploy the Kubernetes worker nodes"
+
+get-k8s-controller-info:
+  description: "Obtain information from the Kubernetes controller, necessary to join the worker nodes"
+
+join-k8s-workers:
+  description: "Join the Kubernetes worker nodes, based on the information about the corresponding controller"
