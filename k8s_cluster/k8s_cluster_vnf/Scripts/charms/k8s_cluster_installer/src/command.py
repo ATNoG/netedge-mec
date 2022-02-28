@@ -44,7 +44,7 @@ class Commands:
    def add_command(self, new_command: Command) -> None:
       self.commands.append(new_command)
 
-   def unit_run_command(self, component: str, logger: Logger, proxy: SSHProxy, unit_status: StatusBase) -> bool:
+   def unit_run_command(self, component: str, logger: Logger, proxy: SSHProxy) -> StatusBase:
       for i in range(len(self.commands)):
          result, error = None, None
          unit_status = MaintenanceStatus(self.commands[i].initial_status)
@@ -58,4 +58,4 @@ class Commands:
             raise Exception(f"[Unable to <{component}>]; Status: {self.commands[i].error_status}; Action failed {e}; Stderr: {error}")
 
       unit_status = ActiveStatus(f"<{component}> completed with success")
-      return True
+      return unit_status
