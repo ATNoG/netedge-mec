@@ -37,9 +37,13 @@ class SampleProxyCharm(SSHProxyCharm):
       self.framework.observe(self.on.configure_remote_action, self.configure_remote)
       self.framework.observe(self.on.start_service_action, self.start_service)
       
-      # Custom actions
+      # Automatic custom actions
       self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
       self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
+      
+      # Manual custom actions
+      self.framework.observe(self.on.get_k8s_controller_info_action, self.on_get_k8s_controller_info)
+      self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
       
       # OSM actions (primitives)
       # self.framework.observe(self.on.start_action, self.on_start_action)
@@ -152,26 +156,23 @@ class SampleProxyCharm(SSHProxyCharm):
       # TODO -> ver como meter vários depois
       self.__define_dns_name(event, name='worker1')
       
-      # Run on Master Node
+   def on_get_k8s_controller_info(self, event):
       # TODO How to get OUTPUT (stdout) from this command ?
       # TODO CHANGE COMMAND TO OBTAIN ONLY THE REQUESTED VALUES
       # CLUSTER INFO IP AND PORT
       self.__get_cluster_info(event)
+      
       # TODO How to Get OUTPUT (stdout) from this command ? 
       # TODO CHECK IF OLDER TOKENS EXIST INSTEAD OF GENERATING NEW ONES FOR EACH NODE JOIN
       # JOIN TOKEN
       self.__generate__join__token(event)
+      
       # TODO How to get OUTPUT (stdout) from this command ?
       # CA HASH
       self.__get_ca_cert_hash(event)
-      
-      # Run on Worker Node
-      # Add Master IP to Node hosts
-      # TODO GET REAL MASTER IP
-      # TODO GET REAL MASTER HOSTNAME
-      self.__add_master_to_node_hosts(event,ip="127.0.0.1",host="controller")
-      # Join worker node to a cluster via a join token
-      self.__join_node_to_cluster(event,cluster_info,token,ca_cert)
+
+   def on_join_k8s_workers(self, event):
+      self.__join_node_to_cluster(event)
       
    ##########################
    #        Functions       #
@@ -388,20 +389,20 @@ class SampleProxyCharm(SSHProxyCharm):
       proxy = self.get_ssh_proxy()
       return commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
-   def __define_dns_name(self, event):
+   def __define_dns_name(self, event, name):
       commands = Commands()
 
       commands.add_command(Command(
-         cmd="echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 controller | sudo tee "
-             "/etc/hosts;"
-             "echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 controller | sudo "
-             "tee /etc/hosts",
+         cmd=f"echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 {name} | sudo tee "
+             f"/etc/hosts;"
+             f"echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 {name} | sudo "
+             f"tee -a /etc/hosts",
          initial_status="Updating the host's DNS name on the hosts file...",
          ok_status="Host's DNS name updated on the hosts file",
          error_status="Couldn't update the host's DNS name on the hosts file"
       ))
       commands.add_command(Command(
-         cmd="sudo hostnamectl set-hostname controller",
+         cmd=f"sudo hostnamectl set-hostname {name}",
          initial_status="Updating the host's DNS name with hostnamectl...",
          ok_status="Host's DNS name updated with hostnamectl",
          error_status="Couldn't update the host's DNS name with hostnamectl"
@@ -460,20 +461,6 @@ class SampleProxyCharm(SSHProxyCharm):
    #     Custom Actions     #
    #     For Cluster Join   #
    ##########################
-   def __add_master_to_node_hosts(self,event,ip,host):
-      commands = Commands()
-
-      commands.add_command(Command(
-      cmd=f"echo {ip} {host} | sudo tee -a "
-         f"/etc/hosts;",
-         initial_status="Adding the master IP to worker node host file...",
-         ok_status="Master IP was successfuly added to worker node known hosts",
-         error_status="Couldn't update the known hosts file"
-      ))
-
-      proxy = self.get_ssh_proxy()
-      return commands.unit_run_command(component="Add master IP to known hosts", logger=logger, proxy=proxy, unit_status=self.unit.status)
-   
    def __generate__join__token(self,event):
       """Generates a new token for every node attempting to join"""
       commands = Commands()
@@ -481,7 +468,7 @@ class SampleProxyCharm(SSHProxyCharm):
       commands.add_command(Command(
       cmd=f"kubeadm token create",
          initial_status="Creating a new token to be used for joining the cluster",
-         ok_status="Token successfuly created",
+         ok_status="Token successfully created",
          error_status="Couldn't not create a new join token"
       ))
 
@@ -520,16 +507,32 @@ class SampleProxyCharm(SSHProxyCharm):
       return commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy, unit_status=self.unit.status)
     
 
-   def __join_node_to_cluster(event,cluster_info,token,ca_cert):
+   def __join_node_to_cluster(self, event):
       """ Joins a node to a cluster """
       commands = Commands()
-
+      
+      # Obtain the information about the master node
+      master_ip = event.params['ip']
+      master_host = event.params['host']
+      master_port = event.params['port']
+      master_token = event.params['token']
+      master_cert = event.params['cert']
+      
+      # Add master info to worker node
       commands.add_command(Command(
-      cmd=f"kubeadm join {cluster_info['ip']}:{cluster_info['port']} "
-         f"--token {token} "
-         f"--discovery-token-ca-cert-hash sha256:{ca_cert}",
+         cmd=f"echo {master_ip} {master_host} | sudo tee -a /etc/hosts;",
+         initial_status="Adding the master IP to worker node host file...",
+         ok_status="Master IP was successfully added to worker node known hosts",
+         error_status="Couldn't update the known hosts file"
+      ))
+
+      # Join the master
+      commands.add_command(Command(
+         cmd=f"kubeadm join {master_ip}:{master_port} "
+             f"--token {master_token} "
+             f"--discovery-token-ca-cert-hash sha256:{master_cert}",
          initial_status="Joining a new worker node to cluster",
-         ok_status="Node was successfuly joined the cluster",
+         ok_status="Node was successfully joined the cluster",
          error_status="Node couldn't join"
       ))
 
