@@ -259,7 +259,7 @@ class SampleProxyCharm(SSHProxyCharm):
       commands.add_command(Command(
          cmd=f"sudo apt install -y gnupg2={PackageVersions.gnupg2} "
              f"software-properties-common={PackageVersions.software_properties_common} "
-             f"ca-certificates={PackageVersions.software_properties_common}",
+             f"ca-certificates={PackageVersions.ca_certificates}",
          initial_status="Installing required packages for Containerd...",
          ok_status="Required packages for Containerd packages installed",
          error_status="Couldn't install required packages for Containerd"
