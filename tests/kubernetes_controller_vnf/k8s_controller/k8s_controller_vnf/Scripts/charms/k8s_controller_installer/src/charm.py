@@ -3,11 +3,16 @@ import shlex
 import sys
 import logging
 
-from command import Command, Commands
+# Logger
+logger = logging.getLogger(__name__)
+
 from dependencies import install_dependencies
+# install_dependencies(logger=logger)
+
+from command import Command, Commands
+from versions import PackageVersions
 
 sys.path.append("lib")
-
 from charms.osm.sshproxy import SSHProxyCharm
 from ops.main import main
 from ops.model import (
@@ -18,8 +23,6 @@ from ops.model import (
    ModelError,
 )
 
-# Logger
-logger = logging.getLogger(__name__)
 
 class SampleProxyCharm(SSHProxyCharm):
    def __init__(self, framework, key):
@@ -144,7 +147,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt -y install curl apt-transport-https",
+         cmd=f"sudo apt -y install curl={PackageVersions.curl} apt-transport-https={PackageVersions.apt_transport_https}",
          initial_status="Installing curl and apt-transport-https packages...",
          ok_status="Installed curl and apt-transport-https",
          error_status="Couldn't install curl and apt-transport-https"
@@ -171,7 +174,8 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt -y install vim git curl wget kubelet=1.22.7-00 kubeadm=1.22.7-00 kubectl=1.22.7-00",
+         cmd=f"sudo apt -y install git={PackageVersions.git} wget={PackageVersions.wget} "
+             f"kubelet={PackageVersions.kubelet} kubeadm={PackageVersions.kubeadm} kubectl={PackageVersions.kubectl}",
          initial_status="Installing the kubelet, kubeadm and kubectl packages...",
          ok_status="Kubelet, kubeadm and kubectl packages installed",
          error_status="Couldn't install kubelet, kubeadm and kubectl packages"
@@ -236,7 +240,8 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Ensure sysctl params are set
       commands.add_command(Command(
-         cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
+         cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" 
+         | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
          initial_status="Updating sysctl settings...",
          ok_status="Sysctl settings updated",
          error_status="Couldn't update sysctl settings"
@@ -252,7 +257,9 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Install required packages
       commands.add_command(Command(
-         cmd="sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates",
+         cmd=f"sudo apt install -y gnupg2={PackageVersions.gnupg2} "
+             f"software-properties-common={PackageVersions.software_properties_common} "
+             f"ca-certificates={PackageVersions.ca_certificates}",
          initial_status="Installing required packages for Containerd...",
          ok_status="Required packages for Containerd packages installed",
          error_status="Couldn't install required packages for Containerd"
@@ -280,7 +287,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt install -y containerd.io",
+         cmd=f"sudo apt install -y containerd.io={PackageVersions.containerd_io}",
          initial_status="Installing Containerd...",
          ok_status="Containerd installed",
          error_status="Couldn't install Containerd"
@@ -411,5 +418,4 @@ class SampleProxyCharm(SSHProxyCharm):
 
 
 if __name__ == "__main__":
-   install_dependencies(logger=logger)
    main(SampleProxyCharm)
