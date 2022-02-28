@@ -7,9 +7,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
-install_dependencies(logger=logger)
+# install_dependencies(logger=logger)
 
 from command import Command, Commands
+from versions import PackageVersions
 
 sys.path.append("lib")
 from charms.osm.sshproxy import SSHProxyCharm
@@ -58,8 +59,13 @@ class SampleProxyCharm(SSHProxyCharm):
    def on_start(self, event):
       """Called when the charm is being started"""
       super().on_start(event)
-      # self.on_deploy_k8s_controller(event)
-      self.on_deploy_k8s_workers(event)
+
+      entity_deployment = self.model.config('entity')
+      
+      if entity_deployment == 'controller':
+         self.on_deploy_k8s_controller(event)
+      elif entity_deployment == 'worker':
+         self.on_deploy_k8s_workers(event)
 
    def configure_remote(self, event):
       """Configure remote action."""
@@ -146,7 +152,6 @@ class SampleProxyCharm(SSHProxyCharm):
       # TODO -> ver como meter vários depois
       self.__define_dns_name(event, name='worker1')
       
-
       # Run on Master Node
       # TODO How to get OUTPUT (stdout) from this command ?
       # TODO CHANGE COMMAND TO OBTAIN ONLY THE REQUESTED VALUES
@@ -182,7 +187,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt -y install curl apt-transport-https",
+         cmd=f"sudo apt -y install curl={PackageVersions.curl} apt-transport-https={PackageVersions.apt_transport_https}",
          initial_status="Installing curl and apt-transport-https packages...",
          ok_status="Installed curl and apt-transport-https",
          error_status="Couldn't install curl and apt-transport-https"
@@ -209,7 +214,8 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt -y install vim git curl wget kubelet=1.22.7-00 kubeadm=1.22.7-00 kubectl=1.22.7-00",
+         cmd=f"sudo apt -y install git={PackageVersions.git} wget={PackageVersions.wget} "
+             f"kubelet={PackageVersions.kubelet} kubeadm={PackageVersions.kubeadm} kubectl={PackageVersions.kubectl}",
          initial_status="Installing the kubelet, kubeadm and kubectl packages...",
          ok_status="Kubelet, kubeadm and kubectl packages installed",
          error_status="Couldn't install kubelet, kubeadm and kubectl packages"
@@ -274,7 +280,8 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Ensure sysctl params are set
       commands.add_command(Command(
-         cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
+         cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" 
+         | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
          initial_status="Updating sysctl settings...",
          ok_status="Sysctl settings updated",
          error_status="Couldn't update sysctl settings"
@@ -290,7 +297,9 @@ class SampleProxyCharm(SSHProxyCharm):
 
       # Install required packages
       commands.add_command(Command(
-         cmd="sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates",
+         cmd=f"sudo apt install -y gnupg2={PackageVersions.gnupg2} "
+             f"software-properties-common={PackageVersions.software_properties_common} "
+             f"ca-certificates={PackageVersions.ca_certificates}",
          initial_status="Installing required packages for Containerd...",
          ok_status="Required packages for Containerd packages installed",
          error_status="Couldn't install required packages for Containerd"
@@ -318,7 +327,7 @@ class SampleProxyCharm(SSHProxyCharm):
          error_status="Couldn't update systems packages' information"
       ))
       commands.add_command(Command(
-         cmd="sudo apt install -y containerd.io",
+         cmd=f"sudo apt install -y containerd.io={PackageVersions.containerd_io}",
          initial_status="Installing Containerd...",
          ok_status="Containerd installed",
          error_status="Couldn't install Containerd"
@@ -379,20 +388,20 @@ class SampleProxyCharm(SSHProxyCharm):
       proxy = self.get_ssh_proxy()
       return commands.unit_run_command(component="Initialize master node", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
-   def __define_dns_name(self, event, name):
+   def __define_dns_name(self, event):
       commands = Commands()
 
       commands.add_command(Command(
-         cmd=f"echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 {name} | sudo tee "
-             f"/etc/hosts;"
-             f"echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 {name} | sudo "
-             f"tee /etc/hosts",
+         cmd="echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 controller | sudo tee "
+             "/etc/hosts;"
+             "echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 controller | sudo "
+             "tee /etc/hosts",
          initial_status="Updating the host's DNS name on the hosts file...",
          ok_status="Host's DNS name updated on the hosts file",
          error_status="Couldn't update the host's DNS name on the hosts file"
       ))
       commands.add_command(Command(
-         cmd=f"sudo hostnamectl set-hostname {name}",
+         cmd="sudo hostnamectl set-hostname controller",
          initial_status="Updating the host's DNS name with hostnamectl...",
          ok_status="Host's DNS name updated with hostnamectl",
          error_status="Couldn't update the host's DNS name with hostnamectl"
@@ -446,7 +455,6 @@ class SampleProxyCharm(SSHProxyCharm):
 
       proxy = self.get_ssh_proxy()
       return commands.unit_run_command(component="Install Calico's network plugin", logger=logger, proxy=proxy, unit_status=self.unit.status)
-
 
    ##########################
    #     Custom Actions     #
