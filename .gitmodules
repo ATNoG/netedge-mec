@@ -16,3 +16,9 @@
 [submodule "tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/charms.osm"]
 	path = tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/charms.osm
 	url = https://github.com/charmed-osm/charms.osm
+[submodule "k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/operator"]
+	path = k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/operator
+	url = https://github.com/canonical/operator
+[submodule "k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/charms.osm"]
+	path = k8s_cluster/k8s_cluster_vnf/Scripts/charms/k8s_cluster_installer/mod/charms.osm
+	url = https://github.com/charmed-osm/charms.osm

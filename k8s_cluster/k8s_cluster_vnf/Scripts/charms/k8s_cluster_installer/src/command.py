@@ -20,6 +20,9 @@ class Command:
       self.initial_status = initial_status
       self.ok_status = ok_status
       self.error_status = error_status
+      
+      self.result: str = ''
+      self.error: str = ''
 
 
 class Commands:
@@ -44,18 +47,18 @@ class Commands:
    def add_command(self, new_command: Command) -> None:
       self.commands.append(new_command)
 
-   def unit_run_command(self, component: str, logger: Logger, proxy: SSHProxy) -> StatusBase:
+   def unit_run_command(self, component: str, logger: Logger, proxy: SSHProxy, unit_status: StatusBase) -> None:
       for i in range(len(self.commands)):
-         result, error = None, None
-         unit_status = MaintenanceStatus(self.commands[i].initial_status)
+         current_command = self.commands[i]
+         
+         unit_status = MaintenanceStatus(current_command.initial_status)
          try:
-            result, error = proxy.run(self.commands[i].cmd)
-            logger.info(f"Status: {self.commands[i].ok_status}; Output: {result}; Errors: {error}")
-            unit_status = MaintenanceStatus(self.commands[i].ok_status)
+            current_command.result, current_command.error = proxy.run(current_command.cmd)
+            logger.info(f"Status: {current_command.ok_status}; Output: {current_command.result}; Errors: {current_command.error}")
+            unit_status = MaintenanceStatus(current_command.ok_status)
          except Exception as e:
-            logger.error(f"[{self.commands[i].error_status}] failed {e}. Stderr: {error}")
-            unit_status = BlockedStatus(self.commands[i].error_status)
-            raise Exception(f"[Unable to <{component}>]; Status: {self.commands[i].error_status}; Action failed {e}; Stderr: {error}")
+            logger.error(f"[{current_command.error_status}] failed {e}. Stderr: {current_command.error}")
+            unit_status = BlockedStatus(current_command.error_status)
+            raise Exception(f"[Unable to <{component}>]; Status: {current_command.error_status}; Action failed {e}; Stderr: {current_command.error}")
 
       unit_status = ActiveStatus(f"<{component}> completed with success")
-      return unit_status
