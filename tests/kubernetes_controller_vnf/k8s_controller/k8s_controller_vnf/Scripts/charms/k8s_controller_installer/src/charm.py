@@ -355,7 +355,7 @@ class SampleProxyCharm(SSHProxyCharm):
          cmd="echo 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 controller | sudo tee "
              "/etc/hosts;"
              "echo ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 controller | sudo "
-             "tee /etc/hosts",
+             "tee -a /etc/hosts",
          initial_status="Updating the host's DNS name on the hosts file...",
          ok_status="Host's DNS name updated on the hosts file",
          error_status="Couldn't update the host's DNS name on the hosts file"
