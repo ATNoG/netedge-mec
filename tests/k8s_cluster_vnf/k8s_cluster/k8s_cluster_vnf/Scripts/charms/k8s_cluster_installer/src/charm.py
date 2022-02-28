@@ -122,6 +122,7 @@ class SampleProxyCharm(SSHProxyCharm):
        
    ##########################
    #     Custom Actions     #
+   #         Controller     #
    ##########################
    def on_deploy_k8s_controller(self, event):
       self.__install_kubernetes(event)
@@ -133,6 +134,10 @@ class SampleProxyCharm(SSHProxyCharm):
       self.__configure_kubectl(event)
       self.__install_network_plugin(event)
       
+   ##########################
+   #     Custom Actions     #
+   #             Worker     #
+   ########################## 
    def on_deploy_k8s_workers(self, event):
       self.__install_kubernetes(event)
       self.__disable_swap(event)
@@ -141,8 +146,28 @@ class SampleProxyCharm(SSHProxyCharm):
       # TODO -> ver como meter vários depois
       self.__define_dns_name(event, name='worker1')
       
-      # TODO -> kubeadm join
 
+      # Run on Master Node
+      # TODO How to get OUTPUT (stdout) from this command ?
+      # TODO CHANGE COMMAND TO OBTAIN ONLY THE REQUESTED VALUES
+      # CLUSTER INFO IP AND PORT
+      self.__get_cluster_info(event)
+      # TODO How to Get OUTPUT (stdout) from this command ? 
+      # TODO CHECK IF OLDER TOKENS EXIST INSTEAD OF GENERATING NEW ONES FOR EACH NODE JOIN
+      # JOIN TOKEN
+      self.__generate__join__token(event)
+      # TODO How to get OUTPUT (stdout) from this command ?
+      # CA HASH
+      self.__get_ca_cert_hash(event)
+      
+      # Run on Worker Node
+      # Add Master IP to Node hosts
+      # TODO GET REAL MASTER IP
+      # TODO GET REAL MASTER HOSTNAME
+      self.__add_master_to_node_hosts(event,ip="127.0.0.1",host="controller")
+      # Join worker node to a cluster via a join token
+      self.__join_node_to_cluster(event,cluster_info,token,ca_cert)
+      
    ##########################
    #        Functions       #
    ##########################
@@ -423,5 +448,86 @@ class SampleProxyCharm(SSHProxyCharm):
       return commands.unit_run_command(component="Install Calico's network plugin", logger=logger, proxy=proxy, unit_status=self.unit.status)
 
 
+   ##########################
+   #     Custom Actions     #
+   #     For Cluster Join   #
+   ##########################
+   def __add_master_to_node_hosts(self,event,ip,host):
+      commands = Commands()
+
+      commands.add_command(Command(
+      cmd=f"echo {ip} {host} | sudo tee -a "
+         f"/etc/hosts;",
+         initial_status="Adding the master IP to worker node host file...",
+         ok_status="Master IP was successfuly added to worker node known hosts",
+         error_status="Couldn't update the known hosts file"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      return commands.unit_run_command(component="Add master IP to known hosts", logger=logger, proxy=proxy, unit_status=self.unit.status)
+   
+   def __generate__join__token(self,event):
+      """Generates a new token for every node attempting to join"""
+      commands = Commands()
+
+      commands.add_command(Command(
+      cmd=f"kubeadm token create",
+         initial_status="Creating a new token to be used for joining the cluster",
+         ok_status="Token successfuly created",
+         error_status="Couldn't not create a new join token"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      return commands.unit_run_command(component="Cluster join token generator", logger=logger, proxy=proxy, unit_status=self.unit.status)
+
+   def __get_ca_cert_hash(self,event):
+      """Obtains the ca certificate hash of the master node"""
+      commands = Commands()
+
+      commands.add_command(Command(
+      cmd=f"openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'",
+         initial_status="Obtaining hash of the ca cert",
+         ok_status="Ca cert hash was obtained",
+         error_status="Couldn't obtain ca cert hash"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      return commands.unit_run_command(component="Obtaining master ca cert hash", logger=logger, proxy=proxy, unit_status=self.unit.status)
+
+   def __get_cluster_info(self,event):
+      """
+      Obtains information about the cluster information such as IP and PORT 
+      Used by new worker nodes to connect to the cluster
+      """
+      commands = Commands()
+
+      commands.add_command(Command(
+      cmd=f"kubectl cluster-info",
+         initial_status="Obtaining cluster information...",
+         ok_status="Obtained cluster information",
+         error_status="Couldn't obtain information about the cluster"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      return commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy, unit_status=self.unit.status)
+    
+
+   def __join_node_to_cluster(event,cluster_info,token,ca_cert):
+      """ Joins a node to a cluster """
+      commands = Commands()
+
+      commands.add_command(Command(
+      cmd=f"kubeadm join {cluster_info['ip']}:{cluster_info['port']} "
+         f"--token {token} "
+         f"--discovery-token-ca-cert-hash sha256:{ca_cert}",
+         initial_status="Joining a new worker node to cluster",
+         ok_status="Node was successfuly joined the cluster",
+         error_status="Node couldn't join"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      return commands.unit_run_command(component="Joining a node to the cluster", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      
+      
 if __name__ == "__main__":
    main(SampleProxyCharm)
