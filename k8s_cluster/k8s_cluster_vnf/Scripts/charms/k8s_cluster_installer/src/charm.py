@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
-# install_dependencies(logger=logger)
+install_dependencies(logger=logger)
 
 from command import Command, Commands
 from versions import PackageVersions
@@ -64,7 +64,7 @@ class SampleProxyCharm(SSHProxyCharm):
       """Called when the charm is being started"""
       super().on_start(event)
 
-      entity_deployment = self.model.config('entity')
+      entity_deployment = self.model.config['entity']
       
       if entity_deployment == 'controller':
          self.on_deploy_k8s_controller(event)
@@ -170,6 +170,8 @@ class SampleProxyCharm(SSHProxyCharm):
       # TODO How to get OUTPUT (stdout) from this command ?
       # CA HASH
       self.__get_ca_cert_hash(event)
+      # Obtain IP address being used in the cluster for a certain node that is already connected to the cluster
+      self.__get_certain_node_ip(event)
 
    def on_join_k8s_workers(self, event) -> None:
       self.__join_node_to_cluster(event)
@@ -490,9 +492,10 @@ class SampleProxyCharm(SSHProxyCharm):
 
    def __get_cluster_info(self, event) -> None:
       """
-      Obtains information about the cluster information such as IP and PORT 
+      Obtains information about the cluster information such as HOSTNAME and PORT 
       Used by new worker nodes to connect to the cluster
       """
+      # TODO USE THE EVENT TO GET ONLY THE PARAMS WE NEED  (THIS RETURNS LONG STRING WITH MORE DATA THAN WE NEED)
       commands = Commands()
 
       commands.add_command(Command(
@@ -507,6 +510,31 @@ class SampleProxyCharm(SSHProxyCharm):
       
       return commands.commands
     
+   
+   def __get_certain_node_ip(self, event) -> None:
+      """
+      Obtains IP information about several nodes
+      The IP from nodes isn't restrained to worker nodes, by specifying the name we can obtain ip from any node of the cluster
+      This is useful if the VDU has more than one interface (i.e is using one interface for the cluster and another
+      to communicate with the OSM). The actual IP required for new nodes to connect is the IP from the cluster and not the one the OSM knows. 
+      """
+      commands = Commands()
+
+      # Obtain the information about a specific node
+      node_name = event.params['node_name']
+      
+      commands.add_command(Command(
+      cmd=f"kubectl get nodes -o jsonpath=\"{{$.items[?(@.metadata.name==\"{node_name}\")].status.addresses[?(@.type==\"InternalIP\")].address}}\"",
+         initial_status="Obtaining node ip address...",
+         ok_status=f"Node {node_name} ip address retrieved successfuly.",
+         error_status="Couldn't obtain node ip address"
+      ))
+
+      proxy = self.get_ssh_proxy()
+      commands.unit_run_command(component="Obtain node ip address", logger=logger, proxy=proxy, unit_status=self.unit.status)
+      
+      return commands.commands 
+   
 
    def __join_node_to_cluster(self, event) -> None:
       """ Joins a node to a cluster """

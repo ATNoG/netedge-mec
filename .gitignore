@@ -1,6 +1,6 @@
 .vscode/
 .idea/
-**/local-config.yaml
+**/local-config*.yaml
 
 
 # python
