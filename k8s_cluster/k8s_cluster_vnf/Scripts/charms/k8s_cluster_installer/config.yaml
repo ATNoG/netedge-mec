@@ -25,6 +25,6 @@ options:
     description: "The number of bits to use for the SSH key."
 
   entity:
-    type: str
+    type: string
     default: ''
     description: "The entity to deploy (master or worker VNF)"

@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
-# install_dependencies(logger=logger)
+install_dependencies(logger=logger)
 
 from command import Command, Commands
 from versions import PackageVersions
@@ -64,7 +64,7 @@ class SampleProxyCharm(SSHProxyCharm):
       """Called when the charm is being started"""
       super().on_start(event)
 
-      entity_deployment = self.model.config('entity')
+      entity_deployment = self.model.config['entity']
       
       if entity_deployment == 'controller':
          self.on_deploy_k8s_controller(event)
