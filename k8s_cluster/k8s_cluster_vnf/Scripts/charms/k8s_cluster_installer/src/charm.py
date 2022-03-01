@@ -351,9 +351,11 @@ class SampleProxyCharm(SSHProxyCharm):
             error_status="Couldn't enable Containerd service"
         ))
 
-        # TODO -> VER DISTO
+        # Wait for Containerd service to start
+        number_trials = 10
         commands.add_command(Command(
-            cmd="while ! systemctl is-active --quiet containerd; do sleep 10; done",
+            cmd=f"for i in {{1..{number_trials}}}; do echo 1; sleep 60; if systemctl is-active --quiet containerd; "
+                f"then break; fi; done",
             initial_status="Waiting for the Containerd service to be active...",
             ok_status="Containerd service is active",
             error_status="Couldn't wait for the Containerd service to be active"
