@@ -4,8 +4,6 @@ import sys
 import logging
 
 # Logger
-from typing import Dict
-
 logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
@@ -160,18 +158,18 @@ class SampleProxyCharm(SSHProxyCharm):
         # TODO -> ver como meter vários depois
         self.__define_dns_name(event, name='worker1')
 
-    def on_get_k8s_controller_info(self, event) -> Dict[str, str]:
+    def on_get_k8s_controller_info(self, event) -> str:
         cluster_info = self.__get_cluster_info(event)
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
         
-        return {
+        event.set_results({
             'cluster_info': cluster_info,
             'controller_ip': controller_ip,
             'join_token': join_token,
             'ca_cert_hash': ca_cert_hash
-        }
+        })
 
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)

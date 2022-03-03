@@ -51,7 +51,7 @@ join-k8s-workers:
       default: ""
     port: 
       description: "Master's port"
-      type: int
+      type: integer
       default: ""
     token: 
       description: "Master's join token"
