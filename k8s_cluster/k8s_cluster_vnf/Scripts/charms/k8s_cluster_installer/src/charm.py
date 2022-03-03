@@ -500,7 +500,7 @@ class SampleProxyCharm(SSHProxyCharm):
         commands = Commands()
 
         commands.add_command(Command(
-            cmd=f"""kubectl get nodes -o jsonpath='"'{{$.items[?(@.metadata.name=='"'{node_name}'"')].status.addresses[?(@.type=='"'InternalIP'"')].address}}'"' """,
+            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """,
             initial_status="Obtaining node ip address...",
             ok_status=f"Node {node_name} ip address retrieved successfully.",
             error_status="Couldn't obtain node ip address"
