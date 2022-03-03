@@ -500,7 +500,7 @@ class SampleProxyCharm(SSHProxyCharm):
         commands = Commands()
 
         commands.add_command(Command(
-            cmd=f"kubectl get nodes -o jsonpath=\"{{$.items[?(@.metadata.name==\"{node_name}\")].status.addresses[?(@.type==\"InternalIP\")].address}}\"",
+            cmd=f"""kubectl get nodes -o jsonpath='"'{{$.items[?(@.metadata.name=='"'{node_name}'"')].status.addresses[?(@.type=='"'InternalIP'"')].address}}'"' """,
             initial_status="Obtaining node ip address...",
             ok_status=f"Node {node_name} ip address retrieved successfully.",
             error_status="Couldn't obtain node ip address"
@@ -533,8 +533,13 @@ class SampleProxyCharm(SSHProxyCharm):
         """Obtains the ca certificate hash of the master node"""
         commands = Commands()
 
+        # When using commands that require a lot of " characters beware of their usage
+        # In this case we enclose " and the space character with '' , this allows for the literal value to be used
+        # e.g sed "s/^.* //" would end up as ["sed", "'s/^.*'", "'//'"] which is not the command we want
+        # the command we actually want is ["sed", "s/^.* //"] which is achievable by using the enclosing in the " and space
+        # character ending up with the following result sed '"'s/^.*' '//'"'
         commands.add_command(Command(
-            cmd=f"openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'",
+            cmd=f"""openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed '"'s/^.*' '//'"' """,
             initial_status="Obtaining hash of the ca cert",
             ok_status="Ca cert hash was obtained",
             error_status="Couldn't obtain ca cert hash"
