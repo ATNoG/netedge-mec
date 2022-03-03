@@ -40,3 +40,30 @@ get-k8s-controller-info:
 
 join-k8s-workers:
   description: "Join the Kubernetes worker nodes, based on the information about the corresponding controller"
+  params:
+    ip:
+      description: "Master's IP address"
+      type: string
+      default: ""
+    host: 
+      description: "Master's host name"
+      type: string
+      default: ""
+    port: 
+      description: "Master's port"
+      type: int
+      default: ""
+    token: 
+      description: "Master's join token"
+      type: string
+      default: ""
+    cert:
+      description: "Master's certificate"
+      type: string
+      default: ""
+  required:
+    - ip
+    - host
+    - port
+    - token
+    - cert
