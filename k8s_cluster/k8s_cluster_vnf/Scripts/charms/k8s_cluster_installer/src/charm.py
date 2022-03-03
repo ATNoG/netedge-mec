@@ -165,6 +165,13 @@ class SampleProxyCharm(SSHProxyCharm):
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
+        
+        return {
+            'cluster_info': cluster_info,
+            'controller_ip': controller_ip,
+            'join_token': join_token,
+            'ca_cert_hash': ca_cert_hash
+        }
 
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
@@ -483,7 +490,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
         return commands.commands[0].result
 
-    def __get_certain_node_ip(self, event) -> str:
+    def __get_certain_node_ip(self, event, node_name="controller") -> str:
         """
         Obtains IP information about several nodes
         The IP from nodes isn't restrained to worker nodes, by specifying the name we can obtain ip from any node of the cluster
@@ -491,9 +498,6 @@ class SampleProxyCharm(SSHProxyCharm):
         to communicate with the OSM). The actual IP required for new nodes to connect is the IP from the cluster and not the one the OSM knows.
         """
         commands = Commands()
-
-        # Obtain the information about a specific node
-        node_name = event.params['node_name']
 
         commands.add_command(Command(
             cmd=f"kubectl get nodes -o jsonpath=\"{{$.items[?(@.metadata.name==\"{node_name}\")].status.addresses[?(@.type==\"InternalIP\")].address}}\"",
