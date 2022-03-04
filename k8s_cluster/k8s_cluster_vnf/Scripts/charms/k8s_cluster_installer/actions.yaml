@@ -47,6 +47,16 @@ deploy-k8s-controller:
 deploy-k8s-workers:
   description: "Deploy the Kubernetes worker nodes"
 
+remove-k8s-node:
+  description: "Remove a Kubernetes node from the cluster it belongs to"
+  params:
+    node:
+      description: "Hostname of the node to be removed"
+      type: string
+      default: ""
+  required:
+    - node
+
 get-k8s-controller-info:
   description: "Obtain information from the Kubernetes controller, necessary to join the worker nodes"
 
