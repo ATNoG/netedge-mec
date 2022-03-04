@@ -158,18 +158,19 @@ class SampleProxyCharm(SSHProxyCharm):
         # TODO -> ver como meter vários depois
         self.__define_dns_name(event, name='worker1')
 
-    def on_get_k8s_controller_info(self, event) -> str:
-        cluster_info = self.__get_cluster_info(event)
+    def on_get_k8s_controller_info(self, event) -> Dict[str, str]:
+        [controller_hostname,controller_port] = self.__get_cluster_info(event)
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
         
-        event.set_results({
-            'cluster-info': cluster_info,
-            'controller-ip': controller_ip,
-            'join-token': join_token,
-            'ca-cert-hash': ca_cert_hash
-        })
+        return {
+            'controller_hostname': controller_hostname,
+            'controller_port': controller_port,
+            'controller_ip': controller_ip,
+            'join_token': join_token,
+            'ca_cert_hash': ca_cert_hash
+        }
 
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
@@ -472,11 +473,11 @@ class SampleProxyCharm(SSHProxyCharm):
         Obtains information about the cluster information such as HOSTNAME and PORT
         Used by new worker nodes to connect to the cluster
         """
-        # TODO USE THE EVENT TO GET ONLY THE PARAMS WE NEED  (THIS RETURNS LONG STRING WITH MORE DATA THAN WE NEED)
         commands = Commands()
-
+        # If possible add sed command replacing // with nothing
+        # python shlex wasn't really "colaborating" with this replace 
         commands.add_command(Command(
-            cmd=f"kubectl cluster-info",
+            cmd=f""" kubectl cluster-info | head -n 1 | cut -d '"':'"' -f2,3""",
             initial_status="Obtaining cluster information...",
             ok_status="Obtained cluster information",
             error_status="Couldn't obtain information about the cluster"
@@ -485,8 +486,8 @@ class SampleProxyCharm(SSHProxyCharm):
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
-
-        return commands.commands[0].result
+        
+        return commands.commands[0].result.replace("//","").split(":")
 
     def __get_certain_node_ip(self, event, node_name="controller") -> str:
         """
