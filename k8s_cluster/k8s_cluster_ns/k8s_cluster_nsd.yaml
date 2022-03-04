@@ -28,7 +28,7 @@ nsd:
         virtual-link-connectivity:
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
-            constituent-cpd-id: vnf-mgmt-ext
+            constituent-cpd-id: vnf-controller-ext
           virtual-link-profile-id: mgmtnet
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
@@ -37,4 +37,5 @@ nsd:
     virtual-link-desc:
     - id: mgmtnet
       mgmt-network: true
+      vim-network-name: proj_net
     - id: workernet
