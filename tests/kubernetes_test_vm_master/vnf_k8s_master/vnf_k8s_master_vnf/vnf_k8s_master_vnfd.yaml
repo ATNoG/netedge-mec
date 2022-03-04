@@ -66,4 +66,3 @@ vnfd:
     int-cpd:
       vdu-id: k8s_master
       cpd: eth0-int
-  mgmt-cp: vnf-cp0-ext
