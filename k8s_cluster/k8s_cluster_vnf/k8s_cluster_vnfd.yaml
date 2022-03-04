@@ -163,4 +163,3 @@ vnfd:
     int-cpd:
       vdu-id: k8s_worker_vnfd-VM
       cpd: eth0-int
-    
