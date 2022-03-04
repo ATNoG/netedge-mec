@@ -48,11 +48,11 @@ class SampleProxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
 
         # OSM actions (primitives)
-        # self.framework.observe(self.on.start_action, self.on_start_action)
-        # self.framework.observe(self.on.stop_action, self.on_stop_action)
-        # self.framework.observe(self.on.restart_action, self.on_restart_action)
-        # self.framework.observe(self.on.reboot_action, self.on_reboot_action)
-        # self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
+        self.framework.observe(self.on.start_action, self.on_start_action)
+        self.framework.observe(self.on.stop_action, self.on_stop_action)
+        self.framework.observe(self.on.restart_action, self.on_restart_action)
+        self.framework.observe(self.on.reboot_action, self.on_reboot_action)
+        self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
     def on_config_changed(self, event):
         """Handle changes in configuration"""
