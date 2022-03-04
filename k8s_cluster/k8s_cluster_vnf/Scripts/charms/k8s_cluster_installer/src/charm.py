@@ -165,10 +165,10 @@ class SampleProxyCharm(SSHProxyCharm):
         ca_cert_hash = self.__get_ca_cert_hash(event)
         
         event.set_results({
-            'cluster_info': cluster_info,
-            'controller_ip': controller_ip,
-            'join_token': join_token,
-            'ca_cert_hash': ca_cert_hash
+            'cluster-info': cluster_info,
+            'controller-ip': controller_ip,
+            'join-token': join_token,
+            'ca-cert-hash': ca_cert_hash
         })
 
     def on_join_k8s_workers(self, event) -> None:
@@ -570,7 +570,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
         # Join the master
         commands.add_command(Command(
-            cmd=f"kubeadm join {master_ip}:{master_port} "
+            cmd=f"sudo kubeadm join {master_ip}:{master_port} "
                 f"--token {master_token} "
                 f"--discovery-token-ca-cert-hash sha256:{master_cert}",
             initial_status="Joining a new worker node to cluster",
