@@ -4,8 +4,6 @@ import sys
 import logging
 
 # Logger
-from typing import Dict
-
 logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
@@ -50,11 +48,11 @@ class SampleProxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
 
         # OSM actions (primitives)
-        # self.framework.observe(self.on.start_action, self.on_start_action)
-        # self.framework.observe(self.on.stop_action, self.on_stop_action)
-        # self.framework.observe(self.on.restart_action, self.on_restart_action)
-        # self.framework.observe(self.on.reboot_action, self.on_reboot_action)
-        # self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
+        self.framework.observe(self.on.start_action, self.on_start_action)
+        self.framework.observe(self.on.stop_action, self.on_stop_action)
+        self.framework.observe(self.on.restart_action, self.on_restart_action)
+        self.framework.observe(self.on.reboot_action, self.on_reboot_action)
+        self.framework.observe(self.on.upgrade_action, self.on_upgrade_action)
 
     def on_config_changed(self, event):
         """Handle changes in configuration"""
@@ -160,18 +158,18 @@ class SampleProxyCharm(SSHProxyCharm):
         # TODO -> ver como meter vários depois
         self.__define_dns_name(event, name='worker1')
 
-    def on_get_k8s_controller_info(self, event) -> Dict[str, str]:
+    def on_get_k8s_controller_info(self, event) -> str:
         cluster_info = self.__get_cluster_info(event)
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
         
-        return {
-            'cluster_info': cluster_info,
-            'controller_ip': controller_ip,
-            'join_token': join_token,
-            'ca_cert_hash': ca_cert_hash
-        }
+        event.set_results({
+            'cluster-info': cluster_info,
+            'controller-ip': controller_ip,
+            'join-token': join_token,
+            'ca-cert-hash': ca_cert_hash
+        })
 
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
@@ -572,7 +570,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
         # Join the master
         commands.add_command(Command(
-            cmd=f"kubeadm join {master_ip}:{master_port} "
+            cmd=f"sudo kubeadm join {master_ip}:{master_port} "
                 f"--token {master_token} "
                 f"--discovery-token-ca-cert-hash sha256:{master_cert}",
             initial_status="Joining a new worker node to cluster",
