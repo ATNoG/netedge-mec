@@ -20,7 +20,7 @@ vnfd:
   description: K8s cluster VNF
   provider: OSM
   version: '1.0'
-  mgmt-cp: vnf-mgmt-ext
+  mgmt-cp: vnf-controller-ext
   virtual-storage-desc:
   - id: k8s_controller_vnfd-VM-storage
     size-of-storage: 32
@@ -38,9 +38,9 @@ vnfd:
     virtual-memory:
       size: 2
   sw-image-desc:
-  - id: "HAL_ubuntu2004_cloudinit_template "
-    name: "HAL_ubuntu2004_cloudinit_template "
-    image: "HAL_ubuntu2004_cloudinit_template "
+  - id: "HAL_ubuntu2004_cloudinit_template"
+    name: "HAL_ubuntu2004_cloudinit_template"
+    image: "HAL_ubuntu2004_cloudinit_template"
   df:
   - id: controller-df
     instantiation-level:
@@ -62,7 +62,7 @@ vnfd:
           id: k8s_cluster_vnfd
           execution-environment-list:
           - id: configure-vnf
-            external-connection-point-ref: vnf-mgmt-ext
+            external-connection-point-ref: vnf-controller-ext
             juju:
               charm: k8s_cluster_installer
               proxy: true
@@ -126,11 +126,11 @@ vnfd:
               value: worker
             seq: 1
   vdu:
-  - cloud-init-file: cloud-init-controller.cfg
-    id: k8s_controller_vnfd-VM
+  - id: k8s_controller_vnfd-VM
+    cloud-init-file: cloud-init-controller.cfg
     name: k8s_controller_vnfd-VM
     description: VMs for the Kubernetes' controller plane
-    sw-image-desc: "HAL_ubuntu2004_cloudinit_template "
+    sw-image-desc: "HAL_ubuntu2004_cloudinit_template"
     virtual-storage-desc:
     - k8s_controller_vnfd-VM-storage
     virtual-compute-desc: k8s_controller_vnfd-VM-compute
@@ -140,11 +140,11 @@ vnfd:
       - name: eth0
         virtual-interface:
           type: PARAVIRT
-  - cloud-init-file: cloud-init-worker.cfg
-    id: k8s_worker_vnfd-VM
+  - id: k8s_worker_vnfd-VM
+    cloud-init-file: cloud-init-worker.cfg
     name: k8s_worker_vnfd-VM
     description: VMs for the Kubernetes' workers
-    sw-image-desc: "HAL_ubuntu2004_cloudinit_template "
+    sw-image-desc: "HAL_ubuntu2004_cloudinit_template"
     virtual-storage-desc:
     - k8s_worker_vnfd-VM-storage
     virtual-compute-desc: k8s_worker_vnfd-VM-compute
@@ -155,7 +155,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
   ext-cpd:
-  - id: vnf-mgmt-ext
+  - id: vnf-controller-ext
     int-cpd:
       vdu-id: k8s_controller_vnfd-VM
       cpd: eth0-int
@@ -163,4 +163,3 @@ vnfd:
     int-cpd:
       vdu-id: k8s_worker_vnfd-VM
       cpd: eth0-int
-    
