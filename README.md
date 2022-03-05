@@ -48,3 +48,6 @@ MEC integration with NFVs using OSM
 ```bash
 $ juju bootstrap localhost default
 ```
+
+
+juju upgrade-charm k8s-cluster-installer --path ./k8s-cluster-installer_ubuntu-20.04-amd64.charm
