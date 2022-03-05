@@ -158,19 +158,19 @@ class SampleProxyCharm(SSHProxyCharm):
         # TODO -> ver como meter vários depois
         self.__define_dns_name(event, name='worker1')
 
-    def on_get_k8s_controller_info(self, event) -> Dict[str, str]:
-        [controller_hostname,controller_port] = self.__get_cluster_info(event)
+    def on_get_k8s_controller_info(self, event) ->:
+        controller_hostname, controller_port = self.__get_cluster_info(event)
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
         
-        return {
-            'controller_hostname': controller_hostname,
-            'controller_port': controller_port,
-            'controller_ip': controller_ip,
-            'join_token': join_token,
-            'ca_cert_hash': ca_cert_hash
-        }
+        event.set_results({
+            'controller-hostname': controller_hostname,
+            'controller-port': controller_port,
+            'controller-ip': controller_ip,
+            'join-token': join_token,
+            'ca-cert-hash': ca_cert_hash
+        })
 
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
