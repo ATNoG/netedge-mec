@@ -1,2 +1,2 @@
-684dcd6e416e401a139f013673b4cd9c	k8s_cluster_ns/k8s_cluster_nsd.yaml
 0737a5bae8c3aeb29ad9153b55f8069d	k8s_cluster_ns/README.md
+70d74ced4558c09e508b48d4252cfc86	k8s_cluster_ns/k8s_cluster_nsd.yaml

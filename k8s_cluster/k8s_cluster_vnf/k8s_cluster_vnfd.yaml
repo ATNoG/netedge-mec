@@ -20,39 +20,43 @@ vnfd:
   description: K8s cluster VNF
   provider: OSM
   version: '1.0'
-  mgmt-cp: vnf-controller-ext
+  mgmt-cp: mgmt-ext
+  int-virtual-link-desc:
+  - id: internal-vld
   virtual-storage-desc:
-  - id: k8s_controller_vnfd-VM-storage
+  - id: k8s-controller-VM-storage
     size-of-storage: 32
-  - id: k8s_worker_vnfd-VM-storage
+  - id: k8s-worker-VM-storage
     size-of-storage: 64
   virtual-compute-desc:
-  - id: k8s_controller_vnfd-VM-compute
+  - id: k8s-controller-VM-compute
     virtual-cpu:
       num-virtual-cpu: 4
     virtual-memory:
       size: 4
-  - id: k8s_worker_vnfd-VM-compute
+  - id: k8s-worker-VM-compute
     virtual-cpu:
       num-virtual-cpu: 2
     virtual-memory:
       size: 2
   sw-image-desc:
-  - id: "HAL_ubuntu2004_cloudinit_template"
+  - id: "clean-ubuntu"
+    name: "Ubuntu 20.04 x86_64"
+    image: "Ubuntu 20.04 x86_64"
+  - id: "ubuntu-template"
     name: "HAL_ubuntu2004_cloudinit_template"
     image: "HAL_ubuntu2004_cloudinit_template"
   df:
   - id: controller-df
     instantiation-level:
-    - id: default-instantiation-level
+    - id: controller-instantiation-level
       vdu-level:
-      - vdu-id: k8s_controller_vnfd-VM
+      - vdu-id: k8s-controller-VM
         number-of-instances: 1
     vdu-profile:
-    - id: k8s_controller_vnfd-VM
+    - id: k8s-controller-VM
       min-number-of-instances: 1
-      # max-number-of-instances: 1
-    # Juju/LCM Actionns
+      # max-number-of-instances: 10
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
@@ -62,7 +66,7 @@ vnfd:
           id: k8s_cluster_vnfd
           execution-environment-list:
           - id: configure-vnf
-            external-connection-point-ref: vnf-controller-ext
+            external-connection-point-ref: mgmt-ext
             juju:
               charm: k8s_cluster_installer
               proxy: true
@@ -86,15 +90,14 @@ vnfd:
 
   - id: worker-df
     instantiation-level:
-    - id: default-instantiation-level
+    - id: worker-instantiation-level
       vdu-level:
-      - vdu-id: k8s_worker_vnfd-VM
+      - vdu-id: k8s-worker-VM
         number-of-instances: 1
     vdu-profile:
-    - id: k8s_worker_vnfd-VM
+    - id: k8s-worker-VM
       min-number-of-instances: 1
       # max-number-of-instances: 1
-    # Juju/LCM Actionns
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
@@ -104,7 +107,7 @@ vnfd:
           id: k8s_cluster_vnfd
           execution-environment-list:
           - id: configure-vnf
-            external-connection-point-ref: vnf-worker-ext
+            external-connection-point-ref: mgmt-ext
             juju:
               charm: k8s_cluster_installer
               proxy: true
@@ -125,41 +128,87 @@ vnfd:
             - name: entity
               value: worker
             seq: 1
+  - id: mgmt-df
+    instantiation-level:
+    - id: mgmt-instantiation-level
+      vdu-level:
+      - vdu-id: mgmt-VM
+        number-of-instances: 1
+    vdu-profile:
+    - id: mgmt-VM
+      min-number-of-instances: 1
+      # max-number-of-instances: 1
   vdu:
-  - id: k8s_controller_vnfd-VM
-    cloud-init-file: cloud-init-controller.cfg
-    name: k8s_controller_vnfd-VM
-    description: VMs for the Kubernetes' controller plane
-    sw-image-desc: "HAL_ubuntu2004_cloudinit_template"
+  - id: mgmt-VM
+    # cloud-init-file: cloud-init-controller.cfg
+    name: mgmt-VM
+    description: Management VDU
+    sw-image-desc: "ubuntu-template"
     virtual-storage-desc:
-    - k8s_controller_vnfd-VM-storage
-    virtual-compute-desc: k8s_controller_vnfd-VM-compute
+    - k8s-controller-VM-storage
+    virtual-compute-desc: k8s-worker-VM-compute
     int-cpd:
-    - id: eth0-int
+    - id: mgmt-int-out
       virtual-network-interface-requirement:
-      - name: eth0
+      - name: mgmt-out
         virtual-interface:
           type: PARAVIRT
-  - id: k8s_worker_vnfd-VM
-    cloud-init-file: cloud-init-worker.cfg
-    name: k8s_worker_vnfd-VM
-    description: VMs for the Kubernetes' workers
-    sw-image-desc: "HAL_ubuntu2004_cloudinit_template"
-    virtual-storage-desc:
-    - k8s_worker_vnfd-VM-storage
-    virtual-compute-desc: k8s_worker_vnfd-VM-compute
-    int-cpd:
-    - id: eth0-int
+    - id: mgmt-int-in
+      int-virtual-link-desc: internal-vld
       virtual-network-interface-requirement:
-      - name: eth0
+      - name: mgmt-in
+        virtual-interface:
+          type: PARAVIRT
+  - id: k8s-controller-VM
+    cloud-init-file: cloud-init-controller.cfg
+    name: k8s-controller-VM
+    description: VMs for the Kubernetes' controller plane
+    sw-image-desc: "clean-ubuntu"
+    virtual-storage-desc:
+    - k8s-controller-VM-storage
+    virtual-compute-desc: k8s-controller-VM-compute
+    int-cpd:
+    - id: controller-int-out
+      virtual-network-interface-requirement:
+      - name: controller-out
+        virtual-interface:
+          type: PARAVIRT
+    - id: controller-int-in
+      int-virtual-link-desc: internal-vld
+      virtual-network-interface-requirement:
+      - name: controller-in
+        virtual-interface:
+          type: PARAVIRT
+  - id: k8s-worker-VM
+    cloud-init-file: cloud-init-worker.cfg
+    name: k8s-worker-VM
+    description: VMs for the Kubernetes' workers
+    sw-image-desc: "clean-ubuntu"
+    virtual-storage-desc:
+    - k8s-worker-VM-storage
+    virtual-compute-desc: k8s-worker-VM-compute
+    int-cpd:
+    - id: worker-int-out
+      virtual-network-interface-requirement:
+      - name: worker-out
+        virtual-interface:
+          type: PARAVIRT
+    - id: worker-int-in
+      int-virtual-link-desc: internal-vld
+      virtual-network-interface-requirement:
+      - name: worker-in
         virtual-interface:
           type: PARAVIRT
   ext-cpd:
   - id: vnf-controller-ext
     int-cpd:
-      vdu-id: k8s_controller_vnfd-VM
-      cpd: eth0-int
+      vdu-id: k8s-controller-VM
+      cpd: controller-int-out
   - id: vnf-worker-ext
     int-cpd:
-      vdu-id: k8s_worker_vnfd-VM
-      cpd: eth0-int
+      vdu-id: k8s-worker-VM
+      cpd: worker-int-out
+  - id: mgmt-ext
+    int-cpd:
+      vdu-id: mgmt-VM
+      cpd: mgmt-int-out
