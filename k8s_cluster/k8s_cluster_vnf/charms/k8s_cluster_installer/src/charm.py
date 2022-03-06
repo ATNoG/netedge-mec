@@ -158,7 +158,7 @@ class SampleProxyCharm(SSHProxyCharm):
         # TODO -> ver como meter vários depois
         self.__define_dns_name(event, name='worker1')
 
-    def on_get_k8s_controller_info(self, event) ->:
+    def on_get_k8s_controller_info(self, event):
         controller_hostname, controller_port = self.__get_cluster_info(event)
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
