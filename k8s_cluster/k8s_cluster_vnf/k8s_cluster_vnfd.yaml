@@ -47,97 +47,60 @@ vnfd:
     name: "HAL_ubuntu2004_cloudinit_template"
     image: "HAL_ubuntu2004_cloudinit_template"
   df:
-  - id: controller-df
+  - id: default-df
     instantiation-level:
-    - id: controller-instantiation-level
+    - id: default-instantiation-level
       vdu-level:
-      - vdu-id: k8s-controller-VM
-        number-of-instances: 1
+      - number-of-instances: 1
+        vdu-id: k8s-controller-VM
+      - number-of-instances: 1
+        vdu-id: k8s-worker-VM
     vdu-profile:
     - id: k8s-controller-VM
       min-number-of-instances: 1
-      # max-number-of-instances: 10
-    lcm-operations-configuration:
-      operate-vnf-op-config:
-        day1-2:
-        - config-primitive:
-          - name: deploy-k8s-controller
-            execution-environment-ref: configure-controller
-          id: k8s_cluster_vnfd
-          execution-environment-list:
-          - id: configure-controller
-            external-connection-point-ref: vnf-controller-ext
-            juju:
-              charm: k8s_cluster_installer
-              proxy: true
-          config-access:
-            ssh-access:
-              default-user: controller
-              required: true
-          initial-config-primitive:
-          - execution-environment-ref: configure-controller
-            name: config
-            parameter:
-            - name: ssh-hostname
-              value: <rw_mgmt_ip>
-            - name: ssh-username
-              value: controller
-            - name: ssh-password
-              value: olaadeus
-            - name: entity
-              value: controller
-            seq: 1
-
-  - id: worker-df
-    instantiation-level:
-    - id: worker-instantiation-level
-      vdu-level:
-      - vdu-id: k8s-worker-VM
-        number-of-instances: 1
-    vdu-profile:
     - id: k8s-worker-VM
       min-number-of-instances: 1
       # max-number-of-instances: 1
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
-        - config-primitive:
-          - name: deploy-k8s-worker
-            execution-environment-ref: configure-worker
-          id: k8s_cluster_vnfd
-          execution-environment-list:
-          - id: configure-worker
-            external-connection-point-ref: vnf-worker-ext
+        - execution-environment-list:
+          - id: controller-ee
             juju:
               charm: k8s_cluster_installer
-              proxy: true
-          config-access:
-            ssh-access:
-              default-user: worker
-              required: true
+          id: k8s-controller-VM
           initial-config-primitive:
-          - execution-environment-ref: configure-worker
+          - execution-environment-ref: controller-ee
             name: config
             parameter:
             - name: ssh-hostname
               value: <rw_mgmt_ip>
             - name: ssh-username
-              value: worker
+              value: controller
+            - name: ssh-password
+              value: olaadeus
+            - name: entity
+              value: controller
+            seq: 1
+        - execution-environment-list:
+          - id: worker-ee
+            juju:
+              charm: k8s_cluster_installer
+          id: k8s-worker-VM
+          initial-config-primitive:
+          - execution-environment-ref: worker-ee
+            name: config
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: controller
             - name: ssh-password
               value: olaadeus
             - name: entity
               value: worker
             seq: 1
-  - id: mgmt-df
-    instantiation-level:
-    - id: mgmt-instantiation-level
-      vdu-level:
-      - vdu-id: mgmt-VM
-        number-of-instances: 1
-    vdu-profile:
-    - id: mgmt-VM
-      min-number-of-instances: 1
-      # max-number-of-instances: 1
+
   vdu:
   - id: mgmt-VM
     # cloud-init-file: cloud-init-controller.cfg
@@ -179,6 +142,25 @@ vnfd:
       - name: controller-in
         virtual-interface:
           type: PARAVIRT
+    # vdu-configuration:
+    #   juju:
+    #     charm: k8s_cluster_installer
+      # config-access:
+      #   ssh-access:
+      #     default-user: controller
+      #     required: true
+      # initial-config-primitive:
+      # - name: config
+      #   parameter:
+      #   - name: ssh-hostname
+      #     value: <rw_mgmt_ip>
+      #   - name: ssh-username
+      #     value: controller
+      #   - name: ssh-password
+      #     value: olaadeus
+      #   - name: entity
+      #     value: controller
+      #   seq: 1
   - id: k8s-worker-VM
     cloud-init-file: cloud-init-worker.cfg
     name: k8s-worker-VM
@@ -199,6 +181,21 @@ vnfd:
       - name: worker-in
         virtual-interface:
           type: PARAVIRT
+#    vdu-configuration:
+#      juju:
+#        charm: k8s_cluster_installer
+#      initial-config-primitive:
+#      - name: config
+#      parameter:
+#      - name: ssh-hostname
+#        value: <rw_mgmt_ip>
+#      - name: ssh-username
+#        value: worker
+#      - name: ssh-password
+#        value: olaadeus
+#      - name: entity
+#        value: worker
+#      seq: 1
   ext-cpd:
   - id: vnf-controller-ext
     int-cpd:
