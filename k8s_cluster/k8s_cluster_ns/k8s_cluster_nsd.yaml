@@ -29,22 +29,22 @@ nsd:
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: vnf-controller-ext
-          virtual-link-profile-id: controller-net
+          virtual-link-profile-id: mgmt-net
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: vnf-worker-ext
-          virtual-link-profile-id: worker-net
+          virtual-link-profile-id: mgmt-net
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: mgmt-ext
           virtual-link-profile-id: mgmt-net
     virtual-link-desc:
-    - id: controller-net
-      mgmt-network: true
-      vim-network-name: proj_net
-    - id: worker-net
-      mgmt-network: true
-      vim-network-name: proj_net
+    # - id: controller-net
+    #   mgmt-network: true
+    #   vim-network-name: proj_net
+    # - id: worker-net
+    #   mgmt-network: true
+    #   vim-network-name: proj_net
     - id: mgmt-net
       mgmt-network: true
       vim-network-name: proj_net
