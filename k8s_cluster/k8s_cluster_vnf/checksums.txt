@@ -1,4 +1,4 @@
-121b86a2170341e30d8a4e82c3731689	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
+4589201edfc94b17bea81c549b3eee76	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
 31791e4083f5e4fd0a277b7f6536f284	k8s_cluster_vnf/README.md
 1408d0e609ee6275ee567816ea9f5c7a	k8s_cluster_vnf/cloud_init/cloud-init-controller.cfg
 8e0eb707be1946e0266bfa65071707cc	k8s_cluster_vnf/cloud_init/cloud-init-worker.cfg
