@@ -1,5 +1,5 @@
 31791e4083f5e4fd0a277b7f6536f284	k8s_cluster_vnf/README.md
-ea05d2df4805f3055140eeed05cc5f28	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
+121b86a2170341e30d8a4e82c3731689	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
 f9209fe79e3947f60c4d59d83cebf061	k8s_cluster_vnf/charms/k8s_cluster_installer/actions.yaml
 8305ca5ef52af498dbb1a53777c77bd2	k8s_cluster_vnf/charms/k8s_cluster_installer/config.yaml
 d851a6a3c47f4ad60e7bbb56b7f5cbbd	k8s_cluster_vnf/charms/k8s_cluster_installer/k8s-cluster-installer_ubuntu-20.04-amd64.charm
@@ -37,7 +37,7 @@ d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/li
 d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/__init__.py
 8c396728613e1e79acf92696739d7bb4	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/libansible.py
 2e5c4ee6c41e308c69caddfb9bd9382a	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/proxy_cluster.py
-286aef648e9843399aa6f53ddf0bdbb6	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/sshproxy.py
+e2b5a545ac939be62f9daf2939e8d446	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/sshproxy.py
 d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/__init__.py
 9e9d37bf6bbf8d0c9a19983fe3c180b5	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/ns.py
 e3ee8bfbaf8cffbba0e011791dad60e5	k8s_cluster_vnf/charms/k8s_cluster_installer/src/dependencies.py
@@ -144,7 +144,7 @@ e682f327bf515278f257e923a2469079	k8s_cluster_vnf/charms/k8s_cluster_installer/mo
 d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/__init__.py
 8c396728613e1e79acf92696739d7bb4	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/libansible.py
 2e5c4ee6c41e308c69caddfb9bd9382a	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/proxy_cluster.py
-286aef648e9843399aa6f53ddf0bdbb6	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/sshproxy.py
+e2b5a545ac939be62f9daf2939e8d446	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/sshproxy.py
 d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/__init__.py
 9e9d37bf6bbf8d0c9a19983fe3c180b5	k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm/charms/osm/ns.py
 e3ee8bfbaf8cffbba0e011791dad60e5	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/dependencies.py

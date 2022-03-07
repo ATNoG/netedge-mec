@@ -62,11 +62,11 @@ vnfd:
         day1-2:
         - config-primitive:
           - name: deploy-k8s-controller
-            execution-environment-ref: configure-vnf
+            execution-environment-ref: configure-controller
           id: k8s_cluster_vnfd
           execution-environment-list:
-          - id: configure-vnf
-            external-connection-point-ref: mgmt-ext
+          - id: configure-controller
+            external-connection-point-ref: vnf-controller-ext
             juju:
               charm: k8s_cluster_installer
               proxy: true
@@ -75,7 +75,7 @@ vnfd:
               default-user: controller
               required: true
           initial-config-primitive:
-          - execution-environment-ref: configure-vnf
+          - execution-environment-ref: configure-controller
             name: config
             parameter:
             - name: ssh-hostname
@@ -103,11 +103,11 @@ vnfd:
         day1-2:
         - config-primitive:
           - name: deploy-k8s-worker
-            execution-environment-ref: configure-vnf
+            execution-environment-ref: configure-worker
           id: k8s_cluster_vnfd
           execution-environment-list:
-          - id: configure-vnf
-            external-connection-point-ref: mgmt-ext
+          - id: configure-worker
+            external-connection-point-ref: vnf-worker-ext
             juju:
               charm: k8s_cluster_installer
               proxy: true
@@ -116,7 +116,7 @@ vnfd:
               default-user: worker
               required: true
           initial-config-primitive:
-          - execution-environment-ref: configure-vnf
+          - execution-environment-ref: configure-worker
             name: config
             parameter:
             - name: ssh-hostname
