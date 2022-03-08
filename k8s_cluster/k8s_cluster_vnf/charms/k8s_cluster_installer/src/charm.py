@@ -43,11 +43,10 @@ class SampleProxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
         self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
         
-        
         # Manual custom actions
         self.framework.observe(self.on.get_k8s_controller_info_action, self.on_get_k8s_controller_info)
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
-        self.framework.observe(self.on.remove_k8s_node_action,self.on_remove_k8s_node_action)
+        self.framework.observe(self.on.remove_k8s_worker_action,self.on_remove_k8s_worker_action)
         
         # OSM actions (primitives)
         self.framework.observe(self.on.start_action, self.on_start_action)
@@ -177,8 +176,8 @@ class SampleProxyCharm(SSHProxyCharm):
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
 
-    def on_remove_k8s_node_action(self,event) -> None:
-        self.__remove_node_from_cluster(event)
+    def on_remove_k8s_worker_action(self, event) -> None:
+        self.__remove_worker_from_cluster(event)
         
     ##########################
     #        Functions       #
@@ -550,7 +549,7 @@ class SampleProxyCharm(SSHProxyCharm):
         ))
 
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Obtaining master ca cert hash", logger=logger, proxy=proxy,
+        commands.unit_run_command(component="Obtain master ca cert hash", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 
         return commands.commands[0].result
@@ -585,12 +584,12 @@ class SampleProxyCharm(SSHProxyCharm):
         ))
 
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Joining a node to the cluster", logger=logger, proxy=proxy,
+        commands.unit_run_command(component="Join a node to the cluster", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 
-    def __remove_node_from_cluster(self,event) -> None:
+    def __remove_worker_from_cluster(self, event) -> None:
         """
-        Given a Node Hostname remove it from a given Cluster
+        Given a Node's Hostname, remove it from a given Cluster
         The VDU will still exist, but it is not part of the cluster anymore
         """
         commands = Commands()
@@ -601,21 +600,21 @@ class SampleProxyCharm(SSHProxyCharm):
         # Drain the node (i.e remove all the pods from the worker node)
         commands.add_command(Command(
             cmd=f"kubectl drain {node_hostname}",
-            initial_status=f"Draining node {node_hostname} from the cluster",
-            ok_status="Node successfuly drain from the cluster",
+            initial_status=f"Draining node {node_hostname} from the cluster...",
+            ok_status="Node successfully drain from the cluster",
             error_status="Failed to drain node from cluster"
         ))
         
         # Remove the node from the worker node 
         commands.add_command(Command(
             cmd=f"kubectl delete {node_hostname}",
-            initial_status=f"Deleting node {node_hostname} from the cluster",
-            ok_status="Node successfuly removed from the cluster",
+            initial_status=f"Deleting node {node_hostname} from the cluster...",
+            ok_status="Node successfully removed from the cluster",
             error_status="Failed to remove node from cluster"
         ))
     
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Removing node from cluster", logger=logger, proxy=proxy,
+        commands.unit_run_command(component="Remove worker from cluster", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 if __name__ == "__main__":
     main(SampleProxyCharm)
