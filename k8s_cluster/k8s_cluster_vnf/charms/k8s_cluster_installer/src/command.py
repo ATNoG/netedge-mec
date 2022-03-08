@@ -57,8 +57,8 @@ class Commands:
             logger.info(f"Status: {current_command.ok_status}; Output: {current_command.result}; Errors: {current_command.error}")
             unit_status = MaintenanceStatus(current_command.ok_status)
          except Exception as e:
-            logger.error(f"[{current_command.error_status}] failed {e}. Stderr: {current_command.error}")
+            logger.error(f"[{current_command.error_status}] failed <{e}>. Stderr: <{current_command.error}>")
             unit_status = BlockedStatus(current_command.error_status)
-            raise Exception(f"[Unable to <{component}>]; Status: {current_command.error_status}; Action failed {e}; Stderr: {current_command.error}")
+            raise Exception(f"[Unable to <{component}>]; Status: <{current_command.error_status}>; Action failed <{e}>; Stderr: <{current_command.error}>")
 
       unit_status = ActiveStatus(f"<{component}> completed with success")
