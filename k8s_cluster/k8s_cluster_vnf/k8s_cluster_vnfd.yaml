@@ -74,9 +74,9 @@ vnfd:
           - execution-environment-ref: controller-ee
             name: deploy-k8s-controller
             seq: 2
+          config-primitive:
           - execution-environment-ref: controller-ee
             name: get-k8s-controller-info
-            seq: 3
         - execution-environment-list:
           - id: worker-ee
             juju:
@@ -99,22 +99,20 @@ vnfd:
           - execution-environment-ref: worker-ee
             name: deploy-k8s-workers
             seq: 2
-        - config-primitive:
-          - name: get-k8s-controller-info
-            execution-environment-ref: controller-ee
-          - name: join-k8s-workers
-            execution-environment-ref: worker-ee
+          config-primitive:
+          - execution-environment-ref: worker-ee
+            name: join-k8s-workers
             parameter:
               - name: ip
-                data-type: string
+                data-type: STRING
               - name: host
-                data-type: string
+                data-type: STRING
               - name: port
-                data-type: integer
+                data-type: INTEGER
               - name: token
-                data-type: string
+                data-type: STRING
               - name: cert
-                data-type: string
+                data-type: STRING
         #- config-primitive:
         #  - name: deploy-k8s-controller
         #    execution-environment-ref: configure-vnf
