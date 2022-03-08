@@ -19,22 +19,18 @@ nsd:
     description: NS for the K8s cluster VNFs
     version: '1.0'
     vnfd-id:
-    - k8s_cluster_vnfd
+    - k8s_cluster_vnf
     df:
     - id: default-df
       vnf-profile:
-      - id: "1"
-        vnfd-id: k8s_cluster_vnfd
+      - id: '1'
+        vnfd-id: k8s_cluster_vnf
         virtual-link-connectivity:
         - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: vnf-controller-ext
-          virtual-link-profile-id: mgmt-net
-        - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: vnf-worker-ext
-          virtual-link-profile-id: mgmt-net
-        - constituent-cpd-id:
           - constituent-base-element-id: '1'
             constituent-cpd-id: mgmt-ext
           virtual-link-profile-id: mgmt-net

@@ -3,7 +3,7 @@ import subprocess
 from logging import Logger
 
 def install_dependencies(logger: Logger):
-   python_requirements = ["packaging==21.3"]
+   python_requirements = ["packaging==21.3", "ops==1.3.0"]
 
    # Update the apt cache
    logger.info("Updating packages...")
