@@ -59,7 +59,31 @@ vnfd:vnfd-catalog:
             - id: "spgw_cpu_util"
               nfvi-metric: "cpu_utilization"
             - id: "spgw_memory_util"
-              nfvi-metric: "average_memory_utilization"                              
+              nfvi-metric: "average_memory_utilization"        
+            vdu-configuration:
+                initial-config-primitive:
+                -   seq: '1'
+                    name: config
+                    parameter:
+                    -   name: ssh-hostname
+                        value: <rw_mgmt_ip>
+                    -   name: ssh-username
+                        value: ubuntu
+                    -   name: ssh-password
+                        value: <password>
+                -   seq: '2'
+                    name: configure-hss
+                    parameter:
+                    -   name: spgwmme-ip
+                        data-type: STRING
+                        value: <spgwmme_ip>
+                    -   name: hss-ip
+                        data-type: STRING
+                        value: <spgwmme_ip>                        
+                -   seq: '3'
+                    name: restart-hss
+                juju:
+                    charm: spgwmme_charm                      
         -   id: hss
             name: hss
             description: hss

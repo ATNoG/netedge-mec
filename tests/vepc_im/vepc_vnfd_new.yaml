@@ -13,6 +13,35 @@ vnfd:
             operate-vnf-op-config:
                 day1-2:
                 -   execution-environment-list:
+                    -   id: spgwmme_charm-ee
+                        juju:
+                            charm: spgwmme_charm
+                    id: spgwmme
+                    initial-config-primitive:
+                    -   execution-environment-ref: spgwmme_charm-ee
+                        name: config
+                        parameter:
+                        -   name: ssh-hostname
+                            value: <rw_mgmt_ip>
+                        -   name: ssh-username
+                            value: ubuntu
+                        -   name: ssh-password
+                            value: <password>
+                        seq: '1'
+                    -   execution-environment-ref: spgwmme_charm-ee
+                        name: configure-hss
+                        parameter:
+                        -   data-type: STRING
+                            name: spgwmme-ip
+                            value: <spgwmme_ip>
+                        -   data-type: STRING
+                            name: hss-ip
+                            value: <spgwmme_ip>
+                        seq: '2'
+                    -   execution-environment-ref: spgwmme_charm-ee
+                        name: restart-hss
+                        seq: '3'
+                -   execution-environment-list:
                     -   id: hsscharm-ee
                         juju:
                             charm: hsscharm
