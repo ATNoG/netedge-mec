@@ -77,6 +77,11 @@ vnfd:
           config-primitive:
           - execution-environment-ref: controller-ee
             name: get-k8s-controller-info
+          - execution-environment-ref: controller-ee
+            name: remove-k8s-worker
+            parameter:
+              - name: node
+                data-type: STRING
         - execution-environment-list:
           - id: worker-ee
             juju:
@@ -183,25 +188,6 @@ vnfd:
       - name: controller-in
         virtual-interface:
           type: PARAVIRT
-    # vdu-configuration:
-    #   juju:
-    #     charm: k8s_cluster_installer
-      # config-access:
-      #   ssh-access:
-      #     default-user: controller
-      #     required: true
-      # initial-config-primitive:
-      # - name: config
-      #   parameter:
-      #   - name: ssh-hostname
-      #     value: <rw_mgmt_ip>
-      #   - name: ssh-username
-      #     value: controller
-      #   - name: ssh-password
-      #     value: olaadeus
-      #   - name: entity
-      #     value: controller
-      #   seq: 1
   - id: k8s-worker-VM
     cloud-init-file: cloud-init-worker.cfg
     name: k8s-worker-VM
@@ -222,21 +208,6 @@ vnfd:
       - name: worker-in
         virtual-interface:
           type: PARAVIRT
-#    vdu-configuration:
-#      juju:
-#        charm: k8s_cluster_installer
-#      initial-config-primitive:
-#      - name: config
-#      parameter:
-#      - name: ssh-hostname
-#        value: <rw_mgmt_ip>
-#      - name: ssh-username
-#        value: worker
-#      - name: ssh-password
-#        value: olaadeus
-#      - name: entity
-#        value: worker
-#      seq: 1
   ext-cpd:
   - id: vnf-controller-ext
     int-cpd:
