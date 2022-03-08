@@ -1,0 +1,252 @@
+vnfd:
+  id: k8s_cluster_vnf
+  product-name: k8s_cluster_vnf
+  description: K8s cluster VNF
+  provider: OSM
+  version: '1.0'
+  mgmt-cp: mgmt-ext
+  int-virtual-link-desc:
+  - id: internal-vld
+  virtual-storage-desc:
+  - id: k8s-controller-VM-storage
+    size-of-storage: 32
+  - id: k8s-worker-VM-storage
+    size-of-storage: 64
+  virtual-compute-desc:
+  - id: k8s-controller-VM-compute
+    virtual-cpu:
+      num-virtual-cpu: 4
+    virtual-memory:
+      size: 4
+  - id: k8s-worker-VM-compute
+    virtual-cpu:
+      num-virtual-cpu: 2
+    virtual-memory:
+      size: 2
+  sw-image-desc:
+  - id: "clean-ubuntu"
+    name: "Ubuntu 20.04 x86_64"
+    image: "Ubuntu 20.04 x86_64"
+  - id: "ubuntu-template"
+    name: "HAL_ubuntu2004_cloudinit_template"
+    image: "HAL_ubuntu2004_cloudinit_template"
+  df:
+  - id: default-df
+    instantiation-level:
+    - id: default-instantiation-level
+      vdu-level:
+      - number-of-instances: 1
+        vdu-id: k8s-controller-VM
+      - number-of-instances: 1
+        vdu-id: k8s-worker-VM
+      - number-of-instances: 1
+        vdu-id: mgmt-VM
+    vdu-profile:
+    - id: k8s-controller-VM
+      min-number-of-instances: 1
+    - id: k8s-worker-VM
+      min-number-of-instances: 1
+    - id: mgmt-VM
+      min-number-of-instances: 1
+      # max-number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - execution-environment-list:
+          - id: controller-ee
+            juju:
+              charm: k8s_cluster_installer
+              proxy: true
+          id: k8s-controller-VM
+          initial-config-primitive:
+          - execution-environment-ref: controller-ee
+            name: config
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: controller
+            - name: ssh-password
+              value: olaadeus
+            - name: entity
+              value: controller
+            seq: 1
+          - execution-environment-ref: controller-ee
+            name: deploy-k8s-controller
+            seq: 2
+          config-primitive:
+          - execution-environment-ref: controller-ee
+            name: get-k8s-controller-info
+        - execution-environment-list:
+          - id: worker-ee
+            juju:
+              charm: k8s_cluster_installer
+              proxy: true
+          id: k8s-worker-VM
+          initial-config-primitive:
+          - execution-environment-ref: worker-ee
+            name: config
+            parameter:
+            - name: ssh-hostname
+              value: <rw_mgmt_ip>
+            - name: ssh-username
+              value: worker
+            - name: ssh-password
+              value: olaadeus
+            - name: entity
+              value: worker
+            seq: 1
+          - execution-environment-ref: worker-ee
+            name: deploy-k8s-workers
+            seq: 2
+          config-primitive:
+          - execution-environment-ref: worker-ee
+            name: join-k8s-workers
+            parameter:
+              - name: ip
+                data-type: STRING
+              - name: host
+                data-type: STRING
+              - name: port
+                data-type: INTEGER
+              - name: token
+                data-type: STRING
+              - name: cert
+                data-type: STRING
+        #- config-primitive:
+        #  - name: deploy-k8s-controller
+        #    execution-environment-ref: configure-vnf
+        #  - name: get-k8s-controller-info
+        #    execution-environment-ref: configure-vnf
+        #  id: k8s_cluster_vnf
+        #  execution-environment-list:
+        #  - id: configure-vnf
+        #    external-connection-point-ref: mgmt-ext
+        #    juju:
+        #      charm: k8s_cluster_installer
+        #      proxy: true
+        #  config-access:
+        #    ssh-access:
+        #      default-user: controller
+        #      required: true
+        #  initial-config-primitive:
+        #  - execution-environment-ref: configure-vnf
+        #    name: config
+        #    parameter:
+        #    - name: ssh-hostname
+        #      value: <rw_mgmt_ip>
+        #    - name: ssh-username
+        #      value: controller
+        #    - name: ssh-password
+        #      value: olaadeus
+        #    - name: entity
+        #      value: controller
+        #    seq: 1
+  vdu:
+  - id: mgmt-VM
+    cloud-init-file: cloud-init-controller.cfg
+    name: mgmt-VM
+    description: Management VDU
+    sw-image-desc: "ubuntu-template"
+    virtual-storage-desc:
+    - k8s-controller-VM-storage
+    virtual-compute-desc: k8s-worker-VM-compute
+    int-cpd:
+    - id: mgmt-int-out
+      virtual-network-interface-requirement:
+      - name: mgmt-out
+        virtual-interface:
+          type: PARAVIRT
+    - id: mgmt-int-in
+      int-virtual-link-desc: internal-vld
+      virtual-network-interface-requirement:
+      - name: mgmt-in
+        virtual-interface:
+          type: PARAVIRT
+  - id: k8s-controller-VM
+    cloud-init-file: cloud-init-controller.cfg
+    name: k8s-controller-VM
+    description: VMs for the Kubernetes' controller plane
+    sw-image-desc: "clean-ubuntu"
+    virtual-storage-desc:
+    - k8s-controller-VM-storage
+    virtual-compute-desc: k8s-controller-VM-compute
+    int-cpd:
+    - id: controller-int-out
+      virtual-network-interface-requirement:
+      - name: controller-out
+        virtual-interface:
+          type: PARAVIRT
+    - id: controller-int-in
+      int-virtual-link-desc: internal-vld
+      virtual-network-interface-requirement:
+      - name: controller-in
+        virtual-interface:
+          type: PARAVIRT
+    # vdu-configuration:
+    #   juju:
+    #     charm: k8s_cluster_installer
+      # config-access:
+      #   ssh-access:
+      #     default-user: controller
+      #     required: true
+      # initial-config-primitive:
+      # - name: config
+      #   parameter:
+      #   - name: ssh-hostname
+      #     value: <rw_mgmt_ip>
+      #   - name: ssh-username
+      #     value: controller
+      #   - name: ssh-password
+      #     value: olaadeus
+      #   - name: entity
+      #     value: controller
+      #   seq: 1
+  - id: k8s-worker-VM
+    cloud-init-file: cloud-init-worker.cfg
+    name: k8s-worker-VM
+    description: VMs for the Kubernetes' workers
+    sw-image-desc: "clean-ubuntu"
+    virtual-storage-desc:
+    - k8s-worker-VM-storage
+    virtual-compute-desc: k8s-worker-VM-compute
+    int-cpd:
+    - id: worker-int-out
+      virtual-network-interface-requirement:
+      - name: worker-out
+        virtual-interface:
+          type: PARAVIRT
+    - id: worker-int-in
+      int-virtual-link-desc: internal-vld
+      virtual-network-interface-requirement:
+      - name: worker-in
+        virtual-interface:
+          type: PARAVIRT
+#    vdu-configuration:
+#      juju:
+#        charm: k8s_cluster_installer
+#      initial-config-primitive:
+#      - name: config
+#      parameter:
+#      - name: ssh-hostname
+#        value: <rw_mgmt_ip>
+#      - name: ssh-username
+#        value: worker
+#      - name: ssh-password
+#        value: olaadeus
+#      - name: entity
+#        value: worker
+#      seq: 1
+  ext-cpd:
+  - id: vnf-controller-ext
+    int-cpd:
+      vdu-id: k8s-controller-VM
+      cpd: controller-int-out
+  - id: vnf-worker-ext
+    int-cpd:
+      vdu-id: k8s-worker-VM
+      cpd: worker-int-out
+  - id: mgmt-ext
+    int-cpd:
+      vdu-id: mgmt-VM
+      cpd: mgmt-int-out

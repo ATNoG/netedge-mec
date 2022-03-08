@@ -1,0 +1,13 @@
+name: k8s-controller-installer
+summary: Kubernetes VNF controller installer
+maintainer: Pedro Escaleira <escaleira@av.it.pt>
+description: |
+  This is a test charm for the deployment of a Kubernetes controller VNF
+tags:
+  - nfv
+subordinate: false
+series:
+  - focal
+peers: # This will give HA capabilities to your Proxy Charm
+  proxypeer:
+    interface: proxypeer

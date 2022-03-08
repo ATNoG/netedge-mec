@@ -1,0 +1,81 @@
+# Actions to be implemented in src/charm.py
+configure-remote:
+  description: "Configures the remote server"
+  params:
+    destination_ip:
+      description: "IP of the remote server"
+      type: string
+      default: ""
+  required:
+    - destination_ip
+start-service:
+  description: "Starts the service of the VNF"
+
+# Standard OSM functions
+start:
+  description: "Start the service on the VNF."
+stop:
+  description: "Stop the service on the VNF."
+restart:
+  description: "Restart the service on the VNF."
+reboot:
+  description: "Reboot the VNF virtual machine."
+upgrade:
+  description: "Upgrade the software on the VNF."
+
+# Required by charms.osm.sshproxy
+run:
+  description: "Run an arbitrary command"
+  params:
+    command:
+      description: "The command to execute."
+      type: string
+      default: ""
+  required:
+    - command
+generate-ssh-key:
+  description: "Generate a new SSH keypair for this unit. This will replace any existing previously generated keypair."
+verify-ssh-credentials:
+  description: "Verify that this unit can authenticate with server specified by ssh-hostname and ssh-username."
+get-ssh-public-key:
+  description: "Get the public SSH key for this unit."
+
+# Custom actions
+deploy-k8s-controller:
+  description: "Deploy the Kubernetes controller"
+
+deploy-k8s-workers:
+  description: "Deploy the Kubernetes worker nodes"
+
+get-k8s-controller-info:
+  description: "Obtain information from the Kubernetes controller, necessary to join the worker nodes"
+
+join-k8s-workers:
+  description: "Join the Kubernetes worker nodes, based on the information about the corresponding controller"
+  params:
+    ip:
+      description: "Master's IP address"
+      type: string
+      default: ""
+    host: 
+      description: "Master's host name"
+      type: string
+      default: ""
+    port: 
+      description: "Master's port"
+      type: integer
+      default: ""
+    token: 
+      description: "Master's join token"
+      type: string
+      default: ""
+    cert:
+      description: "Master's certificate"
+      type: string
+      default: ""
+  required:
+    - ip
+    - host
+    - port
+    - token
+    - cert
