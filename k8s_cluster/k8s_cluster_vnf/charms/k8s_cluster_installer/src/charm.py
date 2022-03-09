@@ -598,16 +598,19 @@ class SampleProxyCharm(SSHProxyCharm):
         node_hostname = event.params['node']
         
         # Drain the node (i.e remove all the pods from the worker node)
+        # Ignores daemonsets (feature that ensures all nodes run a copy of a certain pod)
+        # Since we want to remove the node this has no impact
         commands.add_command(Command(
-            cmd=f"kubectl drain {node_hostname}",
+            cmd=f"kubectl drain {node_hostname} --ignore-daemonsets",
             initial_status=f"Draining node {node_hostname} from the cluster...",
             ok_status="Node successfully drain from the cluster",
             error_status="Failed to drain node from cluster"
         ))
         
         # Remove the node from the worker node 
+        # After removing the node the daemonset pods may still hang for a while
         commands.add_command(Command(
-            cmd=f"kubectl delete {node_hostname}",
+            cmd=f"kubectl delete node {node_hostname}",
             initial_status=f"Deleting node {node_hostname} from the cluster...",
             ok_status="Node successfully removed from the cluster",
             error_status="Failed to remove node from cluster"
