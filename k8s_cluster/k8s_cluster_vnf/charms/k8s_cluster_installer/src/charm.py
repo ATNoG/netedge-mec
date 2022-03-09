@@ -2,7 +2,7 @@
 import shlex
 import sys
 import logging
-
+import re
 # Logger
 logger = logging.getLogger(__name__)
 
@@ -487,7 +487,16 @@ class SampleProxyCharm(SSHProxyCharm):
         commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
         
-        return commands.commands[0].result.replace("//","").split(":")
+        # We are getting the output from a kubectl command which uses ANSI colors, that
+        # unfortunatelly alters the expected result so we have to remove the ANSI colors from
+        # the output
+        ansi_result = commands.commands[0].result
+        # Regex to escape ANSI color
+        ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
+        # The output at this moment will look like //hostname:port
+        # to obtain only the hostname and port do a simple string conversion
+        result = ansi_escape.replace("//","").split(":")
+        return result
 
     def __get_certain_node_ip(self, event, node_name="controller") -> str:
         """
