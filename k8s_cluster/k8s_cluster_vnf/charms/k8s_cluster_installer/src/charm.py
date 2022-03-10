@@ -10,8 +10,9 @@ from dependencies import install_dependencies
 
 install_dependencies(logger=logger)
 
-from command import Command, Commands
 from versions import PackageVersions
+from command import Command, Commands
+from utils import generate_random_k8s_compliant_hostname
 
 sys.path.append("lib")
 from charms.osm.sshproxy import SSHProxyCharm
@@ -155,8 +156,9 @@ class SampleProxyCharm(SSHProxyCharm):
         self.__disable_swap(event)
         self.__install_container_runtime(event)
 
-        # TODO -> ver como meter vários depois
-        self.__define_dns_name(event, name='worker1')
+        current_hostname = self.__obtain_current_hostname(event)
+        hostname = generate_random_k8s_compliant_hostname(current_hostname=current_hostname)
+        self.__define_dns_name(event, name=hostname)
 
     def on_get_k8s_controller_info(self, event):
         controller_hostname, controller_port = self.__get_cluster_info(event)
@@ -415,6 +417,22 @@ class SampleProxyCharm(SSHProxyCharm):
 
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy, unit_status=self.unit.status)
+        
+    def __obtain_current_hostname(self, event) -> str:
+        commands = Commands()
+
+        commands.add_command(Command(
+            cmd="hostname",
+            initial_status="Obtaining node's current hostname...",
+            ok_status="Obtained node's current hostname",
+            error_status="Couldn't obtain node's current hostname"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Obtain current hostname", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+        return commands.commands[0].result.strip()
 
     def __create_cluster(self, event) -> None:
         commands = Commands()
