@@ -499,7 +499,7 @@ class SampleProxyCharm(SSHProxyCharm):
         # If possible add sed command replacing // with nothing
         # python shlex wasn't really "colaborating" with this replace 
         commands.add_command(Command(
-            cmd=f""" kubectl cluster-info | head -n 1 | cut -d '"':'"' -f2,3""",
+            cmd=f"""kubectl cluster-info | head -n 1 | cut -d '"':'"' -f2,3""",
             initial_status="Obtaining cluster information...",
             ok_status="Obtained cluster information",
             error_status="Couldn't obtain information about the cluster"
@@ -514,7 +514,8 @@ class SampleProxyCharm(SSHProxyCharm):
         # the output
         ansi_result = commands.commands[0].result
         # Regex to escape ANSI color
-        ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
+        ansi_regex = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
+        ansi_escape = ansi_regex.sub("", ansi_result)
         # The output at this moment will look like //hostname:port
         # to obtain only the hostname and port do a simple string conversion
         result = ansi_escape.replace("//","").split(":")
