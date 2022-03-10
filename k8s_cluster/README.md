@@ -5,3 +5,11 @@ $ osm --hostname 10.0.12.96 --user netedge --password <password> --project neted
 ```
 
  - Take into consideration the name of the NS (TODO)
+
+
+## Execute a primitive for some VDU, if there are multiple instances
+TODO
+
+```bash
+$ osm --hostname 10.0.12.96 --user netedge --password <password> --project netedge ns-action k8s --vnf_name 1 --vdu_id worker --vdu_count 1 --action_name join-k8s-workers --params_file join_k8s_workers_params.yaml --wait
+```
