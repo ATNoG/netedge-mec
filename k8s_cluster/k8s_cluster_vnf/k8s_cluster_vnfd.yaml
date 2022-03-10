@@ -51,6 +51,20 @@ vnfd:
     - id: mgmt-VM
       min-number-of-instances: 1
       max-number-of-instances: 10
+    scaling-aspect:
+    - aspect-delta-details:
+        deltas:
+        - id: worker-scale-delta
+          vdu-delta:
+          - id: worker
+            number-of-instances: 1
+      id: worker-scale
+      max-scale-level: 1
+      name: worker-scale
+      scaling-policy:
+      - cooldown-time: 5
+        name: manual-worker-scaling
+        scaling-type: manual
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
