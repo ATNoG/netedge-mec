@@ -10,8 +10,9 @@ from dependencies import install_dependencies
 
 install_dependencies(logger=logger)
 
-from command import Command, Commands
 from versions import PackageVersions
+from command import Command, Commands
+from utils import generate_random_k8s_compliant_hostname
 
 sys.path.append("lib")
 from charms.osm.sshproxy import SSHProxyCharm
@@ -42,11 +43,12 @@ class SampleProxyCharm(SSHProxyCharm):
         # Automatic custom actions
         self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
         self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
-
+        
         # Manual custom actions
         self.framework.observe(self.on.get_k8s_controller_info_action, self.on_get_k8s_controller_info)
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
-
+        self.framework.observe(self.on.remove_k8s_worker_action,self.on_remove_k8s_worker_action)
+        
         # OSM actions (primitives)
         self.framework.observe(self.on.start_action, self.on_start_action)
         self.framework.observe(self.on.stop_action, self.on_stop_action)
@@ -155,8 +157,9 @@ class SampleProxyCharm(SSHProxyCharm):
         self.__disable_swap(event)
         self.__install_container_runtime(event)
 
-        # TODO -> ver como meter vários depois
-        self.__define_dns_name(event, name='worker1')
+        current_hostname = self.__obtain_current_hostname(event)
+        hostname = generate_random_k8s_compliant_hostname(current_hostname=current_hostname)
+        self.__define_dns_name(event, name=hostname)
 
     def on_get_k8s_controller_info(self, event):
         controller_hostname, controller_port = self.__get_cluster_info(event)
@@ -175,6 +178,9 @@ class SampleProxyCharm(SSHProxyCharm):
     def on_join_k8s_workers(self, event) -> None:
         self.__join_node_to_cluster(event)
 
+    def on_remove_k8s_worker_action(self, event) -> None:
+        self.__remove_worker_from_cluster(event)
+        
     ##########################
     #        Functions       #
     ##########################
@@ -415,6 +421,22 @@ class SampleProxyCharm(SSHProxyCharm):
 
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy, unit_status=self.unit.status)
+        
+    def __obtain_current_hostname(self, event) -> str:
+        commands = Commands()
+
+        commands.add_command(Command(
+            cmd="hostname",
+            initial_status="Obtaining node's current hostname...",
+            ok_status="Obtained node's current hostname",
+            error_status="Couldn't obtain node's current hostname"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Obtain current hostname", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+        return commands.commands[0].result.strip()
 
     def __create_cluster(self, event) -> None:
         commands = Commands()
@@ -554,7 +576,7 @@ class SampleProxyCharm(SSHProxyCharm):
         ))
 
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Obtaining master ca cert hash", logger=logger, proxy=proxy,
+        commands.unit_run_command(component="Obtain master ca cert hash", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 
         return commands.commands[0].result
@@ -589,9 +611,40 @@ class SampleProxyCharm(SSHProxyCharm):
         ))
 
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Joining a node to the cluster", logger=logger, proxy=proxy,
+        commands.unit_run_command(component="Join a node to the cluster", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 
-
+    def __remove_worker_from_cluster(self, event) -> None:
+        """
+        Given a Node's Hostname, remove it from a given Cluster
+        The VDU will still exist, but it is not part of the cluster anymore
+        """
+        commands = Commands()
+        
+        # Obtain the name of the node
+        node_hostname = event.params['node']
+        
+        # Drain the node (i.e remove all the pods from the worker node)
+        # Ignores daemonsets (feature that ensures all nodes run a copy of a certain pod)
+        # Since we want to remove the node this has no impact
+        commands.add_command(Command(
+            cmd=f"kubectl drain {node_hostname} --ignore-daemonsets",
+            initial_status=f"Draining node {node_hostname} from the cluster...",
+            ok_status="Node successfully drain from the cluster",
+            error_status="Failed to drain node from cluster"
+        ))
+        
+        # Remove the node from the worker node 
+        # After removing the node the daemonset pods may still hang for a while
+        commands.add_command(Command(
+            cmd=f"kubectl delete node {node_hostname}",
+            initial_status=f"Deleting node {node_hostname} from the cluster...",
+            ok_status="Node successfully removed from the cluster",
+            error_status="Failed to remove node from cluster"
+        ))
+    
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Remove worker from cluster", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
 if __name__ == "__main__":
     main(SampleProxyCharm)
