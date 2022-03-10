@@ -8,17 +8,17 @@ vnfd:
   int-virtual-link-desc:
   - id: internal-vld
   virtual-storage-desc:
-  - id: k8s-controller-VM-storage
+  - id: controller-storage
     size-of-storage: 32
-  - id: k8s-worker-VM-storage
+  - id: worker-storage
     size-of-storage: 64
   virtual-compute-desc:
-  - id: k8s-controller-VM-compute
+  - id: controller-compute
     virtual-cpu:
       num-virtual-cpu: 4
     virtual-memory:
       size: 4
-  - id: k8s-worker-VM-compute
+  - id: worker-compute
     virtual-cpu:
       num-virtual-cpu: 2
     virtual-memory:
@@ -36,19 +36,21 @@ vnfd:
     - id: default-instantiation-level
       vdu-level:
       - number-of-instances: 1
-        vdu-id: k8s-controller-VM
-      - number-of-instances: 1
-        vdu-id: k8s-worker-VM
+        vdu-id: controller
+      - number-of-instances: 2
+        vdu-id: worker
       - number-of-instances: 1
         vdu-id: mgmt-VM
     vdu-profile:
-    - id: k8s-controller-VM
+    - id: controller
       min-number-of-instances: 1
-    - id: k8s-worker-VM
+      max-number-of-instances: 10
+    - id: worker
       min-number-of-instances: 1
+      max-number-of-instances: 10
     - id: mgmt-VM
       min-number-of-instances: 1
-      # max-number-of-instances: 1
+      max-number-of-instances: 10
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
@@ -57,7 +59,7 @@ vnfd:
             juju:
               charm: k8s_cluster_installer
               proxy: true
-          id: k8s-controller-VM
+          id: controller
           initial-config-primitive:
           - execution-environment-ref: controller-ee
             name: config
@@ -77,12 +79,17 @@ vnfd:
           config-primitive:
           - execution-environment-ref: controller-ee
             name: get-k8s-controller-info
+          - execution-environment-ref: controller-ee
+            name: remove-k8s-worker
+            parameter:
+              - name: node
+                data-type: STRING
         - execution-environment-list:
           - id: worker-ee
             juju:
               charm: k8s_cluster_installer
               proxy: true
-          id: k8s-worker-VM
+          id: worker
           initial-config-primitive:
           - execution-environment-ref: worker-ee
             name: config
@@ -149,8 +156,8 @@ vnfd:
     description: Management VDU
     sw-image-desc: "ubuntu-template"
     virtual-storage-desc:
-    - k8s-controller-VM-storage
-    virtual-compute-desc: k8s-worker-VM-compute
+    - controller-storage
+    virtual-compute-desc: worker-compute
     int-cpd:
     - id: mgmt-int-out
       virtual-network-interface-requirement:
@@ -163,14 +170,14 @@ vnfd:
       - name: mgmt-in
         virtual-interface:
           type: PARAVIRT
-  - id: k8s-controller-VM
+  - id: controller
     cloud-init-file: cloud-init-controller.cfg
-    name: k8s-controller-VM
+    name: controller
     description: VMs for the Kubernetes' controller plane
     sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
-    - k8s-controller-VM-storage
-    virtual-compute-desc: k8s-controller-VM-compute
+    - controller-storage
+    virtual-compute-desc: controller-compute
     int-cpd:
     - id: controller-int-out
       virtual-network-interface-requirement:
@@ -183,33 +190,14 @@ vnfd:
       - name: controller-in
         virtual-interface:
           type: PARAVIRT
-    # vdu-configuration:
-    #   juju:
-    #     charm: k8s_cluster_installer
-      # config-access:
-      #   ssh-access:
-      #     default-user: controller
-      #     required: true
-      # initial-config-primitive:
-      # - name: config
-      #   parameter:
-      #   - name: ssh-hostname
-      #     value: <rw_mgmt_ip>
-      #   - name: ssh-username
-      #     value: controller
-      #   - name: ssh-password
-      #     value: olaadeus
-      #   - name: entity
-      #     value: controller
-      #   seq: 1
-  - id: k8s-worker-VM
+  - id: worker
     cloud-init-file: cloud-init-worker.cfg
-    name: k8s-worker-VM
+    name: worker
     description: VMs for the Kubernetes' workers
     sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
-    - k8s-worker-VM-storage
-    virtual-compute-desc: k8s-worker-VM-compute
+    - worker-storage
+    virtual-compute-desc: worker-compute
     int-cpd:
     - id: worker-int-out
       virtual-network-interface-requirement:
@@ -222,29 +210,14 @@ vnfd:
       - name: worker-in
         virtual-interface:
           type: PARAVIRT
-#    vdu-configuration:
-#      juju:
-#        charm: k8s_cluster_installer
-#      initial-config-primitive:
-#      - name: config
-#      parameter:
-#      - name: ssh-hostname
-#        value: <rw_mgmt_ip>
-#      - name: ssh-username
-#        value: worker
-#      - name: ssh-password
-#        value: olaadeus
-#      - name: entity
-#        value: worker
-#      seq: 1
   ext-cpd:
   - id: vnf-controller-ext
     int-cpd:
-      vdu-id: k8s-controller-VM
+      vdu-id: controller
       cpd: controller-int-out
   - id: vnf-worker-ext
     int-cpd:
-      vdu-id: k8s-worker-VM
+      vdu-id: worker
       cpd: worker-int-out
   - id: mgmt-ext
     int-cpd:
