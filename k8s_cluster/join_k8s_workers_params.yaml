@@ -1,5 +1,5 @@
-cert: "79015806afb27f653feff8f767ae0821ce34b8dfe3f11fd752f8a2ff7fa065a2"
+cert: "5a4d7f4fd71d212cdd0f08e59b56d8bda378e85022803e8dac8116821a9e3f14"
 host: "controller"
-ip: "10.0.13.197"
+ip: "10.0.13.130"
 port: 6443
-token: "lwg4h6.dhqqc0606exw03l6"
+token: "6ox19f.ye9dzsvzz3opguvc"

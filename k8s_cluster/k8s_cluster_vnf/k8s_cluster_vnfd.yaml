@@ -37,7 +37,7 @@ vnfd:
       vdu-level:
       - number-of-instances: 1
         vdu-id: controller
-      - number-of-instances: 1
+      - number-of-instances: 3
         vdu-id: worker
       - number-of-instances: 1
         vdu-id: mgmt-VM
@@ -51,6 +51,19 @@ vnfd:
     - id: mgmt-VM
       min-number-of-instances: 1
       max-number-of-instances: 10
+    scaling-aspect:
+    - aspect-delta-details:
+        deltas:
+        - id: worker-scale-delta
+          vdu-delta:
+          - id: worker
+            number-of-instances: 1      # one instance at each scale operation
+      id: worker-scale
+      name: worker-scale
+      scaling-policy:
+      - cooldown-time: 5                # the new instance is created only after 5 seconds from the scale request's was done
+        name: manual-worker-scaling
+        scaling-type: manual
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
