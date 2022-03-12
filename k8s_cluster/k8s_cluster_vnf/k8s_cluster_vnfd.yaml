@@ -7,6 +7,8 @@ vnfd:
   mgmt-cp: mgmt-ext
   int-virtual-link-desc:
   - id: internal-vld
+    flavour:
+    - id: internal-vld-flavor
   virtual-storage-desc:
   - id: controller-storage
     size-of-storage: 32
@@ -64,6 +66,16 @@ vnfd:
       - cooldown-time: 5                # the new instance is created only after 5 seconds from the scale request's was done
         name: manual-worker-scaling
         scaling-type: manual
+    virtual-link-profile:               # in order to avoid problems of interceptions between the VLD network's and the CALICO k8s network's cirds (by default, the VLD was using networks in the range of the CALICO, which usually uses 192.168.0.0/16)
+    - id: internal-vld
+      flavour: internal-vld-flavor
+      virtual-link-protocol-data:
+        l3-protocol-data:
+          name: internal-vld-protocol-data
+          description: internal-vld network
+          ip-version: ipv4
+          cidr: 192.164.0.0/24
+          dhcp-enabled: true
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
@@ -133,35 +145,6 @@ vnfd:
                 data-type: STRING
               - name: cert
                 data-type: STRING
-        #- config-primitive:
-        #  - name: deploy-k8s-controller
-        #    execution-environment-ref: configure-vnf
-        #  - name: get-k8s-controller-info
-        #    execution-environment-ref: configure-vnf
-        #  id: k8s_cluster_vnf
-        #  execution-environment-list:
-        #  - id: configure-vnf
-        #    external-connection-point-ref: mgmt-ext
-        #    juju:
-        #      charm: k8s_cluster_installer
-        #      proxy: true
-        #  config-access:
-        #    ssh-access:
-        #      default-user: controller
-        #      required: true
-        #  initial-config-primitive:
-        #  - execution-environment-ref: configure-vnf
-        #    name: config
-        #    parameter:
-        #    - name: ssh-hostname
-        #      value: <rw_mgmt_ip>
-        #    - name: ssh-username
-        #      value: controller
-        #    - name: ssh-password
-        #      value: olaadeus
-        #    - name: entity
-        #      value: controller
-        #    seq: 1
   vdu:
   - id: mgmt-VM
     cloud-init-file: cloud-init-controller.cfg

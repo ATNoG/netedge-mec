@@ -529,7 +529,7 @@ class SampleProxyCharm(SSHProxyCharm):
         to communicate with the OSM). The actual IP required for new nodes to connect is the IP from the cluster and not the one the OSM knows.
         """
         commands = Commands()
-        f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """
+        # f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """
 
         commands.add_command(Command(
             cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata.annotations["'"projectcalico\.org/IPv4Address"'"]}}'"' """,
