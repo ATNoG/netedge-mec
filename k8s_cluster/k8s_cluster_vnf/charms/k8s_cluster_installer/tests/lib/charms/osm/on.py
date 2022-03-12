@@ -20,3 +20,21 @@ class OnMock:
    
    def join_k8s_workers_action():
       pass
+   
+   def remove_k8s_worker_action():
+      pass
+   
+   def start_action():
+      pass
+   
+   def stop_action():
+      pass
+   
+   def restart_action():
+      pass
+   
+   def reboot_action():
+      pass
+   
+   def upgrade_action():
+      pass

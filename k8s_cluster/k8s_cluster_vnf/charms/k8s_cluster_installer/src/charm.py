@@ -529,9 +529,10 @@ class SampleProxyCharm(SSHProxyCharm):
         to communicate with the OSM). The actual IP required for new nodes to connect is the IP from the cluster and not the one the OSM knows.
         """
         commands = Commands()
+        f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """
 
         commands.add_command(Command(
-            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """,
+            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata.annotations["'"projectcalico\.org/IPv4Address"'"]}}'"' """,
             initial_status="Obtaining node ip address...",
             ok_status=f"Node {node_name} ip address retrieved successfully.",
             error_status="Couldn't obtain node ip address"
@@ -541,7 +542,7 @@ class SampleProxyCharm(SSHProxyCharm):
         commands.unit_run_command(component="Obtain node ip address", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
 
-        return commands.commands[0].result
+        return commands.commands[0].result #.split('/')[0]
 
     def __generate__join__token(self, event) -> str:
         """Generates a new token for every node attempting to join"""
