@@ -24,7 +24,7 @@
   - name: Disable fail2ban
     ansible.builtin.command: /etc/init.d/fail2ban stop
   - name: Set internal VLD IP address
-    ansible.builtin.command: ifconfig ens4 inet 172.16.0.169 up
+    ansible.builtin.command: ifconfig ens4 inet 172.16.0.94 netmask 255.255.255.0 up
   become: yes
 
 - name: Set user in worker
@@ -40,5 +40,5 @@
   - name: Disable fail2ban
     ansible.builtin.command: /etc/init.d/fail2ban stop
   - name: Set internal VLD IP address
-    ansible.builtin.command: ifconfig ens4 inet 172.16.0.112 up
+    ansible.builtin.command: ifconfig ens4 inet 172.16.0.195 netmask 255.255.255.0 up
   become: yes

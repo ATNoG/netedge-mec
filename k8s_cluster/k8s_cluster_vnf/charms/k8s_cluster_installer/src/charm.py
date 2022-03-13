@@ -539,7 +539,7 @@ class SampleProxyCharm(SSHProxyCharm):
                                   unit_status=self.unit.status)
         
         # We are getting the output from a kubectl command which uses ANSI colors, that
-        # unfortunatelly alters the expected result so we have to remove the ANSI colors from
+        # unfortunately alters the expected result so we have to remove the ANSI colors from
         # the output
         ansi_result = commands.commands[0].result
         # Regex to escape ANSI color
