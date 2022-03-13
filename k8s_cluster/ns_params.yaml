@@ -1,0 +1,25 @@
+# https://osm.etsi.org/wikipub/index.php/NBI_API_Description#NSD_Details
+
+additionalParamsForVnf:
+- member-vnf-index: '1'
+  additionalParams:
+    # controller VDU
+    controller_username: controller
+    controller_password: olaadeus
+
+    # worker VDUs
+    worker_username: worker
+    worker_password: olaadeus
+
+    # network related params
+    vld_cidr: 172.16.0.0/24
+
+vnf:
+- member-vnf-index: '1'
+  internal-vld:
+  - name: internal-vl
+    ip-profile:
+      ip-version: ipv4
+      subnet-address: 172.16.0.0/24
+      dhcp-params:
+        enabled: true

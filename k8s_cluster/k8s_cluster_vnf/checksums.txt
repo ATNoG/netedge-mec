@@ -1,5 +1,5 @@
 31791e4083f5e4fd0a277b7f6536f284	k8s_cluster_vnf/README.md
-9da8ff1543da50cddf716ce155a2615c	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
+bace44077b992d73cd15878fd05f99e7	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
 b94a7095615f17e6902f90aedafd4158	k8s_cluster_vnf/charms/k8s_cluster_installer/actions.yaml
 8305ca5ef52af498dbb1a53777c77bd2	k8s_cluster_vnf/charms/k8s_cluster_installer/config.yaml
 d851a6a3c47f4ad60e7bbb56b7f5cbbd	k8s_cluster_vnf/charms/k8s_cluster_installer/k8s-cluster-installer_ubuntu-20.04-amd64.charm
@@ -190,4 +190,4 @@ f0c900cccaeaa02fe8af1bed1c7336ed	k8s_cluster_vnf/charms/k8s_cluster_installer/te
 cb1eb148dd676f83ffc2071bbc25dbc9	k8s_cluster_vnf/cloud_init/README.md
 ae143eb78d42913fb8fa2ec2366b99a5	k8s_cluster_vnf/cloud_init/cloud-init-worker.cfg
 cbf33facfae2c4c1c9041d9e8c35b9df	k8s_cluster_vnf/cloud_init/cloud-init-controller.cfg
-a20366c1aa9d2a69ff7a6cf1b1b574d4	k8s_cluster_vnf/cloud_init/init-ansible.yaml
+7715fb4d672b415e297e7f8a9540f278	k8s_cluster_vnf/cloud_init/init-ansible.yaml
