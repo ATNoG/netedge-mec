@@ -1,0 +1,44 @@
+---
+
+- name: For both hosts
+  hosts: controller:worker
+  tasks:
+  - name: Allow all users to have passwordless sudo
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      line: '%sudo   ALL=(ALL) NOPASSWD: ALL'
+      insertbefore: '#includedir /etc/sudoers.d'
+    become: yes
+
+- name: Set user in controller
+  hosts: controller
+  tasks:
+  - name: Create user for the controller machine
+    ansible.builtin.user:
+      name: controller
+      groups: users,sudo
+      state: present
+      password: $6$weragasdgasdfgas$yhNFB.hmsiwUKI3iCq7odMQQWGE.I9zmFMI1qayRF/7w0ztLPawmc7aP1hnYX2vf6SgEC5MoIkn2z3hvCXYBi/
+      shell: /bin/bash
+  - name: Disable fail2ban
+    ansible.builtin.command: /etc/init.d/fail2ban stop
+  - name: Set internal VLD IP address
+    ansible.builtin.command: ifconfig ens4 inet 172.16.0.249 up
+  become: yes
+
+- name: Set user in worker
+  hosts: worker
+  tasks:
+  - name: Create user for the worker machine
+    ansible.builtin.user:
+      name: worker
+      groups: users,sudo
+      state: present
+      password: $6$weragasdgasdfgas$yhNFB.hmsiwUKI3iCq7odMQQWGE.I9zmFMI1qayRF/7w0ztLPawmc7aP1hnYX2vf6SgEC5MoIkn2z3hvCXYBi/
+      shell: /bin/bash
+  - name: Disable fail2ban
+    ansible.builtin.command: /etc/init.d/fail2ban stop
+  - name: Set internal VLD IP address
+    ansible.builtin.command: ifconfig ens4 inet 172.16.0.69 up
+  become: yes
