@@ -39,7 +39,7 @@ vnfd:
       vdu-level:
       - number-of-instances: 1
         vdu-id: controller
-      - number-of-instances: 3
+      - number-of-instances: 1
         vdu-id: worker
       - number-of-instances: 1
         vdu-id: mgmt-VM
@@ -74,7 +74,7 @@ vnfd:
           name: internal-vld-protocol-data
           description: internal-vld network
           ip-version: ipv4
-          cidr: 192.164.0.0/24
+          cidr: 172.16.0.0/24           # network within the class B private addresses range
           dhcp-enabled: true
     lcm-operations-configuration:
       operate-vnf-op-config:
@@ -100,6 +100,9 @@ vnfd:
             seq: 1
           - execution-environment-ref: controller-ee
             name: deploy-k8s-controller
+            parameter:
+            - name: vld-cidr
+              value: 172.16.0.0/24
             seq: 2
           config-primitive:
           - execution-environment-ref: controller-ee
@@ -170,7 +173,7 @@ vnfd:
     cloud-init-file: cloud-init-controller.cfg
     name: controller
     description: VMs for the Kubernetes' controller plane
-    sw-image-desc: "clean-ubuntu"
+    sw-image-desc: "ubuntu-template"
     virtual-storage-desc:
     - controller-storage
     virtual-compute-desc: controller-compute
@@ -190,7 +193,7 @@ vnfd:
     cloud-init-file: cloud-init-worker.cfg
     name: worker
     description: VMs for the Kubernetes' workers
-    sw-image-desc: "clean-ubuntu"
+    sw-image-desc: "ubuntu-template"
     virtual-storage-desc:
     - worker-storage
     virtual-compute-desc: worker-compute

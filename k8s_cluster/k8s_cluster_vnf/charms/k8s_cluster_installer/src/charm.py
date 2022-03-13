@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import shlex
+import ipaddress
 import sys
 import logging
 import re
@@ -144,7 +144,10 @@ class SampleProxyCharm(SSHProxyCharm):
         self.__install_container_runtime(event)
         self.__initialize_master_node(event)
         self.__define_dns_name(event, name='controller')
-        self.__create_cluster(event)
+        
+        vld_ip_addr = self.__obtain_vld_ip_addr(event)
+        
+        self.__create_cluster(event, internal_vld_address=vld_ip_addr)
         self.__configure_kubectl(event)
         self.__install_network_plugin(event)
 
@@ -438,14 +441,40 @@ class SampleProxyCharm(SSHProxyCharm):
         
         return commands.commands[0].result.strip()
 
-    def __create_cluster(self, event) -> None:
+    def __obtain_vld_ip_addr(self, event) -> str:
         commands = Commands()
-
+        
         commands.add_command(Command(
-            cmd="""sudo kubeadm init \
-         --pod-network-cidr=192.168.0.0/16 \
-         --upload-certs \
-         --control-plane-endpoint=controller""",
+            cmd="hostname -I",
+            initial_status="Obtaining the machine IP addresses...",
+            ok_status="Machine IP addresses obtained",
+            error_status="Couldn't obtain the machine IP address"
+        ))
+        
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Obtain the machine IP addresses", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+        addresses = commands.commands[0].result.split(' ')
+        internal_vld_net_address = event.params['vld-cidr']
+        internal_vld_address = ''
+        
+        for addr in addresses:
+            if ipaddress.ip_address(addr) in ipaddress.ip_network(internal_vld_net_address):
+                internal_vld_address = addr
+                break
+
+        return internal_vld_address
+
+    def __create_cluster(self, event, internal_vld_address) -> None:
+        commands = Commands()
+        
+        commands.add_command(Command(
+            cmd = f"""sudo kubeadm init \ 
+            --apiserver-advertise-address={internal_vld_address}
+            --pod-network-cidr=192.168.0.0/16 \ 
+            --upload-certs \
+            --control-plane-endpoint=controller""",
             initial_status="Creating the cluster...",
             ok_status="Cluster created with success",
             error_status="Couldn't create the cluster"
@@ -529,10 +558,10 @@ class SampleProxyCharm(SSHProxyCharm):
         to communicate with the OSM). The actual IP required for new nodes to connect is the IP from the cluster and not the one the OSM knows.
         """
         commands = Commands()
-        # f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """
+        # f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata.annotations["'"projectcalico\.org/IPv4Address"'"]}}'"' """
 
         commands.add_command(Command(
-            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata.annotations["'"projectcalico\.org/IPv4Address"'"]}}'"' """,
+            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].status.addresses[?(@.type=="'"InternalIP"'")].address}}'"' """,
             initial_status="Obtaining node ip address...",
             ok_status=f"Node {node_name} ip address retrieved successfully.",
             error_status="Couldn't obtain node ip address"
