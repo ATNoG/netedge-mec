@@ -6,9 +6,9 @@ vnfd:
   version: '1.0'
   mgmt-cp: mgmt-ext
   int-virtual-link-desc:
-  - id: internal-vld
+  - id: internal-vl
     flavour:
-    - id: internal-vld-flavor
+    - id: internal-vl-flavor
   virtual-storage-desc:
   - id: controller-storage
     size-of-storage: 32
@@ -46,13 +46,13 @@ vnfd:
     vdu-profile:
     - id: controller
       min-number-of-instances: 1
-      max-number-of-instances: 10
+      max-number-of-instances: 1
     - id: worker
       min-number-of-instances: 1
       max-number-of-instances: 10
     - id: mgmt-VM
       min-number-of-instances: 1
-      max-number-of-instances: 10
+      max-number-of-instances: 1
     scaling-aspect:
     - aspect-delta-details:
         deltas:
@@ -66,16 +66,16 @@ vnfd:
       - cooldown-time: 5                # the new instance is created only after 5 seconds from the scale request's was done
         name: manual-worker-scaling
         scaling-type: manual
-    virtual-link-profile:               # in order to avoid problems of interceptions between the VLD network's and the CALICO k8s network's cirds (by default, the VLD was using networks in the range of the CALICO, which usually uses 192.168.0.0/16)
-    - id: internal-vld
-      flavour: internal-vld-flavor
-      virtual-link-protocol-data:
-        l3-protocol-data:
-          name: internal-vld-protocol-data
-          description: internal-vld network
-          ip-version: ipv4
-          cidr: 172.16.0.0/24           # network within the class B private addresses range
-          dhcp-enabled: true
+    # virtual-link-profile:               # in order to avoid problems of interceptions between the VLD network's and the CALICO k8s network's cirds (by default, the VLD was using networks in the range of the CALICO, which usually uses 192.168.0.0/16)
+    # - id: internal-vl
+    #   flavour: internal-vl-flavor
+    #   virtual-link-protocol-data:
+    #     l3-protocol-data:
+    #       name: internal-vl-protocol-data
+    #       description: internal-vl network
+    #       ip-version: ipv4
+    #       cidr: 172.16.0.0/24           # network within the class B private addresses range
+    #       dhcp-enabled: true
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
@@ -92,9 +92,9 @@ vnfd:
             - name: ssh-hostname
               value: <rw_mgmt_ip>
             - name: ssh-username
-              value: controller
+              value: <controller_username>
             - name: ssh-password
-              value: olaadeus
+              value: <controller_password>
             - name: entity
               value: controller
             seq: 1
@@ -102,7 +102,7 @@ vnfd:
             name: deploy-k8s-controller
             parameter:
             - name: vld-cidr
-              value: 172.16.0.0/24
+              value: <vld_cidr>
             seq: 2
           config-primitive:
           - execution-environment-ref: controller-ee
@@ -125,9 +125,9 @@ vnfd:
             - name: ssh-hostname
               value: <rw_mgmt_ip>
             - name: ssh-username
-              value: worker
+              value: <worker_username>
             - name: ssh-password
-              value: olaadeus
+              value: <worker_password>
             - name: entity
               value: worker
             seq: 1
@@ -164,7 +164,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     - id: mgmt-int-in
-      int-virtual-link-desc: internal-vld
+      int-virtual-link-desc: internal-vl
       virtual-network-interface-requirement:
       - name: mgmt-in
         virtual-interface:
@@ -184,7 +184,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     - id: controller-int-in
-      int-virtual-link-desc: internal-vld
+      int-virtual-link-desc: internal-vl
       virtual-network-interface-requirement:
       - name: controller-in
         virtual-interface:
@@ -204,7 +204,7 @@ vnfd:
         virtual-interface:
           type: PARAVIRT
     - id: worker-int-in
-      int-virtual-link-desc: internal-vld
+      int-virtual-link-desc: internal-vl
       virtual-network-interface-requirement:
       - name: worker-in
         virtual-interface:
