@@ -8,7 +8,6 @@ $ osm --hostname 10.0.12.96 --user netedge --password <password> --project neted
 
 
 ## Execute a primitive for some VDU, if there are multiple instances
-TODO
 
 ```bash
 $ osm --hostname 10.0.12.96 --user netedge --password <password> --project netedge ns-action k8s --vnf_name 1 --vdu_id controller --action_name get-k8s-controller-info --wait
