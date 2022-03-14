@@ -398,8 +398,6 @@ MEC integration with NFVs using OSM (developer documentation)
             vdu-id: controller
           - number-of-instances: 1
             vdu-id: worker
-          - number-of-instances: 1
-            vdu-id: mgmt-VM
         vdu-profile:
         - id: controller
           min-number-of-instances: 1
@@ -407,9 +405,6 @@ MEC integration with NFVs using OSM (developer documentation)
         - id: worker
           min-number-of-instances: 1
           max-number-of-instances: 10
-        - id: mgmt-VM
-          min-number-of-instances: 1
-          max-number-of-instances: 1
         scaling-aspect:
         - aspect-delta-details:
             deltas:
@@ -428,3 +423,72 @@ MEC integration with NFVs using OSM (developer documentation)
     - In this configurations, it was defined the number of instances to deploy (or to remove) with the scaling out operation (or scale in), as well as the VDU were this scaling operation is to be applied (worker VDU) and the minimum time needed to wait until the scale operation is begins (in this case, 5 seconds). It was also defined that this scaling will be triggered manually (through the parameter `scaling-type`).
 
 ### Defining the network configurations for the Virtual Link (VL)
+
+ - Sometimes, you also may need to define some network configurations for the VL you are using. For instance, in the example of the k8s cluster, the Calico plugin uses the network space 192.168.0.0/16 by default. Being that the VL, by default, uses a network in the 192.168.x.0/24 address space, I also needed to define a distinct network space for the VL my VNFs were using, in order to avoid network address space collision. You can define these configurations in two ways:
+    - The first one, is to define these configurations in the VNFD itself, using the parameter `vnfd:df:virtual-link-profile`:
+       ```yaml
+       vnfd:
+         [...]
+         df:
+         - id: default-df
+           instantiation-level:
+           - id: default-instantiation-level
+             vdu-level:            
+             - id: controller
+               min-number-of-instances: 1
+               max-number-of-instances: 1
+             - id: worker
+               min-number-of-instances: 1
+               max-number-of-instances: 10
+           scaling-aspect:
+           - aspect-delta-details:
+               deltas:
+               - id: worker-scale-delta
+                 vdu-delta:
+                 - id: worker
+                   number-of-instances: 1      # one instance at each scale operation
+             id: worker-scale
+             name: worker-scale
+             scaling-policy:
+             - cooldown-time: 5                # the new instance is created only after 5 seconds from the scale request's was done
+               name: manual-worker-scaling
+               scaling-type: manual
+            virtual-link-profile:
+            - id: internal-vl
+              flavour: internal-vl-flavor
+              virtual-link-protocol-data:
+                l3-protocol-data:
+                  name: internal-vl-protocol-data
+                  description: internal-vl network
+                  ip-version: ipv4
+                  cidr: 172.16.0.0/24           # network within the class B private addresses range
+                  dhcp-enabled: true
+       ```
+
+    - The second one, is to define these configurations in a separate configurations file, which then is [passed when instantiating the NS](https://osm.etsi.org/wikipub/index.php/NBI_API_Description#NSD_Details). For example, you can create a file with the name `ns_params.yaml`, with the following contents:
+       ```yaml
+       vnf:
+       - member-vnf-index: '1'
+         internal-vld:
+         - name: internal-vl
+           ip-profile:
+             ip-version: ipv4
+             subnet-address: 172.16.0.0/24
+             dhcp-params:
+               enabled: true
+       ```
+       - Then, you just have to run the NS instantiation command with the `config_file` flag:
+          ```bash
+          $ osm --hostname 10.0.12.96 --user netedge --password <password> --project netedge ns-create --ns_name k8s --nsd_name k8s_cluster_nsd --vim_account NETEDGE_MEC --config_file ns_params.yaml
+          ```
+      
+       - Here, you shall define the NS' VNF index to which these configurations shall be applied (in this case, the VNF with ID '1').
+
+    - The configurations exemplified above define the IP protocol that needs to be used (IPv4), the address space (172.16.0.0/24) and that the DHCP must be enabled.
+
+### Some other useful references
+
+ - [OSM Information Model](https://osm.etsi.org/wikipub/index.php/OSM_Information_Model)
+ - [OSM Client](https://osm.etsi.org/docs/user-guide/10-osm-client-commands-reference.html)
+ - [Network Functions Virtualisation -- SOL006](https://forge.etsi.org/rep/nfv/SOL006)
+ - [OSM GitLab mirror repository](https://osm.etsi.org/gitlab/osm)
