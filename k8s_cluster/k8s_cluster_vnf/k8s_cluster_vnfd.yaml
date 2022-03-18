@@ -27,8 +27,8 @@ vnfd:
       size: 2
   sw-image-desc:
   - id: "clean-ubuntu"
-    name: "Ubuntu 20.04 x86_64"
-    image: "Ubuntu 20.04 x86_64"
+    name: "Ubuntu Server 20.04"
+    image: "Ubuntu Server 20.04"
   - id: "ubuntu-template"
     name: "HAL_ubuntu2004_cloudinit_template"
     image: "HAL_ubuntu2004_cloudinit_template"
@@ -39,7 +39,7 @@ vnfd:
       vdu-level:
       - number-of-instances: 1
         vdu-id: controller
-      - number-of-instances: 1
+      - number-of-instances: 2
         vdu-id: worker
       - number-of-instances: 1
         vdu-id: mgmt-VM
@@ -153,7 +153,7 @@ vnfd:
     cloud-init-file: cloud-init-controller.cfg
     name: mgmt-VM
     description: Management VDU
-    sw-image-desc: "ubuntu-template"
+    sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
     - controller-storage
     virtual-compute-desc: worker-compute
@@ -173,7 +173,7 @@ vnfd:
     cloud-init-file: cloud-init-controller.cfg
     name: controller
     description: VMs for the Kubernetes' controller plane
-    sw-image-desc: "ubuntu-template"
+    sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
     - controller-storage
     virtual-compute-desc: controller-compute
@@ -193,7 +193,7 @@ vnfd:
     cloud-init-file: cloud-init-worker.cfg
     name: worker
     description: VMs for the Kubernetes' workers
-    sw-image-desc: "ubuntu-template"
+    sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
     - worker-storage
     virtual-compute-desc: worker-compute
