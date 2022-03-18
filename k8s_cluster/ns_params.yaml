@@ -11,9 +11,6 @@ additionalParamsForVnf:
     worker_username: worker
     worker_password: olaadeus
 
-    # network related params
-    vld_cidr: 172.16.0.0/24
-
 vnf:
 - member-vnf-index: '1'
   internal-vld:

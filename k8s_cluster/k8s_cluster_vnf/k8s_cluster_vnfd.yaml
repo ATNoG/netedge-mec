@@ -100,9 +100,6 @@ vnfd:
             seq: 1
           - execution-environment-ref: controller-ee
             name: deploy-k8s-controller
-            parameter:
-            - name: vld-cidr
-              value: <vld_cidr>
             seq: 2
           config-primitive:
           - execution-environment-ref: controller-ee

@@ -43,13 +43,6 @@ get-ssh-public-key:
 # Custom actions
 deploy-k8s-controller:
   description: "Deploy the Kubernetes controller"
-  params:
-    vld-cidr:
-      description: "VLD network's IP address"
-      type: string
-      default: ""
-  required:
-    - vld-cidr
 
 deploy-k8s-workers:
   description: "Deploy the Kubernetes worker nodes"

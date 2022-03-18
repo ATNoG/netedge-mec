@@ -3,6 +3,7 @@ import ipaddress
 import sys
 import logging
 import re
+from typing import List
 # Logger
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,9 @@ from ops.model import (
     WaitingStatus,
     ModelError,
 )
+
+
+K8S_POD_SUBNET = "192.168.0.0/16"
 
 
 class SampleProxyCharm(SSHProxyCharm):
@@ -139,15 +143,17 @@ class SampleProxyCharm(SSHProxyCharm):
     #         Controller     #
     ##########################
     def on_deploy_k8s_controller(self, event) -> None:
+        hostname = 'controller'
+        
         self.__install_kubernetes(event)
         self.__disable_swap(event)
         self.__install_container_runtime(event)
         self.__initialize_master_node(event)
-        self.__define_dns_name(event, name='controller')
+        self.__define_dns_name(event, name=hostname)
         
-        vld_ip_addr = self.__obtain_vld_ip_addr(event)
+        ip_addrs = self.__obtain_ip_addrs(event)
         
-        self.__create_cluster(event, internal_vld_address=vld_ip_addr)
+        self.__create_cluster(event, ip_addrs=ip_addrs, hostname=hostname)
         self.__configure_kubectl(event)
         self.__install_network_plugin(event)
 
@@ -441,7 +447,7 @@ class SampleProxyCharm(SSHProxyCharm):
         
         return commands.commands[0].result.strip()
 
-    def __obtain_vld_ip_addr(self, event) -> str:
+    def __obtain_ip_addrs(self, event) -> List[str]:
         commands = Commands()
         
         commands.add_command(Command(
@@ -456,25 +462,23 @@ class SampleProxyCharm(SSHProxyCharm):
                                   unit_status=self.unit.status)
         
         addresses = commands.commands[0].result.split(' ')
-        internal_vld_net_address = event.params['vld-cidr']
-        internal_vld_address = ''
+        result_ip_addrs = []
         
         for addr in addresses:
-            if ipaddress.ip_address(addr) in ipaddress.ip_network(internal_vld_net_address):
-                internal_vld_address = addr
-                break
+            if ipaddress.ip_address(addr) not in ipaddress.ip_network(K8S_POD_SUBNET):
+                result_ip_addrs.append(addr)
 
-        return internal_vld_address
+        return result_ip_addrs
 
-    def __create_cluster(self, event, internal_vld_address) -> None:
+    def __create_cluster(self, event, ip_addrs: List[str], hostname: str) -> None:
         commands = Commands()
         
         commands.add_command(Command(
             cmd = f"""sudo kubeadm init \ 
-            --apiserver-advertise-address={internal_vld_address}
-            --pod-network-cidr=192.168.0.0/16 \ 
+            --pod-network-cidr={K8S_POD_SUBNET} \ 
             --upload-certs \
-            --control-plane-endpoint=controller""",
+            --control-plane-endpoint=controller \
+            --apiserver-cert-extra-sans=localhost,{hostname},127.0.0.1,{','.join(ip_addrs)}""",
             initial_status="Creating the cluster...",
             ok_status="Cluster created with success",
             error_status="Couldn't create the cluster"
