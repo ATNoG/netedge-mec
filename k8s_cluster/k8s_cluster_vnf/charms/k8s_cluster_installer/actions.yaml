@@ -89,3 +89,10 @@ join-k8s-workers:
     - port
     - token
     - cert
+
+
+# TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+# Custom actions
+install-requirements:
+  description: "Install the K8s cluster's requirements"
+

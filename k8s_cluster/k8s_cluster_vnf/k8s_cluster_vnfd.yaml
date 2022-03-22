@@ -105,7 +105,8 @@ vnfd:
           - execution-environment-ref: controller-init-ee
             name: deploy-k8s-controller
             seq: 2
-          - execution-environment-ref: controller-requirements-ee
+          # - execution-environment-ref: controller-requirements-ee
+          - execution-environment-ref: controller-init-ee
             name: config
             parameter:
             - name: ssh-hostname
@@ -115,7 +116,8 @@ vnfd:
             - name: ssh-password
               value: <controller_password>
             seq: 3
-          - execution-environment-ref: controller-requirements-ee
+          # - execution-environment-ref: controller-requirements-ee
+          - execution-environment-ref: controller-init-ee
             name: install-requirements
             seq: 4
           config-primitive:

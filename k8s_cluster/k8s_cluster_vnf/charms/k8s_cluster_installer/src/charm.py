@@ -48,6 +48,10 @@ class SampleProxyCharm(SSHProxyCharm):
         self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
         self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
         
+        # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+        # Custom actions
+        self.framework.observe(self.on.install_requirements_action, self.on_install_requirements)
+        
         # Manual custom actions
         self.framework.observe(self.on.get_k8s_controller_info_action, self.on_get_k8s_controller_info)
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
@@ -680,5 +684,64 @@ class SampleProxyCharm(SSHProxyCharm):
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Remove worker from cluster", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
+        
+    
+        
+    # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+    ##########################
+    #     Custom Actions     #
+    ##########################
+    def on_install_requirements(self, event) -> None:
+        self.__untantaint_master()
+        self.__install_persistent_volume_storage()
+        self.__install_load_balancer()
+
+    ##########################
+    #        Functions       #
+    ##########################
+    def __untantaint_master(self) -> None:
+        commands = Commands()
+
+        # Untaint any node with master role
+        commands.add_command(Command(
+            cmd="""kubectl taint nodes --all node-role.kubernetes.io/master-""",
+            initial_status="Untainting any node with master role...",
+            ok_status="Nodes with master role untainted",
+            error_status="Couldn't untaint the nodes with master role"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Untaint any node with master role", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+    def __install_persistent_volume_storage(self) -> None:
+        # Installation based on OpenEBS
+        commands = Commands()
+
+        # Install OpenEBS
+        commands.add_command(Command(
+            cmd="""kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml""",
+            initial_status="Installing and starting OpenEBS services...",
+            ok_status="OpenEBS services installed and started",
+            error_status="Couldn't install and start OpenEBS services"
+        ))
+        
+        # Define the default storage class
+        commands.add_command(Command(
+            cmd="""kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml""",
+            initial_status="Defining the <openebs-hostpath> as the default storage class...",
+            ok_status="<openebs-hostpath> defined as the default storage class",
+            error_status="Couldn't define <openebs-hostpath> defined as the default storage class"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Define <openebs-hostpath> as the default storage class", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+    def __install_load_balancer(self) -> None:
+        # https://osm.etsi.org/docs/user-guide/15-k8s-installation.html#method-3-manual-cluster-installation-steps-for-ubuntu
+        pass
+
+        
 if __name__ == "__main__":
     main(SampleProxyCharm)
