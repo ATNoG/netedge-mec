@@ -4,7 +4,7 @@ vnfd:
   description: K8s cluster VNF
   provider: OSM
   version: '1.0'
-  mgmt-cp: mgmt-ext
+  mgmt-cp: vnf-controller-ext
   int-virtual-link-desc:
   - id: internal-vl
     flavour:
@@ -41,8 +41,6 @@ vnfd:
         vdu-id: controller
       - number-of-instances: 2
         vdu-id: worker
-      - number-of-instances: 1
-        vdu-id: mgmt-VM
     vdu-profile:
     - id: controller
       min-number-of-instances: 1
@@ -50,9 +48,6 @@ vnfd:
     - id: worker
       min-number-of-instances: 1
       max-number-of-instances: 10
-    - id: mgmt-VM
-      min-number-of-instances: 1
-      max-number-of-instances: 1
     scaling-aspect:
     - aspect-delta-details:
         deltas:
@@ -84,10 +79,10 @@ vnfd:
             juju:
               charm: k8s_cluster_installer
               proxy: true
-          - id: controller-requirements-ee
-            juju:
-              charm: k8s_osm_requirements
-              proxy: true
+          # - id: controller-requirements-ee
+          #   juju:
+          #     charm: k8s_osm_requirements
+          #     proxy: true
           id: controller
           initial-config-primitive:
           - execution-environment-ref: controller-init-ee
@@ -106,20 +101,20 @@ vnfd:
             name: deploy-k8s-controller
             seq: 2
           # - execution-environment-ref: controller-requirements-ee
-          - execution-environment-ref: controller-init-ee
-            name: config
-            parameter:
-            - name: ssh-hostname
-              value: <rw_mgmt_ip>
-            - name: ssh-username
-              value: <controller_username>
-            - name: ssh-password
-              value: <controller_password>
-            seq: 3
+          #- execution-environment-ref: controller-init-ee
+          #  name: config
+          #  parameter:
+          #  - name: ssh-hostname
+          #    value: <rw_mgmt_ip>
+          #  - name: ssh-username
+          #    value: <controller_username>
+          #  - name: ssh-password
+          #    value: <controller_password>
+          #  seq: 3
           # - execution-environment-ref: controller-requirements-ee
           - execution-environment-ref: controller-init-ee
             name: install-requirements
-            seq: 4
+            seq: 3
           config-primitive:
           - execution-environment-ref: controller-init-ee
             name: get-k8s-controller-info
@@ -165,26 +160,6 @@ vnfd:
               - name: cert
                 data-type: STRING
   vdu:
-  - id: mgmt-VM
-    cloud-init-file: cloud-init-controller.cfg
-    name: mgmt-VM
-    description: Management VDU
-    sw-image-desc: "clean-ubuntu"
-    virtual-storage-desc:
-    - controller-storage
-    virtual-compute-desc: worker-compute
-    int-cpd:
-    - id: mgmt-int-out
-      virtual-network-interface-requirement:
-      - name: mgmt-out
-        virtual-interface:
-          type: PARAVIRT
-    - id: mgmt-int-in
-      int-virtual-link-desc: internal-vl
-      virtual-network-interface-requirement:
-      - name: mgmt-in
-        virtual-interface:
-          type: PARAVIRT
   - id: controller
     cloud-init-file: cloud-init-controller.cfg
     name: controller
@@ -234,7 +209,3 @@ vnfd:
     int-cpd:
       vdu-id: worker
       cpd: worker-int-out
-  - id: mgmt-ext
-    int-cpd:
-      vdu-id: mgmt-VM
-      cpd: mgmt-int-out
