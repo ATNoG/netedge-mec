@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 from dependencies import install_dependencies
 
-install_dependencies(logger=logger)
+#install_dependencies(logger=logger)
 
 from versions import PackageVersions
 from command import Command, Commands
@@ -741,6 +741,72 @@ class SampleProxyCharm(SSHProxyCharm):
     def __install_load_balancer(self) -> None:
         # https://osm.etsi.org/docs/user-guide/15-k8s-installation.html#method-3-manual-cluster-installation-steps-for-ubuntu
         pass
+    
+    
+    # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED (another charm, just for the interactions with the operator's OSM NBI)
+    def on_add_k8s_cluster_to_osm(self, event) -> None:
+        self.__generate_kubeconfig(event)
+        self.__add_k8s_cluster_to_osm()
+
+    ##########################
+    #        Functions       #
+    ##########################
+    def __generate_kubeconfig(self, event) -> None:
+        service_account = 'default'
+        commands_fst = Commands()
+        
+        proxy = self.get_ssh_proxy()
+
+        # Generate necessary environ variables
+        commands_fst.add_command(Command(
+            cmd=f"""kubectl -n kube-system get serviceaccount {service_account} -o=jsonpath="'"{{.secrets[0].name}}"'" """,
+            initial_status="Generating user token name...",
+            ok_status="User token name generated",
+            error_status="Couldn't generate user token name"
+        ))
+        commands_fst.unit_run_command(component="User token name", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        user_token_name = commands_fst.commands[0].result
+        
+        commands_scd = Commands()
+        commands_scd.add_command(Command(
+            cmd=f"""kubectl -n kube-system get secret/{user_token_name} -o=go-template="'"{{{{.data.token}}}}"'" """,
+            initial_status="Generating user token value...",
+            ok_status="User token value generated",
+            error_status="Couldn't generate user token value"
+        ))
+        commands_scd.add_command(Command(
+            cmd="kubectl config current-context",
+            initial_status="Generating current context...",
+            ok_status="Current context generated",
+            error_status="Couldn't generate current context"
+        ))
+        commands_fst.unit_run_command(component="User token value and current context", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        user_token_value, current_context = [cmd.result for cmd in commands_fst.commands]
+        
+        commands_trd = Commands()
+        commands_trd.add_command(Command(
+            cmd=f"""kubectl config view --raw -o=go-template="'"{{{{range .contexts}}}}{{{{if eq .name '"' "'''{current_context}'''" '"' }}}}{{{{ index .context '"cluster"' }}}}{{{{end}}}}{{{{end}}}}"'" """,
+            initial_status="Generating CURRENT_CLUSTER...",
+            ok_status="CURRENT_CLUSTER generated",
+            error_status="Couldn't generate CURRENT_CLUSTER"
+        ))
+        commands_trd.add_command(Command(
+            cmd=f"""kubectl config view --raw -o=go-template="'"{{{{range .clusters}}}}{{{{if eq .name '"' "'''"{current_context}"'''" '"'}}}}'"'{{{{with index .cluster '"'certificate-authority-data'"' }}}}{{{{.}}}}{{{{end}}}}'"'{{{{ end }}}}{{{{ end }}}}"'" """,
+            initial_status="Generating CLUSTER_CA...",
+            ok_status="CLUSTER_CA generated",
+            error_status="Couldn't generate CLUSTER_CA"
+        ))
+        commands_trd.add_command(Command(
+            cmd=f"""kubectl config view --raw -o=go-template="'"{{{{range .clusters}}}}{{{{if eq .name '"' "'''"{current_context}"'''" '"'}}}}{{{{ .cluster.server }}}}{{{{end}}}}{{{{ end }}}}"'" """,
+            initial_status="Generating USER_TOKEN_NAME...",
+            ok_status="USER_TOKEN_NAME generated",
+            error_status="Couldn't generate USER_TOKEN_NAME"
+        ))
+        commands_trd.unit_run_command(component="Current cluster", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+        user_token_value, current_context = [cmd.result for cmd in commands_fst.commands]
 
         
 if __name__ == "__main__":
