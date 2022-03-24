@@ -115,6 +115,18 @@ vnfd:
           - execution-environment-ref: controller-init-ee
             name: install-requirements
             seq: 3
+          - execution-environment-ref: controller-init-ee
+            name: add-k8s-cluster-to-osm
+            parameter:
+            - name: master-ip
+              value: <rw_mgmt_ip>
+            - name: osm-url
+              value: <osm_url>
+            - name: osm-user
+              value: <osm_user>
+            - name: osm-password
+              value: <osm_password>
+            seq: 4
           config-primitive:
           - execution-environment-ref: controller-init-ee
             name: get-k8s-controller-info

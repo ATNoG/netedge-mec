@@ -96,3 +96,30 @@ join-k8s-workers:
 install-requirements:
   description: "Install the K8s cluster's requirements"
 
+
+# TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+# Custom actions
+add-k8s-cluster-to-osm:
+  description: "Add the new k8s cluster to the operator's OSM"
+  params:
+    master-ip:
+      description: "Master's public IP address"
+      type: string
+      default: ""
+    osm-url: 
+      description: "URL of the OSM where to add the new cluster (should also include the port number)"
+      type: string
+      default: ""
+    osm-user:
+      description: "OSM's user which will be used to add the new cluster (shall have, at least, permissions for creating a new k8s cluster)"
+      type: string
+      default: ""
+    osm-password: 
+      description: "Password of the OSM user"
+      type: string
+      default: ""
+  required:
+    - master-ip
+    - osm-url
+    - osm-user
+    - osm-password

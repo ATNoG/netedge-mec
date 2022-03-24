@@ -7,6 +7,10 @@ additionalParamsForVnf:
     controller_username: controller
     controller_password: olaadeus
 
+    osm_url: "https://10.0.12.99:9999"
+    osm_user: k8s_user
+    osm_password: "Olaadeus!1"
+
     # worker VDUs
     worker_username: worker
     worker_password: olaadeus
