@@ -428,7 +428,7 @@ class SSHProxy:
             "-q",
             destination,
         ]
-        cmd.extend(command)
+        cmd.extend(command) 
         output = subprocess.run(
             cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )

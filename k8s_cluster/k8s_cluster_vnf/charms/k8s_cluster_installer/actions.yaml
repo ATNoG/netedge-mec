@@ -102,6 +102,10 @@ install-requirements:
 add-k8s-cluster-to-osm:
   description: "Add the new k8s cluster to the operator's OSM"
   params:
+    cluster-name:
+      description: "Name to be associated with this new cluster in the OSM platform"
+      type: string
+      default: ""
     master-ip:
       description: "Master's public IP address"
       type: string
@@ -118,8 +122,14 @@ add-k8s-cluster-to-osm:
       description: "Password of the OSM user"
       type: string
       default: ""
+    vim:
+      description: "VIM ID, on the destination OSM, where the cluster was launched"
+      type: string
+      default: ""
   required:
+    - cluster-name
     - master-ip
     - osm-url
     - osm-user
     - osm-password
+    - vim

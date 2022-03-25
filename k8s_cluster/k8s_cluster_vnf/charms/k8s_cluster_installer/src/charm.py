@@ -755,7 +755,8 @@ class SampleProxyCharm(SSHProxyCharm):
     # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED (another charm, just for the interactions with the operator's OSM NBI)
     def on_add_k8s_cluster_to_osm(self, event) -> None:
         kubeconfig = self.__generate_kubeconfig(event)
-        self.__add_k8s_cluster_to_osm(event, kubeconfig=kubeconfig)
+        version = self.__obtain_k8s_cluster_version()
+        self.__add_k8s_cluster_to_osm(event, version=version, kubeconfig=kubeconfig)
 
     ##########################
     #        Functions       #
@@ -884,13 +885,30 @@ class SampleProxyCharm(SSHProxyCharm):
                 ]
                 }
         
-    def __add_k8s_cluster_to_osm(self, event, kubeconfig: Dict) -> None:
+    def __obtain_k8s_cluster_version(self) -> str:
+        commands = Commands()
+
+        commands.add_command(Command(
+            cmd="kubectl version --short",
+            initial_status="Obtaining K8s cluster version...",
+            ok_status="K8s cluster version obtained",
+            error_status="Couldn't obtain K8s cluster version"
+        ))
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="K8s cluster version", logger=logger,
+                                  proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+        return commands.commands[0].result.rstrip().split('Server Version: ')[1]
+        
+    def __add_k8s_cluster_to_osm(self, event, version: str, kubeconfig: Dict) -> None:
         import requests
         osm_url = event.params["osm-url"]
         osm_user = event.params["osm-user"]
         osm_password = event.params["osm-password"]
         
         # First, login with OSM using the credentials given by param
+        self.unit.status = MaintenanceStatus("Authenticating with OSM...")
         response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
             "username": osm_user,
             "password": osm_password
@@ -899,29 +917,34 @@ class SampleProxyCharm(SSHProxyCharm):
         }, verify=False)
         
         if response.status_code != 200:
-            # TODO -> LOG
-            raise Exception(f"Response with status code: <{response.status_code}>; Response: <{response.json()}>")
+            error_info = f"Response with status code: <{response.status_code}>; Response: <{response.json()}>"
+            logger.error(error_info)
+            self.unit.status = BlockedStatus("Couldn't authenticate with OSM")
+            raise Exception(error_info)
+        self.unit.status = MaintenanceStatus("Authenticated with OSM")
         
+        self.unit.status = MaintenanceStatus("Adding the K8s cluster to OSM...")
         token = response.json()['id']
         response = requests.post(f"{osm_url}/osm/admin/v1/k8sclusters", json={
-            "name": "k8s_test",                 # TODO
-            "description": "k8s vnf test cluster",      # TODO
+            "name": event.params["cluster-name"],
+            "description": "Dinamically added K8s cluster (to be used as a MEC apps orchestrator)",
             "credentials": kubeconfig,
-            "k8s_version": "1.22.7-00",         # TODO
-            "vim_account": "4ebc81fb-b8b7-4454-b3fd-7b541c185b22",  # TODO
-            "nets":{"net1": "proj_net"},                    # TODO
-            "namespace": "kube-system",             # TODO
+            "k8s_version": version,
+            "vim_account": event.params["vim"],
+            "nets":{"net1": "proj_net"},                    # TODO -> verify the best way after testing the instantiation of KDUs
+            "namespace": "kube-system",
         }, headers={
             "Authorization": f"Bearer {token}",
             "Accept": "application/json"
         }, verify=False)
-        logger.info(f"Request: <{response.request.body}>")
 
         if response.status_code != 202:
-            # TODO -> LOG
-            raise Exception(f"Response with status code: <{response.status_code}>; Response: <{response.json()}>")
+            error_info = f"Response with status code: <{response.status_code}>; Response: <{response.json()}>"
+            logger.error(error_info)
+            self.unit.status = BlockedStatus("Couldn't add the K8s cluster to OSM")
+            raise Exception(error_info)
         
-        logger.info("Cluster added to OSM with success")
+        self.unit.status = MaintenanceStatus("K8s cluster added to OSM with success")
 
 
 if __name__ == "__main__":

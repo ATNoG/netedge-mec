@@ -7,9 +7,11 @@ additionalParamsForVnf:
     controller_username: controller
     controller_password: olaadeus
 
+    cluster_name: k8s_test
     osm_url: "https://10.0.12.99:9999"
     osm_user: k8s_user
     osm_password: "Olaadeus!1"
+    vim: 4ebc81fb-b8b7-4454-b3fd-7b541c185b22
 
     # worker VDUs
     worker_username: worker
