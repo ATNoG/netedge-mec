@@ -781,7 +781,11 @@ class SampleProxyCharm(SSHProxyCharm):
                                       new_file=new_file_name, 
                                       replacements={"<service_account>": OSM_K8S_SERVICE_ACCOUNT})
         destination = f"~/{new_file_name}"
-        proxy.scp(source_file=new_file_name, destination_file=destination)             # TODO -> add log
+        
+        logger.info("Sending cluster role binding file to the server...")
+        proxy.scp(source_file=new_file_name, destination_file=destination)
+        logger.info("Cluster role binding file sent to the server with success...")
+        
         commands_gen_serv_account.add_command(Command(
             cmd=f"""kubectl apply -f {destination}""",
             initial_status="Creating a cluster role binding for the OSM K8s service account...",
@@ -908,7 +912,9 @@ class SampleProxyCharm(SSHProxyCharm):
         osm_password = event.params["osm-password"]
         
         # First, login with OSM using the credentials given by param
-        self.unit.status = MaintenanceStatus("Authenticating with OSM...")
+        msg = "Authenticating with OSM..."
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
         response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
             "username": osm_user,
             "password": osm_password
@@ -921,9 +927,13 @@ class SampleProxyCharm(SSHProxyCharm):
             logger.error(error_info)
             self.unit.status = BlockedStatus("Couldn't authenticate with OSM")
             raise Exception(error_info)
-        self.unit.status = MaintenanceStatus("Authenticated with OSM")
+        msg = "Authenticated with OSM"
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
         
-        self.unit.status = MaintenanceStatus("Adding the K8s cluster to OSM...")
+        msg = "Adding the K8s cluster to OSM..."
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
         token = response.json()['id']
         response = requests.post(f"{osm_url}/osm/admin/v1/k8sclusters", json={
             "name": event.params["cluster-name"],
@@ -944,7 +954,9 @@ class SampleProxyCharm(SSHProxyCharm):
             self.unit.status = BlockedStatus("Couldn't add the K8s cluster to OSM")
             raise Exception(error_info)
         
-        self.unit.status = MaintenanceStatus("K8s cluster added to OSM with success")
+        msg = "K8s cluster added to OSM with success"
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
 
 
 if __name__ == "__main__":
