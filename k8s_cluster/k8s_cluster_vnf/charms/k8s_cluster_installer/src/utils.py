@@ -1,5 +1,6 @@
 import string
 import secrets
+from typing import Dict
 
 def generate_random_k8s_compliant_hostname(current_hostname: str, maximum_size=63) -> str:
     """Generate a both unique and human readable k8s hostname compliant with k8s Label Names requirements 
@@ -32,4 +33,27 @@ def generate_random_k8s_compliant_hostname(current_hostname: str, maximum_size=6
             result += ch
             
     return result
- 
+
+
+# TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED (another charm, just for the interactions with the operator's OSM NBI)
+def create_new_file_from_template(template: str, new_file: str, replacements: Dict[str, str]) -> None:
+    """Create a new local file from a template one, where you want to substitute the original content of the template
+       with certain values
+
+    Args:
+        template (str): Template file
+        new_file (str): New file to be created from the template
+        replacements (Dict[str, str]): A dictionary with the replacements to conduct in the new file. The keys shall be
+                                       the original values, and the corresponding values shall be the replacement for
+                                       that original value.
+    """
+    
+    with open(template, 'r') as file:
+        file_content = file.read()
+        
+    new_file_content = file_content
+    for original in replacements:
+        new_file_content = new_file_content.replace(original, replacements[original])
+        
+    with open(new_file, 'w') as file:
+        file.write(new_file_content)

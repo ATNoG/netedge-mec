@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from email.quoprimime import quote
 import ipaddress
 import sys
 import logging
@@ -14,7 +15,7 @@ install_dependencies(logger=logger)
 
 from versions import PackageVersions
 from command import Command, Commands
-from utils import generate_random_k8s_compliant_hostname
+from utils import create_new_file_from_template, generate_random_k8s_compliant_hostname
 
 sys.path.append("lib")
 from charms.osm.sshproxy import SSHProxyCharm
@@ -760,16 +761,39 @@ class SampleProxyCharm(SSHProxyCharm):
     #        Functions       #
     ##########################
     def __generate_kubeconfig(self, event) -> Dict:
+        OSM_K8S_SERVICE_ACCOUNT = "osm-k8s-admin"
+        CLUSTER_ROLE_BINDING_TEMPLATE = 'configs/cluster_role_binding_template.yaml'
         # https://docs.d2iq.com/dkp/kommander/2.0/clusters/attach-cluster/generate-kubeconfig/
         import shlex
-        service_account = 'default'
-        commands_fst = Commands()
-
         proxy = self.get_ssh_proxy()
+        
+        # Generate the necessary OSM K8s service account, and git it the necessary permissions
+        commands_gen_serv_account = Commands()
+        commands_gen_serv_account.add_command(Command(
+            cmd=f"""kubectl -n kube-system create serviceaccount {OSM_K8S_SERVICE_ACCOUNT}""",
+            initial_status="Creating the OSM K8s service account...",
+            ok_status="OSM K8s service account created",
+            error_status="Couldn't create the OSM K8s service account"
+        ))
+        new_file_name = "cluster_role_binding.yaml"
+        create_new_file_from_template(template=CLUSTER_ROLE_BINDING_TEMPLATE, 
+                                      new_file=new_file_name, 
+                                      replacements={"<service_account>": OSM_K8S_SERVICE_ACCOUNT})
+        destination = f"~/{new_file_name}"
+        proxy.scp(source_file=new_file_name, destination_file=destination)             # TODO -> add log
+        commands_gen_serv_account.add_command(Command(
+            cmd=f"""kubectl apply -f {destination}""",
+            initial_status="Creating a cluster role binding for the OSM K8s service account...",
+            ok_status="Cluster role binding for the OSM K8s service account created",
+            error_status="Couldn't create the cluster role binding for the OSM K8s service account"
+        ))
+        commands_gen_serv_account.unit_run_command(component="New service account", logger=logger, proxy=proxy,
+                                                   unit_status=self.unit.status)
 
-        # Generate necessary environ variables
+        # Obtain required data to generate Kubeconfig
+        commands_fst = Commands()
         commands_fst.add_command(Command(
-            cmd=f"""kubectl -n kube-system get serviceaccount {service_account} -o=jsonpath="'"{{.secrets[0].name}}"'" """,
+            cmd=f"""kubectl -n kube-system get serviceaccount {OSM_K8S_SERVICE_ACCOUNT} -o=jsonpath="'"{{.secrets[0].name}}"'" """,
             initial_status="Obtaining user token name...",
             ok_status="User token name obtained",
             error_status="Couldn't obtain user token name"
@@ -815,13 +839,14 @@ class SampleProxyCharm(SSHProxyCharm):
         cmd.extend(["-o=go-template=" + shlex.quote(
             f"""{{{{range .clusters}}}}{{{{if eq .name "{current_cluster}"}}}}"{{{{with index .cluster 
             "certificate-authority-data" }}}}{{{{.}}}}{{{{end}}}}"{{{{ end }}}}{{{{ end }}}}""")])
+        cmd.extend([*shlex.split(" | cut -d"), shlex.quote('"'), "-f2"])
         commands_frd.add_command(Command(
             cmd=cmd,
             initial_status="Obtaining cluster CA...",
             ok_status="Cluster CA obtained",
             error_status="Couldn't obtain cluster CA"
         ))
-        commands_frd.unit_run_command(component="Current cluster", logger=logger, proxy=proxy,
+        commands_frd.unit_run_command(component="Cluster's CA", logger=logger, proxy=proxy,
                                       unit_status=self.unit.status)
         cluster_ca = commands_frd.commands[0].result
 
@@ -835,7 +860,7 @@ class SampleProxyCharm(SSHProxyCharm):
                     {
                         "context": {
                             "cluster": current_context,
-                            "user": service_account
+                            "user": OSM_K8S_SERVICE_ACCOUNT
                         },
                         "name": current_context
                     }
@@ -851,7 +876,7 @@ class SampleProxyCharm(SSHProxyCharm):
                 ],
                 "users": [
                     {
-                        "name": service_account,
+                        "name": OSM_K8S_SERVICE_ACCOUNT,
                         "user": {
                             "token": user_token_value
                         }
@@ -890,6 +915,7 @@ class SampleProxyCharm(SSHProxyCharm):
             "Authorization": f"Bearer {token}",
             "Accept": "application/json"
         }, verify=False)
+        logger.info(f"Request: <{response.request.body}>")
 
         if response.status_code != 202:
             # TODO -> LOG
