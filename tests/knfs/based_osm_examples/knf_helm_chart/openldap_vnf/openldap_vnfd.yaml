@@ -1,0 +1,18 @@
+vnfd:
+  description: KNF with single KDU using a helm-chart for openldap version 1.2.3
+  df:
+  - id: default-df
+  ext-cpd:
+  - id: mgmt-ext
+    k8s-cluster-net: mgmtnet
+  id: openldap_knf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: ldap
+    helm-chart: stable/openldap:1.2.3
+  mgmt-cp: mgmt-ext
+  product-name: openldap_knf
+  provider: Telefonica
+  version: '1.0'

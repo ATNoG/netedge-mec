@@ -1,0 +1,3 @@
+8840a5ed7c479af5f09a9656f3712079	openldap_vnf/README.md
+75da727b97a0df2dcc1e83e2174840e1	openldap_vnf/openldap_vnfd.yaml
+3a4799d01502c86f56b0412dc33cf647	openldap_vnf/Scripts/cloud_init/cloud-config.txt

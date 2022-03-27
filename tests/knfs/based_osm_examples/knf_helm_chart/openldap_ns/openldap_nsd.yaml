@@ -1,0 +1,23 @@
+nsd:
+  nsd:
+  - description: NS consisting of a single KNF openldap_knf connected to mgmt network
+    designer: OSM
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: openldap
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: openldap
+            constituent-cpd-id: mgmt-ext
+          virtual-link-profile-id: mgmtnet
+        vnfd-id: openldap_knf
+    id: openldap_ns
+    name: openldap_ns
+    version: '1.0'
+    virtual-link-desc:
+    - id: mgmtnet
+      mgmt-network: 'true'
+      vim-network-name: proj_net
+    vnfd-id:
+    - openldap_knf
