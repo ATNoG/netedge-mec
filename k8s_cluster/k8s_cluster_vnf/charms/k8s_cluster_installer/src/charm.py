@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+from email.quoprimime import quote
 import ipaddress
 import sys
 import logging
 import re
+from typing import List, Dict
+
 # Logger
 logger = logging.getLogger(__name__)
 
@@ -12,7 +15,7 @@ install_dependencies(logger=logger)
 
 from versions import PackageVersions
 from command import Command, Commands
-from utils import generate_random_k8s_compliant_hostname
+from utils import create_new_file_from_template, generate_random_k8s_compliant_hostname
 
 sys.path.append("lib")
 from charms.osm.sshproxy import SSHProxyCharm
@@ -24,6 +27,8 @@ from ops.model import (
     WaitingStatus,
     ModelError,
 )
+
+K8S_POD_SUBNET = "192.168.0.0/16"
 
 
 class SampleProxyCharm(SSHProxyCharm):
@@ -43,12 +48,20 @@ class SampleProxyCharm(SSHProxyCharm):
         # Automatic custom actions
         self.framework.observe(self.on.deploy_k8s_controller_action, self.on_deploy_k8s_controller)
         self.framework.observe(self.on.deploy_k8s_workers_action, self.on_deploy_k8s_workers)
+
+        # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+        # Custom actions
+        self.framework.observe(self.on.install_requirements_action, self.on_install_requirements)
         
+        # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+        # Custom actions
+        self.framework.observe(self.on.add_k8s_cluster_to_osm_action, self.on_add_k8s_cluster_to_osm)
+
         # Manual custom actions
         self.framework.observe(self.on.get_k8s_controller_info_action, self.on_get_k8s_controller_info)
         self.framework.observe(self.on.join_k8s_workers_action, self.on_join_k8s_workers)
-        self.framework.observe(self.on.remove_k8s_worker_action,self.on_remove_k8s_worker_action)
-        
+        self.framework.observe(self.on.remove_k8s_worker_action, self.on_remove_k8s_worker_action)
+
         # OSM actions (primitives)
         self.framework.observe(self.on.start_action, self.on_start_action)
         self.framework.observe(self.on.stop_action, self.on_stop_action)
@@ -139,15 +152,17 @@ class SampleProxyCharm(SSHProxyCharm):
     #         Controller     #
     ##########################
     def on_deploy_k8s_controller(self, event) -> None:
+        hostname = 'controller'
+
         self.__install_kubernetes(event)
         self.__disable_swap(event)
         self.__install_container_runtime(event)
         self.__initialize_master_node(event)
-        self.__define_dns_name(event, name='controller')
-        
-        vld_ip_addr = self.__obtain_vld_ip_addr(event)
-        
-        self.__create_cluster(event, internal_vld_address=vld_ip_addr)
+        self.__define_dns_name(event, name=hostname)
+
+        ip_addrs = self.__obtain_ip_addrs(event)
+
+        self.__create_cluster(event, ip_addrs=ip_addrs, hostname=hostname)
         self.__configure_kubectl(event)
         self.__install_network_plugin(event)
 
@@ -169,7 +184,7 @@ class SampleProxyCharm(SSHProxyCharm):
         controller_ip = self.__get_certain_node_ip(event)
         join_token = self.__generate__join__token(event)
         ca_cert_hash = self.__get_ca_cert_hash(event)
-        
+
         event.set_results({
             'controller-hostname': controller_hostname,
             'controller-port': controller_port,
@@ -183,7 +198,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
     def on_remove_k8s_worker_action(self, event) -> None:
         self.__remove_worker_from_cluster(event)
-        
+
     ##########################
     #        Functions       #
     ##########################
@@ -198,7 +213,8 @@ class SampleProxyCharm(SSHProxyCharm):
             error_status="Couldn't update systems packages' information"
         ))
         commands.add_command(Command(
-            cmd=f"sudo apt -y install curl={PackageVersions.curl} apt-transport-https={PackageVersions.apt_transport_https}",
+            cmd=f"sudo apt -y install curl={PackageVersions.curl} "
+                f"apt-transport-https={PackageVersions.apt_transport_https}",
             initial_status="Installing curl and apt-transport-https packages...",
             ok_status="Installed curl and apt-transport-https",
             error_status="Couldn't install curl and apt-transport-https"
@@ -291,8 +307,8 @@ class SampleProxyCharm(SSHProxyCharm):
 
         # Ensure sysctl params are set
         commands.add_command(Command(
-            cmd=""" "echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1'"'" 
-         | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
+            cmd=""""echo -e '"'net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 
+            1\nnet.ipv4.ip_forward = 1'"'" | sudo tee /etc/sysctl.d/kubernetes.conf > /dev/null""",
             initial_status="Updating sysctl settings...",
             ok_status="Sysctl settings updated",
             error_status="Couldn't update sysctl settings"
@@ -324,7 +340,8 @@ class SampleProxyCharm(SSHProxyCharm):
             error_status="Couldn't add GPG Docker key"
         ))
         commands.add_command(Command(
-            cmd="""sudo add-apt-repository '"'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'"'""",
+            cmd="""sudo add-apt-repository '"'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic 
+            stable'"'""",
             initial_status="Adding Docker repository...",
             ok_status="Docker repository added",
             error_status="Couldn't add Docker repository"
@@ -346,7 +363,8 @@ class SampleProxyCharm(SSHProxyCharm):
 
         # Configure Containerd
         commands.add_command(Command(
-            cmd="sudo mkdir -p /etc/containerd && containerd config default | sudo tee /etc/containerd/config.toml > /dev/null",
+            cmd="sudo mkdir -p /etc/containerd && containerd config default | sudo tee /etc/containerd/config.toml > "
+                "/dev/null",
             initial_status="Configuring Containerd...",
             ok_status="Containerd configured",
             error_status="Couldn't configure Containerd"
@@ -424,7 +442,7 @@ class SampleProxyCharm(SSHProxyCharm):
 
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Define DNS name", logger=logger, proxy=proxy, unit_status=self.unit.status)
-        
+
     def __obtain_current_hostname(self, event) -> str:
         commands = Commands()
 
@@ -438,43 +456,41 @@ class SampleProxyCharm(SSHProxyCharm):
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Obtain current hostname", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
-        
+
         return commands.commands[0].result.strip()
 
-    def __obtain_vld_ip_addr(self, event) -> str:
+    def __obtain_ip_addrs(self, event) -> List[str]:
         commands = Commands()
-        
+
         commands.add_command(Command(
             cmd="hostname -I",
             initial_status="Obtaining the machine IP addresses...",
             ok_status="Machine IP addresses obtained",
             error_status="Couldn't obtain the machine IP address"
         ))
-        
+
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Obtain the machine IP addresses", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
-        
+
         addresses = commands.commands[0].result.split(' ')
-        internal_vld_net_address = event.params['vld-cidr']
-        internal_vld_address = ''
-        
+        result_ip_addrs = []
+
         for addr in addresses:
-            if ipaddress.ip_address(addr) in ipaddress.ip_network(internal_vld_net_address):
-                internal_vld_address = addr
-                break
+            if ipaddress.ip_address(addr) not in ipaddress.ip_network(K8S_POD_SUBNET):
+                result_ip_addrs.append(addr)
 
-        return internal_vld_address
+        return result_ip_addrs
 
-    def __create_cluster(self, event, internal_vld_address) -> None:
+    def __create_cluster(self, event, ip_addrs: List[str], hostname: str) -> None:
         commands = Commands()
-        
+
         commands.add_command(Command(
-            cmd = f"""sudo kubeadm init \ 
-            --apiserver-advertise-address={internal_vld_address}
-            --pod-network-cidr=192.168.0.0/16 \ 
+            cmd=f"""sudo kubeadm init \ 
+            --pod-network-cidr={K8S_POD_SUBNET} \ 
             --upload-certs \
-            --control-plane-endpoint=controller""",
+            --control-plane-endpoint=controller \
+            --apiserver-cert-extra-sans=localhost,{hostname},127.0.0.1,{','.join(ip_addrs)}""",
             initial_status="Creating the cluster...",
             ok_status="Cluster created with success",
             error_status="Couldn't create the cluster"
@@ -497,7 +513,8 @@ class SampleProxyCharm(SSHProxyCharm):
         ))
 
         proxy = self.get_ssh_proxy()
-        commands.unit_run_command(component="Configure kubectl", logger=logger, proxy=proxy, unit_status=self.unit.status)
+        commands.unit_run_command(component="Configure kubectl", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
 
     def __install_network_plugin(self, event) -> None:
         commands = Commands()
@@ -519,7 +536,7 @@ class SampleProxyCharm(SSHProxyCharm):
     #     Custom Actions     #
     #     For Cluster Join   #
     ##########################
-    def __get_cluster_info(self, event) -> str:
+    def __get_cluster_info(self, event) -> List[str]:
         """
         Obtains information about the cluster information such as HOSTNAME and PORT
         Used by new worker nodes to connect to the cluster
@@ -537,7 +554,7 @@ class SampleProxyCharm(SSHProxyCharm):
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Obtaining cluster information", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
-        
+
         # We are getting the output from a kubectl command which uses ANSI colors, that
         # unfortunately alters the expected result so we have to remove the ANSI colors from
         # the output
@@ -547,7 +564,7 @@ class SampleProxyCharm(SSHProxyCharm):
         ansi_escape = ansi_regex.sub("", ansi_result)
         # The output at this moment will look like //hostname:port
         # to obtain only the hostname and port do a simple string conversion
-        result = ansi_escape.replace("//","").split(":")
+        result = ansi_escape.replace("//", "").split(":")
         return result
 
     def __get_certain_node_ip(self, event, node_name="controller") -> str:
@@ -560,7 +577,8 @@ class SampleProxyCharm(SSHProxyCharm):
         commands = Commands()
 
         commands.add_command(Command(
-            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata.annotations["'"projectcalico'\\'.org/IPv4Address"'"]}}'"' """,
+            cmd=f"""kubectl get nodes -o jsonpath='"'{{.items[?(@.metadata.name=="'"{node_name}"'")].metadata
+            .annotations["'"projectcalico'\\'.org/IPv4Address"'"]}}'"' """,
             initial_status="Obtaining node ip address...",
             ok_status=f"Node {node_name} ip address retrieved successfully.",
             error_status="Couldn't obtain node ip address"
@@ -593,13 +611,14 @@ class SampleProxyCharm(SSHProxyCharm):
         """Obtains the ca certificate hash of the master node"""
         commands = Commands()
 
-        # When using commands that require a lot of " characters beware of their usage
-        # In this case we enclose " and the space character with '' , this allows for the literal value to be used
-        # e.g sed "s/^.* //" would end up as ["sed", "'s/^.*'", "'//'"] which is not the command we want
-        # the command we actually want is ["sed", "s/^.* //"] which is achievable by using the enclosing in the " and space
-        # character ending up with the following result sed '"'s/^.*' '//'"'
+        # When using commands that require a lot of " characters beware of their usage In this case we enclose " and
+        # the space character with '' , this allows for the literal value to be used e.g sed "s/^.* //" would end up
+        # as ["sed", "'s/^.*'", "'//'"] which is not the command we want the command we actually want is ["sed",
+        # "s/^.* //"] which is achievable by using the enclosing in the " and space character ending up with the
+        # following result sed '"'s/^.*' '//'"'
         commands.add_command(Command(
-            cmd=f"""openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed '"'s/^.*' '//'"' """,
+            cmd=f"""openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null 
+            | openssl dgst -sha256 -hex | sed '"'s/^.*' '//'"' """,
             initial_status="Obtaining hash of the ca cert",
             ok_status="Ca cert hash was obtained",
             error_status="Couldn't obtain ca cert hash"
@@ -650,10 +669,10 @@ class SampleProxyCharm(SSHProxyCharm):
         The VDU will still exist, but it is not part of the cluster anymore
         """
         commands = Commands()
-        
+
         # Obtain the name of the node
         node_hostname = event.params['node']
-        
+
         # Drain the node (i.e remove all the pods from the worker node)
         # Ignores daemonsets (feature that ensures all nodes run a copy of a certain pod)
         # Since we want to remove the node this has no impact
@@ -663,7 +682,7 @@ class SampleProxyCharm(SSHProxyCharm):
             ok_status="Node successfully drain from the cluster",
             error_status="Failed to drain node from cluster"
         ))
-        
+
         # Remove the node from the worker node 
         # After removing the node the daemonset pods may still hang for a while
         commands.add_command(Command(
@@ -672,9 +691,273 @@ class SampleProxyCharm(SSHProxyCharm):
             ok_status="Node successfully removed from the cluster",
             error_status="Failed to remove node from cluster"
         ))
-    
+
         proxy = self.get_ssh_proxy()
         commands.unit_run_command(component="Remove worker from cluster", logger=logger, proxy=proxy,
                                   unit_status=self.unit.status)
+
+    # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+    ##########################
+    #     Custom Actions     #
+    ##########################
+    def on_install_requirements(self, event) -> None:
+        self.__untantaint_master()
+        self.__install_persistent_volume_storage()
+        self.__install_load_balancer()
+
+    ##########################
+    #        Functions       #
+    ##########################
+    def __untantaint_master(self) -> None:
+        commands = Commands()
+
+        # Untaint any node with master role
+        commands.add_command(Command(
+            cmd="""kubectl taint nodes --all node-role.kubernetes.io/master-""",
+            initial_status="Untainting any node with master role...",
+            ok_status="Nodes with master role untainted",
+            error_status="Couldn't untaint the nodes with master role"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Untaint any node with master role", logger=logger, proxy=proxy,
+                                  unit_status=self.unit.status)
+
+    def __install_persistent_volume_storage(self) -> None:
+        # Installation based on OpenEBS
+        commands = Commands()
+
+        # Install OpenEBS
+        commands.add_command(Command(
+            cmd="""kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml""",
+            initial_status="Installing and starting OpenEBS services...",
+            ok_status="OpenEBS services installed and started",
+            error_status="Couldn't install and start OpenEBS services"
+        ))
+
+        # Define the default storage class
+        commands.add_command(Command(
+            cmd="""kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml""",
+            initial_status="Defining the <openebs-hostpath> as the default storage class...",
+            ok_status="<openebs-hostpath> defined as the default storage class",
+            error_status="Couldn't define <openebs-hostpath> defined as the default storage class"
+        ))
+
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="Define <openebs-hostpath> as the default storage class", logger=logger,
+                                  proxy=proxy,
+                                  unit_status=self.unit.status)
+
+    def __install_load_balancer(self) -> None:
+        # https://osm.etsi.org/docs/user-guide/15-k8s-installation.html#method-3-manual-cluster-installation-steps-for-ubuntu
+        pass
+
+    # TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED (another charm, just for the interactions with the operator's OSM NBI)
+    def on_add_k8s_cluster_to_osm(self, event) -> None:
+        kubeconfig = self.__generate_kubeconfig(event)
+        version = self.__obtain_k8s_cluster_version()
+        self.__add_k8s_cluster_to_osm(event, version=version, kubeconfig=kubeconfig)
+
+    ##########################
+    #        Functions       #
+    ##########################
+    def __generate_kubeconfig(self, event) -> Dict:
+        OSM_K8S_SERVICE_ACCOUNT = "osm-k8s-admin"
+        CLUSTER_ROLE_BINDING_TEMPLATE = 'configs/cluster_role_binding_template.yaml'
+        # https://docs.d2iq.com/dkp/kommander/2.0/clusters/attach-cluster/generate-kubeconfig/
+        import shlex
+        proxy = self.get_ssh_proxy()
+        
+        # Generate the necessary OSM K8s service account, and git it the necessary permissions
+        commands_gen_serv_account = Commands()
+        commands_gen_serv_account.add_command(Command(
+            cmd=f"""kubectl -n kube-system create serviceaccount {OSM_K8S_SERVICE_ACCOUNT}""",
+            initial_status="Creating the OSM K8s service account...",
+            ok_status="OSM K8s service account created",
+            error_status="Couldn't create the OSM K8s service account"
+        ))
+        new_file_name = "cluster_role_binding.yaml"
+        create_new_file_from_template(template=CLUSTER_ROLE_BINDING_TEMPLATE, 
+                                      new_file=new_file_name, 
+                                      replacements={"<service_account>": OSM_K8S_SERVICE_ACCOUNT})
+        destination = f"~/{new_file_name}"
+        
+        logger.info("Sending cluster role binding file to the server...")
+        proxy.scp(source_file=new_file_name, destination_file=destination)
+        logger.info("Cluster role binding file sent to the server with success...")
+        
+        commands_gen_serv_account.add_command(Command(
+            cmd=f"""kubectl apply -f {destination}""",
+            initial_status="Creating a cluster role binding for the OSM K8s service account...",
+            ok_status="Cluster role binding for the OSM K8s service account created",
+            error_status="Couldn't create the cluster role binding for the OSM K8s service account"
+        ))
+        commands_gen_serv_account.unit_run_command(component="New service account", logger=logger, proxy=proxy,
+                                                   unit_status=self.unit.status)
+
+        # Obtain required data to generate Kubeconfig
+        commands_fst = Commands()
+        commands_fst.add_command(Command(
+            cmd=f"""kubectl -n kube-system get serviceaccount {OSM_K8S_SERVICE_ACCOUNT} -o=jsonpath="'"{{.secrets[0].name}}"'" """,
+            initial_status="Obtaining user token name...",
+            ok_status="User token name obtained",
+            error_status="Couldn't obtain user token name"
+        ))
+        commands_fst.unit_run_command(component="User token name", logger=logger, proxy=proxy,
+                                      unit_status=self.unit.status)
+        user_token_name = commands_fst.commands[0].result
+
+        commands_scd = Commands()
+        commands_scd.add_command(Command(
+            cmd=f"""kubectl -n kube-system get secret/{user_token_name} -o=go-template="'"{{{{.data.token}}}}"'" | base64 -d """,
+            initial_status="Obtaining user token value...",
+            ok_status="User token value obtained",
+            error_status="Couldn't obtain user token value"
+        ))
+        commands_scd.add_command(Command(
+            cmd="kubectl config current-context",
+            initial_status="Obtaining current context...",
+            ok_status="Current context obtained",
+            error_status="Couldn't obtain current context"
+        ))
+        commands_scd.unit_run_command(component="User token value and current context", logger=logger, proxy=proxy,
+                                      unit_status=self.unit.status)
+        user_token_value, current_context = [cmd.result for cmd in commands_scd.commands]
+
+        commands_trd = Commands()
+        cmd = shlex.split("kubectl config view --raw")
+        cmd.extend(["-o=go-template=" + shlex.quote(
+            f"""{{{{range .contexts}}}}{{{{if eq .name "{current_context}"}}}}{{{{ index .context "cluster" }}}}{{{{
+            end}}}}{{{{end}}}}""")])
+        commands_trd.add_command(Command(
+            cmd=cmd,
+            initial_status="Obtaining current cluster...",
+            ok_status="Current cluster obtained generated",
+            error_status="Couldn't obtain current cluster"
+        ))
+        commands_trd.unit_run_command(component="Current cluster", logger=logger, proxy=proxy,
+                                      unit_status=self.unit.status)
+        current_cluster = commands_trd.commands[0].result
+
+        commands_frd = Commands()
+        cmd = shlex.split("kubectl config view --raw")
+        cmd.extend(["-o=go-template=" + shlex.quote(
+            f"""{{{{range .clusters}}}}{{{{if eq .name "{current_cluster}"}}}}"{{{{with index .cluster 
+            "certificate-authority-data" }}}}{{{{.}}}}{{{{end}}}}"{{{{ end }}}}{{{{ end }}}}""")])
+        cmd.extend([*shlex.split(" | cut -d"), shlex.quote('"'), "-f2"])
+        commands_frd.add_command(Command(
+            cmd=cmd,
+            initial_status="Obtaining cluster CA...",
+            ok_status="Cluster CA obtained",
+            error_status="Couldn't obtain cluster CA"
+        ))
+        commands_frd.unit_run_command(component="Cluster's CA", logger=logger, proxy=proxy,
+                                      unit_status=self.unit.status)
+        cluster_ca = commands_frd.commands[0].result
+
+        _, controller_port = self.__get_cluster_info(event)
+        controller_ip = event.params["master-ip"]
+        
+        return {"apiVersion": "v1",
+                "kind": "Config",
+                "current-context": current_context,
+                "contexts": [
+                    {
+                        "context": {
+                            "cluster": current_context,
+                            "user": OSM_K8S_SERVICE_ACCOUNT
+                        },
+                        "name": current_context
+                    }
+                ],
+                "clusters": [
+                    {
+                        "cluster": {
+                            "certificate-authority-data": cluster_ca,
+                            "server": f"https://{controller_ip}:{controller_port}"
+                        },
+                        "name": current_context
+                    }
+                ],
+                "users": [
+                    {
+                        "name": OSM_K8S_SERVICE_ACCOUNT,
+                        "user": {
+                            "token": user_token_value
+                        }
+                    }
+                ]
+                }
+        
+    def __obtain_k8s_cluster_version(self) -> str:
+        commands = Commands()
+
+        commands.add_command(Command(
+            cmd="kubectl version --short",
+            initial_status="Obtaining K8s cluster version...",
+            ok_status="K8s cluster version obtained",
+            error_status="Couldn't obtain K8s cluster version"
+        ))
+        proxy = self.get_ssh_proxy()
+        commands.unit_run_command(component="K8s cluster version", logger=logger,
+                                  proxy=proxy,
+                                  unit_status=self.unit.status)
+        
+        return commands.commands[0].result.rstrip().split('Server Version: ')[1]
+        
+    def __add_k8s_cluster_to_osm(self, event, version: str, kubeconfig: Dict) -> None:
+        import requests
+        osm_url = event.params["osm-url"]
+        osm_user = event.params["osm-user"]
+        osm_password = event.params["osm-password"]
+        
+        # First, login with OSM using the credentials given by param
+        msg = "Authenticating with OSM..."
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+        response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
+            "username": osm_user,
+            "password": osm_password
+        }, headers={
+            "Accept": "application/json"
+        }, verify=False)
+        
+        if response.status_code != 200:
+            error_info = f"Response with status code: <{response.status_code}>; Response: <{response.json()}>"
+            logger.error(error_info)
+            self.unit.status = BlockedStatus("Couldn't authenticate with OSM")
+            raise Exception(error_info)
+        msg = "Authenticated with OSM"
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+        
+        msg = "Adding the K8s cluster to OSM..."
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+        token = response.json()['id']
+        response = requests.post(f"{osm_url}/osm/admin/v1/k8sclusters", json={
+            "name": event.params["cluster-name"],
+            "description": "Dinamically added K8s cluster (to be used as a MEC apps orchestrator)",
+            "credentials": kubeconfig,
+            "k8s_version": version,
+            "vim_account": event.params["vim"],
+            "nets":{"net1": "proj_net"},                    # TODO -> verify the best way after testing the instantiation of KDUs
+            "namespace": "kube-system",
+        }, headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/json"
+        }, verify=False)
+
+        if response.status_code != 202:
+            error_info = f"Response with status code: <{response.status_code}>; Response: <{response.json()}>"
+            logger.error(error_info)
+            self.unit.status = BlockedStatus("Couldn't add the K8s cluster to OSM")
+            raise Exception(error_info)
+        
+        msg = "K8s cluster added to OSM with success"
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+
+
 if __name__ == "__main__":
     main(SampleProxyCharm)

@@ -24,6 +24,9 @@ class OnMock:
    def remove_k8s_worker_action():
       pass
    
+   def install_requirements_action():
+      pass
+   
    def start_action():
       pass
    
