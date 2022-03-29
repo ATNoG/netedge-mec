@@ -43,13 +43,6 @@ get-ssh-public-key:
 # Custom actions
 deploy-k8s-controller:
   description: "Deploy the Kubernetes controller"
-  params:
-    vld-cidr:
-      description: "VLD network's IP address"
-      type: string
-      default: ""
-  required:
-    - vld-cidr
 
 deploy-k8s-workers:
   description: "Deploy the Kubernetes worker nodes"
@@ -96,3 +89,47 @@ join-k8s-workers:
     - port
     - token
     - cert
+
+
+# TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+# Custom actions
+install-requirements:
+  description: "Install the K8s cluster's requirements"
+
+
+# TODO -> REMOVE THIS WHEN N2VC FIX IS ACCEPTED
+# Custom actions
+add-k8s-cluster-to-osm:
+  description: "Add the new k8s cluster to the operator's OSM"
+  params:
+    cluster-name:
+      description: "Name to be associated with this new cluster in the OSM platform"
+      type: string
+      default: ""
+    master-ip:
+      description: "Master's public IP address"
+      type: string
+      default: ""
+    osm-url: 
+      description: "URL of the OSM where to add the new cluster (should also include the port number)"
+      type: string
+      default: ""
+    osm-user:
+      description: "OSM's user which will be used to add the new cluster (shall have, at least, permissions for creating a new k8s cluster)"
+      type: string
+      default: ""
+    osm-password: 
+      description: "Password of the OSM user"
+      type: string
+      default: ""
+    vim:
+      description: "VIM ID, on the destination OSM, where the cluster was launched"
+      type: string
+      default: ""
+  required:
+    - cluster-name
+    - master-ip
+    - osm-url
+    - osm-user
+    - osm-password
+    - vim

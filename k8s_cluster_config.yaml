@@ -1,0 +1,21 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+apiServer:
+  certSANs:
+    - "127.0.0.1"
+    - "10.0.13.227"     # replace with mgmt address
+    - "172.16.0.8"      # replace with VL address
+networking:
+  podSubnet: "192.168.0.0/16"
+controlPlaneEndpoint: "controller"
+
+
+# osm --hostname 10.0.12.96 --user netedge --password <password> --project netedge k8scluster-add k8s_vnf_cluster --creds kube_config --vim NETEDGE_MEC --k8s-nets '{net1: proj_net}' --version "1.22.7-00" --description="k8s vnf test cluster"
+# https://osm.etsi.org/docs/user-guide/06-osm-platform-configuration.html?highlight=kubernetes#platform-configuration-for-kubernetes
+# https://osm.etsi.org/docs/user-guide/15-k8s-installation.html#method-3-manual-cluster-installation-steps-for-ubuntu
+
+# sudo kubeadm init --upload-certs --config config.yaml
+
+# https://github.com/openebs/openebs
+# kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
+# kubectl patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
