@@ -1,0 +1,39 @@
+vnfd:
+  description: K8s container deployment of Squid Web Proxy
+  df:
+  - id: default-df
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+          - id: squid-kdu
+            config-primitive:
+            - name: addurl
+              parameter:
+              - data-type: STRING
+                default-value: squid
+                name: application-name
+              - data-type: STRING
+                default-value: ''
+                name: url
+            - name: deleteurl
+              parameter:
+              - data-type: STRING
+                default-value: squid
+                name: application-name
+              - data-type: STRING
+                default-value: ''
+                name: url
+  ext-cpd:
+  - id: mgmtnet-ext
+    k8s-cluster-net: mgmtnet
+  id: squid_cnf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: squid-kdu
+    juju-bundle: bundle.yaml     
+  mgmt-cp: mgmtnet-ext
+  product-name: squid_cnf
+  provider: Canonical
+  version: '1.0'

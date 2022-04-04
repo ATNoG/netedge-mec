@@ -1,0 +1,24 @@
+name: squid
+summary: Describe your charm here
+maintainers:
+    - Dominik Fleischmann <dominik.fleischmann@canonical.com>
+description: |
+    A nice long description of what the product does and any
+    high level information about how the charm provides the product,
+    on which platform, etc.
+tags:
+    - misc
+series:
+    - kubernetes
+deployment:
+    type: stateful
+    service: loadbalancer
+storage:
+    spool:
+        type: filesystem
+        location: /var/spool/squid
+resources:
+  image:
+    type: oci-image
+    description: OSM docker image for LCM
+    upstream-source: "domfleischmann/squid-python"

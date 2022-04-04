@@ -1,0 +1,9 @@
+description: Squid Bundle
+bundle: kubernetes
+applications:
+  squid:
+    charm: cs:~charmed-osm/squid
+    scale: 1
+    #    storage:
+    #      docker: 50M
+    #      spool: 50M

@@ -1,0 +1,23 @@
+nsd:
+  nsd:
+  - description: NS with 1 KDU connected to the mgmtnet VL
+    designer: Canonical
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: squid_cnf
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: squid_cnf
+            constituent-cpd-id: mgmtnet-ext
+          virtual-link-profile-id: mgmtnet
+        vnfd-id: squid_cnf
+    id: squid_cnf_ns
+    name: squid_cnf_ns
+    version: '1.0'
+    virtual-link-desc:
+    - id: mgmtnet
+      mgmt-network: true
+      vim-network-name: proj_net
+    vnfd-id:
+    - squid_cnf

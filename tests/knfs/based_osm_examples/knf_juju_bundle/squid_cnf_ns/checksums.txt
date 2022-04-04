@@ -1,0 +1,2 @@
+d8ad289196710d6496172c3713f52e45	squid_cnf_ns/README.md
+f31b27a26a0bb68d930f738b8d316fed	squid_cnf_ns/squid_cnf_nsd.yaml
