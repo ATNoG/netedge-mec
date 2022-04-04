@@ -1,6 +1,6 @@
 vnfd:
-  id: k8s_cluster_vnf
-  product-name: k8s_cluster_vnf
+  id: charmed_osm_vnf
+  product-name: charmed_osm_vnf
   description: K8s cluster VNF
   provider: OSM
   version: '1.0'
@@ -17,21 +17,18 @@ vnfd:
   virtual-compute-desc:
   - id: controller-compute
     virtual-cpu:
-      num-virtual-cpu: 2
+      num-virtual-cpu: 6
     virtual-memory:
-      size: 8
+      size: 18
   - id: worker-compute
     virtual-cpu:
-      num-virtual-cpu: 2
+      num-virtual-cpu: 6
     virtual-memory:
-      size: 8
+      size: 18
   sw-image-desc:
   - id: "clean-ubuntu"
     name: "Ubuntu Server 20.04"
     image: "Ubuntu Server 20.04"
-  - id: "ubuntu-template"
-    name: "HAL_ubuntu2004_cloudinit_template"
-    image: "HAL_ubuntu2004_cloudinit_template"
   df:
   - id: default-df
     instantiation-level:
@@ -61,28 +58,14 @@ vnfd:
       - cooldown-time: 5                # the new instance is created only after 5 seconds from the scale request's was done
         name: manual-worker-scaling
         scaling-type: manual
-    # virtual-link-profile:               # in order to avoid problems of interceptions between the VLD network's and the CALICO k8s network's cirds (by default, the VLD was using networks in the range of the CALICO, which usually uses 192.168.0.0/16)
-    # - id: internal-vl
-    #   flavour: internal-vl-flavor
-    #   virtual-link-protocol-data:
-    #     l3-protocol-data:
-    #       name: internal-vl-protocol-data
-    #       description: internal-vl network
-    #       ip-version: ipv4
-    #       cidr: 172.16.0.0/24           # network within the class B private addresses range
-    #       dhcp-enabled: true
     lcm-operations-configuration:
       operate-vnf-op-config:
         day1-2:
         - execution-environment-list:
           - id: controller-init-ee
             juju:
-              charm: charmed-kubernetes/k8s_cluster_installer
+              charm: charmed-kubernetes/charmed_osm_installer
               proxy: true
-          # - id: controller-requirements-ee
-          #   juju:
-          #     charm: k8s_osm_requirements
-          #     proxy: true
           id: controller
           initial-config-primitive:
           - execution-environment-ref: controller-init-ee
@@ -100,18 +83,6 @@ vnfd:
           - execution-environment-ref: controller-init-ee
             name: deploy-k8s-controller
             seq: 2
-          # - execution-environment-ref: controller-requirements-ee
-          #- execution-environment-ref: controller-init-ee
-          #  name: config
-          #  parameter:
-          #  - name: ssh-hostname
-          #    value: <rw_mgmt_ip>
-          #  - name: ssh-username
-          #    value: <controller_username>
-          #  - name: ssh-password
-          #    value: <controller_password>
-          #  seq: 3
-          # - execution-environment-ref: controller-requirements-ee
           - execution-environment-ref: controller-init-ee
             name: install-requirements
             seq: 3
@@ -142,7 +113,7 @@ vnfd:
         - execution-environment-list:
           - id: worker-ee
             juju:
-              charm: charmed-kubernetes/k8s_cluster_installer
+              charm: charmed-kubernetes/charmed_osm_installer
               proxy: true
           id: worker
           initial-config-primitive:

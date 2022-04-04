@@ -37,3 +37,6 @@
 [submodule "k8s_cluster/k8s_cluster_vnf/charms/charmed-kubernetes"]
 	path = k8s_cluster/k8s_cluster_vnf/charms/charmed-kubernetes
 	url = git@github.com:ATNoG/charmed-kubernetes.git
+[submodule "k8s_cluster/charmed_osm_vnf/charms/charms/charmed-kubernetes"]
+	path = k8s_cluster/charmed_osm_vnf/charms/charms/charmed-kubernetes
+	url = git@github.com:ATNoG/charmed-kubernetes.git
