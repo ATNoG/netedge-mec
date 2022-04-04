@@ -64,7 +64,7 @@ vnfd:
         - execution-environment-list:
           - id: controller-init-ee
             juju:
-              charm: charmed-kubernetes/charmed_osm_installer
+              charm: k8s_cluster_installer
               proxy: true
           id: controller
           initial-config-primitive:
@@ -113,7 +113,7 @@ vnfd:
         - execution-environment-list:
           - id: worker-ee
             juju:
-              charm: charmed-kubernetes/charmed_osm_installer
+              charm: k8s_cluster_installer
               proxy: true
           id: worker
           initial-config-primitive:

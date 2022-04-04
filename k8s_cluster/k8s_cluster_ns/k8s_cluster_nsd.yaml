@@ -7,6 +7,7 @@ nsd:
     version: '1.0'
     vnfd-id:
     - k8s_cluster_vnf
+    - charmed_osm_vnf
     df:
     - id: default-df
       vnf-profile:
