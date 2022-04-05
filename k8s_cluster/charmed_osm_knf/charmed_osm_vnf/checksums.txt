@@ -1,0 +1,3 @@
+24adcdc4ac095fdd052af8d19e717522	charmed_osm_vnf/README.md
+61cfd07eb2e8eb460ab7061298bd19ea	charmed_osm_vnf/charmed_osm_vnfd.yaml
+d4d6a719d2cda0b2c97229ae1352f71e	charmed_osm_vnf/juju-bundles/bundle.yaml

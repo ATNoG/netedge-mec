@@ -1,0 +1,7 @@
+name: osm
+description: OSM Bundle
+applications:
+  osm:
+    charm: ch:osm-ha
+    channel: 11.0/edge
+    scale: 1
