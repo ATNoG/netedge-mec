@@ -11,7 +11,7 @@ vnfd:
     - id: mgmtnet
   kdu:
   - name: osm-kdu
-    juju-bundle: ch:osm-ha
+    juju-bundle: bundle.yaml # ch:osm
   mgmt-cp: mgmtnet-ext
   product-name: osm_cnf
   provider: Canonical

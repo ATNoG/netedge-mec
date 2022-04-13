@@ -14,6 +14,9 @@ vnfd:
     size-of-storage: 32
   - id: worker-storage
     size-of-storage: 64
+  - id: openebs-device-storage
+    type-of-storage: persistent-storage
+    size-of-storage: 36
   virtual-compute-desc:
   - id: controller-compute
     virtual-cpu:
@@ -81,11 +84,18 @@ vnfd:
               value: controller
             seq: 1
           - execution-environment-ref: controller-init-ee
-            name: deploy-k8s-controller
+            name: add-partitions
+            parameter:
+            - name: number-partitions
+              value: 15
+              data-type: INTEGER
             seq: 2
           - execution-environment-ref: controller-init-ee
-            name: install-requirements
+            name: deploy-k8s-controller
             seq: 3
+          - execution-environment-ref: controller-init-ee
+            name: install-requirements
+            seq: 4
           - execution-environment-ref: controller-init-ee
             name: add-k8s-cluster-to-osm
             parameter:
@@ -101,15 +111,20 @@ vnfd:
               value: <osm_password>
             - name: vim
               value: <vim>
-            seq: 4
+            seq: 5
           config-primitive:
-          - execution-environment-ref: controller-init-ee
-            name: get-k8s-controller-info
           - execution-environment-ref: controller-init-ee
             name: remove-k8s-worker
             parameter:
               - name: node
                 data-type: STRING
+          - execution-environment-ref: controller-init-ee
+            name: get-k8s-controller-info
+            parameter:
+            - name: subnet-address
+              default-value: <subnet_address>
+              read-only: true
+              hidden: true
         - execution-environment-list:
           - id: worker-ee
             juju:
@@ -130,8 +145,15 @@ vnfd:
               value: worker
             seq: 1
           - execution-environment-ref: worker-ee
-            name: deploy-k8s-workers
+            name: add-partitions
+            parameter:
+            - name: number-partitions
+              value: 15
+              data-type: INTEGER
             seq: 2
+          - execution-environment-ref: worker-ee
+            name: deploy-k8s-workers
+            seq: 3
           config-primitive:
           - execution-environment-ref: worker-ee
             name: join-k8s-workers
@@ -154,6 +176,7 @@ vnfd:
     sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
     - controller-storage
+    - openebs-device-storage
     virtual-compute-desc: controller-compute
     int-cpd:
     - id: controller-int-out
@@ -174,6 +197,7 @@ vnfd:
     sw-image-desc: "clean-ubuntu"
     virtual-storage-desc:
     - worker-storage
+    - openebs-device-storage
     virtual-compute-desc: worker-compute
     int-cpd:
     - id: worker-int-out

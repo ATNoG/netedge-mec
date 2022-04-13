@@ -6,6 +6,7 @@ additionalParamsForVnf:
     # controller VDU
     controller_username: controller
     controller_password: olaadeus
+    subnet_address: 172.16.0.0/24
 
     cluster_name: k8s_test
     osm_url: "https://10.0.12.99:9999"
@@ -22,6 +23,7 @@ additionalParamsForVnf:
     # controller VDU
     controller_username: controller
     controller_password: olaadeus
+    subnet_address: 172.16.0.0/24
 
     cluster_name: k8s_test
     osm_url: "https://10.0.12.96:9999"
