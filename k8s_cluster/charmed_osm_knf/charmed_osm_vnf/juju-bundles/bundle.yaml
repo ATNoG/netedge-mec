@@ -38,10 +38,12 @@ applications:
       gui-x: 0
       gui-y: 500
   kafka:
-    charm: kafka-k8s
-    channel: latest/edge
+    charm: ./charms/kafka-k8s_ubuntu-20.04-amd64.charm #kafka-k8s
+    #channel: latest/edge
     scale: 1
-    trust: true
+    #trust: true
+    resources:
+      kafka-image: confluentinc/cp-kafka:7.1.0
     storage:
       data: 100M
     annotations:
@@ -107,7 +109,7 @@ applications:
       gui-x: 600
       gui-y: 0
   lcm:
-    charm: ./charms/lcm
+    charm: ./charms/lcm/osm-lcm_ubuntu-20.04-amd64-aarch64-arm64.charm
     #charm: osm-lcm
     #channel: latest/edge
     scale: 1
