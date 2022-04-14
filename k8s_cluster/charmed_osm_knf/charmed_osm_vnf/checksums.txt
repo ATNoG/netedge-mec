@@ -1,7 +1,10 @@
 24adcdc4ac095fdd052af8d19e717522	charmed_osm_vnf/README.md
 9836c781a48e68a70fa462b0156dd8a7	charmed_osm_vnf/charmed_osm_vnfd.yaml
-d5ed06a9d628608b5affab36cb18a8c7	charmed_osm_vnf/juju-bundles/bundle.yaml
-54ac25dbfb756fc0e60b2c1076bdf64d	charmed_osm_vnf/juju-bundles/charms/kafka-k8s_ubuntu-20.04-amd64.charm
+ac475ee988c8a52d2310f073e67aca61	charmed_osm_vnf/juju-bundles/jmx_prometheus_javaagent-0.15.0.jar
+624c7363c02e36f868f514bfd73491d8	charmed_osm_vnf/juju-bundles/bundle.yaml
+d27dc886c02e88ea05ebdd54bd471676	charmed_osm_vnf/juju-bundles/charms/kafka-k8s_ubuntu-20.04-amd64.charm
+c9d959bf851d176b0cd3d1569542bf7c	charmed_osm_vnf/juju-bundles/charms/osm-keystone_ubuntu-20.04-amd64.charm
+6632a451fdbae453b4f95074512ceeb9	charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s_ubuntu-20.04-amd64.charm
 ae8c0a68c479acf53dda6cd7a1016c3d	charmed_osm_vnf/juju-bundles/charms/lcm/requirements.txt
 88e873b2a16754d15c0397eff99a0a5c	charmed_osm_vnf/juju-bundles/charms/lcm/README.md
 c5c1f719a9b11339b9d86ecaff4de3f7	charmed_osm_vnf/juju-bundles/charms/lcm/tox.ini

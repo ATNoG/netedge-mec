@@ -29,21 +29,26 @@ description: |
   - Availability of managed services
 applications:
   zookeeper:
-    charm: zookeeper-k8s
-    channel: latest/edge
+    #charm: zookeeper-k8s
+    #channel: latest/edge
+    charm: ./charms/zookeeper-k8s_ubuntu-20.04-amd64.charm
     scale: 1
+    resources:
+      zookeeper-image: confluentinc/cp-zookeeper:7.1.0
     storage:
       data: 100M
     annotations:
       gui-x: 0
       gui-y: 500
   kafka:
-    charm: ./charms/kafka-k8s_ubuntu-20.04-amd64.charm #kafka-k8s
+    charm: ./charms/kafka-k8s_ubuntu-20.04-amd64.charm
+    #charm: kafka-k8s
     #channel: latest/edge
     scale: 1
-    #trust: true
+    trust: true
     resources:
       kafka-image: confluentinc/cp-kafka:7.1.0
+      jmx-prometheus-jar: "./jmx_prometheus_javaagent-0.15.0.jar"
     storage:
       data: 100M
     annotations:
@@ -181,8 +186,9 @@ applications:
       gui-x: 300
       gui-y: 500
   keystone:
-    charm: osm-keystone
-    channel: latest/edge
+    #charm: osm-keystone
+    #channel: latest/edge
+    charm: ./charms/osm-keystone_ubuntu-20.04-amd64.charm
     scale: 1
     resources:
       keystone-image: opensourcemano/keystone:11
