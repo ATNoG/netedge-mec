@@ -1,0 +1,6 @@
+ - Juju Bundle adapted from the charmed OSM Bundle provided in the [OSM devops repository](https://osm.etsi.org/gitlab/osm/devops/-/tree/master/installers/charm/bundles/osm) 
+	- These modifications were needed mainly due to the fact that we are instantiating this Bundle using the `python-libjuju` library (once we are launching it throw OSM, which uses this library in the N2VC module).
+	- All of the local charms used in this Bundle were built from the respective public repositories:
+	   - [Keystone Operator](https://github.com/davigar15/keystone-operator)
+	   - [Zookeeper Operator](https://github.com/canonical/zookeeper-k8s-operator)
+	   These charms where built locally (and not obtained from the Charm Store/Hub) due to a strange issue with the `python-libjuju`, where Juju was trying to use a docker image (`charm-base`) with a tag which did not exist (`kubernetes-kubernetes`). It seams that Juju was obtaining the Bundle type (`kubernetes`), and using it to create the `charm-base` tag for the Charms which did not provide a `series` in the Bundle.

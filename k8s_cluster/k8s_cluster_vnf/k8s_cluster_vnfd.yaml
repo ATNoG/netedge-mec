@@ -114,6 +114,9 @@ vnfd:
           # - execution-environment-ref: controller-requirements-ee
           - execution-environment-ref: controller-init-ee
             name: install-requirements
+            parameter:
+            - name: ip-address
+              value: <rw_mgmt_ip>
             seq: 3
           - execution-environment-ref: controller-init-ee
             name: add-k8s-cluster-to-osm
