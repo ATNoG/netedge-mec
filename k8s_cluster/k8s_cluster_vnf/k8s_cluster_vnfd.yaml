@@ -17,14 +17,14 @@ vnfd:
   virtual-compute-desc:
   - id: controller-compute
     virtual-cpu:
-      num-virtual-cpu: 4
+      num-virtual-cpu: 2
     virtual-memory:
-      size: 4
+      size: 8
   - id: worker-compute
     virtual-cpu:
       num-virtual-cpu: 2
     virtual-memory:
-      size: 2
+      size: 8
   sw-image-desc:
   - id: "clean-ubuntu"
     name: "Ubuntu Server 20.04"
@@ -114,6 +114,9 @@ vnfd:
           # - execution-environment-ref: controller-requirements-ee
           - execution-environment-ref: controller-init-ee
             name: install-requirements
+            parameter:
+            - name: ip-address
+              value: <rw_mgmt_ip>
             seq: 3
           - execution-environment-ref: controller-init-ee
             name: add-k8s-cluster-to-osm

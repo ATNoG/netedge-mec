@@ -34,3 +34,15 @@
 [submodule "k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/charms.osm"]
 	path = k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/charms.osm
 	url = https://github.com/charmed-osm/charms.osm
+[submodule "cluster_vnf_charmed_kubernetes"]
+	path = k8s_cluster/k8s_cluster_vnf/charms
+	url = git@github.com:ATNoG/charmed-kubernetes.git
+[submodule "charmed_osm_vnf_charmed_kubernetes"]
+	path = k8s_cluster/charmed_osm_vnf/charms
+	url = git@github.com:ATNoG/charmed-kubernetes.git
+[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s-operator"]
+	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s-operator
+	url = https://github.com/canonical/zookeeper-k8s-operator
+[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/keystone-operator"]
+	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/keystone-operator
+	url = https://github.com/davigar15/keystone-operator

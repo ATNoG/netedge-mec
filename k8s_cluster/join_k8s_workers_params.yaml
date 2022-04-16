@@ -1,5 +1,5 @@
-cert: "ff7d54e0023efa450438eb10c649023771a90f25f752d0c38b8617544d6c2fd0"
+cert: "32a3d9cffca4677465f36363895f05e3848c7253760e5ab11611f78d2e23e7ec"
 host: "controller"
-ip: "172.16.0.199"
+ip: "172.16.0.74"
 port: 6443
-token: "yeez9a.sfdlvoxi10vylmt5"
+token: "fno281.ybtipfpm95lcl7xi"

@@ -1,0 +1,18 @@
+vnfd:
+  description: K8s container deployment of OSM
+  df:
+  - id: default-df
+  ext-cpd:
+  - id: mgmtnet-ext
+    k8s-cluster-net: mgmtnet
+  id: osm_cnf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: osm-kdu
+    juju-bundle: bundle.yaml # ch:osm
+  mgmt-cp: mgmtnet-ext
+  product-name: osm_cnf
+  provider: Canonical
+  version: '1.0'

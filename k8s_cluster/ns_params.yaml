@@ -1,24 +1,52 @@
 # https://osm.etsi.org/wikipub/index.php/NBI_API_Description#NSD_Details
 
 additionalParamsForVnf:
-- member-vnf-index: '1'
+- member-vnf-index: 'cluster_vnf'
   additionalParams:
     # controller VDU
     controller_username: controller
     controller_password: olaadeus
+    subnet_address: 172.16.0.0/24
 
     cluster_name: k8s_test
     osm_url: "https://10.0.12.99:9999"
     osm_user: k8s_user
     osm_password: "Olaadeus!1"
-    vim: 4ebc81fb-b8b7-4454-b3fd-7b541c185b22
+    vim: c9c093af-911e-454d-bf2f-864d39a1a3ab
 
     # worker VDUs
     worker_username: worker
     worker_password: olaadeus
 
+- member-vnf-index: 'osm_vnf'
+  additionalParams:
+    # controller VDU
+    controller_username: controller
+    controller_password: olaadeus
+    subnet_address: 172.16.0.0/24
+
+    cluster_name: k8s_test
+    osm_url: "https://10.0.12.96:9999"
+    osm_user: k8s_user
+    osm_password: "Olaadeus!1"
+    vim: 22d812cb-dd60-45fc-95a7-e4ff2ef8e323
+
+    # worker VDUs
+    worker_username: worker
+    worker_password: olaadeus
+
+
 vnf:
-- member-vnf-index: '1'
+- member-vnf-index: 'cluster_vnf'
+  internal-vld:
+  - name: internal-vl
+    ip-profile:
+      ip-version: ipv4
+      subnet-address: 172.16.0.0/24
+      dhcp-params:
+        enabled: true
+
+- member-vnf-index: 'osm_vnf'
   internal-vld:
   - name: internal-vl
     ip-profile:
