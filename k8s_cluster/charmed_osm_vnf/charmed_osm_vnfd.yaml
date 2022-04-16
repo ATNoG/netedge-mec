@@ -65,13 +65,13 @@ vnfd:
       operate-vnf-op-config:
         day1-2:
         - execution-environment-list:
-          - id: controller-init-ee
+          - id: controller-ee
             juju:
               charm: k8s_cluster_installer
               proxy: true
           id: controller
           initial-config-primitive:
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: config
             parameter:
             - name: ssh-hostname
@@ -83,20 +83,26 @@ vnfd:
             - name: entity
               value: controller
             seq: 1
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: add-partitions
             parameter:
             - name: number-partitions
               value: 15
               data-type: INTEGER
             seq: 2
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: deploy-k8s-controller
             seq: 3
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: install-requirements
+            parameter:
+            - name: ip-address
+              value: <rw_mgmt_ip>
             seq: 4
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
+            name: prepare-charm-base
+            seq: 5
+          - execution-environment-ref: controller-ee
             name: add-k8s-cluster-to-osm
             parameter:
             - name: cluster-name
@@ -111,14 +117,14 @@ vnfd:
               value: <osm_password>
             - name: vim
               value: <vim>
-            seq: 5
+            seq: 6
           config-primitive:
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: remove-k8s-worker
             parameter:
               - name: node
                 data-type: STRING
-          - execution-environment-ref: controller-init-ee
+          - execution-environment-ref: controller-ee
             name: get-k8s-controller-info
             parameter:
             - name: subnet-address
@@ -154,6 +160,9 @@ vnfd:
           - execution-environment-ref: worker-ee
             name: deploy-k8s-workers
             seq: 3
+          - execution-environment-ref: worker-ee
+            name: prepare-charm-base
+            seq: 5
           config-primitive:
           - execution-environment-ref: worker-ee
             name: join-k8s-workers

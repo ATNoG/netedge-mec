@@ -41,14 +41,12 @@ applications:
       gui-x: 0
       gui-y: 500
   kafka:
-    charm: ./charms/kafka-k8s_ubuntu-20.04-amd64.charm
-    #charm: kafka-k8s
-    #channel: latest/edge
+    charm: kafka-k8s
+    channel: latest/edge
     scale: 1
     trust: true
     resources:
       kafka-image: confluentinc/cp-kafka:7.1.0
-      jmx-prometheus-jar: "./jmx_prometheus_javaagent-0.15.0.jar"
     storage:
       data: 100M
     annotations:
