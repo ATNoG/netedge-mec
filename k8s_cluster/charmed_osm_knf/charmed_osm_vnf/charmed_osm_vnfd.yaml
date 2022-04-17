@@ -2,6 +2,12 @@ vnfd:
   description: K8s container deployment of OSM
   df:
   - id: default-df
+    kdu-resource-profile:
+    - id: osm-kdu-nbi-resource
+      min-number-of-instances: 1
+      max-number-of-instances: 1
+      resource-name: osm-nbi
+      kdu-name: osm-kdu
   ext-cpd:
   - id: mgmtnet-ext
     k8s-cluster-net: mgmtnet
@@ -16,3 +22,4 @@ vnfd:
   product-name: osm_cnf
   provider: Canonical
   version: '1.0'
+  
