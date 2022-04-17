@@ -112,7 +112,7 @@ applications:
       gui-x: 600
       gui-y: 0
   lcm:
-    charm: ./charms/lcm/osm-lcm_ubuntu-20.04-amd64-aarch64-arm64.charm
+    charm: ./charms/osm-lcm_ubuntu-20.04-amd64-aarch64-arm64.charm
     #charm: osm-lcm
     #channel: latest/edge
     scale: 1
