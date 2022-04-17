@@ -1,0 +1,2 @@
+0737a5bae8c3aeb29ad9153b55f8069d	k8s_osm_cluster_ns/README.md
+b1820d8d6f17ae9c5793a6c22a932312	k8s_osm_cluster_ns/k8s_osm_cluster_nsd.yaml
