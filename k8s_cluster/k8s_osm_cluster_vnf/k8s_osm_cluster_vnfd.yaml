@@ -1,6 +1,6 @@
 vnfd:
-  id: charmed_osm_vnf
-  product-name: charmed_osm_vnf
+  id: k8s_osm_cluster_vnf
+  product-name: k8s_osm_cluster_vnf
   description: K8s cluster VNF
   provider: OSM
   version: '1.0'
@@ -20,12 +20,12 @@ vnfd:
   virtual-compute-desc:
   - id: controller-compute
     virtual-cpu:
-      num-virtual-cpu: 6
+      num-virtual-cpu: 4
     virtual-memory:
       size: 18
   - id: worker-compute
     virtual-cpu:
-      num-virtual-cpu: 6
+      num-virtual-cpu: 4
     virtual-memory:
       size: 18
   sw-image-desc:
