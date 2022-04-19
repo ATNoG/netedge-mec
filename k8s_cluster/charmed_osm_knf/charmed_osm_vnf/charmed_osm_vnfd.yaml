@@ -6,8 +6,19 @@ vnfd:
     - id: osm-kdu-nbi-resource
       min-number-of-instances: 1
       max-number-of-instances: 1
-      resource-name: osm-nbi
+      resource-name: nbi
       kdu-name: osm-kdu
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+        - id: osm_cnf
+          relation:
+          - name: relation
+            provider:
+              kdu-resource-profile-id: osm-kdu-nbi-resource
+              endpoint: nbi
+            requirer:
+              endpoint: nbi
   ext-cpd:
   - id: mgmtnet-ext
     k8s-cluster-net: mgmtnet

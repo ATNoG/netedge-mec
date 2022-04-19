@@ -79,11 +79,19 @@ vnfd:
             juju:
               charm: k8s_cluster_installer
               proxy: true
+            external-connection-point-ref: vnf-controller-ext
           # - id: controller-requirements-ee
           #   juju:
           #     charm: k8s_osm_requirements
           #     proxy: true
           id: controller
+          relation:
+          - name: relation
+            provider:
+              endpoint: nbi
+            requirer:
+              endpoint: nbi
+              vdu-profile-id: controller
           initial-config-primitive:
           - execution-environment-ref: controller-init-ee
             name: config
@@ -97,43 +105,43 @@ vnfd:
             - name: entity
               value: controller
             seq: 1
-          - execution-environment-ref: controller-init-ee
-            name: deploy-k8s-controller
-            seq: 2
-          # - execution-environment-ref: controller-requirements-ee
           #- execution-environment-ref: controller-init-ee
-          #  name: config
+          #  name: deploy-k8s-controller
+          #  seq: 2
+          ## - execution-environment-ref: controller-requirements-ee
+          ##- execution-environment-ref: controller-init-ee
+          ##  name: config  
+          ##  parameter:
+          ##  - name: ssh-hostname
+          ##    value: <rw_mgmt_ip>
+          ##  - name: ssh-username
+          ##    value: <controller_username>
+          ##  - name: ssh-password
+          ##    value: <controller_password>
+          ##  seq: 3
+          ## - execution-environment-ref: controller-requirements-ee
+          #- execution-environment-ref: controller-init-ee
+          #  name: install-requirements
           #  parameter:
-          #  - name: ssh-hostname
+          #  - name: ip-address
           #    value: <rw_mgmt_ip>
-          #  - name: ssh-username
-          #    value: <controller_username>
-          #  - name: ssh-password
-          #    value: <controller_password>
           #  seq: 3
-          # - execution-environment-ref: controller-requirements-ee
-          - execution-environment-ref: controller-init-ee
-            name: install-requirements
-            parameter:
-            - name: ip-address
-              value: <rw_mgmt_ip>
-            seq: 3
-          - execution-environment-ref: controller-init-ee
-            name: add-k8s-cluster-to-osm
-            parameter:
-            - name: cluster-name
-              value: <cluster_name>
-            - name: master-ip
-              value: <rw_mgmt_ip>
-            - name: osm-url
-              value: <osm_url>
-            - name: osm-user
-              value: <osm_user>
-            - name: osm-password
-              value: <osm_password>
-            - name: vim
-              value: <vim>
-            seq: 4
+          #- execution-environment-ref: controller-init-ee
+          #  name: add-k8s-cluster-to-osm
+          #  parameter:
+          #  - name: cluster-name
+          #    value: <cluster_name>
+          #  - name: master-ip
+          #    value: <rw_mgmt_ip>
+          #  - name: osm-url
+          #    value: <osm_url>
+          #  - name: osm-user
+          #    value: <osm_user>
+          #  - name: osm-password
+          #    value: <osm_password>
+          #  - name: vim
+          #    value: <vim>
+          #  seq: 4
           config-primitive:
           - execution-environment-ref: controller-init-ee
             name: get-k8s-controller-info
@@ -161,9 +169,9 @@ vnfd:
             - name: entity
               value: worker
             seq: 1
-          - execution-environment-ref: worker-ee
-            name: deploy-k8s-workers
-            seq: 2
+          #- execution-environment-ref: worker-ee
+          #  name: deploy-k8s-workers
+          #  seq: 2
           config-primitive:
           - execution-environment-ref: worker-ee
             name: join-k8s-workers
