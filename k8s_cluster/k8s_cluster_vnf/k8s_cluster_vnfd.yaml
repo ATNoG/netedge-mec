@@ -105,27 +105,16 @@ vnfd:
             - name: entity
               value: controller
             seq: 1
-          #- execution-environment-ref: controller-init-ee
-          #  name: deploy-k8s-controller
-          #  seq: 2
-          ## - execution-environment-ref: controller-requirements-ee
-          ##- execution-environment-ref: controller-init-ee
-          ##  name: config  
-          ##  parameter:
-          ##  - name: ssh-hostname
-          ##    value: <rw_mgmt_ip>
-          ##  - name: ssh-username
-          ##    value: <controller_username>
-          ##  - name: ssh-password
-          ##    value: <controller_password>
-          ##  seq: 3
-          ## - execution-environment-ref: controller-requirements-ee
-          #- execution-environment-ref: controller-init-ee
-          #  name: install-requirements
-          #  parameter:
-          #  - name: ip-address
-          #    value: <rw_mgmt_ip>
-          #  seq: 3
+          - execution-environment-ref: controller-init-ee
+            name: deploy-k8s-controller
+            seq: 2
+          # - execution-environment-ref: controller-requirements-ee
+          - execution-environment-ref: controller-init-ee
+            name: install-requirements
+            parameter:
+            - name: ip-address
+              value: <rw_mgmt_ip>
+            seq: 3
           #- execution-environment-ref: controller-init-ee
           #  name: add-k8s-cluster-to-osm
           #  parameter:
