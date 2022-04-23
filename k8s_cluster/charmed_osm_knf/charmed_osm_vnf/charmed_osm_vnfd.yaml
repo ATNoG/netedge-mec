@@ -29,6 +29,9 @@ vnfd:
   kdu:
   - name: osm-kdu
     juju-bundle: bundle.yaml # ch:osm
+  - name: mep-kdu
+    helm-chart: netedge-mep/mepchart
+    helm-version: v3
   mgmt-cp: mgmtnet-ext
   product-name: osm_cnf
   provider: Canonical
