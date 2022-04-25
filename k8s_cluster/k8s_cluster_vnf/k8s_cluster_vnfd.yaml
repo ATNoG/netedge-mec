@@ -108,6 +108,22 @@ vnfd:
             - name: ip-address
               value: <rw_mgmt_ip>
             seq: 3
+          - execution-environment-ref: controller-init-ee
+            name: add-k8s-osm-cluster-params
+            parameter:
+            - name: cluster-name
+              value: <cluster_name>
+            - name: master-ip
+              value: <rw_mgmt_ip>
+            - name: osm-url
+              value: <osm_url>
+            - name: osm-user
+              value: <osm_user>
+            - name: osm-password
+              value: <osm_password>
+            - name: vim
+              value: <vim>
+            seq: 4
           #- execution-environment-ref: controller-init-ee
           #  name: add-k8s-cluster-to-osm
           #  parameter:

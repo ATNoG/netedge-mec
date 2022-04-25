@@ -19,9 +19,6 @@ description: |
 series:
   - kubernetes
 min-juju-version: 2.7.0
-deployment:
-  type: stateless
-  service: cluster
 requires:
   nbi:
     interface: http

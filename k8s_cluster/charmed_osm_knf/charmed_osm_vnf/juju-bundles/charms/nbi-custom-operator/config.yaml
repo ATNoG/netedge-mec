@@ -1,0 +1,39 @@
+# TODO -> THIS SHOULD BE AN ACTION (ALTHOUGH IT IS NOT WORKING AS AN ACTION...)
+options: 
+  name:
+    description: ""
+    type: string
+  tenant-name:
+    description: ""
+    type: string
+  type:
+    description: ""
+    type: string
+    default: "openstack"
+  url:
+    description: ""
+    type: string
+  username:
+    description: ""
+    type: string
+  password:
+    description: ""
+    type: string
+  #configs:
+  #  description: ""
+  #  type: object
+
+  # TODO -> THIS SHOULD BE DONE WITH ONLY ONE PARAMETER OF TYPE OBJECT PROBABLY
+  project-domain-name: 
+    description: ""
+    type: string
+  security-groups: 
+    description: ""
+    type: string
+  user-domain-name: 
+    description: ""
+    type: string
+  insecure: 
+    description: ""
+    default: "true"
+    type: string

@@ -1,17 +1,4 @@
 #!/usr/bin/env python3
-# Copyright 2021 Gabor Meszaros
-# See LICENSE file for licensing details.
-#
-# Learn more at: https://juju.is/docs/sdk
-
-"""Charm the service.
-
-Refer to the following post for a quick-start guide that will help you
-develop a new k8s charm using the Operator Framework:
-
-    https://discourse.charmhub.io/t/4208
-"""
-
 import sys
 import logging
 import requests
@@ -23,11 +10,8 @@ from ops.main import main
 from ops.model import (
     ActiveStatus,
     BlockedStatus,
-    Container,
     MaintenanceStatus,
-    WaitingStatus,
 )
-from ops.pebble import ServiceStatus, PathError
 
 logger = logging.getLogger(__name__)
 
@@ -44,11 +28,15 @@ class NBICustomOperator(CharmBase):
             #self.on.set_creds_action: self._on_set_creds,
             self.on.set_new_vim_action: self._on_set_new_vim,
             self.on.nbi_relation_changed: self._on_nbi_relation_changed,
-            #self.on.config_changed: self._on_config_changed,
+            self.on.config_changed: self._on_config_changed,
             #self.on.update_status: self._on_update_status,
-            #self.on.restart_action: self._on_restart_action,
-            #self.on.start_action: self._on_start_action,
-            #self.on.stop_action: self._on_stop_action,
+            self.on.install: self.on_install,
+            self.on.start: self.on_start,
+            self.on.restart_action: self.on_restart_action,
+            self.on.start_action: self.on_start_action,
+            self.on.stop_action: self.on_stop_action,
+            self.on.reboot_action: self.on_reboot_action,
+            self.on.upgrade_action: self.on_upgrade_action,
         }
         for event, observer in event_observer_mapping.items():
             self.framework.observe(event, observer)
@@ -58,7 +46,97 @@ class NBICustomOperator(CharmBase):
     #	"""Set the credentials for the NBI."""
     #	creds = event.params.get("creds")
     #	if creds:
+    def on_install(self, event):
+        pass
+
+    def on_start(self, event):
+        pass
     
+    
+    ###############
+    # OSM methods #
+    ###############
+    def on_start_action(self, event):
+        """Start the VNF service on the VM."""
+        pass
+
+    def on_stop_action(self, event):
+        """Stop the VNF service on the VM."""
+        pass
+
+    def on_restart_action(self, event):
+        """Restart the VNF service on the VM."""
+        pass
+
+    def on_reboot_action(self, event):
+        """Reboot the VM."""
+        if self.unit.is_leader():
+            pass
+
+    def on_upgrade_action(self, event):
+        """Upgrade the VNF service on the VM."""
+        pass
+    
+    # TODO -> THIS SHOULD NOT BE DONE WITH CONFIGS, BUT WITH AN EVENT (_on_set_new_vim). I'M DOING THIS WAY TO TEST (BECAUSE IS NOT WORKING WITH AN ACTION)
+    def _on_config_changed(self, event: ActionEvent) -> None:
+        msg = "Obtaining new VIM's data..."
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+        
+        try:
+            if not self.model.config.get("name"):
+                self.unit.status = BlockedStatus("No VIM's data yet")
+
+            vim_name = self.model.config.get("name")
+            vim_tenant_name = self.model.config.get("tenant-name")
+            vim_type = self.model.config.get("type")
+            vim_url = self.model.config.get("url")
+            vim_username = self.model.config.get("username")
+            vim_password = self.model.config.get("password")
+            vim_config = {
+                self.model.config.get("project-domain-name"),
+                self.model.config.get("user-domain-name"),
+                self.model.config.get("security-groups"),
+                self.model.config.get("insecure"),
+            }
+        except Exception as e:
+            logger.error(f"Error obtaining the new VIM's data: {e}")
+            self.unit.status = BlockedStatus("Couldn't obtain the new VIM's data")
+        
+        msg = "New VIM's data obtained"
+        logger.info(msg)
+        self.unit.status = MaintenanceStatus(msg)
+        
+        # if there is no NBI data yet, we need to wait for it, storing the relation data
+        try:
+            nbi_info = self._stored.nbi
+        except AttributeError:
+            logger.debug("No NBI info stored yet")
+            self.unit.status = MaintenanceStatus("Storing the VIM information...")
+            
+            self._stored.set_default(vim={
+                "name": vim_name,
+                "tenant-name": vim_tenant_name,
+                "type": vim_type,
+                "url": vim_url,
+                "username": vim_username,
+                "password": vim_password,
+                "configs": vim_config,
+            })
+            
+            self.unit.status = ActiveStatus("Waiting for NBI")
+            return
+        
+        # then, we need to obtain the authentication token from the NBI
+        vim_url = nbi_info.get('url')
+        auth_token = self.__authenticate_with_nbi(nbi_url=vim_url, nbi_username=nbi_info.get('username'), 
+                                                  nbi_password=nbi_info.get('password'))
+        
+        # finally, we add the new VIM to the OSM through the NBI
+        self.__add_vim_to_osm(nbi_url=vim_url, auth_token=auth_token, vim_name=vim_name, 
+                              vim_type=vim_type, vim_url=vim_url, vim_username=vim_username, 
+                              vim_password=vim_password, vim_configs=vim_config)
+            
     
     def _on_set_new_vim(self, event: ActionEvent) -> None:
         msg = "Obtaining new VIM's data..."
@@ -73,9 +151,9 @@ class NBICustomOperator(CharmBase):
             vim_username = event.params.get("username")
             vim_password = event.params.get("password")
             vim_config = {
-                event.params.get("project_domain_name"),
-                event.params.get("user_domain_name"),
-                event.params.get("security_groups"),
+                event.params.get("project-domain-name"),
+                event.params.get("user-domain-name"),
+                event.params.get("security-groups"),
                 event.params.get("insecure"),
             }
         except Exception as e:

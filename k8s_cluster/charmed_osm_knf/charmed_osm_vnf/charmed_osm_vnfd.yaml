@@ -13,7 +13,7 @@ vnfd:
         day1-2:
         - id: osm-kdu
           initial-config-primitive:
-          - name: set-new-vim
+          - name: config #set-new-vim
             parameter:
             - name: application-name
               data-type: STRING
@@ -34,14 +34,12 @@ vnfd:
             #    security_groups: 'all_open'
             #    user_domain_name: 'atnog'
             #    insecure: 'true'
-            - name: project_domain_name
+            - name: project-domain-name
               value: 'atnog'
-            - name: security_groups
+            - name: security-groups
               value: 'all_open'
-            - name: user_domain_name
+            - name: user-domain-name
               value: 'atnog'
-            - name: insecure
-              value: 'true'
             seq: 1
   ext-cpd:
   - id: mgmtnet-ext
