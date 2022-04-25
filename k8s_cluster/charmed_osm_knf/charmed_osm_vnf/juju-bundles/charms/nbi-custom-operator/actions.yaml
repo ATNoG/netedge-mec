@@ -1,0 +1,65 @@
+#set-creds:
+#  description: "test"
+#  params:
+#    
+
+#new-project-details:
+#  description: ""
+#  params:
+#    name:
+#      description: ""
+#      type: string
+#      default: ""
+#  required:
+#    - name
+
+set-new-vim:
+  description: ""
+  params:
+    name:
+      description: ""
+      type: string
+    tenant-name:
+      description: ""
+      type: string
+    type:
+      description: ""
+      type: string
+      default: "openstack"
+    url:
+      description: ""
+      type: string
+    username:
+      description: ""
+      type: string
+    password:
+      description: ""
+      type: string
+    #configs:
+    #  description: ""
+    #  type: object
+
+    # TODO -> THIS SHOULD BE DONE WITH ONLY ONE PARAMETER OF TYPE OBJECT PROBABLY
+    project_domain_name: 
+      description: ""
+      type: string
+    security_groups: 
+      description: ""
+      type: string
+    user_domain_name: 
+      description: ""
+      type: string
+    insecure: 
+      description: ""
+      type: string
+  required:
+    - name
+    - tenant-name
+    - url
+    - username
+    - password
+    - configs
+    - project_domain_name
+    - security_groups
+    - user_domain_name
+    - insecure

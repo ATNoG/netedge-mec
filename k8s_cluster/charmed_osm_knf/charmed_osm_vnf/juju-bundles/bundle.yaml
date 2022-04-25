@@ -193,6 +193,9 @@ applications:
     annotations:
       gui-x: 300
       gui-y: -250
+  nbi-custom-operator:
+    charm: ./charms/nbi-custom-operator
+    scale: 1
 relations:
   - - grafana:prometheus
     - prometheus:prometheus
@@ -240,3 +243,5 @@ relations:
     - pol:mysql
   - - grafana:db
     - mariadb:mysql
+  - - nbi-custom-operator:nbi
+    - nbi:nbi
