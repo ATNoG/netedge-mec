@@ -8,39 +8,39 @@ vnfd:
       max-number-of-instances: 1
       resource-name: nbi
       kdu-name: osm-kdu
-    lcm-operations-configuration:
-      operate-vnf-op-config:
-        day1-2:
-        - id: osm-kdu
-          initial-config-primitive:
-          - name: config #set-new-vim
-            parameter:
-            - name: application-name
-              data-type: STRING
-              value: nbi-custom-operator
-            - name: name
-              value: NetEdge
-            - name: tenant-name
-              value: NetEdge
-            - name: url
-              value: https://10.0.10.55/identity/v3
-            - name: username
-              value: atnog-netedgeadmin
-            - name: password
-              value: test
-            #- name: configs
-            #  value:
-            #    project_domain_name: 'atnog'
-            #    security_groups: 'all_open'
-            #    user_domain_name: 'atnog'
-            #    insecure: 'true'
-            - name: project-domain-name
-              value: 'atnog'
-            - name: security-groups
-              value: 'all_open'
-            - name: user-domain-name
-              value: 'atnog'
-            seq: 1
+    #lcm-operations-configuration:
+    #  operate-vnf-op-config:
+    #    day1-2:
+    #    - id: osm-kdu
+    #      initial-config-primitive:
+    #      - name: config #set-new-vim
+    #        parameter:
+    #        - name: application-name
+    #          data-type: STRING
+    #          value: nbi-custom-operator
+    #        - name: name
+    #          value: NetEdge
+    #        - name: tenant-name
+    #          value: NetEdge
+    #        - name: url
+    #          value: https://10.0.10.55/identity/v3
+    #        - name: username
+    #          value: atnog-netedgeadmin
+    #        - name: password
+    #          value: test
+    #        #- name: configs
+    #        #  value:
+    #        #    project_domain_name: 'atnog'
+    #        #    security_groups: 'all_open'
+    #        #    user_domain_name: 'atnog'
+    #        #    insecure: 'true'
+    #        - name: project-domain-name
+    #          value: 'atnog'
+    #        - name: security-groups
+    #          value: 'all_open'
+    #        - name: user-domain-name
+    #          value: 'atnog'
+    #        seq: 1
   ext-cpd:
   - id: mgmtnet-ext
     k8s-cluster-net: mgmtnet

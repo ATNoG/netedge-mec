@@ -3,9 +3,11 @@ options:
   name:
     description: ""
     type: string
+    default: "NetEdge"
   tenant-name:
     description: ""
     type: string
+    default: "NetEdge"
   type:
     description: ""
     type: string
@@ -13,12 +15,15 @@ options:
   url:
     description: ""
     type: string
+    default: "https://10.0.10.55/identity/v3"
   username:
     description: ""
     type: string
+    default: "atnog-netedgeadmin"
   password:
     description: ""
     type: string
+    default: "test"
   #configs:
   #  description: ""
   #  type: object
@@ -27,12 +32,15 @@ options:
   project-domain-name: 
     description: ""
     type: string
+    default: "atnog"
   security-groups: 
     description: ""
     type: string
+    default: "all_open"
   user-domain-name: 
     description: ""
     type: string
+    default: "atnog"
   insecure: 
     description: ""
     default: "true"

@@ -41,6 +41,7 @@ class NBICustomOperator(CharmBase):
         for event, observer in event_observer_mapping.items():
             self.framework.observe(event, observer)
 
+        self._stored.set_default(vims_added=[])
 
     #def _on_set_creds(self, event: ActionEvent) -> None:
     #	"""Set the credentials for the NBI."""
@@ -86,6 +87,7 @@ class NBICustomOperator(CharmBase):
         try:
             if not self.model.config.get("name"):
                 self.unit.status = BlockedStatus("No VIM's data yet")
+                return
 
             vim_name = self.model.config.get("name")
             vim_tenant_name = self.model.config.get("tenant-name")
@@ -94,14 +96,15 @@ class NBICustomOperator(CharmBase):
             vim_username = self.model.config.get("username")
             vim_password = self.model.config.get("password")
             vim_config = {
-                self.model.config.get("project-domain-name"),
-                self.model.config.get("user-domain-name"),
-                self.model.config.get("security-groups"),
-                self.model.config.get("insecure"),
+                "project_domain_name": self.model.config.get("project-domain-name"),
+                "user_domain_name": self.model.config.get("user-domain-name"),
+                "security_groups": self.model.config.get("security-groups"),
+                "insecure": self.model.config.get("insecure"),
             }
         except Exception as e:
             logger.error(f"Error obtaining the new VIM's data: {e}")
             self.unit.status = BlockedStatus("Couldn't obtain the new VIM's data")
+            return
         
         msg = "New VIM's data obtained"
         logger.info(msg)
@@ -121,10 +124,14 @@ class NBICustomOperator(CharmBase):
                 "url": vim_url,
                 "username": vim_username,
                 "password": vim_password,
-                "configs": vim_config,
+                **vim_config,
             })
             
             self.unit.status = ActiveStatus("Waiting for NBI")
+            return
+        
+        # Verify if this VIM was already added
+        if vim_name in self._stored.vims_added:
             return
         
         # then, we need to obtain the authentication token from the NBI
@@ -133,9 +140,10 @@ class NBICustomOperator(CharmBase):
                                                   nbi_password=nbi_info.get('password'))
         
         # finally, we add the new VIM to the OSM through the NBI
-        self.__add_vim_to_osm(nbi_url=vim_url, auth_token=auth_token, vim_name=vim_name, 
-                              vim_type=vim_type, vim_url=vim_url, vim_username=vim_username, 
-                              vim_password=vim_password, vim_configs=vim_config)
+        if auth_token:
+            self.__add_vim_to_osm(nbi_url=vim_url, auth_token=auth_token, vim_name=vim_name, 
+                              vim_type=vim_type, vim_url=vim_url, vim_tenant_name=vim_tenant_name, 
+                              vim_user=vim_username, vim_password=vim_password, vim_config=vim_config)
             
     
     def _on_set_new_vim(self, event: ActionEvent) -> None:
@@ -151,17 +159,15 @@ class NBICustomOperator(CharmBase):
             vim_username = event.params.get("username")
             vim_password = event.params.get("password")
             vim_config = {
-                event.params.get("project-domain-name"),
-                event.params.get("user-domain-name"),
-                event.params.get("security-groups"),
-                event.params.get("insecure"),
+                "project_domain_name": event.params.get("project-domain-name"),
+                "user_domain_name": event.params.get("user-domain-name"),
+                "security_groups": event.params.get("security-groups"),
+                "insecure": event.params.get("insecure"),
             }
         except Exception as e:
             logger.error(f"Error obtaining the new VIM's data: {e}")
             self.unit.status = BlockedStatus("Couldn't obtain the new VIM's data")
-        
-        logger.info("CONFIGS: {}".format(event.params.get("configs")))
-        logger.info("New VIM: {}".format(self._stored.vim))
+            return
         
         msg = "New VIM's data obtained"
         logger.info(msg)
@@ -181,10 +187,14 @@ class NBICustomOperator(CharmBase):
                 "url": vim_url,
                 "username": vim_username,
                 "password": vim_password,
-                "configs": vim_config,
+                **vim_config,           # for some reason, when I store a dictionary, I am not able to get it as a dictionary
             })
             
             self.unit.status = ActiveStatus("Waiting for NBI")
+            return
+        
+        # Verify if this VIM was already added
+        if vim_name in self._stored.vims_added:
             return
         
         # then, we need to obtain the authentication token from the NBI
@@ -193,9 +203,10 @@ class NBICustomOperator(CharmBase):
                                                   nbi_password=nbi_info.get('password'))
         
         # finally, we add the new VIM to the OSM through the NBI
-        self.__add_vim_to_osm(nbi_url=vim_url, auth_token=auth_token, vim_name=vim_name, 
-                              vim_type=vim_type, vim_url=vim_url, vim_username=vim_username, 
-                              vim_password=vim_password, vim_configs=vim_config)
+        if auth_token:
+            self.__add_vim_to_osm(nbi_url=vim_url, auth_token=auth_token, vim_name=vim_name, 
+                              vim_type=vim_type, vim_url=vim_url, vim_tenant_name=vim_tenant_name, 
+                              vim_user=vim_username, vim_password=vim_password, vim_config=vim_config)
         
     def _on_nbi_relation_changed(self, event: ActionEvent) -> None:
         """Handle relation changes."""
@@ -227,16 +238,27 @@ class NBICustomOperator(CharmBase):
                 'password': nbi_password,
             })
             
-            self.unit.status = ActiveStatus("Waiting for VIM")
+            self.unit.status = ActiveStatus("Waiting for a new VIM")
+            return
+        
+        # Verify if this VIM was already added
+        if vim_info.get('name') in self._stored.vims_added:
             return
 
         # then, we need to obtain the authentication token from the NBI
         auth_token = self.__authenticate_with_nbi(nbi_url=nbi_url, nbi_username=nbi_username, nbi_password=nbi_password)
         
         # finally, we add the new VIM to the OSM through the NBI
-        self.__add_vim_to_osm(nbi_url=nbi_url, auth_token=auth_token, vim_name=vim_info.get('name'), 
-                              vim_type=vim_info.get('type'), vim_url=vim_info.get('url'), vim_username=vim_info.get('username'), 
-                              vim_password=vim_info.get('password'), vim_configs=vim_info.get('configs'))
+        if auth_token:
+            self.__add_vim_to_osm(nbi_url=nbi_url, auth_token=auth_token, vim_name=vim_info.get('name'), 
+                                vim_type=vim_info.get('type'), vim_url=vim_info.get('url'), 
+                                vim_tenant_name=vim_info.get('tenant-name'), vim_user=vim_info.get('username'), 
+                                vim_password=vim_info.get('password'), vim_config={
+                                    'project_domain_name': vim_info.get("project_domain_name"),
+                                    'user_domain_name': vim_info.get("user_domain_name"),
+                                    'security_groups': vim_info.get("security_groups"),
+                                    'insecure': vim_info.get("insecure"),  
+                                })
         
         
     def __authenticate_with_nbi(self, nbi_url: str, nbi_username: str, nbi_password: str) -> str:
@@ -274,7 +296,7 @@ class NBICustomOperator(CharmBase):
         self.unit.status = MaintenanceStatus(msg)
         
         try:
-            response = requests.post(f"{nbi_url}/osm/admin/v1/vims", json={
+            response = requests.post(f"https://{nbi_url}/osm/admin/v1/vims", json={
                 "name": vim_name,
                 "description": "Dinamically added VIM",
                 "vim_type": vim_type,
@@ -283,7 +305,7 @@ class NBICustomOperator(CharmBase):
                 "vim_user": vim_user,
                 "vim_password": vim_password,
                 "config": {
-                  **vim_config,
+                    **vim_config
                 },
             }, headers={
                 "Authorization": f"Bearer {auth_token}",
@@ -299,6 +321,9 @@ class NBICustomOperator(CharmBase):
             logger.error(error_info)
             self.unit.status = BlockedStatus("Couldn't add the VIM to OSM")
             raise Exception(error_info)
+        
+        # Update internal state related to the added VIMs
+        self._stored.vims_added.append(vim_name)
 
         msg = "VIM added to OSM with success"
         logger.info(msg)
