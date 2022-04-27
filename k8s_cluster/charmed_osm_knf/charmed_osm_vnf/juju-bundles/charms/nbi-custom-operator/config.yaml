@@ -1,0 +1,47 @@
+# TODO -> THIS SHOULD BE AN ACTION (ALTHOUGH IT IS NOT WORKING AS AN ACTION...)
+options: 
+  name:
+    description: ""
+    type: string
+    default: "NetEdge"
+  tenant-name:
+    description: ""
+    type: string
+    default: "NetEdge"
+  type:
+    description: ""
+    type: string
+    default: "openstack"
+  url:
+    description: ""
+    type: string
+    default: "https://10.0.10.55/identity/v3"
+  username:
+    description: ""
+    type: string
+    default: "atnog-netedgeadmin"
+  password:
+    description: ""
+    type: string
+    default: "test"
+  #configs:
+  #  description: ""
+  #  type: object
+
+  # TODO -> THIS SHOULD BE DONE WITH ONLY ONE PARAMETER OF TYPE OBJECT PROBABLY
+  project-domain-name: 
+    description: ""
+    type: string
+    default: "atnog"
+  security-groups: 
+    description: ""
+    type: string
+    default: "all_open"
+  user-domain-name: 
+    description: ""
+    type: string
+    default: "atnog"
+  insecure: 
+    description: ""
+    default: "true"
+    type: string

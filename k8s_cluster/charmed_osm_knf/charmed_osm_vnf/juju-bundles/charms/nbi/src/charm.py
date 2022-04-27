@@ -117,6 +117,7 @@ class ConfigModel(ModelValidator):
         return values[v]
     
     
+# https://discourse.charmhub.io/t/writing-a-kubernetes-charm/159
 class MyPodSpecBuilder(PodSpecV3Builder):
     def __init__(self, enable_security_context: bool = False):
         super().__init__(enable_security_context)
