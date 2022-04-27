@@ -76,8 +76,9 @@ applications:
       gui-x: 0
       gui-y: 0
   nbi:
-    charm: osm-nbi
-    channel: latest/edge
+    charm: ./charms/osm-nbi_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #charm: osm-nbi
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     options:
@@ -193,6 +194,9 @@ applications:
     annotations:
       gui-x: 300
       gui-y: -250
+  nbi-custom-operator:
+    charm: ./charms/nbi-custom-operator/nbi-custom-operator_ubuntu-20.04-amd64-aarch64-arm64.charm #./charms/nbi-custom-operator
+    scale: 1
 relations:
   - - grafana:prometheus
     - prometheus:prometheus
@@ -240,3 +244,5 @@ relations:
     - pol:mysql
   - - grafana:db
     - mariadb:mysql
+  - - nbi-custom-operator:nbi
+    - nbi:nbi
