@@ -9,10 +9,10 @@ additionalParamsForVnf:
     subnet_address: 172.16.0.0/24
 
     cluster_name: k8s_test
-    osm_url: "https://10.0.12.99:9999"
-    osm_user: k8s_user
-    osm_password: "Olaadeus!1"
-    vim: c9c093af-911e-454d-bf2f-864d39a1a3ab
+    osm_url: "https://10.0.13.166:9999"
+    osm_user: admin
+    osm_password: admin
+    vim: NetEdge
 
     # worker VDUs
     worker_username: worker
