@@ -52,6 +52,9 @@
 [submodule "k8s_cluster/k8s_osm_cluster_vnf/charms"]
 	path = k8s_cluster/k8s_osm_cluster_vnf/charms
 	url = git@github.com:ATNoG/charmed-kubernetes.git
+[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/helm-chart-v3s/netedge-mep"]
+	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/helm-chart-v3s/netedge-mep
+	url = git@github.com:ATNoG/netedge-mep.git
 [submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/nbi-custom-operator/mod/operator"]
 	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/nbi-custom-operator/mod/operator
 	url = https://github.com/canonical/operator

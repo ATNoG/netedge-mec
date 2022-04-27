@@ -21,7 +21,9 @@ additionalParamsForVnf:
 - member-vnf-index: 'osm_cnf'
   additionalParamsForKdu:
   - kdu_name: osm-kdu
-    k8s-namespace: osm-charm
+    k8s-namespace: osm-test
+  - kdu_name: mep-kdu
+    k8s-namespace: osm-test
 
 vnf:
 - member-vnf-index: 'cluster_vnf'

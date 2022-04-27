@@ -1,6 +1,6 @@
 31791e4083f5e4fd0a277b7f6536f284	k8s_cluster_vnf/README.md
-b2fccc8d506a2f8686952a7a20e839c7	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
-a97574b763c94134b1d8a977012bf7fd	k8s_cluster_vnf/charms/k8s_cluster_installer/actions.yaml
+7667c9b2144256a5adee684fa81f8956	k8s_cluster_vnf/k8s_cluster_vnfd.yaml
+bcbbd83fa23df38e2cdfef24501c763c	k8s_cluster_vnf/charms/k8s_cluster_installer/actions.yaml
 8305ca5ef52af498dbb1a53777c77bd2	k8s_cluster_vnf/charms/k8s_cluster_installer/config.yaml
 d851a6a3c47f4ad60e7bbb56b7f5cbbd	k8s_cluster_vnf/charms/k8s_cluster_installer/k8s-cluster-installer_ubuntu-20.04-amd64.charm
 34cd745aee87525bef709b38f4019240	k8s_cluster_vnf/charms/k8s_cluster_installer/metadata.yaml
@@ -41,7 +41,11 @@ d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/li
 d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/__init__.py
 9e9d37bf6bbf8d0c9a19983fe3c180b5	k8s_cluster_vnf/charms/k8s_cluster_installer/lib/charms/osm/ns.py
 db0b588318073438f7f6c6961044f7ce	k8s_cluster_vnf/charms/k8s_cluster_installer/src/dependencies.py
+<<<<<<< HEAD
+9645aa4c5678d89c407603c1e2a6ca1f	k8s_cluster_vnf/charms/k8s_cluster_installer/src/charm.py
+=======
 48191b673360d5cd00036e68a25bf804	k8s_cluster_vnf/charms/k8s_cluster_installer/src/charm.py
+>>>>>>> main
 a7973407a8c8a3d85f91830dcc97c263	k8s_cluster_vnf/charms/k8s_cluster_installer/src/utils.py
 df442470b2144f1903d3fadfd64b2d16	k8s_cluster_vnf/charms/k8s_cluster_installer/src/command.py
 afa8a6c5e4a8336c457a99a606eeb159	k8s_cluster_vnf/charms/k8s_cluster_installer/src/versions.py
@@ -150,7 +154,11 @@ d41d8cd98f00b204e9800998ecf8427e	k8s_cluster_vnf/charms/k8s_cluster_installer/mo
 429afa5ca4e71a4e4c7f0415b264db4d	k8s_cluster_vnf/charms/k8s_cluster_installer/configs/metallb_configmap_template.yaml
 0e2ef3204b496df8ade3906e3cd548a7	k8s_cluster_vnf/charms/k8s_cluster_installer/configs/cluster_role_binding_template.yaml
 db0b588318073438f7f6c6961044f7ce	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/dependencies.py
+<<<<<<< HEAD
+9645aa4c5678d89c407603c1e2a6ca1f	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/charm.py
+=======
 48191b673360d5cd00036e68a25bf804	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/charm.py
+>>>>>>> main
 a7973407a8c8a3d85f91830dcc97c263	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/utils.py
 4b44e28c84445e1f6064f5163f2195ff	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/ssh_proxy.py
 df442470b2144f1903d3fadfd64b2d16	k8s_cluster_vnf/charms/k8s_cluster_installer/tests/command.py
