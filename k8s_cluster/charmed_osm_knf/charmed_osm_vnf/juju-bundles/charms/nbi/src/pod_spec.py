@@ -396,7 +396,7 @@ def make_pod_spec(
     if not image_info:
         return None
 
-    _validate_data(config, relation_state, config.get("auth_backend") == "keystone")
+    #_validate_data(config, relation_state, config.get("auth_backend") == "keystone")
 
     ports = _make_pod_ports(port)
     env_config = _make_pod_envconfig(config, relation_state)
@@ -415,5 +415,24 @@ def make_pod_spec(
         ],
         "kubernetesResources": {
             "ingressResources": ingress_resources or [],
+            "services": [
+				{
+                    "name": app_name,
+                    "spec": {
+                        "selector": {
+                            "app.kubernetes.io/name": app_name
+                        },
+                        "ports": [
+                            {
+                                "protocol": "TCP",
+                                "port": port,
+                                "targetPort": port,
+                                "nodePort": port
+                            }
+                        ],
+                        "type": "LoadBalancer",
+                    },
+                },
+			]
         },
     }

@@ -115,12 +115,57 @@ class ConfigModel(ModelValidator):
         if v not in values.keys():
             raise ValueError("value must be always, ifnotpresent or never")
         return values[v]
+    
+    
+class MyPodSpecBuilder(PodSpecV3Builder):
+    def __init__(self, enable_security_context: bool = False):
+        super().__init__(enable_security_context)
+        self._services = []
+        
+    @property
+    def pod_spec(self):
+        return {
+            "version": 3,
+            # "initContainers": self.init_containers,
+            "containers": self.containers,
+            "kubernetesResources": {
+                "ingressResources": self.ingress_resources,
+                "pod": {"securityContext": self.security_context},
+                "secrets": self.secrets,
+                "services": self._services,
+            },
+        }
+        
+    def add_service(self, name: str, port: int, target_port: int, node_port: int, protocol: str = "TCP", 
+                    service_type: str = "LoadBalancer") -> NoReturn:
+        # TODO -> the type should be a Enum, not a string
+        
+        self._services.append(
+            {
+                "name": name,
+                "spec": {
+                    "selector": {
+                        "app.kubernetes.io/name": name
+                    },
+                    "ports": [
+                        {
+                            "protocol": protocol,
+                            "port": port,
+                            "targetPort": target_port,
+                            "nodePort": node_port
+                        }
+                    ],
+                    "type": service_type,
+                },
+            }
+        )
+        
 
 
 class NbiCharm(CharmedOsmBase):
 
     on = KafkaEvents()
-
+    
     def __init__(self, *args) -> NoReturn:
         super().__init__(
             *args,
@@ -205,7 +250,7 @@ class NbiCharm(CharmedOsmBase):
         )
 
         # Create Builder for the PodSpec
-        pod_spec_builder = PodSpecV3Builder(
+        pod_spec_builder = MyPodSpecBuilder(
             enable_security_context=security_context_enabled
         )
 
@@ -350,6 +395,9 @@ class NbiCharm(CharmedOsmBase):
             ingress_resource_builder.add_rule(parsed.hostname, self.app.name, PORT)
             ingress_resource = ingress_resource_builder.build()
             pod_spec_builder.add_ingress_resource(ingress_resource)
+            
+        # attach a service to the Pod
+        pod_spec_builder.add_service(name=self.app.name, port=PORT, target_port=PORT, node_port=PORT)
 
         # Add restart policy
         restart_policy = PodRestartPolicy()
