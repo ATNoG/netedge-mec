@@ -53,7 +53,8 @@ applications:
       gui-x: 0
       gui-y: 250
   mariadb:
-    charm: charmed-osm-mariadb-k8s
+    #charm: charmed-osm-mariadb-k8s
+    charm: ./charms/charmed-osm-mariadb-k8s
     scale: 1
     series: kubernetes
     storage:
@@ -66,7 +67,7 @@ applications:
       gui-x: -300
       gui-y: -250
   mongodb:
-    charm: mongodb-k8s
+    charm: mongodb-k8s #./charms/mongodb-k8s.charm
     channel: latest/stable
     scale: 1
     series: kubernetes
@@ -91,8 +92,8 @@ applications:
       gui-x: 0
       gui-y: -250
   ro:
-    charm: osm-ro
-    channel: latest/edge
+    charm: ./charms/osm-ro_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     options:
@@ -103,8 +104,8 @@ applications:
       gui-x: -300
       gui-y: 250
   ng-ui:
-    charm: osm-ng-ui
-    channel: latest/edge
+    charm: ./charms/osm-ng-ui_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     resources:
@@ -127,8 +128,8 @@ applications:
       gui-x: -300
       gui-y: 0
   mon:
-    charm: osm-mon
-    channel: latest/edge
+    charm: ./charms/osm-mon_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     options:
@@ -141,8 +142,8 @@ applications:
       gui-x: 300
       gui-y: 0
   pol:
-    charm: osm-pol
-    channel: latest/edge
+    charm: ./charms/osm-pol_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     options:
@@ -153,8 +154,8 @@ applications:
       gui-x: -300
       gui-y: 500
   pla:
-    charm: osm-pla
-    channel: latest/edge
+    charm: ./charms/osm-pla_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     options:
@@ -165,22 +166,27 @@ applications:
       gui-x: 600
       gui-y: -250
   prometheus:
-    charm: osm-prometheus
-    channel: latest/edge
+    charm: ./charms/osm-prometheus_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
     storage:
       data: 50M
     options:
       default-target: "mon:8000"
+    resources:
+      image: ubuntu/prometheus:latest
+      backup-image: ed1000/prometheus-backup:latest
     annotations:
       gui-x: 300
       gui-y: 250
   grafana:
-    charm: osm-grafana
-    channel: latest/edge
+    charm: ./charms/osm-grafana_ubuntu-20.04-amd64-aarch64-arm64.charm
+    #channel: latest/edge
     scale: 1
     series: kubernetes
+    resources:
+      image: "ubuntu/grafana:latest"
     annotations:
       gui-x: 300
       gui-y: 500
