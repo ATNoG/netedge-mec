@@ -131,6 +131,8 @@ vnfd:
               default-value: <subnet_address>
               read-only: true
               hidden: true
+          - execution-environment-ref: controller-ee
+            name: download-charmed-osm-images
         - execution-environment-list:
           - id: worker-ee
             juju:
@@ -177,6 +179,8 @@ vnfd:
                 data-type: STRING
               - name: cert
                 data-type: STRING
+          - execution-environment-ref: worker-ee
+            name: download-charmed-osm-images
   vdu:
   - id: controller
     cloud-init-file: cloud-init-controller.cfg
