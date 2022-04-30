@@ -4,6 +4,9 @@ import subprocess
 import json
 import yaml
 import re
+
+NUMBER_TESTS = 1
+
 USER_MAIN = 'netedge'
 PASSWORD_MAIN = 'netedge'
 PROJECT_MAIN = 'netedge'
@@ -41,7 +44,7 @@ CLUSTER2_IP = "10.0.13.233"
 def init_environment():
     # create VNF packages
     for dir_name in (DIR_CHARMED_OSM_VNF, DIR_OSM_CLUSTER_VNF, DIR_CLUSTER_VNF):
-        print(f"\n\n\n{time.time()} - Creating VNF package for {dir_name}\n")
+        print(f"\n\n\n<{time.time()}> - Creating VNF package for {dir_name}\n")
         output = subprocess.run(shlex.split(
             f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} nfpkg-create {dir_name}"""
         ))
@@ -49,16 +52,16 @@ def init_environment():
 
     # create NS packages
     for dir_name in (DIR_OSM_CLUSTER_NS, DIR_CLUSTER_NS):
-        print(f"\n\n\n{time.time()} - Creating NS package for {dir_name}\n")
+        print(f"\n\n\n<{time.time()}> - Creating NS package for {dir_name}\n")
         output = subprocess.run(shlex.split(
             f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} nspkg-create {dir_name}"""
         ))
         print(output)
     
 
-def instantiate_ns(ns_name, nsd_name, ns_config_file):
+def instantiate_ns(ns_name, vnf_name_master, nsd_name, ns_config_file):
     # instantiate cluster
-    print(f"\n\n\n{time.time()} - Instantiate cluster {ns_name}\n")
+    print(f"\n\n\n<{time.time()}> - Instantiate cluster {ns_name}\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-create 
         --ns_name {ns_name} --nsd_name {nsd_name} --vim_account {VIM_ACCOUNT_MAIN} --config_file {ns_config_file} --wait"""
@@ -66,10 +69,10 @@ def instantiate_ns(ns_name, nsd_name, ns_config_file):
     print(output)
     
     # join worker to master
-    print(f"\n\n\n{time.time()} - Obtain the master information\n")
+    print(f"\n\n\n<{time.time()}> - Obtain the master information\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {ns_name} 
-        --vnf_name osm_vnf --vdu_id controller --action_name get-k8s-controller-info --wait"""
+        --vnf_name {vnf_name_master} --vdu_id controller --action_name get-k8s-controller-info --wait"""
     ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     print(output)
 
@@ -91,40 +94,31 @@ def instantiate_ns(ns_name, nsd_name, ns_config_file):
     with open(PATH_JOIN_PARAMS_FILE, 'w') as file:
         yaml.safe_dump(data_yaml, file)
 
-    print(f"\n\n\n{time.time()} - Join worker to master\n")
+    print(f"\n\n\n<{time.time()}> - Join worker to master\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {ns_name} 
-        --vnf_name osm_vnf --vdu_id worker --vdu_count 0 --action_name join-k8s-workers --params_file {PATH_JOIN_PARAMS_FILE} --wait"""
+        --vnf_name {vnf_name_master} --vdu_id worker --vdu_count 0 --action_name join-k8s-workers --params_file {PATH_JOIN_PARAMS_FILE} --wait"""
     ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     print(output)
-
-    # Execute primitive to download all the necessary charmed OSM images
-    print(f"\n\n\n{time.time()} - Execute primitive to download all the necessary charmed OSM images\n")
-    for vdu in ('controller', 'worker'):
-        output = subprocess.run(shlex.split(
-            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {ns_name} 
-            --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
-        ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(output)
         
         
 def instantiate_mec_app(charmed_osm_master_ip: str):
     # instantiate MEC APP
-    print(f"\n\n\n{time.time()} - Create VNF package for the MEC APP\n")
+    print(f"\n\n\n<{time.time()}> - Create VNF package for the MEC APP\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {charmed_osm_master_ip} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
         nfpkg-create {DIR_MEC_APP_VNF}"""
     ))
     print(output)
 
-    print(f"\n\n\n{time.time()} - Create NS package for the MEC APP\n")
+    print(f"\n\n\n<{time.time()}> - Create NS package for the MEC APP\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {charmed_osm_master_ip} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
         nspkg-create {DIR_MEC_APP_NS}"""
     ))
     print(output)
 
-    print(f"\n\n\n{time.time()} - Instantiate MEC APP\n")
+    print(f"\n\n\n<{time.time()}> - Instantiate MEC APP\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {charmed_osm_master_ip} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} ns-create 
         --ns_name mp1 --nsd_name mp1_test_application_ns --vim_account {VIM_CHARMED_OSM} --wait"""
@@ -219,28 +213,37 @@ def gather_timestamps_from_kafka():
     ))
 
 def clean_environment(ns_osm_name: str, ns_main_name: str):
-    print(f"\n\n\n{time.time()} - Delete OSM NS {ns_osm_name}\n")
+    # just to be sure, run two times in a row
+    for i in range(2):
+        print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_osm_name} - {i}\n")
+        output = subprocess.run(shlex.split(
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
+            {ns_osm_name} --wait"""
+        ), timeout=5*60)
+        print(output)
+
+        print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
+        output = subprocess.run(shlex.split(
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} k8scluster-delete 
+            k8s_test --force --wait"""
+        ))
+        print(output)
+
+        print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
+        output = subprocess.run(shlex.split(
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
+            {ns_main_name} --wait"""
+        ), timeout=5*60)
+        print(output)
+        
+    # and just to be really sure
+    print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
     output = subprocess.run(shlex.split(
-        f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
-        {ns_osm_name} --wait"""
+        f"""sh results/delete_all_osm_resources.sh"""
     ))
     print(output)
     
-    print(f"\n\n\n{time.time()} - Delete OSM cluster\n")
-    output = subprocess.run(shlex.split(
-        f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} k8scluster-delete 
-        k8s_test --wait"""
-    ))
-    print(output)
-    
-    print(f"\n\n\n{time.time()} - Delete OSM NS {ns_main_name}\n")
-    output = subprocess.run(shlex.split(
-        f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
-        {ns_main_name} --wait"""
-    ))
-    print(output)
-    
-    print(f"\n\n\n{time.time()} - Destroy and init LCM\n")
+    print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
     output = subprocess.run(shlex.split(
         f"""kubectl scale deployment lcm -n osm --replicas=0; kubectl scale deployment lcm -n osm --replicas=1; sleep 60"""
     ))
@@ -249,42 +252,64 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
 
 def main():
     init_environment()
-
-    # instantiate cluster for OSM
-    instantiate_ns(ns_name=CLUSTER_FOR_OSM_NAME, nsd_name='k8s_osm_cluster_nsd', ns_config_file=PATH_OSM_NS_CONFIG_FILE)
-
-    # obtain the IP addr of the first NS master
-    print(f"\n\n\n{time.time()} - Obtaining master's IP addr\n")
-    output = subprocess.run(shlex.split(
-        f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} vnf-list --ns cluster"""
-    ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    print(output)
-
-    all_output = output.stdout.decode('utf-8')
-    ip_addr_start_index = all_output.find('10.0.')
-    ip_addr_end_index = all_output.find(' ', ip_addr_start_index)
-    charmed_osm_master_ip = all_output[ip_addr_start_index:ip_addr_end_index]
-
-    # edit the NS config file for the second cluster
-    with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
-        data_yaml = yaml.safe_load(file)
-
-    data_yaml['additionalParamsForVnf'][0]['additionalParams']['osm_url'] = f"https://{charmed_osm_master_ip}:9999"
-
-    with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
-        yaml.safe_dump(data_yaml, file)
-
-    # instantiate Charmed OSM
-    instantiate_ns(ns_name=CHARMED_OSM_NAME, nsd_name='k8s_cluster_nsd', ns_config_file=PATH_CLUSTER_NS_CONFIG_FILE)
-
-    instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
     
-    print(f"\n\n\n{time.time()} - Finished deployment\n")
-    
-    gather_timestamps_from_kafka()
-    
-    # Start cleaning for the next iteration
-    clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME)
+    for i in range(NUMBER_TESTS):
+        print("#######################################################################")
+        print(f"Test <{i}>")
+        print("#######################################################################")
+        print(f"Init timestamp: <{time.time()}>")
+        print("#######################################################################")
+        
+        # instantiate cluster for OSM
+        instantiate_ns(ns_name=CLUSTER_FOR_OSM_NAME, vnf_name_master='osm_vnf', nsd_name='k8s_osm_cluster_nsd', ns_config_file=PATH_OSM_NS_CONFIG_FILE)
+        
+        # Execute primitive to download all the necessary charmed OSM images
+        print(f"\n\n\n<{time.time()}> - Execute primitive to download all the necessary charmed OSM images\n")
+        for vdu in ('controller', 'worker'):
+            output = subprocess.run(shlex.split(
+                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {CLUSTER_FOR_OSM_NAME} 
+                --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
+            ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print(output)
+
+        # obtain the IP addr of the first NS master
+        print(f"\n\n\n<{time.time()}> - Obtaining master's IP addr\n")
+        output = subprocess.run(shlex.split(
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} vnf-list --ns {CLUSTER_FOR_OSM_NAME}"""
+        ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(output)
+
+        all_output = output.stdout.decode('utf-8')
+        ip_addr_start_index = all_output.find('10.0.')
+        ip_addr_end_index = all_output.find(' ', ip_addr_start_index)
+        charmed_osm_master_ip = all_output[ip_addr_start_index:ip_addr_end_index]
+
+        # edit the NS config file for the second cluster
+        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
+            data_yaml = yaml.safe_load(file)
+
+        data_yaml['additionalParamsForVnf'][0]['additionalParams']['osm_url'] = f"https://{charmed_osm_master_ip}:9999"
+
+        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
+            yaml.safe_dump(data_yaml, file)
+
+        # instantiate Charmed OSM
+        instantiate_ns(ns_name=CHARMED_OSM_NAME, vnf_name_master='cluster_vnf', nsd_name='k8s_cluster_nsd', ns_config_file=PATH_CLUSTER_NS_CONFIG_FILE)
+
+        instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
+
+        print(f"\n\n\n<{time.time()}> - Finished deployment\n")
+
+        gather_timestamps_from_kafka()
+        
+        time.sleep(5*60)
+
+        # Start cleaning for the next iteration
+        clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME)
+        
+        print("#######################################################################")
+        print(f"Test <{i}> finished at <{time.time()}>")
+        print("#######################################################################\n\n\n")
 
 if __name__ == '__main__':
     main()
