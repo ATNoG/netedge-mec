@@ -3,6 +3,7 @@ import shlex
 import subprocess
 import json
 import yaml
+import re
 
 NUMBER_TESTS = 1
 
@@ -37,6 +38,10 @@ DIR_MEC_APP_NS = '/home/escaleira/Desktop/research/netedge/mp1-test-app-mec/dock
 
 PATH_MEC_APP_DEPLOYMENT = '/home/escaleira/Desktop/research/netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf/helm-chart-v3s/launch_mp1_test/templates/deployment.yaml'
 
+CLUSTER_USERNAME = "controller"
+CLUSTER_PASSWORD = "olaadeus"
+CLUSTER1_IP = "10.0.13.232"
+CLUSTER2_IP = "10.0.13.233"
 
 def init_environment():
     # create VNF packages
@@ -123,8 +128,91 @@ def instantiate_mec_app(charmed_osm_master_ip: str):
     print(output)
     
 def gather_timestamps_from_kafka():
-    # TODO -> MOTA, METE AQUI O NECESSÁRIO
-    pass
+    # Send file to both Clusters
+    output = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no deployment.yaml -q {CLUSTER_USERNAME}@{CLUSTER1_IP}:~/
+        """
+    ))
+    
+    output = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no  deployment.yaml -q {CLUSTER_USERNAME}@{CLUSTER2_IP}:~/
+        """
+    ))
+    
+    # Create container
+    
+    output = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER1_IP} kubectl apply -f deployment.yaml -n osm
+        """
+    ))
+    
+    output = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER2_IP} kubectl apply -f deployment.yaml -n osm-charmed
+        """
+    ))
+    
+    # Leave time for containers to initialize properly
+    time.sleep(60)
+
+    # Create dump dir
+    dir1 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER1_IP} mkdir /tmp/dump_pod1
+        """
+    ))
+    
+    dir2 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER2_IP} mkdir /tmp/dump_pod2
+        """
+    ))
+    
+    # Obtain pod name
+    pod1_name = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER1_IP} kubectl get pods --no-headers -o custom-columns='"':metadata.name'"' -n osm
+        """
+    ), stdout=subprocess.PIPE)
+
+    pod1_name = list(filter(re.compile(r"kafka-dump.*").match,pod1_name.stdout.decode().split("\n")))[0]
+    
+    pod2_name = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER2_IP} kubectl get pods --no-headers -o  custom-columns=":metadata.name"-n osm | grep 'kafka-dump'
+        """
+    ), stdout=subprocess.PIPE)
+    
+    pod2_name = list(filter(re.compile(r"kafka-dump.*").match,pod1_name.stdout.decode().split("\n")))[0]
+    
+    # Copy from POD to Local Machine
+    copy_pod1 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER1_IP} kubectl cp osm/{pod1_name}:/home/kafka/dump/ /tmp/dump_pod1/
+        """
+    ))
+    
+    copy_pod2 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{CLUSTER2_IP} kubectl cp osm/{pod2_name}:/home/kafka/dump/ /tmp/dump_pod2/
+        """
+    ))
+    
+    # SCP to our machine
+    dump_pod1 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no -r {CLUSTER_USERNAME}@{CLUSTER1_IP}:/tmp/dump_pod1/ .
+        """
+    ))
+    
+    dump_pod2 = subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no -r  {CLUSTER_USERNAME}@{CLUSTER2_IP}:/tmp/dump_pod2/ .
+        """
+    ))
 
 def clean_environment(ns_osm_name: str, ns_main_name: str):
     # just to be sure, run two times in a row
