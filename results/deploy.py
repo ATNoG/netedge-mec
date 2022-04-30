@@ -7,7 +7,7 @@ import yaml
 NUMBER_TESTS = 1
 
 USER_MAIN = 'netedge'
-PASSWORD_MAIN = 'netedge'
+PASSWORD_MAIN = ''
 PROJECT_MAIN = 'netedge'
 IP_ADDR = '10.0.12.98'
 VIM_ACCOUNT_MAIN = 'NetEdge'
@@ -32,8 +32,10 @@ PASSWORD_CHARMED_OSM = 'admin'
 PROJECT_CHARMED_OSM = 'admin'
 VIM_CHARMED_OSM = 'NetEdge'
 
-DIR_MEC_APP_VNF = 'netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf'
-DIR_MEC_APP_NS = 'netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_ns'
+DIR_MEC_APP_VNF = '/home/escaleira/Desktop/research/netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf'
+DIR_MEC_APP_NS = '/home/escaleira/Desktop/research/netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_ns'
+
+PATH_MEC_APP_DEPLOYMENT = '/home/escaleira/Desktop/research/netedge/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf/helm-chart-v3s/launch_mp1_test/templates/deployment.yaml'
 
 
 def init_environment():
@@ -207,6 +209,14 @@ def main():
 
         # instantiate Charmed OSM
         instantiate_ns(ns_name=CHARMED_OSM_NAME, vnf_name_master='cluster_vnf', nsd_name='k8s_cluster_nsd', ns_config_file=PATH_CLUSTER_NS_CONFIG_FILE)
+        
+        with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
+            data_yaml = yaml.safe_load(file)
+        
+        data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"https://{charmed_osm_master_ip}:30080"
+        
+        with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
+            yaml.safe_dump(data_yaml, file)
 
         instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
 
@@ -214,10 +224,10 @@ def main():
 
         gather_timestamps_from_kafka()
         
-        time.sleep(5*60)
+        #time.sleep(5*60)
 
         # Start cleaning for the next iteration
-        clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME)
+        #clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME)
         
         print("#######################################################################")
         print(f"Test <{i}> finished at <{time.time()}>")
