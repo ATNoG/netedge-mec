@@ -1,6 +1,9 @@
 import os
 import re
 import csv
+import yaml
+import time
+from dateutil import parser
 
 def read_ns(dir):
     # dump is in a weird state where each data isn't a line 
@@ -77,10 +80,25 @@ def pod_dump(dir,main_ns_data,charmed_ns_data,mep_data):
     charmed_ns_data.append(read_ns(f"{dir}/dump_pod2/ns"))
     mep_data.append(read_mep(f"{dir}/dump_pod2/mep"))
         
-def osm_yaml(dir):
-    pass
-
-
+def osm_yaml(dir,osm_data):
+    mep_data = ["iteration","appName","initial","final"]
+    osm_full_yaml = None
+    with open(f"{dir}/osm.yaml","r") as file:
+        osm_full_yaml = yaml.load(file,Loader=yaml.FullLoader)
+    
+    initial_time = int(osm_full_yaml["_admin"]["created"])
+    for id in list(osm_full_yaml["vcaStatus"].keys()):
+        for app in list(osm_full_yaml["vcaStatus"][id]["applications"].keys()):
+            final = osm_full_yaml['vcaStatus'][id]['applications'][app]['status']['since']
+            final_parsed = parser.parse(final)
+            final_timestamp = time.mktime(final_parsed.timetuple())
+            data = {"iteration":dir.split("/")[0].split("_")[-1],
+                    "appName":app,
+                    "initial":initial_time,
+                    "final":final_timestamp}
+            osm_data.append(data)
+            
+    
 def write_parsed_data(file_name,data):
     with open(file_name,"w+") as outfile:
         firstLine = True
@@ -90,24 +108,32 @@ def write_parsed_data(file_name,data):
                 outfile.write(",".join(fields)+"\n")
                 firstLine = False
             outfile.write(",".join([str(val) for val in iteration.values()])+"\n")
+            
+def write_osm_data(file_name,data):
+    with open(file_name,"w+") as outfile:
+        fields = list(data[0].keys())
+        #firstline
+        outfile.write(",".join(fields)+"\n")
+        for app in data:
+            outfile.write(",".join([str(val) for val in app.values()])+"\n")
 def main():
     # Iterate dump directories
     # Using re and dirlisting to avoid having to know how many dumps there are
     main_ns_data = []
     charmed_ns_data = []
     mep_data = []
+    osm_data = []
     for dumpdir in os.listdir():
         if re.match("^results.*",dumpdir):
             # enter directory and iterate known dumps
             pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data)
-    
-    """print(main_ns_data)
-    print(charmed_ns_data)
-    print(mep_data)"""
-    
+            osm_yaml(dumpdir,osm_data)
+
     write_parsed_data("main_ns_data",main_ns_data)
     write_parsed_data("charmed_ns_data",charmed_ns_data)
     write_parsed_data("mep_data",mep_data)
+    # different file easier than creating something proper since this is single use
+    write_osm_data("osm_data",osm_data)
 
 if __name__ == "__main__":
     main()
