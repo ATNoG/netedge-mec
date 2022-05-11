@@ -81,7 +81,6 @@ def pod_dump(dir,main_ns_data,charmed_ns_data,mep_data):
     mep_data.append(read_mep(f"{dir}/dump_pod2/mep"))
         
 def osm_yaml(dir,osm_data):
-    mep_data = ["iteration","appName","initial","final"]
     osm_full_yaml = None
     with open(f"{dir}/osm.yaml","r") as file:
         osm_full_yaml = yaml.load(file,Loader=yaml.FullLoader)
@@ -95,7 +94,8 @@ def osm_yaml(dir,osm_data):
             data = {"iteration":dir.split("/")[0].split("_")[-1],
                     "appName":app,
                     "initial":initial_time,
-                    "final":final_timestamp}
+                    "final":final_timestamp,
+                    "delta":final_timestamp-initial_time}
             osm_data.append(data)
             
     
