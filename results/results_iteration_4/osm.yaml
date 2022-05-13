@@ -1,0 +1,401 @@
+_admin:
+    created: 1651441393.4894712
+    current-operation: null
+    deployed:
+        K8s:
+        -   k8scluster-type: juju-bundle
+            k8scluster-uuid: 5c4963f7-cf64-442d-9e2e-d7e91901ba72
+            kdu-deployment-name: ''
+            kdu-instance: osm-kdu-d73ab19d-aac4-40b5-886c-3d0258882cdb
+            kdu-model: /app/storage/b34e6671-1681-4131-a4cf-3e96233750ad/charmed_osm_vnf/juju-bundles/bundle.yaml
+            kdu-name: osm-kdu
+            member-vnf-index: osm_cnf
+            namespace: osm-charms-oops
+        -   detailed-status: '{''hooks'': [{''events'': [''test''], ''kind'': ''Pod'',
+                ''last_run'': {''completed_at'': '''', ''phase'': '''', ''started_at'':
+                ''''}, ''manifest'': ''apiVersion: v1\nkind: Pod\nmetadata:\n  name:
+                "mep-test-connection"\n  labels:\n    helm.sh/chart: mepchart-0.1.0\n    app.kubernetes.io/name:
+                mepchart\n    app.kubernetes.io/instance: mepchart-0004060055\n    app.kubernetes.io/version:
+                "1.16.0"\n    app.kubernetes.io/managed-by: Helm\n  annotations:\n    "helm.sh/hook":
+                test\nspec:\n  containers:\n    - name: wget\n      image: busybox\n      command:
+                [\''wget\'']\n      args: [\''mep:8080\'']\n  restartPolicy: Never'',
+                ''name'': ''mep-test-connection'', ''path'': ''mepchart/templates/tests/test-connection.yaml''}],
+                ''info'': {''deleted'': '''', ''description'': ''Install complete'',
+                ''first_deployed'': ''2022-05-01T21:43:28.472670934Z'', ''last_deployed'':
+                ''2022-05-01T21:43:28.472670934Z'', ''status'': ''deployed''}, ''manifest'':
+                [{''apiVersion'': ''v1'', ''kind'': ''ServiceAccount'', ''metadata'':
+                {''name'': ''mep'', ''labels'': {''helm.sh/chart'': ''mepchart-0.1.0'',
+                ''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0004060055'', ''app.kubernetes.io/version'': ''1.16.0'',
+                ''app.kubernetes.io/managed-by'': ''Helm''}}}, {''apiVersion'': ''v1'',
+                ''kind'': ''Service'', ''metadata'': {''name'': ''mep'', ''labels'':
+                {''helm.sh/chart'': ''mepchart-0.1.0'', ''app.kubernetes.io/name'':
+                ''mepchart'', ''app.kubernetes.io/instance'': ''mepchart-0004060055'',
+                ''app.kubernetes.io/version'': ''1.16.0'', ''app.kubernetes.io/managed-by'':
+                ''Helm''}}, ''spec'': {''type'': ''NodePort'', ''ports'': [{''port'':
+                8080, ''targetPort'': 8080, ''nodePort'': 30080, ''protocol'': ''TCP'',
+                ''name'': ''http''}], ''selector'': {''app.kubernetes.io/name'': ''mepchart'',
+                ''app.kubernetes.io/instance'': ''mepchart-0004060055''}}}, {''apiVersion'':
+                ''apps/v1'', ''kind'': ''Deployment'', ''metadata'': {''name'': ''mep'',
+                ''labels'': {''helm.sh/chart'': ''mepchart-0.1.0'', ''app.kubernetes.io/name'':
+                ''mepchart'', ''app.kubernetes.io/instance'': ''mepchart-0004060055'',
+                ''app.kubernetes.io/version'': ''1.16.0'', ''app.kubernetes.io/managed-by'':
+                ''Helm''}}, ''spec'': {''replicas'': 1, ''selector'': {''matchLabels'':
+                {''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0004060055''}}, ''template'': {''metadata'': {''labels'':
+                {''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0004060055''}}, ''spec'': {''serviceAccountName'': ''mep'',
+                ''securityContext'': {}, ''containers'': [{''name'': ''mepchart'',
+                ''securityContext'': {}, ''image'': ''ghcr.io/oescal/mepserver:latest'',
+                ''imagePullPolicy'': ''IfNotPresent'', ''ports'': [{''containerPort'':
+                8080}], ''resources'': {}, ''command'': [''python3'', ''/home/netedge/main.py''],
+                ''args'': [''--mongodb_addr=127.0.0.1'', ''--mongodb_database=mep'',
+                ''--mongodb_password=admin'', ''--mongodb_port=27017'', ''--mongodb_username=admin'']}],
+                ''initContainers'': [{''name'': ''mongodb'', ''image'': ''busybox:latest'',
+                ''command'': [''sh''], ''args'': [''-c'', ''until nslookup mongodb.$(cat
+                /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local;
+                do echo waiting for MongoDB; sleep 2; done'']}]}}}}], ''name'': ''mepchart-0004060055'',
+                ''namespace'': ''osm-charms-oops'', ''version'': 1}'
+            k8scluster-type: helm-chart-v3
+            k8scluster-uuid: 5c4963f7-cf64-442d-9e2e-d7e91901ba72
+            kdu-deployment-name: ''
+            kdu-instance: mepchart-0004060055
+            kdu-model: /app/storage/b34e6671-1681-4131-a4cf-3e96233750ad/charmed_osm_vnf/helm-chart-v3s/netedge-mep/mepchart
+            kdu-name: mep-kdu
+            member-vnf-index: osm_cnf
+            namespace: osm-charms-oops
+            operation: install
+            status: Install complete
+            status-time: '1651441806.2465816'
+        RO:
+            operational-status: running
+            vnfd: []
+        VCA:
+        -   application: app-vnf-f472f896e4-z0-vdu-controller-cnt-z0-wbyok
+            config_sw_installed: true
+            detailed-status: ''
+            ee_descriptor_id: controller-init-ee
+            ee_id: d73ab19d-aac4-40b5-886c-3d0258882cdb.app-vnf-f472f896e4-z0-vdu-controller-cnt-z0-wbyok.0
+            kdu_name: null
+            member-vnf-index: cluster_vnf
+            model: d73ab19d-aac4-40b5-886c-3d0258882cdb
+            operational-status: init
+            step: initial-deploy
+            target_element: vnf/cluster_vnf/vdu/controller/0
+            type: lxc_proxy_charm
+            vdu_count_index: 0
+            vdu_id: controller
+            vdu_name: null
+            vnfd_id: k8s_cluster_vnf
+        -   application: app-vnf-f472f896e4-z0-vdu-worker-cnt-z0-9clcd
+            config_sw_installed: true
+            detailed-status: ''
+            ee_descriptor_id: worker-ee
+            ee_id: d73ab19d-aac4-40b5-886c-3d0258882cdb.app-vnf-f472f896e4-z0-vdu-worker-cnt-z0-9clcd.1
+            kdu_name: null
+            member-vnf-index: cluster_vnf
+            model: d73ab19d-aac4-40b5-886c-3d0258882cdb
+            operational-status: init
+            step: initial-deploy
+            target_element: vnf/cluster_vnf/vdu/worker/0
+            type: lxc_proxy_charm
+            vdu_count_index: 0
+            vdu_id: worker
+            vdu_name: null
+            vnfd_id: k8s_cluster_vnf
+    modified: 1651442512.6746538
+    nsState: INSTANTIATED
+    nslcmop: null
+    operation-type: null
+    projects_read:
+    - 9f81787b-fb54-494e-be83-dc247ea232f9
+    projects_write:
+    - 9f81787b-fb54-494e-be83-dc247ea232f9
+_id: d73ab19d-aac4-40b5-886c-3d0258882cdb
+additionalParamsForNs: null
+admin-status: ENABLED
+config-status: configured
+configurationStatus:
+-   elementType: VDU
+    elementUnderConfiguration: controller-0
+    status: READY
+-   elementType: VDU
+    elementUnderConfiguration: worker-0
+    status: READY
+constituent-vnfr-ref:
+- 7b963f92-70c3-47ac-a725-16f472f896e4
+- f5377f3d-dcc6-44d1-8823-fd8cd8d32672
+create-time: 1651441393.470568
+currentOperation: IDLE
+currentOperationID: null
+datacenter: 1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd
+deploymentStatus: null
+description: default description
+detailed-status: Done
+errorDescription: null
+errorDetail: null
+flavor:
+-   id: '0'
+    memory-mb: 8192.0
+    name: controller-flv
+    storage-gb: '32'
+    vcpu-count: 4
+    vim_info:
+        vim:1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd:
+            vim_details: null
+            vim_id: e93802d6-54d9-40de-b175-7bc6ac76c5de
+            vim_status: DONE
+-   id: '1'
+    memory-mb: 8192.0
+    name: worker-flv
+    storage-gb: '64'
+    vcpu-count: 4
+    vim_info:
+        vim:1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd:
+            vim_details: null
+            vim_id: f6853c50-840e-4288-8dbd-aae18a1947d9
+            vim_status: DONE
+id: d73ab19d-aac4-40b5-886c-3d0258882cdb
+image:
+-   id: '0'
+    image: Ubuntu Server 20.04
+    vim_info:
+        vim:1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd:
+            vim_details: null
+            vim_id: d1933a6f-ab07-4851-a6e5-9bbd2a6ae060
+            vim_status: DONE
+instantiate_params:
+    nsDescription: default description
+    nsName: osm
+    nsdId: fd9bc0d1-9905-4d46-a21d-aaebac64f0a8
+    vimAccountId: 1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd
+    vnf:
+    -   internal-vld:
+        -   ip-profile:
+                dhcp-params:
+                    enabled: true
+                ip-version: ipv4
+                subnet-address: 172.16.0.0/24
+            name: internal-vl
+        member-vnf-index: cluster_vnf
+name: osm
+name-ref: osm
+ns-instance-config-ref: d73ab19d-aac4-40b5-886c-3d0258882cdb
+nsState: READY
+nsd:
+    _admin:
+        created: 1651338039.2032235
+        modified: 1651338039.3534992
+        onboardingState: ONBOARDED
+        operationalState: ENABLED
+        projects_read:
+        - 9f81787b-fb54-494e-be83-dc247ea232f9
+        projects_write:
+        - 9f81787b-fb54-494e-be83-dc247ea232f9
+        storage:
+            descriptor: k8s_cluster_ns/k8s_cluster_nsd.yaml
+            folder: fd9bc0d1-9905-4d46-a21d-aaebac64f0a8
+            fs: mongo
+            path: /app/storage/
+            pkg-dir: k8s_cluster_ns
+            zipfile: k8s_cluster_ns.tar.gz
+        usageState: NOT_IN_USE
+        userDefinedData: {}
+    _id: fd9bc0d1-9905-4d46-a21d-aaebac64f0a8
+    description: NS for the K8s cluster VNFs
+    designer: OSM
+    df:
+    -   id: default-df
+        vnf-profile:
+        -   id: cluster_vnf
+            virtual-link-connectivity:
+            -   constituent-cpd-id:
+                -   constituent-base-element-id: cluster_vnf
+                    constituent-cpd-id: vnf-controller-ext
+                -   constituent-base-element-id: cluster_vnf
+                    constituent-cpd-id: vnf-worker-ext
+                virtual-link-profile-id: mgmt-net
+            vnfd-id: k8s_cluster_vnf
+        -   id: osm_cnf
+            virtual-link-connectivity:
+            -   constituent-cpd-id:
+                -   constituent-base-element-id: osm_cnf
+                    constituent-cpd-id: mgmtnet-ext
+                virtual-link-profile-id: mgmt-net
+            vnfd-id: osm_cnf
+    id: k8s_cluster_nsd
+    name: k8s_cluster_nsd
+    ns-configuration:
+        relation:
+        -   name: relation
+            provider:
+                endpoint: nbi
+                kdu-resource-profile-id: osm-kdu-nbi-resource
+                vnf-profile-id: osm_cnf
+            requirer:
+                endpoint: nbi
+                execution-environment-ref: controller-init-ee
+                vdu-profile-id: controller
+                vnf-profile-id: cluster_vnf
+    version: '1.0'
+    virtual-link-desc:
+    -   id: mgmt-net
+        mgmt-network: true
+        vim-network-name: proj_net
+    vnfd-id:
+    - k8s_cluster_vnf
+    - osm_cnf
+nsd-id: fd9bc0d1-9905-4d46-a21d-aaebac64f0a8
+nsd-name-ref: k8s_cluster_nsd
+nsd-ref: k8s_cluster_nsd
+operational-events: []
+operational-status: running
+orchestration-progress: {}
+resource-orchestrator: osmopenmano
+short-name: osm
+ssh-authorized-key: null
+vcaStatus:
+    d73ab19d-aac4-40b5-886c-3d0258882cdb:
+        hooks:
+        -   events:
+            - test
+            kind: Pod
+            last_run:
+                completed_at: ''
+                phase: ''
+                started_at: ''
+            manifest: "apiVersion: v1\nkind: Pod\nmetadata:\n  name: \"mep-test-connection\"\
+                \n  labels:\n    helm.sh/chart: mepchart-0.1.0\n    app.kubernetes.io/name:\
+                \ mepchart\n    app.kubernetes.io/instance: mepchart-0004060055\n\
+                \    app.kubernetes.io/version: \"1.16.0\"\n    app.kubernetes.io/managed-by:\
+                \ Helm\n  annotations:\n    \"helm.sh/hook\": test\nspec:\n  containers:\n\
+                \    - name: wget\n      image: busybox\n      command: ['wget']\n\
+                \      args: ['mep:8080']\n  restartPolicy: Never"
+            name: mep-test-connection
+            path: mepchart/templates/tests/test-connection.yaml
+        info:
+            deleted: ''
+            description: Install complete
+            first_deployed: '2022-05-01T21:43:28.472670934Z'
+            last_deployed: '2022-05-01T21:43:28.472670934Z'
+            status: deployed
+        manifest:
+        -   apiVersion: v1
+            kind: ServiceAccount
+            metadata:
+                labels:
+                    app.kubernetes.io/instance: mepchart-0004060055
+                    app.kubernetes.io/managed-by: Helm
+                    app.kubernetes.io/name: mepchart
+                    app.kubernetes.io/version: 1.16.0
+                    helm.sh/chart: mepchart-0.1.0
+                name: mep
+        -   apiVersion: v1
+            kind: Service
+            metadata:
+                labels:
+                    app.kubernetes.io/instance: mepchart-0004060055
+                    app.kubernetes.io/managed-by: Helm
+                    app.kubernetes.io/name: mepchart
+                    app.kubernetes.io/version: 1.16.0
+                    helm.sh/chart: mepchart-0.1.0
+                name: mep
+            spec:
+                ports:
+                -   name: http
+                    nodePort: 30080
+                    port: 8080
+                    protocol: TCP
+                    targetPort: 8080
+                selector:
+                    app.kubernetes.io/instance: mepchart-0004060055
+                    app.kubernetes.io/name: mepchart
+                type: NodePort
+        -   apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+                labels:
+                    app.kubernetes.io/instance: mepchart-0004060055
+                    app.kubernetes.io/managed-by: Helm
+                    app.kubernetes.io/name: mepchart
+                    app.kubernetes.io/version: 1.16.0
+                    helm.sh/chart: mepchart-0.1.0
+                name: mep
+            spec:
+                replicas: 1
+                selector:
+                    matchLabels:
+                        app.kubernetes.io/instance: mepchart-0004060055
+                        app.kubernetes.io/name: mepchart
+                template:
+                    metadata:
+                        labels:
+                            app.kubernetes.io/instance: mepchart-0004060055
+                            app.kubernetes.io/name: mepchart
+                    spec:
+                        containers:
+                        -   args:
+                            - --mongodb_addr=127.0.0.1
+                            - --mongodb_database=mep
+                            - --mongodb_password=admin
+                            - --mongodb_port=27017
+                            - --mongodb_username=admin
+                            command:
+                            - python3
+                            - /home/netedge/main.py
+                            image: ghcr.io/oescal/mepserver:latest
+                            imagePullPolicy: IfNotPresent
+                            name: mepchart
+                            ports:
+                            -   containerPort: 8080
+                            resources: {}
+                            securityContext: {}
+                        initContainers:
+                        -   args:
+                            - -c
+                            - until nslookup mongodb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local;
+                                do echo waiting for MongoDB; sleep 2; done
+                            command:
+                            - sh
+                            image: busybox:latest
+                            name: mongodb
+                        securityContext: {}
+                        serviceAccountName: mep
+        name: mepchart-0004060055
+        namespace: osm-charms-oops
+        version: 1
+vld:
+-   id: mgmt-net
+    mgmt-network: true
+    name: mgmt-net
+    type: null
+    vim_info:
+        vim:1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd:
+            vim_account_id: 1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd
+            vim_details: "{admin_state_up: true, availability_zone_hints: [], availability_zones:\
+                \ [nova], created_at: '2021-09-30T19:30:24Z', description: '', encapsulation:\
+                \ flat, encapsulation_id: null, encapsulation_type: flat, id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc,\
+                \ ipv4_address_scope: null,\n  ipv6_address_scope: null, is_default:\
+                \ true, mtu: 1500, name: proj_net, port_security_enabled: true, project_id:\
+                \ 108a3ba29ae84dae9a35df6aaea4b8cb, 'provider:network_type': flat,\
+                \ 'provider:physical_network': public, 'provider:segmentation_id':\
+                \ null, revision_number: 10,\n  'router:external': true, segmentation_id:\
+                \ null, shared: true, status: ACTIVE, subnets: [{subnet: {allocation_pools:\
+                \ [{end: 10.0.12.240, start: 10.0.12.210}, {end: 10.0.13.254, start:\
+                \ 10.0.13.5}], cidr: 10.0.12.0/23, created_at: '2021-09-30T20:16:05Z',\
+                \ description: '',\n        dns_nameservers: [193.136.92.73, 193.136.92.74],\
+                \ enable_dhcp: true, gateway_ip: 10.0.12.1, host_routes: [], id: 30188457-0231-4e51-a36d-dd032274f7cd,\
+                \ ip_version: 4, ipv6_address_mode: null, ipv6_ra_mode: null, name:\
+                \ proj_subnet, network_id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc,\n\
+                \        project_id: 50da9d83452f4828906847cf4d0ee984, revision_number:\
+                \ 2, service_types: [], subnetpool_id: null, tags: [], tenant_id:\
+                \ 50da9d83452f4828906847cf4d0ee984, updated_at: '2022-03-16T20:01:57Z'}}],\
+                \ tags: [], tenant_id: 108a3ba29ae84dae9a35df6aaea4b8cb,\n  type:\
+                \ bridge, updated_at: '2022-03-16T20:01:57Z'}\n"
+            vim_id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc
+            vim_network_name: proj_net
+            vim_status: ACTIVE
+vnfd-id:
+- 4e6a43b9-4f3c-4351-a97d-6c1ccd241a73
+- b34e6671-1681-4131-a4cf-3e96233750ad
+

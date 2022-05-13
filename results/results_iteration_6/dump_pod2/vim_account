@@ -1,0 +1,14 @@
+Received message dummy message
+...
+ in topic vim_account with key b'echo' create with timestamp 1651444236781
+Received message {_id: 39d48b3d-0f21-4e23-b19a-77a4c5fcf32e, config: {insecure: 'true', project_domain_name: atnog,
+    security_groups: all_open, user_domain_name: atnog}, description: Dinamically
+    added VIM, name: NetEdge, op_id: '39d48b3d-0f21-4e23-b19a-77a4c5fcf32e:0', resources: {
+    compute: {instances: {total: null, used: null}, ram: {total: null, used: null},
+      vcpus: {total: null, used: null}}, network: {floating_ips: {total: null, used: null},
+      networks: {total: null, used: null}, subnets: {total: null, used: null}}, storage: {
+      snapshots: {total: null, used: null}, storage: {total: null, used: null}, volumes: {
+        total: null, used: null}}}, schema_version: '1.11', vim_password: NwddO4BBIROpUD/hJkpBiQ==,
+  vim_tenant_name: NetEdge, vim_type: openstack, vim_url: 'https://10.0.10.55/identity/v3',
+  vim_user: atnog-netedgeadmin}
+ in topic vim_account with key b'created' create with timestamp 1651444356138
