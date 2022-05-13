@@ -123,11 +123,14 @@ def main():
     charmed_ns_data = []
     mep_data = []
     osm_data = []
-    for dumpdir in os.listdir():
-        if re.match("^results.*",dumpdir):
-            # enter directory and iterate known dumps
-            pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data)
-            osm_yaml(dumpdir,osm_data)
+    try:
+        for dumpdir in os.listdir():
+            if re.match("^results.*",dumpdir):
+                # enter directory and iterate known dumps
+                pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data)
+                osm_yaml(dumpdir,osm_data)
+    except Exception as e:
+        print(f"Iteration {dumpdir} had an unexpected error please manually remove the directory")
 
     write_parsed_data("main_ns_data",main_ns_data)
     write_parsed_data("charmed_ns_data",charmed_ns_data)
