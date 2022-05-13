@@ -1,0 +1,5 @@
+Received message MEC Platform has been successfully launched in topic mep with key None create with timestamp 1651444249173
+Received message MEC APP with appInstanceId 997fc80a-cfc1-498a-b77f-608f09506e86 has sent ready confirmation in topic mep with key None create with timestamp 1651444617060
+Received message MEC APP with appInstanceID 997fc80a-cfc1-498a-b77f-608f09506e86 has created a service in topic mep with key None create with timestamp 1651444617262
+Received message MEC APP with appInstanceId 997fc80a-cfc1-498a-b77f-608f09506e86 has created a service in topic mep with key None create with timestamp 1651444617453
+Received message MEC APP has queried existing services in topic mep with key None create with timestamp 1651444617591

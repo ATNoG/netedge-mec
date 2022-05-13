@@ -1,0 +1,17 @@
+Received message dummy message
+...
+ in topic admin with key b'echo' create with timestamp 1651438344028
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438336302
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438341331
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438346367
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438466398
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438586432
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438706466
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: 92f7e79b4018}
+ in topic admin with key b'ping' create with timestamp 1651438826495
