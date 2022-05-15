@@ -32,12 +32,10 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     # Creating axes instance
     print(final_data)
     bp = ax.boxplot(final_data, patch_artist = True,
-                    notch = False, vert = 0, widths=0.3)
-    
-    print([item.get_ydata()[1] for item in bp['whiskers']])
+                    notch = False, vert = True)
     
     colors = ['#DAE8FC', '#D5E8D4',
-            '#F8CECC', '#FFF2CC']
+        '#F8CECC', '#FFF2CC']
     
     for patch, color in zip(bp['boxes'], colors):
         patch.set_facecolor(color)
@@ -52,7 +50,7 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     # changing color and linewidth of
     # caps
     for cap in bp['caps']:
-        cap.set(color ='#9673A6',
+        cap.set(color ='#8B008B',
                 linewidth = 2)
     
     # changing color and linewidth of
@@ -68,24 +66,33 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
                 alpha = 0.5)
         
     # x-axis labels
-    ax.set_yticklabels(fields, fontsize=15)
+    ax.set_xticklabels(fields,fontsize=15)
     
-    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(13)
+    # Adding title
+    plt.title("Customized box plot")
     
     # Removing top axes and right axes
     # ticks
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
-        
-    plt.yticks(rotation=45, fontsize=15)
-    plt.xlabel('Time in seconds', fontsize=15)
-    plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 17})
-    plt.xlim(xaxis_range)
-    # show plot
     
+    # quantiles
+    quantiles = []
+    for box in final_data:
+        quantiles.append(np.quantile(box, np.array([0.25, 0.50, 0.75])))
+    
+    for idx,quantile_list in enumerate(quantiles):
+        for quantile in quantile_list:
+            plt.annotate(round(quantile,2),(idx+1.10,quantile))
+        
+    plt.ylabel('Time in seconds',fontsize=15)
+    plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 17})
+    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
+        label.set_fontsize(13)
+    plt.ylim(xaxis_range)
+    # show plot
     plt.tight_layout()
-    plt.savefig(filename, transparent=True)
+    plt.savefig(filename)
     plt.show()
 
 def main():
@@ -96,7 +103,7 @@ def main():
     
     charmed_ns_data = open_csv_files("charmed_ns_data.csv",["delta0"])
     charmed_ns_data = replace_keys(charmed_ns_data,[("delta0","charmed-osm")])
-    draw_diagram(charmed_ns_data,fields=["charmed-osm"],yaxis_title="Time in seconds",title="Charmed OSM deploymeny",xaxis_range=[7,30],filename="osm-charmed.pdf")
+    draw_diagram(charmed_ns_data,fields=["charmed-osm"],yaxis_title="Time in seconds",title="Deployment time of k8s-charmed-osm-cluster",xaxis_range=[7,30],filename="osm-charmed.pdf")
     
     
     mep_data = open_csv_files("mec_dataV2.csv",["delta0","delta1","delta2","delta3"])
