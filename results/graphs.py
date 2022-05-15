@@ -27,7 +27,7 @@ def replace_keys(data,replacement):
 
 def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     final_data = [data[key] for key in data]
-    fig = plt.figure(figsize =(10, 5))
+    fig = plt.figure(figsize =(10, 7))
     ax = fig.add_subplot(111)
     # Creating axes instance
     print(final_data)
@@ -68,8 +68,6 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     # x-axis labels
     ax.set_xticklabels(fields,fontsize=15)
     
-    # Adding title
-    plt.title("Customized box plot")
     
     # Removing top axes and right axes
     # ticks
