@@ -5,7 +5,7 @@ import yaml
 import time
 from dateutil import parser
 
-def read_ns(dir):
+def read_ns(dir,count):
     # dump is in a weird state where each data isn't a line 
     # we can used the 'Received Message' to parse lines
     data = []
@@ -15,7 +15,7 @@ def read_ns(dir):
     # remove index 0 which is ''
     tmp_data.pop(0)
     ns_data = ["iteration","instance_start","instance_started","delta"]
-    ns_values = [dir.split("/")[0].split("_")[-1]]
+    ns_values = [count]
     for data in tmp_data:
         if not re.match("^ dummy message.*",data):
             # get the key value 
@@ -54,11 +54,11 @@ def update_name(data):
                 data[index_same_name] = data[index_same_name]+str(counts[data[index_same_name]])
     return data
             
-def read_mep(dir):
+def read_mep(dir,count):
     # TODO MISSING INITIALIZED TIME FROM NS
     # Order of each mep received action
     mep_data = ["iteration","mep_initializaton","mec_app_ready","mec_app_service_creation","mec_app_subscriptions","mec_app_service_query"]
-    mep_values = [dir.split("/")[0].split("_")[-1]]
+    mep_values = [count]
     with open(dir,"r") as file:
         line = file.readline()
         while line:
@@ -72,15 +72,15 @@ def read_mep(dir):
     ret["fields"] = mep_data 
     return ret
 
-def pod_dump(dir,main_ns_data,charmed_ns_data,mep_data):
+def pod_dump(dir,main_ns_data,charmed_ns_data,mep_data,count):
     # iterate all known pod dirs and their files
     # Main OSM pod
-    main_ns_data.append(read_ns(f"{dir}/dump_pod1/ns"))
+    main_ns_data.append(read_ns(f"{dir}/dump_pod1/ns",count))
     # Charmed OSM pod
-    charmed_ns_data.append(read_ns(f"{dir}/dump_pod2/ns"))
-    mep_data.append(read_mep(f"{dir}/dump_pod2/mep"))
+    charmed_ns_data.append(read_ns(f"{dir}/dump_pod2/ns",count))
+    mep_data.append(read_mep(f"{dir}/dump_pod2/mep",count))
         
-def osm_yaml(dir,osm_data):
+def osm_yaml(dir,osm_data,count):
     osm_full_yaml = None
     with open(f"{dir}/osm.yaml","r") as file:
         osm_full_yaml = yaml.load(file,Loader=yaml.FullLoader)
@@ -91,7 +91,7 @@ def osm_yaml(dir,osm_data):
             final = osm_full_yaml['vcaStatus'][id]['applications'][app]['status']['since']
             final_parsed = parser.parse(final)
             final_timestamp = time.mktime(final_parsed.timetuple())
-            data = {"iteration":dir.split("/")[0].split("_")[-1],
+            data = {"iteration":count,
                     "appName":app,
                     "initial":initial_time,
                     "final":final_timestamp,
@@ -124,19 +124,21 @@ def main():
     mep_data = []
     osm_data = []
     try:
+        count=0
         for dumpdir in os.listdir():
             if re.match("^results.*",dumpdir):
                 # enter directory and iterate known dumps
-                pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data)
-                osm_yaml(dumpdir,osm_data)
+                pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data,count)
+                osm_yaml(dumpdir,osm_data,count)
+                count+=1
     except Exception as e:
         print(f"Iteration {dumpdir} had an unexpected error please manually remove the directory")
 
-    write_parsed_data("main_ns_data",main_ns_data)
-    write_parsed_data("charmed_ns_data",charmed_ns_data)
-    write_parsed_data("mep_data",mep_data)
+    write_parsed_data("main_ns_data.csv",main_ns_data)
+    write_parsed_data("charmed_ns_data.csv",charmed_ns_data)
+    write_parsed_data("mep_data.csv",mep_data)
     # different file easier than creating something proper since this is single use
-    write_osm_data("osm_data",osm_data)
+    write_osm_data("osm_data.csv",osm_data)
 
 if __name__ == "__main__":
     main()
