@@ -25,7 +25,7 @@ def replace_keys(data,replacement):
     return data
 
 
-def draw_diagram(data,fields,yaxis_title,title,xaxis_range=None):
+def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     final_data = [data[key] for key in data]
     fig = plt.figure(figsize =(10, 7))
     ax = fig.add_subplot(111)
@@ -81,17 +81,18 @@ def draw_diagram(data,fields,yaxis_title,title,xaxis_range=None):
     plt.title(title)
     plt.xlim(xaxis_range)
     # show plot
+    plt.savefig(filename)
     plt.show()
 
 def main():
     # Also replaces keys due to plotly not allowing much change from what isn't in the data source
     main_ns_data = open_csv_files("main_ns_data.csv",["delta0","delta1"])
     main_ns_data = replace_keys(main_ns_data,[("delta0","k8s-osm-cluster-ns"),("delta1","mec-env-ns")])
-    draw_diagram(main_ns_data,fields=["k8s-osm-cluster-ns","mec-env-ns"],yaxis_title="Time in seconds",title="Main OSM deployment",xaxis_range=[570,730])
+    draw_diagram(main_ns_data,fields=["k8s-osm-cluster-ns","mec-env-ns"],yaxis_title="Time in seconds",title="Main OSM deployment",xaxis_range=[570,730],filename="osm-main.pdf")
     
     charmed_ns_data = open_csv_files("charmed_ns_data.csv",["delta0"])
     charmed_ns_data = replace_keys(charmed_ns_data,[("delta0","charmed-osm")])
-    draw_diagram(charmed_ns_data,fields=["charmed-osm"],yaxis_title="Time in seconds",title="Charmed OSM deploymeny",xaxis_range=[7,30])
+    draw_diagram(charmed_ns_data,fields=["charmed-osm"],yaxis_title="Time in seconds",title="Charmed OSM deploymeny",xaxis_range=[7,30],filename="osm-charmed.pdf")
     
     
     mep_data = open_csv_files("mec_dataV2.csv",["delta0","delta1","delta2","delta3"])
@@ -99,7 +100,7 @@ def main():
                              ("delta1","Service Creation"),
                              ("delta2","Subscription Creation"),
                              ("delta3","Service Query")])
-    draw_diagram(mep_data,fields=["Application Ready","Service Creation","Subscription Creation","Service Query"],yaxis_title="Time in seconds",title="MEC Application execution time",xaxis_range=[275,425])
+    draw_diagram(mep_data,fields=["Application Ready","Service Creation","Subscription Creation","Service Query"],yaxis_title="Time in seconds",title="MEC Application execution time",xaxis_range=[275,425],filename="mep.pdf")
     
 
 if __name__ == "__main__":
