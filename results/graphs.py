@@ -27,15 +27,17 @@ def replace_keys(data,replacement):
 
 def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     final_data = [data[key] for key in data]
-    fig = plt.figure(figsize =(10, 7))
+    fig = plt.figure(figsize =(10, 5))
     ax = fig.add_subplot(111)
     # Creating axes instance
     print(final_data)
     bp = ax.boxplot(final_data, patch_artist = True,
-                    notch = False, vert = 0)
+                    notch = False, vert = 0, widths=0.3)
     
-    colors = ['#0000FF', '#00FF00',
-            '#FFFF00', '#FF00FF']
+    print([item.get_ydata()[1] for item in bp['whiskers']])
+    
+    colors = ['#DAE8FC', '#D5E8D4',
+            '#F8CECC', '#FFF2CC']
     
     for patch, color in zip(bp['boxes'], colors):
         patch.set_facecolor(color)
@@ -43,20 +45,20 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     # changing color and linewidth of
     # whiskers
     for whisker in bp['whiskers']:
-        whisker.set(color ='#8B008B',
+        whisker.set(color ='#9673A6',
                     linewidth = 1.5,
                     linestyle =":")
     
     # changing color and linewidth of
     # caps
     for cap in bp['caps']:
-        cap.set(color ='#8B008B',
+        cap.set(color ='#9673A6',
                 linewidth = 2)
     
     # changing color and linewidth of
     # medians
     for median in bp['medians']:
-        median.set(color ='red',
+        median.set(color ='#F0A30A',
                 linewidth = 3)
         
     # changing style of fliers
@@ -66,29 +68,31 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
                 alpha = 0.5)
         
     # x-axis labels
-    ax.set_yticklabels(fields)
+    ax.set_yticklabels(fields, fontsize=15)
     
-    # Adding title
-    plt.title("Customized box plot")
+    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
+        label.set_fontsize(13)
     
     # Removing top axes and right axes
     # ticks
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
         
-    plt.yticks(rotation=45)
-    plt.xlabel('Time in seconds')
-    plt.title(title)
+    plt.yticks(rotation=45, fontsize=15)
+    plt.xlabel('Time in seconds', fontsize=15)
+    plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 17})
     plt.xlim(xaxis_range)
     # show plot
-    plt.savefig(filename)
+    
+    plt.tight_layout()
+    plt.savefig(filename, transparent=True)
     plt.show()
 
 def main():
     # Also replaces keys due to plotly not allowing much change from what isn't in the data source
     main_ns_data = open_csv_files("main_ns_data.csv",["delta0","delta1"])
     main_ns_data = replace_keys(main_ns_data,[("delta0","k8s-osm-cluster-ns"),("delta1","mec-env-ns")])
-    draw_diagram(main_ns_data,fields=["k8s-osm-cluster-ns","mec-env-ns"],yaxis_title="Time in seconds",title="Main OSM deployment",xaxis_range=[570,730],filename="osm-main.pdf")
+    draw_diagram(main_ns_data,fields=["k8s-osm-cluster-ns","mec-env-ns"],yaxis_title="Time in seconds",title="Deployment time of k8s-osm-cluster-ns and mec-env-ns NSs",xaxis_range=[570,730],filename="deploy_time_ns.pdf")
     
     charmed_ns_data = open_csv_files("charmed_ns_data.csv",["delta0"])
     charmed_ns_data = replace_keys(charmed_ns_data,[("delta0","charmed-osm")])
