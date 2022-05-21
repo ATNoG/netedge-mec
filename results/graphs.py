@@ -1,3 +1,4 @@
+from turtle import width
 import matplotlib.pyplot as plt
 import numpy as np
 N = 3
@@ -32,7 +33,7 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     # Creating axes instance
     print(final_data)
     bp = ax.boxplot(final_data, patch_artist = True,
-                    notch = False, vert = True)
+                    notch = False, vert = True, widths=0.3)
     
     colors = ['#DAE8FC', '#D5E8D4',
         '#F8CECC', '#FFF2CC']
@@ -81,16 +82,20 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     
     for idx,quantile_list in enumerate(quantiles):
         for quantile in quantile_list:
-            plt.annotate(round(quantile,2),(idx+1.10,quantile))
+            plt.annotate(round(quantile,2),(idx+1.17,quantile), fontsize=13)
         
     plt.ylabel('Time in seconds',fontsize=15)
     plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 17})
-    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
+    
+    for label in (ax.get_xticklabels()):
+        label.set_fontsize(15)
+    for label in (ax.get_yticklabels()):
         label.set_fontsize(13)
+
     plt.ylim(xaxis_range)
     # show plot
     plt.tight_layout()
-    plt.savefig(filename)
+    plt.savefig(filename, transparent=True)
     plt.show()
 
 def main():
