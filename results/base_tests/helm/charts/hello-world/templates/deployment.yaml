@@ -23,3 +23,5 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          command: ["/bin/sleep","9000"]
+
