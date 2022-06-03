@@ -1,0 +1,10 @@
+ba4c4795e591f05ede4a2a9f2d3b7a96	base_knf_vnf/README.md
+4f10dc5598f318a4c0f79c6a4fbc4bc6	base_knf_vnf/base_knf_vnfd.yaml
+a40bf2d5f1231708ab289b106c674dd2	base_knf_vnf/helm-chart-v3s/helm/Chart.yaml
+b12f02f44f5ed3318104c095c455e5ee	base_knf_vnf/helm-chart-v3s/helm/README.md
+7f3fe644329a2bdb9747279934f5a86c	base_knf_vnf/helm-chart-v3s/helm/values.yaml
+7ecd783912b076f3bf284b6db06adafa	base_knf_vnf/helm-chart-v3s/helm/templates/_helpers.tpl
+814533677ea452294c1f3b095263a2ae	base_knf_vnf/helm-chart-v3s/helm/templates/NOTES.txt
+a651c261a5979deb84a89729e134380b	base_knf_vnf/helm-chart-v3s/helm/templates/service.yaml
+b321ee16192a92f8071ddcadbb3a2a1f	base_knf_vnf/helm-chart-v3s/helm/templates/deployment.yaml
+ca54c420b80884fbac94f5c579482326	base_knf_vnf/helm-chart-v3s/helm/templates/serviceaccount.yaml

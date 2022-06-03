@@ -1,0 +1,23 @@
+nsd:
+  nsd:
+  - id: base_knf_nsd
+    name: base_knf_nsd
+    designer: OSM
+    description: NS for the K8s cluster for OSM
+    version: '1.0'
+    vnfd-id:
+    - base_knf_vnf
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: 'base_knf_vnf'
+        vnfd-id: base_knf_vnf
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: 'base_knf_vnf'
+            constituent-cpd-id: mgmt-ext
+          virtual-link-profile-id: mgmt-net
+    virtual-link-desc:
+    - id: mgmt-net
+      mgmt-network: true
+      vim-network-name: proj_net
