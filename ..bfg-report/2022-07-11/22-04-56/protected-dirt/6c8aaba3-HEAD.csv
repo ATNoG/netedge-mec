@@ -1,0 +1,5 @@
+d38b51f2be9b03cd9a966970891d9bb9c5e0bd3e,DELETE,regular-file,k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/nbi-custom-operator/nbi-custom-operator_ubuntu-20.04-amd64-aarch64-arm64.charm,940284,
+9b9a1c4e449f254a2d2255ed15e8f293e7a3958b,DELETE,regular-file,k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/osm-keystone_ubuntu-20.04-amd64.charm,3892536,
+a49d227e8e82aa25067d565f438b1f584bbdafb8,DELETE,regular-file,k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/osm-lcm_ubuntu-20.04-amd64-aarch64-arm64.charm,2049223,
+587de332fa58286bd47d136067d268b01d528621,DELETE,regular-file,k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s_ubuntu-20.04-amd64.charm,2133695,
+2d7c5e586a70f6cde8c99e125aa799a3e836ef8e,DELETE,regular-file,tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/Scripts/charms/k8s_controller_installer/k8s-controller-installer_ubuntu-20.04-amd64.charm,2498118,
