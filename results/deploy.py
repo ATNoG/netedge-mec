@@ -224,26 +224,26 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
     # just to be sure, run two times in a row
     try:
         for i in range(2):
-            print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_osm_name} - {i}\n")
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-delete 
-                {ns_osm_name} --wait"""
-            ), timeout=5*60)
-            print(output)
-
-            print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8scluster-delete 
-                k8s_test --force --wait"""
-            ))
-            print(output)
-
-            #print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
+            #print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_osm_name} - {i}\n")
             #output = subprocess.run(shlex.split(
             #    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-delete 
-            #    {ns_main_name} --wait"""
+            #    {ns_osm_name} --wait"""
             #), timeout=5*60)
             #print(output)
+#
+            #print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
+            #output = subprocess.run(shlex.split(
+            #    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8scluster-delete 
+            #    k8s_test --force --wait"""
+            #))
+            #print(output)
+
+            print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
+            output = subprocess.run(shlex.split(
+                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-delete 
+                {ns_main_name} --wait"""
+            ), timeout=5*60)
+            print(output)
 
     except Exception as e:
         print(e)
