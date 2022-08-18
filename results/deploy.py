@@ -381,17 +381,17 @@ def main():
 #
 #        gather_timestamps_from_kafka(results_path, charmed_osm_master_ip=charmed_osm_master_ip)
 #
-#        # obtain the NS instantiation details (first, warm up, because NBI does some kind of weird cache)
-#        # First, login with OSM using the credentials given by param
-#        osm_url = f"https://{IP_ADDR}:9999"
-#        response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
-#            "username": USER_MAIN,
-#            "password": PASSWORD_MAIN
-#        }, headers={
-#            "Accept": "application/json"
-#        }, verify=False)
-#
-#        print(response.status_code)
+        # obtain the NS instantiation details (first, warm up, because NBI does some kind of weird cache)
+        # First, login with OSM using the credentials given by param
+        osm_url = f"https://{IP_ADDR}:9999"
+        response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
+            "username": USER_MAIN,
+            "password": PASSWORD_MAIN
+        }, headers={
+            "Accept": "application/json"
+        }, verify=False)
+
+        print(response.status_code)
 
         token = response.json()['id']
         trials = 0
