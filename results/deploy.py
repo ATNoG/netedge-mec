@@ -448,7 +448,7 @@ def main():
             time.sleep(60)
 
             stop = {CLUSTER_FOR_OSM_NAME: '', CHARMED_OSM_NAME: ''}
-            for ns_name in (CLUSTER_FOR_OSM_NAME):      # , CHARMED_OSM_NAME
+            for ns_name in (CLUSTER_FOR_OSM_NAME, ):      # , CHARMED_OSM_NAME
                 print(f"\n\n\n<{time.time()}> - Obtain the NS instantiation details\n")
                 subprocess.run(shlex.split(
                     f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-show 
