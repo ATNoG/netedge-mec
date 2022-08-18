@@ -12,7 +12,7 @@ additionalParamsForVnf:
     osm_url: "https://10.0.12.98:9999"
     osm_user: k8s_user
     osm_password: "Olaadeus!1"
-    vim: 1c29b0d1-7336-47aa-8ea8-a0b6f2f0fefd
+    vim: 3bfd2f56-282b-402e-9ef2-442b2c717c09
 
     # worker VDUs
     worker_username: worker
