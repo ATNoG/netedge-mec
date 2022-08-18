@@ -7,7 +7,7 @@ import yaml
 import requests
 import re
 
-NUMBER_TESTS = 20
+NUMBER_TESTS = 8
 
 USER_MAIN = 'netedge'
 PASSWORD_MAIN = ''
@@ -238,12 +238,12 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
             ))
             print(output)
 
-            print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
-                {ns_main_name} --wait"""
-            ), timeout=5*60)
-            print(output)
+            #print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
+            #output = subprocess.run(shlex.split(
+            #    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
+            #    {ns_main_name} --wait"""
+            #), timeout=5*60)
+            #print(output)
     except Exception as e:
         print(e)
         
@@ -293,9 +293,9 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
 
 
 def main():
-    init_environment()
+    # init_environment()
     
-    for i in range(10, NUMBER_TESTS+3):
+    for i in range(0, NUMBER_TESTS+3):
         print("#######################################################################")
         print(f"Test <{i}>")
         print("#######################################################################")
@@ -326,70 +326,70 @@ def main():
         # instantiate cluster for OSM
         instantiate_ns(ns_name=CLUSTER_FOR_OSM_NAME, vnf_name_master='osm_vnf', nsd_name='k8s_osm_cluster_nsd', ns_config_file=PATH_OSM_NS_CONFIG_FILE, results_path=results_path)
         
-        # Execute primitive to download all the necessary charmed OSM images
-        print(f"\n\n\n<{time.time()}> - Execute primitive to download all the necessary charmed OSM images\n")
-        for vdu in ('controller', 'worker'):
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {CLUSTER_FOR_OSM_NAME} 
-                --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
-            ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            print(output)
-
-        # obtain the IP addr of the first NS master
-        print(f"\n\n\n<{time.time()}> - Obtaining master's IP addr\n")
-        output = subprocess.run(shlex.split(
-            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} vnf-list --ns {CLUSTER_FOR_OSM_NAME}"""
-        ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(output)
-
-        time.sleep(60)
-
-        all_output = output.stdout.decode('utf-8')
-        ip_addr_start_index = all_output.find('10.0.')
-        ip_addr_end_index = all_output.find(' ', ip_addr_start_index)
-        charmed_osm_master_ip = all_output[ip_addr_start_index:ip_addr_end_index]
-
-        print(f"Charmed OSM master's IP: {charmed_osm_master_ip}")
-
-        # edit the NS config file for the second cluster
-        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
-            data_yaml = yaml.safe_load(file)
-
-        data_yaml['additionalParamsForVnf'][0]['additionalParams']['osm_url'] = f"https://{charmed_osm_master_ip}:9999"
-
-        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
-            yaml.safe_dump(data_yaml, file)
-
-        # instantiate Charmed OSM
-        instantiate_ns(ns_name=CHARMED_OSM_NAME, vnf_name_master='cluster_vnf', nsd_name='k8s_cluster_nsd', ns_config_file=PATH_CLUSTER_NS_CONFIG_FILE, results_path=results_path)
-
-        time.sleep(60)
-        
-        with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
-            data_yaml = yaml.safe_load(file)
-        
-        data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"http://{charmed_osm_master_ip}:30080"
-        
-        with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
-            yaml.safe_dump(data_yaml, file)
-
-        instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
-
-        print(f"\n\n\n<{time.time()}> - Finished deployment\n")
-
-        gather_timestamps_from_kafka(results_path, charmed_osm_master_ip=charmed_osm_master_ip)
-
-        # obtain the NS instantiation details (first, warm up, because NBI does some kind of weird cache)
-        # First, login with OSM using the credentials given by param
-        osm_url = f"https://{IP_ADDR}:9999"
-        response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
-            "username": USER_MAIN,
-            "password": PASSWORD_MAIN
-        }, headers={
-            "Accept": "application/json"
-        }, verify=False)
-
-        print(response.status_code)
+#        # Execute primitive to download all the necessary charmed OSM images
+#        print(f"\n\n\n<{time.time()}> - Execute primitive to download all the necessary charmed OSM images\n")
+#        for vdu in ('controller', 'worker'):
+#            output = subprocess.run(shlex.split(
+#                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-action {CLUSTER_FOR_OSM_NAME} 
+#                --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
+#            ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#            print(output)
+#
+#        # obtain the IP addr of the first NS master
+#        print(f"\n\n\n<{time.time()}> - Obtaining master's IP addr\n")
+#        output = subprocess.run(shlex.split(
+#            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} vnf-list --ns {CLUSTER_FOR_OSM_NAME}"""
+#        ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#        print(output)
+#
+#        time.sleep(60)
+#
+#        all_output = output.stdout.decode('utf-8')
+#        ip_addr_start_index = all_output.find('10.0.')
+#        ip_addr_end_index = all_output.find(' ', ip_addr_start_index)
+#        charmed_osm_master_ip = all_output[ip_addr_start_index:ip_addr_end_index]
+#
+#        print(f"Charmed OSM master's IP: {charmed_osm_master_ip}")
+#
+#        # edit the NS config file for the second cluster
+#        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
+#            data_yaml = yaml.safe_load(file)
+#
+#        data_yaml['additionalParamsForVnf'][0]['additionalParams']['osm_url'] = f"https://{charmed_osm_master_ip}:9999"
+#
+#        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
+#            yaml.safe_dump(data_yaml, file)
+#
+#        # instantiate Charmed OSM
+#        instantiate_ns(ns_name=CHARMED_OSM_NAME, vnf_name_master='cluster_vnf', nsd_name='k8s_cluster_nsd', ns_config_file=PATH_CLUSTER_NS_CONFIG_FILE, results_path=results_path)
+#
+#        time.sleep(60)
+#        
+#        with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
+#            data_yaml = yaml.safe_load(file)
+#        
+#        data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"http://{charmed_osm_master_ip}:30080"
+#        
+#        with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
+#            yaml.safe_dump(data_yaml, file)
+#
+#        instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
+#
+#        print(f"\n\n\n<{time.time()}> - Finished deployment\n")
+#
+#        gather_timestamps_from_kafka(results_path, charmed_osm_master_ip=charmed_osm_master_ip)
+#
+#        # obtain the NS instantiation details (first, warm up, because NBI does some kind of weird cache)
+#        # First, login with OSM using the credentials given by param
+#        osm_url = f"https://{IP_ADDR}:9999"
+#        response = requests.post(f"{osm_url}/osm/admin/v1/tokens", json={
+#            "username": USER_MAIN,
+#            "password": PASSWORD_MAIN
+#        }, headers={
+#            "Accept": "application/json"
+#        }, verify=False)
+#
+#        print(response.status_code)
         
         token = response.json()['id']
         trials = 0
@@ -446,7 +446,7 @@ def main():
             time.sleep(60)
 
             stop = {CLUSTER_FOR_OSM_NAME: '', CHARMED_OSM_NAME: ''}
-            for ns_name in (CLUSTER_FOR_OSM_NAME, CHARMED_OSM_NAME):
+            for ns_name in (CLUSTER_FOR_OSM_NAME):      # , CHARMED_OSM_NAME
                 print(f"\n\n\n<{time.time()}> - Obtain the NS instantiation details\n")
                 subprocess.run(shlex.split(
                     f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-show 
@@ -463,10 +463,10 @@ def main():
 
                     with open(f"{results_path}{ns_name}.yaml", 'w') as file:
                         file.write(output.stdout.decode('utf-8'))
-            if stop[CLUSTER_FOR_OSM_NAME] and stop[CHARMED_OSM_NAME]:
+            if stop[CLUSTER_FOR_OSM_NAME]:
                 break
             
-            if trials > 5:
+            if trials > 1:
                 break
 
             nsi_ids = []
