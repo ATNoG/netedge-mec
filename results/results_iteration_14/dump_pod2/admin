@@ -1,0 +1,17 @@
+Received message dummy message
+...
+ in topic admin with key b'echo' create with timestamp 1651521114266
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521113275
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521118314
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521123350
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521128382
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521248442
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521368475
+Received message {from: lcm, to: lcm, version: 11.0.2+gbbcfaea, worker_id: kubepods-bes}
+ in topic admin with key b'ping' create with timestamp 1651521488516

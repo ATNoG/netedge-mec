@@ -244,6 +244,7 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
             #    {ns_main_name} --wait"""
             #), timeout=5*60)
             #print(output)
+
     except Exception as e:
         print(e)
         
@@ -296,6 +297,7 @@ def main():
     # init_environment()
     
     for i in range(0, NUMBER_TESTS+3):
+
         print("#######################################################################")
         print(f"Test <{i}>")
         print("#######################################################################")
@@ -390,7 +392,7 @@ def main():
 #        }, verify=False)
 #
 #        print(response.status_code)
-        
+
         token = response.json()['id']
         trials = 0
         while True:
