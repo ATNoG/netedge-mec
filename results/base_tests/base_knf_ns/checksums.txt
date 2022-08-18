@@ -1,2 +1,0 @@
-3c0180178e848fafebc341b63641700d	base_knf_ns/base_nsd.yaml
-4a55d379a8b8f11a9957bf0079aad7d5	base_knf_ns/README.md

@@ -2594,11 +2594,11 @@ vcaStatus:
                         type: string
                         value: NetEdge
                     password:
-                        default: ***REMOVED***
+                        default: Yb5Xkbnk
                         description: ''
                         source: default
                         type: string
-                        value: ***REMOVED***
+                        value: Yb5Xkbnk
                     project-domain-name:
                         default: atnog
                         description: ''
