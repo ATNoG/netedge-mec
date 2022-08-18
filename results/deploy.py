@@ -460,11 +460,8 @@ def main():
                     {ns_name} --literal"""
                 ), stdout=subprocess.PIPE)
 
-                if 'since' in output.stdout.decode('utf-8'):
-                    stop[ns_name] = True
-
-                    with open(f"{results_path}{ns_name}.yaml", 'w') as file:
-                        file.write(output.stdout.decode('utf-8'))
+                with open(f"{results_path}{ns_name}.yaml", 'w') as file:
+                    file.write(output.stdout.decode('utf-8'))
             if stop[CLUSTER_FOR_OSM_NAME]:
                 break
             
