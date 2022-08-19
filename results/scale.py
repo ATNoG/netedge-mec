@@ -139,7 +139,7 @@ def gather_timestamps_from_kafka(results_path: str):
     print(output)
     
     # Leave time for containers to initialize properly
-    time.sleep(60*3)
+    time.sleep(60)
 
     # Create dump dir
     dir1 = subprocess.run(shlex.split(
@@ -231,14 +231,14 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
     ))
     print(output)
     
-    print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment lcm -n osm --replicas=0"""
-    ))
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment lcm -n osm --replicas=1"""
-    ))
-    print(output)
+    #print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment lcm -n osm --replicas=0"""
+    #))
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment lcm -n osm --replicas=1"""
+    #))
+    #print(output)
 
     print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
     output = subprocess.run(shlex.split(
@@ -246,13 +246,13 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
     ))
     print(output)
 
-    time.sleep(60*2)
+    time.sleep(30)
 
 
 def main():
     # init_environment()
     
-    for i in range(6, NUMBER_TESTS+3):
+    for i in range(0, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")
@@ -283,20 +283,39 @@ def main():
         
         print(f"\n\n\n<{time.time()}> - Scale out\n")
         output = subprocess.run(shlex.split(
-            f"""osm --hostname {IP_ADDR} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} 
             vnf-scale osm-cluster osm_vnf --scaling-group worker-scale --scale-out --wait"""
         ))
         print(output)
         
         print(f"\n\n\n<{time.time()}> - Scale in\n")
         output = subprocess.run(shlex.split(
-            f"""osm --hostname {IP_ADDR} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} 
             vnf-scale osm-cluster osm_vnf --scaling-group worker-scale --scale-in --wait"""
         ))
         print(output)
         
         gather_timestamps_from_kafka(results_path)
+        output = subprocess.run(shlex.split(
+            f"""kubectl delete deployment kafka-dump -n osm"""
+        ))
+        print(output)
+        print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
+        output = subprocess.run(shlex.split(
+            f"""rm -rf /tmp/dump_pod1"""
+        ))
+        print(output)
    
 if __name__ == '__main__':
-    main()
+    #main()
+    gather_timestamps_from_kafka("results_iteration_3/")
+    output = subprocess.run(shlex.split(
+        f"""kubectl delete deployment kafka-dump -n osm"""
+    ))
+    print(output)
+    print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
+    output = subprocess.run(shlex.split(
+        f"""rm -rf /tmp/dump_pod1"""
+    ))
+    print(output)
     #clean_environment(ns_osm_name=CLUSTER_FOR_OSM_NAME, ns_main_name=CHARMED_OSM_NAME)
