@@ -10,7 +10,7 @@ import re
 NUMBER_TESTS = 8
 
 USER_MAIN = 'netedge'
-PASSWORD_MAIN = ''
+PASSWORD_MAIN = 'Olaadeus1!'
 PROJECT_MAIN = 'netedge'
 IP_ADDR = '10.0.12.98'
 VIM_ACCOUNT_MAIN = 'NetEdge'
@@ -42,7 +42,7 @@ PATH_MEC_APP_DEPLOYMENT = '/home/escaleira@av.it.pt/mp1-test-app-mec/docker-img-
 
 CLUSTER_USERNAME = "controller"
 CLUSTER_PASSWORD = "olaadeus"
-CHARMED_OSM_NAMESPACE = 'osm-charm-oops'
+CHARMED_OSM_NAMESPACE = 'osm-charms-oops'
 
 
 def init_environment():
@@ -129,18 +129,11 @@ def instantiate_mec_app(charmed_osm_master_ip: str):
     ))
     print(output)
     
-def gather_timestamps_from_kafka(results_path: str, charmed_osm_master_ip: str):
-    # Send file to the other Cluster
+def gather_timestamps_from_kafka(results_path: str):
+    # Create container
     output = subprocess.run(shlex.split(
         f"""
-        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no -q ./results/deployment.yaml {CLUSTER_USERNAME}@{charmed_osm_master_ip}:~/
-        """
-    ))
-    print(output)
-    
-    output = subprocess.run(shlex.split(
-        f"""
-        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} kubectl apply -f ~/deployment.yaml -n {CHARMED_OSM_NAMESPACE}
+        kubectl apply -f ./results/deployment.yaml -n osm
         """
     ))
     print(output)
@@ -148,44 +141,109 @@ def gather_timestamps_from_kafka(results_path: str, charmed_osm_master_ip: str):
     # Leave time for containers to initialize properly
     time.sleep(60*3)
 
-    dir2 = subprocess.run(shlex.split(
+    # Create dump dir
+    dir1 = subprocess.run(shlex.split(
         f"""
-        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} mkdir /tmp/dump_pod2
+        mkdir /tmp/dump_pod1
         """
     ))
-    print(dir2)
-    
-    pod2_name = subprocess.run(shlex.split(
+    print(dir1)
+
+    # Obtain pod name
+    pod1_name = subprocess.run(shlex.split(
         f"""
-        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} kubectl get pods --no-headers -o  custom-columns='"':metadata.name'"' -n {CHARMED_OSM_NAMESPACE}
+        kubectl get pods --no-headers -o custom-columns=':metadata.name' -n osm
         """
     ), stdout=subprocess.PIPE)
-    print(pod2_name)
+    print(pod1_name)
 
-    pod2_name = list(filter(re.compile(r"kafka-dump.*").match, pod2_name.stdout.decode().split("\n")))[0]
- 
-    copy_pod2 = subprocess.run(shlex.split(
+    pod1_name = list(filter(re.compile(r"kafka-dump.*").match, pod1_name.stdout.decode().split("\n")))[0]
+    
+    # Copy from POD to Local Machine
+    copy_pod1 = subprocess.run(shlex.split(
         f"""
-        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} kubectl cp {CHARMED_OSM_NAMESPACE}/{pod2_name}:/home/kafka/dump/ /tmp/dump_pod2/
+        kubectl cp osm/{pod1_name}:/home/kafka/dump/ /tmp/dump_pod1/
         """
     ))
-    print(copy_pod2)
+    print(copy_pod1)
     
-    dump_pod2 = subprocess.run(shlex.split(
+
+    dump_pod1 = subprocess.run(shlex.split(
         f"""
-        sshpass -p {CLUSTER_PASSWORD} scp -o StrictHostKeyChecking=no -r -q {CLUSTER_USERNAME}@{charmed_osm_master_ip}:/tmp/dump_pod2/ {results_path}
+        cp -r /tmp/dump_pod1/ {results_path}
         """
     ))
-    print(dump_pod2)
+    print(dump_pod1)
     
 
-def clean_environment(charmed_osm_master_ip: str):
+def clean_environment(ns_osm_name: str, ns_main_name: str):
+    # just to be sure, run two times in a row
+    try:
+        for i in range(2):
+            #print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_osm_name} - {i}\n")
+            #output = subprocess.run(shlex.split(
+            #    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-delete 
+            #    {ns_osm_name} --wait"""
+            #), timeout=5*60)
+            #print(output)
+#
+            print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
+            output = subprocess.run(shlex.split(
+                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8scluster-delete 
+                k8s_test --force --wait"""
+            ))
+            print(output)
 
-    print(f"\n\n\n<{time.time()}> - Delete mp1\n")
+            print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
+            output = subprocess.run(shlex.split(
+                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-delete 
+                {ns_main_name} --wait"""
+            ), timeout=5*60)
+            print(output)
+
+    except Exception as e:
+        print(e)
+        
+        # edit the NS config file for the second cluster
+        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
+            data_yaml = yaml.safe_load(file)
+
+        data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] + '-oops'
+        data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] + '-oops'
+        CHARMED_OSM_NAMESPACE = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace']
+
+        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
+            yaml.safe_dump(data_yaml, file)
+        
+    # and just to be really sure
+    print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
     output = subprocess.run(shlex.split(
-        f"""osm --hostname {charmed_osm_master_ip} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} ns-delete 
-        mp1 --wait"""
-    ), timeout=5*60)
+        f"""sh results/delete_all_osm_resources.sh"""
+    ))
+    print(output)
+    
+    print(f"\n\n\n<{time.time()}> - Delete our results container\n")
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
+    ))
+    output = subprocess.run(shlex.split(
+        f"""kubectl delete deployment kafka-dump -n osm"""
+    ))
+    print(output)
+    
+    print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment lcm -n osm --replicas=0"""
+    ))
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment lcm -n osm --replicas=1"""
+    ))
+    print(output)
+
+    print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
+    output = subprocess.run(shlex.split(
+        f"""rm -rf /tmp/dump_pod1"""
+    ))
     print(output)
 
     time.sleep(60*2)
@@ -194,7 +252,7 @@ def clean_environment(charmed_osm_master_ip: str):
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS+3):
+    for i in range(6, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")
@@ -222,43 +280,23 @@ def main():
         # create directory for this iteration results
         results_path = f"./results_iteration_{i}/"
         os.mkdir(results_path)
-
-        # obtain the IP addr of the first NS master
-        print(f"\n\n\n<{time.time()}> - Obtaining master's IP addr\n")
+        
+        print(f"\n\n\n<{time.time()}> - Scale out\n")
         output = subprocess.run(shlex.split(
-            f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} vnf-list --ns {CLUSTER_FOR_OSM_NAME}"""
-        ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            f"""osm --hostname {IP_ADDR} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+            vnf-scale osm-cluster osm_vnf --scaling-group worker-scale --scale-out --wait"""
+        ))
         print(output)
-
-        time.sleep(60)
-
-        all_output = output.stdout.decode('utf-8')
-        ip_addr_start_index = all_output.find('10.0.')
-        ip_addr_end_index = all_output.find(' ', ip_addr_start_index)
-        charmed_osm_master_ip = all_output[ip_addr_start_index:ip_addr_end_index]
-
-        print(f"Charmed OSM master's IP: {charmed_osm_master_ip}")
         
-        with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
-            data_yaml = yaml.safe_load(file)
-
-        data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"http://{charmed_osm_master_ip}:30080"
+        print(f"\n\n\n<{time.time()}> - Scale in\n")
+        output = subprocess.run(shlex.split(
+            f"""osm --hostname {IP_ADDR} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+            vnf-scale osm-cluster osm_vnf --scaling-group worker-scale --scale-in --wait"""
+        ))
+        print(output)
         
-        with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
-            yaml.safe_dump(data_yaml, file)
-
-        instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
-
-        print(f"\n\n\n<{time.time()}> - Finished deployment\n")
-#
-        gather_timestamps_from_kafka(results_path, charmed_osm_master_ip=charmed_osm_master_ip)
-#
-        clean_environment(charmed_osm_master_ip=charmed_osm_master_ip)
-        
-        print("#######################################################################")
-        print(f"Test <{i}> finished at <{time.time()}>")
-        print("#######################################################################\n\n\n")
-
+        gather_timestamps_from_kafka(results_path)
+   
 if __name__ == '__main__':
     main()
     #clean_environment(ns_osm_name=CLUSTER_FOR_OSM_NAME, ns_main_name=CHARMED_OSM_NAME)
