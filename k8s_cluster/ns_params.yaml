@@ -9,7 +9,7 @@ additionalParamsForVnf:
     subnet_address: 172.16.0.0/24
 
     cluster_name: k8s_test
-    osm_url: "https://10.0.13.232:9999"
+    osm_url: "https://10.0.13.241:9999"
     osm_user: admin
     osm_password: admin
     vim: NetEdge
