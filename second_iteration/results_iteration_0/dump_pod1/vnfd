@@ -1,0 +1,191 @@
+Received message {_id: e4e871e1-cf10-4ec2-8add-5769c6fd57fc}
+ in topic vnfd with key b'created' create with timestamp 1660857793040
+Received message {_id: e4e871e1-cf10-4ec2-8add-5769c6fd57fc, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: get-k8s-controller-info}, {execution-environment-ref: controller-init-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]}],
+              execution-environment-list: [{external-connection-point-ref: vnf-controller-ext,
+                  id: controller-init-ee, juju: {charm: k8s_cluster_installer, proxy: true}}],
+              id: controller, initial-config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-init-ee, name: deploy-k8s-controller,
+                  seq: 2}, {execution-environment-ref: controller-init-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 3}, {
+                  execution-environment-ref: controller-init-ee, name: add-k8s-osm-cluster-params,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 4}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}, {id: ubuntu-template,
+      image: HAL_ubuntu2004_cloudinit_template, name: HAL_ubuntu2004_cloudinit_template}],
+  vdu: [{cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage]}, {cloud-init-file: cloud-init-worker.cfg, description: VMs
+        for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out, virtual-network-interface-requirement: [
+            {name: worker-out, virtual-interface: {type: PARAVIRT}}]}, {id: worker-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: worker-in, virtual-interface: {type: PARAVIRT}}]}], name: worker,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute, virtual-storage-desc: [
+        worker-storage]}], version: '1.0', virtual-compute-desc: [{id: controller-compute,
+      virtual-cpu: {num-virtual-cpu: 2}, virtual-memory: {size: 8}}, {id: worker-compute,
+      virtual-cpu: {num-virtual-cpu: 2}, virtual-memory: {size: 8}}], virtual-storage-desc: [
+    {id: controller-storage, size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}]}
+ in topic vnfd with key b'edited' create with timestamp 1660857795642
+Received message {_id: a030c0cd-920b-40a6-90c2-44e1cc6e80d2}
+ in topic vnfd with key b'created' create with timestamp 1660857801524
+Received message {_id: a030c0cd-920b-40a6-90c2-44e1cc6e80d2, description: K8s container deployment
+    of OSM, df: [{id: default-df, kdu-resource-profile: [{id: osm-kdu-nbi-resource,
+          kdu-name: osm-kdu, max-number-of-instances: 1, min-number-of-instances: 1,
+          resource-name: nbi}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{id: osm_cnf, relation: [{name: relation, provider: {endpoint: nbi,
+                    kdu-resource-profile-id: osm-kdu-nbi-resource}, requirer: {endpoint: nbi}}]}]}}}],
+  ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}], id: osm_cnf, k8s-cluster: {
+    nets: [{id: mgmtnet}]}, kdu: [{juju-bundle: bundle.yaml, name: osm-kdu}, {helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: osm_cnf,
+  provider: Canonical, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1660857804288
+Received message {_id: a030c0cd-920b-40a6-90c2-44e1cc6e80d2}
+ in topic vnfd with key b'deleted' create with timestamp 1660865425298
+Received message {_id: 7f282a29-8fbb-4856-a30c-129f6dab29b6}
+ in topic vnfd with key b'created' create with timestamp 1660865431112
+Received message {_id: 7f282a29-8fbb-4856-a30c-129f6dab29b6, description: K8s container deployment
+    of OSM, df: [{id: default-df, kdu-resource-profile: [{id: osm-kdu-nbi-resource,
+          kdu-name: osm-kdu, max-number-of-instances: 1, min-number-of-instances: 1,
+          resource-name: nbi}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{id: osm_cnf, relation: [{name: relation, provider: {endpoint: nbi,
+                    kdu-resource-profile-id: osm-kdu-nbi-resource}, requirer: {endpoint: nbi}}]}]}}}],
+  ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}], id: osm_cnf, k8s-cluster: {
+    nets: [{id: mgmtnet}]}, kdu: [{juju-bundle: bundle.yaml, name: osm-kdu}, {helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: osm_cnf,
+  provider: Canonical, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1660865434184
+Received message {_id: 7f282a29-8fbb-4856-a30c-129f6dab29b6}
+ in topic vnfd with key b'deleted' create with timestamp 1660866541462
+Received message {_id: 65e41464-d515-4048-9ea5-4008c4653e26}
+ in topic vnfd with key b'created' create with timestamp 1660866548317
+Received message {_id: 65e41464-d515-4048-9ea5-4008c4653e26, description: K8s container deployment
+    of OSM, df: [{id: default-df, kdu-resource-profile: [{id: osm-kdu-nbi-resource,
+          kdu-name: osm-kdu, max-number-of-instances: 1, min-number-of-instances: 1,
+          resource-name: nbi}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{id: osm_cnf, relation: [{name: relation, provider: {endpoint: nbi,
+                    kdu-resource-profile-id: osm-kdu-nbi-resource}, requirer: {endpoint: nbi}}]}]}}}],
+  ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}], id: osm_cnf, k8s-cluster: {
+    nets: [{id: mgmtnet}]}, kdu: [{juju-bundle: bundle.yaml, name: osm-kdu}, {helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: osm_cnf,
+  provider: Canonical, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1660866551180
+Received message {_id: 65e41464-d515-4048-9ea5-4008c4653e26}
+ in topic vnfd with key b'deleted' create with timestamp 1660870441781
+Received message {_id: 3815dd4f-e17c-47a2-b1c9-98cb03c499e0}
+ in topic vnfd with key b'created' create with timestamp 1660870455775
+Received message {_id: 3815dd4f-e17c-47a2-b1c9-98cb03c499e0, description: K8s container deployment
+    of OSM, df: [{id: default-df, kdu-resource-profile: [{id: osm-kdu-nbi-resource,
+          kdu-name: osm-kdu, max-number-of-instances: 1, min-number-of-instances: 1,
+          resource-name: nbi}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{id: osm_cnf, relation: [{name: relation, provider: {endpoint: nbi,
+                    kdu-resource-profile-id: osm-kdu-nbi-resource}, requirer: {endpoint: nbi}}]}]}}}],
+  ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}], id: osm_cnf, k8s-cluster: {
+    nets: [{id: mgmtnet}]}, kdu: [{juju-bundle: bundle.yaml, name: osm-kdu}, {helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: osm_cnf,
+  provider: Canonical, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1660870458980
+Received message {_id: 3815dd4f-e17c-47a2-b1c9-98cb03c499e0}
+ in topic vnfd with key b'deleted' create with timestamp 1660871546639
+Received message {_id: e4e871e1-cf10-4ec2-8add-5769c6fd57fc}
+ in topic vnfd with key b'deleted' create with timestamp 1660871548818
+Received message {_id: 2405d4c8-1ce5-48a7-ae5f-6004553a88f7}
+ in topic vnfd with key b'created' create with timestamp 1660871556366
+Received message {_id: 2405d4c8-1ce5-48a7-ae5f-6004553a88f7, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: get-k8s-controller-info}, {execution-environment-ref: controller-init-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]}],
+              execution-environment-list: [{external-connection-point-ref: vnf-controller-ext,
+                  id: controller-init-ee, juju: {charm: k8s_cluster_installer, proxy: true}}],
+              id: controller, initial-config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-init-ee, name: deploy-k8s-controller,
+                  seq: 2}, {execution-environment-ref: controller-init-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 3}, {
+                  execution-environment-ref: controller-init-ee, name: add-k8s-osm-cluster-params,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 4}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}, {id: ubuntu-template,
+      image: HAL_ubuntu2004_cloudinit_template, name: HAL_ubuntu2004_cloudinit_template}],
+  vdu: [{cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage]}, {cloud-init-file: cloud-init-worker.cfg, description: VMs
+        for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out, virtual-network-interface-requirement: [
+            {name: worker-out, virtual-interface: {type: PARAVIRT}}]}, {id: worker-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: worker-in, virtual-interface: {type: PARAVIRT}}]}], name: worker,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute, virtual-storage-desc: [
+        worker-storage]}], version: '1.0', virtual-compute-desc: [{id: controller-compute,
+      virtual-cpu: {num-virtual-cpu: 2}, virtual-memory: {size: 8}}, {id: worker-compute,
+      virtual-cpu: {num-virtual-cpu: 2}, virtual-memory: {size: 8}}], virtual-storage-desc: [
+    {id: controller-storage, size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}]}
+ in topic vnfd with key b'edited' create with timestamp 1660871558972
+Received message {_id: a44b2490-8159-4ab1-8011-8aac3aff28d6}
+ in topic vnfd with key b'created' create with timestamp 1660871562475
+Received message {_id: a44b2490-8159-4ab1-8011-8aac3aff28d6, description: K8s container deployment
+    of OSM, df: [{id: default-df, kdu-resource-profile: [{id: osm-kdu-nbi-resource,
+          kdu-name: osm-kdu, max-number-of-instances: 1, min-number-of-instances: 1,
+          resource-name: nbi}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{id: osm_cnf, relation: [{name: relation, provider: {endpoint: nbi,
+                    kdu-resource-profile-id: osm-kdu-nbi-resource}, requirer: {endpoint: nbi}}]}]}}}],
+  ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}], id: osm_cnf, k8s-cluster: {
+    nets: [{id: mgmtnet}]}, kdu: [{juju-bundle: bundle.yaml, name: osm-kdu}, {helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: osm_cnf,
+  provider: Canonical, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1660871565429

@@ -1,0 +1,3 @@
+Received message {alarm_delete_response: {alarm_uuid: 4f7a3b9b-d6b7-4fff-aec2-828ae2d3b3e4, correlation_id: 61700151,
+    status: true}, schema_type: alarm_delete_response, schema_version: '1.1'}
+ in topic alarm_response_61700151 with key b'delete_alarm_response' create with timestamp 1660832616824

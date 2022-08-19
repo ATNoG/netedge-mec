@@ -42,7 +42,7 @@ PATH_MEC_APP_DEPLOYMENT = '/home/escaleira@av.it.pt/mp1-test-app-mec/docker-img-
 
 CLUSTER_USERNAME = "controller"
 CLUSTER_PASSWORD = "olaadeus"
-CHARMED_OSM_NAMESPACE = 'osm-charms-oops'
+CHARMED_OSM_NAMESPACE = 'osm-charm-oops'
 
 
 def init_environment():
@@ -231,12 +231,12 @@ def clean_environment(ns_osm_name: str, ns_main_name: str, charmed_osm_master_ip
             ), timeout=5*60)
             print(output)
 
-            print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8scluster-delete 
-                k8s_test --force --wait"""
-            ))
-            print(output)
+            #print(f"\n\n\n<{time.time()}> - Delete OSM cluster - {i}\n")
+            #output = subprocess.run(shlex.split(
+            #    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8scluster-delete 
+            #    k8s_test --force --wait"""
+            #))
+            #print(output)
 
             #print(f"\n\n\n<{time.time()}> - Delete OSM NS {ns_main_name} - {i}\n")
             #output = subprocess.run(shlex.split(
@@ -266,23 +266,23 @@ def clean_environment(ns_osm_name: str, ns_main_name: str, charmed_osm_master_ip
     #))
     #print(output)
     #
-    #print(f"\n\n\n<{time.time()}> - Delete our results container\n")
-    #output = subprocess.run(shlex.split(
-    #    f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
-    #))
-    #output = subprocess.run(shlex.split(
-    #    f"""kubectl delete deployment kafka-dump -n osm"""
-    #))
-    #print(output)
+    print(f"\n\n\n<{time.time()}> - Delete our results container\n")
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
+    ))
+    output = subprocess.run(shlex.split(
+        f"""kubectl delete deployment kafka-dump -n osm"""
+    ))
+    print(output)
     #
-    #print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
-    #output = subprocess.run(shlex.split(
-    #    f"""kubectl scale deployment lcm -n osm --replicas=0"""
-    #))
-    #output = subprocess.run(shlex.split(
-    #    f"""kubectl scale deployment lcm -n osm --replicas=1"""
-    #))
-    #print(output)
+    print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment lcm -n osm --replicas=0"""
+    ))
+    output = subprocess.run(shlex.split(
+        f"""kubectl scale deployment lcm -n osm --replicas=1"""
+    ))
+    print(output)
 
     print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
     output = subprocess.run(shlex.split(
@@ -304,7 +304,7 @@ def clean_environment(ns_osm_name: str, ns_main_name: str, charmed_osm_master_ip
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS+3):
+    for i in range(2, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")

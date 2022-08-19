@@ -10,7 +10,7 @@ import re
 NUMBER_TESTS = 8
 
 USER_MAIN = 'netedge'
-PASSWORD_MAIN = ''
+PASSWORD_MAIN = 'Olaadeus1!'
 PROJECT_MAIN = 'netedge'
 IP_ADDR = '10.0.12.98'
 VIM_ACCOUNT_MAIN = 'NetEdge'
@@ -252,7 +252,7 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS+3):
+    for i in range(6, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")

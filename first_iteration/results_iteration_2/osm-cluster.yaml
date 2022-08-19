@@ -1,19 +1,20 @@
 _admin:
-    created: 1660844581.2202287
+    created: 1660907914.9132776
     current-operation: null
     deployed:
         K8s: []
         RO:
+            operational-status: running
             vnfd: []
         VCA:
-        -   application: app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr
+        -   application: app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou
             config_sw_installed: true
             detailed-status: ''
             ee_descriptor_id: controller-ee
-            ee_id: 1d6c4302-7d2e-41ce-aace-d71325e75e85.app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr.1
+            ee_id: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8.app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou.1
             kdu_name: null
             member-vnf-index: osm_vnf
-            model: 1d6c4302-7d2e-41ce-aace-d71325e75e85
+            model: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
             operational-status: init
             step: initial-deploy
             target_element: vnf/osm_vnf/vdu/controller/0
@@ -22,14 +23,14 @@ _admin:
             vdu_id: controller
             vdu_name: null
             vnfd_id: k8s_osm_cluster_vnf
-        -   application: app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal
+        -   application: app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh
             config_sw_installed: true
             detailed-status: ''
             ee_descriptor_id: worker-ee
-            ee_id: 1d6c4302-7d2e-41ce-aace-d71325e75e85.app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal.0
+            ee_id: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8.app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh.0
             kdu_name: null
             member-vnf-index: osm_vnf
-            model: 1d6c4302-7d2e-41ce-aace-d71325e75e85
+            model: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
             operational-status: init
             step: initial-deploy
             target_element: vnf/osm_vnf/vdu/worker/0
@@ -38,7 +39,7 @@ _admin:
             vdu_id: worker
             vdu_name: null
             vnfd_id: k8s_osm_cluster_vnf
-    modified: 1660845446.1934245
+    modified: 1660908937.5307572
     nsState: INSTANTIATED
     nslcmop: null
     operation-type: null
@@ -46,32 +47,27 @@ _admin:
     - 67db30fa-5f69-46a2-80c5-4616583357f1
     projects_write:
     - 67db30fa-5f69-46a2-80c5-4616583357f1
-_id: 1d6c4302-7d2e-41ce-aace-d71325e75e85
+_id: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
 additionalParamsForNs: null
 admin-status: ENABLED
 affinity-or-anti-affinity-group: []
-config-status: failed
+config-status: configured
 configurationStatus:
 -   elementType: VDU
     elementUnderConfiguration: controller-0
     status: READY
 -   elementType: VDU
     elementUnderConfiguration: worker-0
-    status: BROKEN
+    status: READY
 constituent-vnfr-ref:
-- 1dbbc260-823e-49de-8209-65fd427c71fe
-create-time: 1660844581.2120056
+- 253742ad-a2ae-4ee2-b22e-37a4cc125f8f
+create-time: 1660907914.905789
 currentOperation: IDLE
 currentOperationID: null
 datacenter: 3bfd2f56-282b-402e-9ef2-442b2c717c09
 deploymentStatus: null
 description: default description
-detailed-status: 'Operation: INSTANTIATING.9a231897-90b0-43be-b295-0208da3dd853, Stage
-    3/5: running Day-1 primitives for VDU. Detail: Deploying at VIM: Error at create
-    vdu: Forbidden: Quota exceeded for ram: Requested 18432, but already used 131072
-    of 131072 ram (HTTP 403) (Request-ID: req-1a95022d-017f-4022-a6c2-27ddac529f91).
-    Deploying VCA osm_vnf.worker: Waiting to VM being up and getting IP address Cannot
-    inject ssh-key because target VM is in error state'
+detailed-status: Done
 errorDescription: null
 errorDetail: null
 flavor:
@@ -97,7 +93,7 @@ flavor:
             vim_id: 825612aa-4edc-4d1f-a36b-11ab98e398c6
             vim_message: null
             vim_status: DONE
-id: 1d6c4302-7d2e-41ce-aace-d71325e75e85
+id: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
 image:
 -   id: '0'
     image: Ubuntu Server 20.04
@@ -123,8 +119,8 @@ instantiate_params:
         member-vnf-index: osm_vnf
 name: osm-cluster
 name-ref: osm-cluster
-ns-instance-config-ref: 1d6c4302-7d2e-41ce-aace-d71325e75e85
-nsState: BROKEN
+ns-instance-config-ref: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
+nsState: READY
 nsd:
     _admin:
         created: 1657848078.150069
@@ -173,17 +169,17 @@ nsd-id: 753dc1db-62c4-46fe-a175-fb85947a2906
 nsd-name-ref: k8s_osm_cluster_nsd
 nsd-ref: k8s_osm_cluster_nsd
 operational-events: []
-operational-status: failed
+operational-status: running
 orchestration-progress: {}
 resource-orchestrator: osmopenmano
 revision: 1
 short-name: osm-cluster
 ssh-authorized-key: null
 vcaStatus:
-    1d6c4302-7d2e-41ce-aace-d71325e75e85:
+    a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8:
         VNF:
             applications:
-                app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr:
+                app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou:
                     can_upgrade_to: ''
                     charm: local:bionic/k8s-cluster-installer-1
                     charm_channel: stable
@@ -203,7 +199,7 @@ vcaStatus:
                     public_address: ''
                     relations:
                         proxypeer:
-                        - app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr
+                        - app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou
                     series: bionic
                     status:
                         data: {}
@@ -211,13 +207,13 @@ vcaStatus:
                         info: <Obtain master ca cert hash> completed with success
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:53:07.823882698Z'
+                        since: '2022-08-19T11:28:00.654181398Z'
                         status: active
                         unknown_fields: {}
                         version: ''
                     subordinate_to: []
                     units:
-                        app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr/0:
+                        app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou/0:
                             address: null
                             agent_status:
                                 data: {}
@@ -225,7 +221,7 @@ vcaStatus:
                                 info: ''
                                 kind: ''
                                 life: ''
-                                since: '2022-08-18T17:53:08.180236059Z'
+                                since: '2022-08-19T11:28:01.027634295Z'
                                 status: idle
                                 unknown_fields: {}
                                 version: 2.9.29
@@ -234,7 +230,7 @@ vcaStatus:
                             machine: '1'
                             opened_ports: null
                             provider_id: null
-                            public_address: 10.248.128.100
+                            public_address: 10.248.128.204
                             subordinates: {}
                             unknown_fields: {}
                             workload_status:
@@ -244,7 +240,7 @@ vcaStatus:
                                     success
                                 kind: ''
                                 life: ''
-                                since: '2022-08-18T17:53:07.823882698Z'
+                                since: '2022-08-19T11:28:00.654181398Z'
                                 status: active
                                 unknown_fields: {}
                                 version: ''
@@ -252,7 +248,7 @@ vcaStatus:
                     unknown_fields:
                         charm-verion: ''
                     workload_version: ''
-                app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal:
+                app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh:
                     can_upgrade_to: ''
                     charm: local:bionic/k8s-cluster-installer-0
                     charm_channel: stable
@@ -272,21 +268,21 @@ vcaStatus:
                     public_address: ''
                     relations:
                         proxypeer:
-                        - app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal
+                        - app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh
                     series: bionic
                     status:
                         data: {}
                         err: null
-                        info: Couldn't update the known hosts file
+                        info: <Join a node to the cluster> completed with success
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:53:20.73232123Z'
-                        status: blocked
+                        since: '2022-08-19T11:28:21.725490458Z'
+                        status: active
                         unknown_fields: {}
                         version: ''
                     subordinate_to: []
                     units:
-                        app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal/0:
+                        app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh/0:
                             address: null
                             agent_status:
                                 data: {}
@@ -294,7 +290,7 @@ vcaStatus:
                                 info: ''
                                 kind: ''
                                 life: ''
-                                since: '2022-08-18T17:53:21.090648205Z'
+                                since: '2022-08-19T11:28:22.085078522Z'
                                 status: idle
                                 unknown_fields: {}
                                 version: 2.9.29
@@ -303,17 +299,18 @@ vcaStatus:
                             machine: '0'
                             opened_ports: null
                             provider_id: null
-                            public_address: 10.248.128.251
+                            public_address: 10.248.128.16
                             subordinates: {}
                             unknown_fields: {}
                             workload_status:
                                 data: {}
                                 err: null
-                                info: Couldn't update the known hosts file
+                                info: <Join a node to the cluster> completed with
+                                    success
                                 kind: ''
                                 life: ''
-                                since: '2022-08-18T17:53:20.73232123Z'
-                                status: blocked
+                                since: '2022-08-19T11:28:21.725490458Z'
+                                status: active
                                 unknown_fields: {}
                                 version: ''
                             workload_version: ''
@@ -321,7 +318,7 @@ vcaStatus:
                         charm-verion: ''
                     workload_version: ''
             branches: {}
-            controller_timestamp: '2022-08-18T17:57:07.95691527Z'
+            controller_timestamp: '2022-08-19T11:35:19.288953248Z'
             machines:
                 '0':
                     agent_status:
@@ -330,31 +327,31 @@ vcaStatus:
                         info: ''
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:44:51.370307215Z'
+                        since: '2022-08-19T11:20:15.202602873Z'
                         status: started
                         unknown_fields: {}
                         version: 2.9.29
                     constraints: ''
                     containers: {}
                     display_name: ''
-                    dns_name: 10.248.128.251
+                    dns_name: 10.248.128.16
                     hardware: arch=amd64 cores=0 mem=0M
                     has_vote: false
-                    hostname: juju-0fd56c-0
+                    hostname: juju-1a9829-0
                     id_: '0'
-                    instance_id: juju-0fd56c-0
+                    instance_id: juju-1a9829-0
                     instance_status:
                         data: {}
                         err: null
                         info: Running
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:43:31.71864923Z'
+                        since: '2022-08-19T11:18:56.315604341Z'
                         status: running
                         unknown_fields: {}
                         version: ''
                     ip_addresses:
-                    - 10.248.128.251
+                    - 10.248.128.16
                     jobs:
                     - JobHostUnits
                     lxd_profiles: {}
@@ -364,7 +361,7 @@ vcaStatus:
                         info: ''
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:43:08.468582202Z'
+                        since: '2022-08-19T11:18:44.994608856Z'
                         status: idle
                         unknown_fields: {}
                         version: ''
@@ -373,9 +370,9 @@ vcaStatus:
                             dns_nameservers: null
                             gateway: 10.248.128.1
                             ip_addresses:
-                            - 10.248.128.251
+                            - 10.248.128.16
                             is_up: true
-                            mac_address: 00:16:3e:fe:e5:95
+                            mac_address: 00:16:3e:88:5d:6a
                             space: alpha
                             unknown_fields: {}
                     primary_controller_machine: null
@@ -389,31 +386,31 @@ vcaStatus:
                         info: ''
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:44:51.360206243Z'
+                        since: '2022-08-19T11:20:15.283846849Z'
                         status: started
                         unknown_fields: {}
                         version: 2.9.29
                     constraints: ''
                     containers: {}
                     display_name: ''
-                    dns_name: 10.248.128.100
+                    dns_name: 10.248.128.204
                     hardware: arch=amd64 cores=0 mem=0M
                     has_vote: false
-                    hostname: juju-0fd56c-1
+                    hostname: juju-1a9829-1
                     id_: '1'
-                    instance_id: juju-0fd56c-1
+                    instance_id: juju-1a9829-1
                     instance_status:
                         data: {}
                         err: null
                         info: Running
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:43:21.992344413Z'
+                        since: '2022-08-19T11:18:56.271484838Z'
                         status: running
                         unknown_fields: {}
                         version: ''
                     ip_addresses:
-                    - 10.248.128.100
+                    - 10.248.128.204
                     jobs:
                     - JobHostUnits
                     lxd_profiles: {}
@@ -423,7 +420,7 @@ vcaStatus:
                         info: ''
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:43:09.193948972Z'
+                        since: '2022-08-19T11:18:45.795159592Z'
                         status: idle
                         unknown_fields: {}
                         version: ''
@@ -432,9 +429,9 @@ vcaStatus:
                             dns_nameservers: null
                             gateway: 10.248.128.1
                             ip_addresses:
-                            - 10.248.128.100
+                            - 10.248.128.204
                             is_up: true
-                            mac_address: 00:16:3e:69:3e:d5
+                            mac_address: 00:16:3e:28:1f:1f
                             space: alpha
                             unknown_fields: {}
                     primary_controller_machine: null
@@ -445,7 +442,7 @@ vcaStatus:
                 available_version: ''
                 cloud_tag: cloud-lxd-cloud
                 migration: null
-                name: 1d6c4302-7d2e-41ce-aace-d71325e75e85
+                name: a983de7e-e93e-4e35-b0de-ff0c0f8dd4b8
                 region: default
                 unknown_fields:
                     meter-status:
@@ -456,7 +453,7 @@ vcaStatus:
                         info: ''
                         kind: ''
                         life: ''
-                        since: '2022-08-18T17:43:05.327688926Z'
+                        since: '2022-08-19T11:18:38.82519541Z'
                         status: available
                         version: ''
                     sla: unsupported
@@ -465,14 +462,14 @@ vcaStatus:
             offers: {}
             relations:
             -   endpoints:
-                -   application: app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal
+                -   application: app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh
                     name: proxypeer
                     role: peer
                     subordinate: false
                     unknown_fields: {}
                 id_: 0
                 interface: proxypeer
-                key: app-vnf-fd427c71fe-z0-vdu-worker-cnt-z0-ffcal:proxypeer
+                key: app-vnf-a4cc125f8f-z0-vdu-worker-cnt-z0-grhjh:proxypeer
                 scope: global
                 status:
                     data: {}
@@ -480,20 +477,20 @@ vcaStatus:
                     info: ''
                     kind: ''
                     life: ''
-                    since: '2022-08-18T17:46:14.523660312Z'
+                    since: '2022-08-19T11:21:22.589061668Z'
                     status: joined
                     unknown_fields: {}
                     version: ''
                 unknown_fields: {}
             -   endpoints:
-                -   application: app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr
+                -   application: app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou
                     name: proxypeer
                     role: peer
                     subordinate: false
                     unknown_fields: {}
                 id_: 1
                 interface: proxypeer
-                key: app-vnf-fd427c71fe-z0-vdu-controller-cnt-z0-jqpmr:proxypeer
+                key: app-vnf-a4cc125f8f-z0-vdu-controller-cnt-z0-zlkou:proxypeer
                 scope: global
                 status:
                     data: {}
@@ -501,7 +498,7 @@ vcaStatus:
                     info: ''
                     kind: ''
                     life: ''
-                    since: '2022-08-18T17:46:14.524236221Z'
+                    since: '2022-08-19T11:21:22.128045444Z'
                     status: joined
                     unknown_fields: {}
                     version: ''

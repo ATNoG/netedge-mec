@@ -1,0 +1,2105 @@
+_admin:
+    created: 1660887030.1986911
+    current-operation: null
+    deployed:
+        K8s:
+        -   k8scluster-type: juju-bundle
+            k8scluster-uuid: 4c308830-523b-45ae-8b18-b820cc8a0a1f
+            kdu-deployment-name: ''
+            kdu-instance: osm-kdu-4f31c86f-84b0-4660-a569-53471434bbc0
+            kdu-model: /app/storage/a44b2490-8159-4ab1-8011-8aac3aff28d6:1/charmed_osm_vnf/juju-bundles/bundle.yaml
+            kdu-name: osm-kdu
+            member-vnf-index: osm_cnf
+            namespace: osm-charm-oops
+        -   detailed-status: '{''hooks'': [{''events'': [''test''], ''kind'': ''Pod'',
+                ''last_run'': {''completed_at'': '''', ''phase'': '''', ''started_at'':
+                ''''}, ''manifest'': ''apiVersion: v1\nkind: Pod\nmetadata:\n  name:
+                "mep-test-connection"\n  labels:\n    helm.sh/chart: mepchart-0.1.0\n    app.kubernetes.io/name:
+                mepchart\n    app.kubernetes.io/instance: mepchart-0045818150\n    app.kubernetes.io/version:
+                "1.16.0"\n    app.kubernetes.io/managed-by: Helm\n  annotations:\n    "helm.sh/hook":
+                test\nspec:\n  containers:\n    - name: wget\n      image: busybox\n      command:
+                [\''wget\'']\n      args: [\''mep:80\'']\n  restartPolicy: Never'',
+                ''name'': ''mep-test-connection'', ''path'': ''mepchart/templates/tests/test-connection.yaml''}],
+                ''info'': {''deleted'': '''', ''description'': ''Install complete'',
+                ''first_deployed'': ''2022-08-19T05:30:35.993456236Z'', ''last_deployed'':
+                ''2022-08-19T05:30:35.993456236Z'', ''status'': ''deployed''}, ''manifest'':
+                [{''apiVersion'': ''v1'', ''kind'': ''ServiceAccount'', ''metadata'':
+                {''name'': ''mep'', ''labels'': {''helm.sh/chart'': ''mepchart-0.1.0'',
+                ''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0045818150'', ''app.kubernetes.io/version'': ''1.16.0'',
+                ''app.kubernetes.io/managed-by'': ''Helm''}}}, {''apiVersion'': ''v1'',
+                ''kind'': ''Service'', ''metadata'': {''name'': ''mep'', ''labels'':
+                {''helm.sh/chart'': ''mepchart-0.1.0'', ''app.kubernetes.io/name'':
+                ''mepchart'', ''app.kubernetes.io/instance'': ''mepchart-0045818150'',
+                ''app.kubernetes.io/version'': ''1.16.0'', ''app.kubernetes.io/managed-by'':
+                ''Helm''}}, ''spec'': {''type'': ''NodePort'', ''ports'': [{''port'':
+                80, ''targetPort'': 8080, ''nodePort'': 30080, ''protocol'': ''TCP'',
+                ''name'': ''http''}], ''selector'': {''app.kubernetes.io/name'': ''mepchart'',
+                ''app.kubernetes.io/instance'': ''mepchart-0045818150''}}}, {''apiVersion'':
+                ''apps/v1'', ''kind'': ''Deployment'', ''metadata'': {''name'': ''mep'',
+                ''labels'': {''helm.sh/chart'': ''mepchart-0.1.0'', ''app.kubernetes.io/name'':
+                ''mepchart'', ''app.kubernetes.io/instance'': ''mepchart-0045818150'',
+                ''app.kubernetes.io/version'': ''1.16.0'', ''app.kubernetes.io/managed-by'':
+                ''Helm''}}, ''spec'': {''replicas'': 1, ''selector'': {''matchLabels'':
+                {''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0045818150''}}, ''template'': {''metadata'': {''labels'':
+                {''app.kubernetes.io/name'': ''mepchart'', ''app.kubernetes.io/instance'':
+                ''mepchart-0045818150''}}, ''spec'': {''serviceAccountName'': ''mep'',
+                ''securityContext'': {}, ''containers'': [{''name'': ''mepchart'',
+                ''securityContext'': {}, ''image'': ''ghcr.io/oescal/mepserver:latest'',
+                ''imagePullPolicy'': ''Always'', ''ports'': [{''containerPort'': 8080}],
+                ''resources'': {}, ''command'': [''python3'', ''/home/netedge/main.py''],
+                ''args'': [''--mongodb_addr=127.0.0.1'', ''--mongodb_database=mep'',
+                ''--mongodb_password=admin'', ''--mongodb_port=27017'', ''--mongodb_username=admin'']}]}}}}],
+                ''name'': ''mepchart-0045818150'', ''namespace'': ''osm-charm-oops'',
+                ''version'': 1}'
+            k8scluster-type: helm-chart-v3
+            k8scluster-uuid: 4c308830-523b-45ae-8b18-b820cc8a0a1f
+            kdu-deployment-name: ''
+            kdu-instance: mepchart-0045818150
+            kdu-model: /app/storage/a44b2490-8159-4ab1-8011-8aac3aff28d6:1/charmed_osm_vnf/helm-chart-v3s/netedge-mep/mepchart
+            kdu-name: mep-kdu
+            member-vnf-index: osm_cnf
+            namespace: osm-charm-oops
+            operation: install
+            status: Install complete
+            status-time: '1660887039.5638847'
+        RO:
+            operational-status: running
+            vnfd: []
+        VCA:
+        -   application: app-vnf-fc0c483f23-z0-vdu-controller-cnt-z0-x465f
+            config_sw_installed: true
+            detailed-status: ''
+            ee_descriptor_id: controller-init-ee
+            ee_id: 4f31c86f-84b0-4660-a569-53471434bbc0.app-vnf-fc0c483f23-z0-vdu-controller-cnt-z0-x465f.1
+            kdu_name: null
+            member-vnf-index: cluster_vnf
+            model: 4f31c86f-84b0-4660-a569-53471434bbc0
+            operational-status: init
+            step: initial-deploy
+            target_element: vnf/cluster_vnf/vdu/controller/0
+            type: lxc_proxy_charm
+            vdu_count_index: 0
+            vdu_id: controller
+            vdu_name: null
+            vnfd_id: k8s_cluster_vnf
+        -   application: app-vnf-fc0c483f23-z0-vdu-worker-cnt-z0-ngf5z
+            config_sw_installed: true
+            detailed-status: ''
+            ee_descriptor_id: worker-ee
+            ee_id: 4f31c86f-84b0-4660-a569-53471434bbc0.app-vnf-fc0c483f23-z0-vdu-worker-cnt-z0-ngf5z.0
+            kdu_name: null
+            member-vnf-index: cluster_vnf
+            model: 4f31c86f-84b0-4660-a569-53471434bbc0
+            operational-status: init
+            step: initial-deploy
+            target_element: vnf/cluster_vnf/vdu/worker/0
+            type: lxc_proxy_charm
+            vdu_count_index: 0
+            vdu_id: worker
+            vdu_name: null
+            vnfd_id: k8s_cluster_vnf
+    modified: 1660887614.35645
+    nsState: INSTANTIATED
+    nslcmop: null
+    operation-type: null
+    projects_read:
+    - 67db30fa-5f69-46a2-80c5-4616583357f1
+    projects_write:
+    - 67db30fa-5f69-46a2-80c5-4616583357f1
+_id: 4f31c86f-84b0-4660-a569-53471434bbc0
+additionalParamsForNs: null
+admin-status: ENABLED
+affinity-or-anti-affinity-group: []
+config-status: configured
+configurationStatus:
+-   elementType: VDU
+    elementUnderConfiguration: controller-0
+    status: READY
+-   elementType: VDU
+    elementUnderConfiguration: worker-0
+    status: READY
+constituent-vnfr-ref:
+- cbfdb6eb-1b02-4830-a3ee-4dfc0c483f23
+- 5ea0743b-f9f7-4a6b-a7e4-f4ffbae1e973
+create-time: 1660887030.1852362
+currentOperation: IDLE
+currentOperationID: null
+datacenter: 3bfd2f56-282b-402e-9ef2-442b2c717c09
+deploymentStatus: null
+description: default description
+detailed-status: Done
+errorDescription: null
+errorDetail: null
+flavor:
+-   id: '0'
+    memory-mb: 8192.0
+    name: controller-flv
+    storage-gb: '32'
+    vcpu-count: 2
+    vim_info:
+        vim:3bfd2f56-282b-402e-9ef2-442b2c717c09:
+            vim_details: null
+            vim_id: ffa2214b-9608-4529-96e5-cf1a7cf7a23f
+            vim_message: null
+            vim_status: DONE
+-   id: '1'
+    memory-mb: 8192.0
+    name: worker-flv
+    storage-gb: '64'
+    vcpu-count: 2
+    vim_info:
+        vim:3bfd2f56-282b-402e-9ef2-442b2c717c09:
+            vim_details: null
+            vim_id: 7080b767-25f2-4c2b-8e5a-92bdaf3be699
+            vim_message: null
+            vim_status: DONE
+id: 4f31c86f-84b0-4660-a569-53471434bbc0
+image:
+-   id: '0'
+    image: Ubuntu Server 20.04
+    vim_info:
+        vim:3bfd2f56-282b-402e-9ef2-442b2c717c09:
+            vim_details: null
+            vim_id: d1933a6f-ab07-4851-a6e5-9bbd2a6ae060
+            vim_message: null
+            vim_status: DONE
+instantiate_params:
+    nsDescription: default description
+    nsName: osm
+    nsdId: 82b1efdc-caf6-4a6c-b440-c59dfe7e8611
+    vimAccountId: 3bfd2f56-282b-402e-9ef2-442b2c717c09
+    vnf:
+    -   internal-vld:
+        -   ip-profile:
+                dhcp-params:
+                    enabled: true
+                ip-version: ipv4
+                subnet-address: 172.16.0.0/24
+            name: internal-vl
+        member-vnf-index: cluster_vnf
+name: osm
+name-ref: osm
+ns-instance-config-ref: 4f31c86f-84b0-4660-a569-53471434bbc0
+nsState: READY
+nsd:
+    _admin:
+        created: 1660871594.4958942
+        modified: 1660871594.7872336
+        onboardingState: ONBOARDED
+        operationalState: ENABLED
+        projects_read:
+        - 67db30fa-5f69-46a2-80c5-4616583357f1
+        projects_write:
+        - 67db30fa-5f69-46a2-80c5-4616583357f1
+        revision: 1
+        storage:
+            descriptor: k8s_cluster_ns/k8s_cluster_nsd.yaml
+            folder: 82b1efdc-caf6-4a6c-b440-c59dfe7e8611:1
+            fs: mongo
+            path: /app/storage/
+            pkg-dir: k8s_cluster_ns
+            zipfile: package.tar.gz
+        usageState: NOT_IN_USE
+        userDefinedData: {}
+    _id: 82b1efdc-caf6-4a6c-b440-c59dfe7e8611
+    description: NS for the K8s cluster VNFs
+    designer: OSM
+    df:
+    -   id: default-df
+        vnf-profile:
+        -   id: cluster_vnf
+            virtual-link-connectivity:
+            -   constituent-cpd-id:
+                -   constituent-base-element-id: cluster_vnf
+                    constituent-cpd-id: vnf-controller-ext
+                -   constituent-base-element-id: cluster_vnf
+                    constituent-cpd-id: vnf-worker-ext
+                virtual-link-profile-id: mgmt-net
+            vnfd-id: k8s_cluster_vnf
+        -   id: osm_cnf
+            virtual-link-connectivity:
+            -   constituent-cpd-id:
+                -   constituent-base-element-id: osm_cnf
+                    constituent-cpd-id: mgmtnet-ext
+                virtual-link-profile-id: mgmt-net
+            vnfd-id: osm_cnf
+    id: k8s_cluster_nsd
+    name: k8s_cluster_nsd
+    version: '1.0'
+    virtual-link-desc:
+    -   id: mgmt-net
+        mgmt-network: true
+        vim-network-name: proj_net
+    vnfd-id:
+    - k8s_cluster_vnf
+    - osm_cnf
+nsd-id: 82b1efdc-caf6-4a6c-b440-c59dfe7e8611
+nsd-name-ref: k8s_cluster_nsd
+nsd-ref: k8s_cluster_nsd
+operational-events: []
+operational-status: running
+orchestration-progress: {}
+resource-orchestrator: osmopenmano
+revision: 1
+short-name: osm
+ssh-authorized-key: null
+vcaStatus:
+    4f31c86f-84b0-4660-a569-53471434bbc0:
+        KNF:
+            osm-kdu-4f31c86f-84b0-4660-a569-53471434bbc0:
+                applications:
+                    executedActions: []
+                    grafana:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-grafana-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            cluster: alpha
+                            db: alpha
+                            prometheus: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: 58559596-6d56-4f5a-b95f-0160fea2c743
+                        public_address: 10.102.176.101
+                        relations:
+                            cluster:
+                            - grafana
+                            db:
+                            - mariadb
+                            prometheus:
+                            - prometheus
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:18.915990976Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            grafana/0:
+                                address: 10.244.0.15
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:19.067868738Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports:
+                                - 3000/TCP
+                                provider_id: 999c1a49-fcc8-4383-8018-d1f318480557
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ready
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:01.951904812Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: registry.jujucharms.com/charm/uy2u8ogdzb5b5q682npk0t5392s8buzuvsp8/image@sha256:9b5a5a8c560e0a1c94890804928f4506df272f470a34d2ee39514b74338757e4
+                    kafka:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/kafka-k8s-5
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            grafana-dashboard: alpha
+                            kafka: alpha
+                            metrics-endpoint: alpha
+                            zookeeper: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: bed42894-dd3d-4c7d-a0a5-16010cdbd033
+                        public_address: 10.98.185.33
+                        relations:
+                            kafka:
+                            - lcm
+                            - mon
+                            - nbi
+                            - pla
+                            - pol
+                            - ro
+                            zookeeper:
+                            - zookeeper
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:32:42.302338918Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            kafka/0:
+                                address: 10.244.0.248
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:33:46.90777492Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: 2.9.29
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: []
+                                provider_id: kafka-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:32:25.932530088Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    keystone:
+                        can_upgrade_to: ''
+                        charm: local:focal/osm-keystone-0
+                        charm_channel: null
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            cluster: alpha
+                            db: alpha
+                            keystone: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: f6395a87-c911-487f-a8ed-20c8c783a81f
+                        public_address: 10.101.28.51
+                        relations:
+                            cluster:
+                            - keystone
+                            db:
+                            - mariadb
+                            keystone:
+                            - mon
+                            - nbi
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:32:47.10191569Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            keystone/0:
+                                address: 10.244.0.246
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:33:42.549694803Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: 2.9.29
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: []
+                                provider_id: keystone-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:32:41.655038269Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    lcm:
+                        can_upgrade_to: ''
+                        charm: local:kubernetes/osm-lcm-0
+                        charm_channel: null
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            mongodb: alpha
+                            ro: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            mongodb:
+                            - mongodb
+                            ro:
+                            - ro
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:27.831245643Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            lcm/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:30.059592488Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:27.831245643Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    mariadb:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/charmed-osm-mariadb-k8s-35
+                        charm_channel: stable
+                        charm_profile: ''
+                        charm_version: v9.0.0rc1-38-g54e3f0d
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            mysql: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: ec679739-19ef-453b-a5e1-fa0a828487b7
+                        public_address: 10.104.182.143
+                        relations:
+                            mysql:
+                            - grafana
+                            - keystone
+                            - pol
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:33:06.896906142Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            mariadb/0:
+                                address: 10.244.0.250
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:11.896587825Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports:
+                                - 3306/TCP
+                                provider_id: mariadb-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ready
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:32:58.902551544Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: v9.0.0rc1-38-g54e3f0d
+                        workload_version: rocks.canonical.com:443/mariadb/server:10.3
+                    mon:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-mon-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            keystone: alpha
+                            mongodb: alpha
+                            prometheus: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            keystone:
+                            - keystone
+                            mongodb:
+                            - mongodb
+                            prometheus:
+                            - prometheus
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb, keystone relations
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:30.435899023Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            mon/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: running keystone-relation-joined hook for
+                                        keystone/0
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:31.863395637Z'
+                                    status: executing
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb, keystone relations
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:30.435899023Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    mongodb:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/mongodb-k8s-14
+                        charm_channel: stable
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            database: alpha
+                            mongodb: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: 3e4fb378-a527-4ab1-81a7-922429744983
+                        public_address: 10.107.12.225
+                        relations:
+                            database:
+                            - lcm
+                            - mon
+                            - nbi
+                            - pla
+                            - pol
+                            - ro
+                            mongodb:
+                            - mongodb
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:20.06751438Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            mongodb/0:
+                                address: 10.244.0.16
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: running database-relation-joined hook for
+                                        pla/0
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:30.130347418Z'
+                                    status: executing
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports:
+                                - 27017/TCP
+                                provider_id: mongodb-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:20.672516865Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: registry.hub.docker.com/library/mongo@sha256:11b49076c18cab52e64e95b181b26b75f150aff6a64c5ef8231b826b1fe59422
+                    nbi:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-nbi-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            keystone: alpha
+                            mongodb: alpha
+                            nbi: alpha
+                            prometheus: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            keystone:
+                            - keystone
+                            mongodb:
+                            - mongodb
+                            nbi:
+                            - ng-ui
+                            prometheus:
+                            - prometheus
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:29.81177452Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            nbi/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: running mongodb-relation-changed hook for
+                                        mongodb/0
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:31.343873319Z'
+                                    status: executing
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:29.81177452Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    nbi-custom-operator:
+                        can_upgrade_to: ''
+                        charm: local:kubernetes/nbi-custom-operator-0
+                        charm_channel: null
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            nbi: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations: {}
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Waiting for NBI
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:33:55.217590921Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            nbi-custom-operator/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:34:08.552954212Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Waiting for NBI
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:33:55.217590921Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    ng-ui:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-ng-ui-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            nbi: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            nbi:
+                            - nbi
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need nbi relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:34:28.386091704Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            ng-ui/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:34:30.858606261Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need nbi relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:34:28.386091704Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    pla:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-pla-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            mongodb: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            mongodb:
+                            - mongodb
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:27.441606324Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            pla/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:29.54061831Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:27.441606324Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    pol:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-pol-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            mongodb: alpha
+                            mysql: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            mongodb:
+                            - mongodb
+                            mysql:
+                            - mariadb
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:27.814485192Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            pol/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:30.047817805Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:27.814485192Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    prometheus:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-prometheus-1
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            prometheus: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: e55f4749-c709-4a60-bc9a-4d688e65ddf2
+                        public_address: 10.106.174.89
+                        relations:
+                            prometheus:
+                            - grafana
+                            - mon
+                            - nbi
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:34:34.061452927Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            prometheus/0:
+                                address: 10.244.0.14
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:15.415060979Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports:
+                                - 9090/TCP
+                                provider_id: prometheus-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ready
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:34:26.084882116Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: registry.jujucharms.com/charm/hy5e5n1fnqzwzl12z9u8ryutjy7fjjb8fhdam/backup-image@sha256:7996084dcc3de8fb3fc1f5b43844854b652a22b6effa7d3304503ebf5f055a65
+                    ro:
+                        can_upgrade_to: ''
+                        charm: ch:amd64/focal/osm-ro-4
+                        charm_channel: edge
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            kafka: alpha
+                            mongodb: alpha
+                            mysql: alpha
+                            ro: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: null
+                        public_address: ''
+                        relations:
+                            kafka:
+                            - kafka
+                            mongodb:
+                            - mongodb
+                            ro:
+                            - lcm
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: Need mongodb relation
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:35:27.26022169Z'
+                            status: blocked
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            ro/0:
+                                address: null
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:29.38604965Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: ''
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: null
+                                provider_id: null
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: Need mongodb relation
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:35:27.26022169Z'
+                                    status: blocked
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                    zookeeper:
+                        can_upgrade_to: ''
+                        charm: local:focal/zookeeper-k8s-0
+                        charm_channel: null
+                        charm_profile: ''
+                        charm_version: ''
+                        endpoint_bindings:
+                            ? ''
+                            : alpha
+                            cluster: alpha
+                            zookeeper: alpha
+                        err: null
+                        exposed: false
+                        exposed_endpoints: {}
+                        int_: 1
+                        life: ''
+                        meter_statuses: {}
+                        provider_id: b7d664c0-7bf3-41aa-9eb0-b97e2402f047
+                        public_address: 10.111.85.122
+                        relations:
+                            cluster:
+                            - zookeeper
+                            zookeeper:
+                            - kafka
+                        series: kubernetes
+                        status:
+                            data: {}
+                            err: null
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:32:38.500134203Z'
+                            status: active
+                            unknown_fields: {}
+                            version: ''
+                        subordinate_to: []
+                        units:
+                            zookeeper/0:
+                                address: 10.244.0.247
+                                agent_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:32:16.153830494Z'
+                                    status: idle
+                                    unknown_fields: {}
+                                    version: 2.9.29
+                                charm: ''
+                                leader: true
+                                machine: ''
+                                opened_ports: []
+                                provider_id: zookeeper-0
+                                public_address: ''
+                                subordinates: {}
+                                unknown_fields: {}
+                                workload_status:
+                                    data: {}
+                                    err: null
+                                    info: ''
+                                    kind: ''
+                                    life: ''
+                                    since: '2022-08-19T05:32:14.470983554Z'
+                                    status: active
+                                    unknown_fields: {}
+                                    version: ''
+                                workload_version: ''
+                        unknown_fields:
+                            charm-verion: ''
+                        workload_version: ''
+                branches: {}
+                controller_timestamp: '2022-08-19T05:35:33.286354202Z'
+                machines: {}
+                model:
+                    available_version: ''
+                    cloud_tag: cloud-4c308830-523b-45ae-8b18-b820cc8a0a1f
+                    migration: null
+                    name: osm-charm-oops
+                    region: default
+                    unknown_fields:
+                        meter-status:
+                            color: ''
+                            message: ''
+                        model-status:
+                            data: {}
+                            info: ''
+                            kind: ''
+                            life: ''
+                            since: '2022-08-19T05:30:32.333505666Z'
+                            status: available
+                            version: ''
+                        sla: unsupported
+                        type: caas
+                    version: 2.9.29
+                offers: {}
+                relations:
+                -   endpoints:
+                    -   application: kafka
+                        name: zookeeper
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: zookeeper
+                        name: zookeeper
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 5
+                    interface: zookeeper
+                    key: kafka:zookeeper zookeeper:zookeeper
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.161256203Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: lcm
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 7
+                    interface: kafka
+                    key: lcm:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.050688065Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: ro
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 10
+                    interface: kafka
+                    key: ro:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:11.065910342Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: pol
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 12
+                    interface: kafka
+                    key: pol:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:11.190346536Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mon
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 15
+                    interface: kafka
+                    key: mon:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:11.329512086Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: pla
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 16
+                    interface: kafka
+                    key: pla:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:10.238911307Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: nbi
+                        name: kafka
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: kafka
+                        name: kafka
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 19
+                    interface: kafka
+                    key: nbi:kafka kafka:kafka
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:10.515814203Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: keystone
+                        name: db
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mariadb
+                        name: mysql
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 6
+                    interface: mysql
+                    key: keystone:db mariadb:mysql
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.644713229Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mariadb
+                        name: mysql
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: pol
+                        name: mysql
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 25
+                    interface: mysql
+                    key: pol:mysql mariadb:mysql
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:22.84217211Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: grafana
+                        name: db
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mariadb
+                        name: mysql
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 26
+                    interface: mysql
+                    key: grafana:db mariadb:mysql
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:31:39.448441878Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: ro
+                        name: ro
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: lcm
+                        name: ro
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 9
+                    interface: http
+                    key: lcm:ro ro:ro
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:05.853530904Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: ro
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 11
+                    interface: mongodb
+                    key: ro:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:08.316490015Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: nbi
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 18
+                    interface: mongodb
+                    key: nbi:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:09.797178903Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: nbi
+                        name: prometheus
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: prometheus
+                        name: prometheus
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 20
+                    interface: prometheus
+                    key: nbi:prometheus prometheus:prometheus
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:09.443452682Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: nbi
+                        name: keystone
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: keystone
+                        name: keystone
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 21
+                    interface: keystone
+                    key: nbi:keystone keystone:keystone
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:05.95906347Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: ng-ui
+                        name: nbi
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: nbi
+                        name: nbi
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 23
+                    interface: http
+                    key: ng-ui:nbi nbi:nbi
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:09.670927668Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: keystone
+                        name: cluster
+                        role: peer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 3
+                    interface: cluster
+                    key: keystone:cluster
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.491579265Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mon
+                        name: keystone
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: keystone
+                        name: keystone
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 24
+                    interface: keystone
+                    key: mon:keystone keystone:keystone
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.19224774Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: zookeeper
+                        name: cluster
+                        role: peer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 2
+                    interface: cluster
+                    key: zookeeper:cluster
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:05.905526512Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: lcm
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 8
+                    interface: mongodb
+                    key: lcm:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:32:06.234150613Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: pol
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 13
+                    interface: mongodb
+                    key: pol:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:14.147947619Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mongodb
+                        name: mongodb
+                        role: peer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 1
+                    interface: mongodb
+                    key: mongodb:mongodb
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:43.245608582Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mon
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 14
+                    interface: mongodb
+                    key: mon:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:36.606979866Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: pla
+                        name: mongodb
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: mongodb
+                        name: database
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 17
+                    interface: mongodb
+                    key: pla:mongodb mongodb:database
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:43.546445837Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: grafana
+                        name: prometheus
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: prometheus
+                        name: prometheus
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 4
+                    interface: prometheus
+                    key: grafana:prometheus prometheus:prometheus
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:31:36.158593456Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: mon
+                        name: prometheus
+                        role: requirer
+                        subordinate: false
+                        unknown_fields: {}
+                    -   application: prometheus
+                        name: prometheus
+                        role: provider
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 22
+                    interface: prometheus
+                    key: mon:prometheus prometheus:prometheus
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:33:17.363387566Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                -   endpoints:
+                    -   application: grafana
+                        name: cluster
+                        role: peer
+                        subordinate: false
+                        unknown_fields: {}
+                    id_: 0
+                    interface: grafana-cluster
+                    key: grafana:cluster
+                    scope: global
+                    status:
+                        data: {}
+                        err: null
+                        info: ''
+                        kind: ''
+                        life: ''
+                        since: '2022-08-19T05:31:36.009662719Z'
+                        status: joined
+                        unknown_fields: {}
+                        version: ''
+                    unknown_fields: {}
+                remote_applications: {}
+                unknown_fields: {}
+vld:
+-   id: mgmt-net
+    mgmt-network: true
+    name: mgmt-net
+    type: null
+    vim_info:
+        vim:3bfd2f56-282b-402e-9ef2-442b2c717c09:
+            vim_account_id: 3bfd2f56-282b-402e-9ef2-442b2c717c09
+            vim_details: "{admin_state_up: true, availability_zone_hints: [], availability_zones:\
+                \ [nova], created_at: '2021-09-30T19:30:24Z', description: '', encapsulation:\
+                \ flat, encapsulation_id: null, encapsulation_type: flat, id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc,\
+                \ ipv4_address_scope: null,\n  ipv6_address_scope: null, is_default:\
+                \ true, mtu: 1500, name: proj_net, port_security_enabled: true, project_id:\
+                \ 108a3ba29ae84dae9a35df6aaea4b8cb, 'provider:network_type': flat,\
+                \ 'provider:physical_network': public, 'provider:segmentation_id':\
+                \ null, revision_number: 13,\n  'router:external': true, segmentation_id:\
+                \ null, shared: true, status: ACTIVE, subnets: [{subnet: {allocation_pools:\
+                \ [{end: 10.0.13.182, start: 10.0.13.5}, {end: 10.0.13.250, start:\
+                \ 10.0.13.186}, {end: 10.0.12.240, start: 10.0.12.210}], cidr: 10.0.12.0/23,\n\
+                \        created_at: '2021-09-30T20:16:05Z', description: '', dns_nameservers:\
+                \ [193.136.92.73, 193.136.92.74], enable_dhcp: true, gateway_ip: 10.0.12.1,\
+                \ host_routes: [], id: 30188457-0231-4e51-a36d-dd032274f7cd, ip_version:\
+                \ 4, ipv6_address_mode: null, ipv6_ra_mode: null,\n        name: proj_subnet,\
+                \ network_id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc, project_id: 50da9d83452f4828906847cf4d0ee984,\
+                \ revision_number: 5, service_types: [], subnetpool_id: null, tags:\
+                \ [], tenant_id: 50da9d83452f4828906847cf4d0ee984, updated_at: '2022-08-18T17:49:07Z'}}],\n\
+                \  tags: [], tenant_id: 108a3ba29ae84dae9a35df6aaea4b8cb, type: bridge,\
+                \ updated_at: '2022-08-18T17:49:07Z'}\n"
+            vim_id: 976dc5c4-97bc-46a2-bbdf-13c4cad670bc
+            vim_message: null
+            vim_network_name: proj_net
+            vim_status: ACTIVE
+vnfd-id:
+- 2405d4c8-1ce5-48a7-ae5f-6004553a88f7
+- a44b2490-8159-4ab1-8011-8aac3aff28d6
+
