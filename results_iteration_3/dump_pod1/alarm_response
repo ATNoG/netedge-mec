@@ -1,0 +1,2220 @@
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019646
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019649
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019651
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019667
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019667
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019677
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019741
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019737
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019800
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929019810
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021279
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021273
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021266
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021359
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021364
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021365
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021430
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021430
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021431
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929021438
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022758
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022760
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022762
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022764
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022771
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022770
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022844
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022902
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022907
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929022915
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024113
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024121
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024129
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024132
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024132
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024135
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024245
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024243
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024249
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929024266
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025481
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025486
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025487
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025491
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025494
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025496
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025558
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025601
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025608
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:25', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929025611
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026799
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026803
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026809
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026810
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026816
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026821
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026929
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026933
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026935
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:26', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929026938
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029114
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029135
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029159
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029243
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029265
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:28', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929029288
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:29', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929030878
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:29', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929030918
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:29', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929031043
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:29', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929031018
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929032984
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929032979
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929032996
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033000
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033050
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:32', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033059
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:33', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033208
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:33', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033200
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:33', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033297
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:33', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929033310
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034709
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034705
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034714
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034711
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034713
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034736
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034828
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034896
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034916
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:34', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929034931
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929036999
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929037045
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929037072
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929036990
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929037072
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:36', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929037050
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:37', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929038314
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:37', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929038548
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:37', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929038718
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:37', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929038959
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929040983
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929040998
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929040997
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929040991
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041089
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:40', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041134
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:41', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041200
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:41', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041220
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:41', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041227
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:41', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929041246
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042562
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042565
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042574
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042584
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042585
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042589
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042853
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042919
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042934
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:42', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929042947
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044857
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044857
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044898
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044862
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044936
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929044982
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:45', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929045138
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:45', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929045194
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:44', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929045091
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:45', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929045348
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046608
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046625
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046622
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046620
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046630
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046640
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046851
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046898
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046905
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:46', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929046911
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048725
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048732
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048734
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048731
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048733
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048742
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048885
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048904
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048978
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:48', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929048988
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050593
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050603
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050621
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050635
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050629
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050649
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050733
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050731
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050747
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:50', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929050769
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052200
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052205
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052211
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052214
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052219
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052221
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052342
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052345
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052344
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:52', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929052350
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053761
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053765
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053769
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053771
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053775
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053777
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053855
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053859
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053932
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:53', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929053971
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055528
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055508
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055566
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055570
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055577
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055592
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055646
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055724
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055723
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:55', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929055729
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056941
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056942
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056942
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056951
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056953
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929056961
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929057219
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:56', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929057265
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:57', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929057290
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:57', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929057285
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058635
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058643
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058642
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058643
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058645
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058661
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058741
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058765
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058758
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:10:58', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929058744
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060252
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060453
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060458
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060229
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060747
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060752
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060772
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060784
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060853
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:00', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929060857
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062183
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062191
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062195
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062197
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062207
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062227
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062443
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062449
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062461
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:02', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929062466
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063889
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063890
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063890
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063902
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063908
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929063915
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929064010
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929064012
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929064040
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:03', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929064050
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065599
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065614
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065619
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065623
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065616
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065630
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065734
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065773
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065782
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:05', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929065788
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067029
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067038
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067041
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067046
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067048
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:06', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067044
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:07', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067311
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:07', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067324
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:07', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067338
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:07', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929067360
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068612
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068616
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068629
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068646
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068662
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068677
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068734
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068750
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068746
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:08', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929068752
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070098
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070101
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070117
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070124
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070100
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070119
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070569
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070602
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070611
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:10', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929070619
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071886
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071888
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071889
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071897
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071907
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071907
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929071998
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929072060
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929072127
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:11', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929072141
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073482
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073482
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073475
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073485
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073499
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073504
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073594
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073600
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073610
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:13', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929073607
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074900
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074899
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074902
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074903
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074907
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074909
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929074983
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929075058
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929075066
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:14', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929075075
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076380
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076425
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076457
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076456
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076459
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076468
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076587
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076632
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076664
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:16', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929076665
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077880
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077888
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077895
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077906
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077911
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929077919
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929078096
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929078158
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929078148
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:17', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929078165
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079551
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079551
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079553
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079561
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079561
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079568
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079762
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079759
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079770
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:19', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929079761
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081173
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081168
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081184
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081183
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081188
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081197
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081398
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081406
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081435
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:21', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929081434
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082835
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082845
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082856
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082865
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082867
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929082875
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929083041
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929083064
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929083067
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:22', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929083074
+Received message {notify_details: {alarm_uuid: 8a879a3f-83b9-4b9f-9bc6-d3262336dd7a, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084396
+Received message {notify_details: {alarm_uuid: 3fdd67d0-66e7-43b0-a9c0-fb3b61e8d683, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084374
+Received message {notify_details: {alarm_uuid: 7e23088e-192b-440d-b64a-9109db54f919, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084304
+Received message {notify_details: {alarm_uuid: d9e0c8e8-ee02-44ee-9248-094995cffd7c, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 4.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084427
+Received message {notify_details: {alarm_uuid: c920d497-3870-4f08-8702-1b0367026687, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084437
+Received message {notify_details: {alarm_uuid: e291f0d1-ec41-4660-998d-a51b1f7390f3, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: 1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084397
+Received message {notify_details: {alarm_uuid: 6a39e3ba-0bd6-4604-ab5f-252c767e217e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -2.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084749
+Received message {notify_details: {alarm_uuid: 54d89663-7f1d-4af3-bbef-fe8fd2db889f, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -3.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084753
+Received message {notify_details: {alarm_uuid: a5537cf5-22f0-426f-aacf-086cee89f7e7, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -5.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084756
+Received message {notify_details: {alarm_uuid: eb5ddb6b-c728-4451-818c-a6dbd1e8422e, metric_name: my_metric,
+    operation: eq, severity: critical, start_date: '19-08-2022 17:11:24', status: insufficient-data,
+    tags: {kdu_name: OSM-default-version-mp1_test-0, ns_id: 9c811172-06e8-41e0-a8c4-2449548c6aeb,
+      vnf_member_index: default-version}, threshold_value: -1.0}, schema_type: notify_alarm,
+  schema_version: '1.1'}
+ in topic alarm_response with key b'notify_alarm' create with timestamp 1660929084781

@@ -307,15 +307,5 @@ def main():
         print(output)
    
 if __name__ == '__main__':
-    #main()
-    gather_timestamps_from_kafka("results_iteration_3/")
-    output = subprocess.run(shlex.split(
-        f"""kubectl delete deployment kafka-dump -n osm"""
-    ))
-    print(output)
-    print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
-    output = subprocess.run(shlex.split(
-        f"""rm -rf /tmp/dump_pod1"""
-    ))
-    print(output)
+    main()
     #clean_environment(ns_osm_name=CLUSTER_FOR_OSM_NAME, ns_main_name=CHARMED_OSM_NAME)
