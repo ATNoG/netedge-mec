@@ -7,7 +7,7 @@ import yaml
 import requests
 import re
 
-NUMBER_TESTS = 8
+NUMBER_TESTS = 50
 
 USER_MAIN = 'netedge'
 PASSWORD_MAIN = 'Olaadeus1!'
@@ -252,7 +252,7 @@ def clean_environment(ns_osm_name: str, ns_main_name: str):
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS+3):
+    for i in range(10, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")
