@@ -27,7 +27,7 @@ PATH_CLUSTER_NS_CONFIG_FILE = 'k8s_cluster/ns_params.yaml'
 
 PATH_JOIN_PARAMS_FILE = 'k8s_cluster/join_k8s_workers_params.yaml'
 
-CLUSTER_FOR_OSM_NAME = 'osm-cluster'
+CLUSTER_FOR_OSM_NAME = 'k8s'
 CHARMED_OSM_NAME = 'osm'
 
 USER_CHARMED_OSM = 'admin'
