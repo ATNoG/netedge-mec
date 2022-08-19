@@ -27,7 +27,7 @@ PATH_CLUSTER_NS_CONFIG_FILE = 'k8s_cluster/ns_params.yaml'
 
 PATH_JOIN_PARAMS_FILE = 'k8s_cluster/join_k8s_workers_params.yaml'
 
-CLUSTER_FOR_OSM_NAME = '' # osm-cluster
+CLUSTER_FOR_OSM_NAME = 'osm-cluster'
 CHARMED_OSM_NAME = 'osm'
 
 USER_CHARMED_OSM = 'admin'
@@ -337,13 +337,13 @@ def main():
         #instantiate_ns(ns_name=CLUSTER_FOR_OSM_NAME, vnf_name_master='osm_vnf', nsd_name='k8s_osm_cluster_nsd', ns_config_file=PATH_OSM_NS_CONFIG_FILE, results_path=results_path)
         
         # Execute primitive to download all the necessary charmed OSM images
-        print(f"\n\n\n<{time.time()}> - Execute primitive to download all the necessary charmed OSM images\n")
-        for vdu in ('controller', 'worker'):
-            output = subprocess.run(shlex.split(
-                f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-action {CLUSTER_FOR_OSM_NAME} 
-                --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
-            ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            print(output)
+        #print(f"\n\n\n<{time.time()}> - Execute primitive to download all the necessary charmed OSM images\n")
+        #for vdu in ('controller', 'worker'):
+        #    output = subprocess.run(shlex.split(
+        #        f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-action {CLUSTER_FOR_OSM_NAME} 
+        #        --vnf_name osm_vnf --vdu_id {vdu} --action_name download-charmed-osm-images --wait"""
+        #    ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #    print(output)
 
         # obtain the IP addr of the first NS master
         print(f"\n\n\n<{time.time()}> - Obtaining master's IP addr\n")
