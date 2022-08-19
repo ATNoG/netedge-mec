@@ -27,7 +27,7 @@ PATH_CLUSTER_NS_CONFIG_FILE = 'k8s_cluster/ns_params.yaml'
 
 PATH_JOIN_PARAMS_FILE = 'k8s_cluster/join_k8s_workers_params.yaml'
 
-CLUSTER_FOR_OSM_NAME = 'osm-cluster'
+CLUSTER_FOR_OSM_NAME = '' # osm-cluster
 CHARMED_OSM_NAME = 'osm'
 
 USER_CHARMED_OSM = 'admin'
@@ -260,29 +260,29 @@ def clean_environment(ns_osm_name: str, ns_main_name: str, charmed_osm_master_ip
             yaml.safe_dump(data_yaml, file)
         
     # and just to be really sure
-    print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
-    output = subprocess.run(shlex.split(
-        f"""sh results/delete_all_osm_resources.sh"""
-    ))
-    print(output)
-    
-    print(f"\n\n\n<{time.time()}> - Delete our results container\n")
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
-    ))
-    output = subprocess.run(shlex.split(
-        f"""kubectl delete deployment kafka-dump -n osm"""
-    ))
-    print(output)
-    
-    print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment lcm -n osm --replicas=0"""
-    ))
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment lcm -n osm --replicas=1"""
-    ))
-    print(output)
+    #print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
+    #output = subprocess.run(shlex.split(
+    #    f"""sh results/delete_all_osm_resources.sh"""
+    #))
+    #print(output)
+    #
+    #print(f"\n\n\n<{time.time()}> - Delete our results container\n")
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
+    #))
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl delete deployment kafka-dump -n osm"""
+    #))
+    #print(output)
+    #
+    #print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment lcm -n osm --replicas=0"""
+    #))
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment lcm -n osm --replicas=1"""
+    #))
+    #print(output)
 
     print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
     output = subprocess.run(shlex.split(
