@@ -375,13 +375,13 @@ def main():
 
         time.sleep(60)
         
-        with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
-            data_yaml = yaml.safe_load(file)
-        
-        data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"http://{charmed_osm_master_ip}:30080"
-        
-        with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
-            yaml.safe_dump(data_yaml, file)
+        #with open(PATH_MEC_APP_DEPLOYMENT, 'r') as file:
+        #    data_yaml = yaml.safe_load(file)
+        #
+        #data_yaml['spec']['template']['spec']['containers'][0]['env'][0]['value'] = f"http://{charmed_osm_master_ip}:30080"
+        #
+        #with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
+        #    yaml.safe_dump(data_yaml, file)
 
         #instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
 
