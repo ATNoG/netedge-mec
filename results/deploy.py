@@ -494,7 +494,7 @@ def main():
             trials += 1
 
         # Start cleaning for the next iteration
-        clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME)
+        clean_environment(ns_osm_name=CHARMED_OSM_NAME, ns_main_name=CLUSTER_FOR_OSM_NAME, charmed_osm_master_ip=charmed_osm_master_ip)
         
         print("#######################################################################")
         print(f"Test <{i}> finished at <{time.time()}>")
