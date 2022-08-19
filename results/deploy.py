@@ -473,7 +473,7 @@ def main():
             if stop[CLUSTER_FOR_OSM_NAME]:
                 break
             
-            if trials > 1:
+            if trials > 3:
                 break
 
             nsi_ids = []
