@@ -12,9 +12,9 @@ additionalParamsForVnf:
     worker_username: worker
   member-vnf-index: cluster_vnf
 - additionalParamsForKdu:
-  - k8s-namespace: osm-charm-oops
+  - k8s-namespace: osm-charm-oops-oops-oops-oops-oops-oops
     kdu_name: osm-kdu
-  - k8s-namespace: osm-charm-oops
+  - k8s-namespace: osm-charm-oops-oops-oops-oops-oops-oops
     kdu_name: mep-kdu
   member-vnf-index: osm_cnf
 vnf:

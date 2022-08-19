@@ -10,7 +10,7 @@ import re
 NUMBER_TESTS = 8
 
 USER_MAIN = 'netedge'
-PASSWORD_MAIN = ''
+PASSWORD_MAIN = 'Olaadeus1!'
 PROJECT_MAIN = 'netedge'
 IP_ADDR = '10.0.12.98'
 VIM_ACCOUNT_MAIN = 'NetEdge'
@@ -35,10 +35,10 @@ PASSWORD_CHARMED_OSM = 'admin'
 PROJECT_CHARMED_OSM = 'admin'
 VIM_CHARMED_OSM = 'NetEdge'
 
-DIR_MEC_APP_VNF = '/home/escaleira@av.it.pt/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf'
-DIR_MEC_APP_NS = '/home/escaleira@av.it.pt/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_ns'
+DIR_MEC_APP_VNF = '/home/escaleira@av.it.pt/mp1-test-app-mec/osm/mp1_test_application_vnf'
+DIR_MEC_APP_NS = '/home/escaleira@av.it.pt/mp1-test-app-mec/osm/mp1_test_application_ns'
 
-PATH_MEC_APP_DEPLOYMENT = '/home/escaleira@av.it.pt/mp1-test-app-mec/docker-img-application/osm/mp1_test_application_vnf/helm-chart-v3s/launch_mp1_test/templates/deployment.yaml'
+PATH_MEC_APP_DEPLOYMENT = '/home/escaleira@av.it.pt/mp1-test-app-mec/osm/mp1_test_application_vnf/helm-chart-v3s/launch_mp1_test/templates/deployment.yaml'
 
 CLUSTER_USERNAME = "controller"
 CLUSTER_PASSWORD = "olaadeus"
@@ -146,7 +146,7 @@ def gather_timestamps_from_kafka(results_path: str, charmed_osm_master_ip: str):
     print(output)
     
     # Leave time for containers to initialize properly
-    time.sleep(60*3)
+    time.sleep(60)
 
     dir2 = subprocess.run(shlex.split(
         f"""
@@ -181,6 +181,11 @@ def gather_timestamps_from_kafka(results_path: str, charmed_osm_master_ip: str):
 
 def clean_environment(charmed_osm_master_ip: str):
 
+    output = subprocess.run(shlex.split(
+        f"""sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} kubectl delete deployment kafka-dump -n osm-charm-oops"""
+    ))
+    print(output)
+
     print(f"\n\n\n<{time.time()}> - Delete mp1\n")
     output = subprocess.run(shlex.split(
         f"""osm --hostname {charmed_osm_master_ip} --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} ns-delete 
@@ -188,13 +193,19 @@ def clean_environment(charmed_osm_master_ip: str):
     ), timeout=5*60)
     print(output)
 
-    time.sleep(60*2)
+    subprocess.run(shlex.split(
+        f"""
+        sshpass -p {CLUSTER_PASSWORD} ssh -o StrictHostKeyChecking=no -q {CLUSTER_USERNAME}@{charmed_osm_master_ip} rm -rf /tmp/dump_pod2/
+        """
+    ))
+
+    time.sleep(30)
 
 
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS+3):
+    for i in range(6, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")
@@ -207,18 +218,6 @@ def main():
         ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(output)
 
-        global CHARMED_OSM_NAMESPACE
-        if CHARMED_OSM_NAMESPACE in output.stdout.decode('utf-8'):
-            with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
-                data_yaml = yaml.safe_load(file)
-
-            data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] + '-oops'
-            data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] + '-oops'
-            CHARMED_OSM_NAMESPACE = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace']
-    
-            with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
-                yaml.safe_dump(data_yaml, file)
-        
         # create directory for this iteration results
         results_path = f"./results_iteration_{i}/"
         os.mkdir(results_path)
