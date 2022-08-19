@@ -1,5 +1,5 @@
-cert: 78cdd0913089b210f61d91d2dfccb70b2d2d165c20d16441415d5dc37902c3b4
+cert: null
 host: controller
-ip: 172.16.0.63
+ip: null
 port: 6443
-token: v12xhy.mp4xe45al6b7bxkt
+token: null
