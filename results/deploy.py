@@ -383,7 +383,7 @@ def main():
         with open(PATH_MEC_APP_DEPLOYMENT, 'w') as file:
             yaml.safe_dump(data_yaml, file)
 
-        instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
+        #instantiate_mec_app(charmed_osm_master_ip=charmed_osm_master_ip)
 
         print(f"\n\n\n<{time.time()}> - Finished deployment\n")
 
