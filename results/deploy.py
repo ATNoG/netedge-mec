@@ -160,14 +160,7 @@ def clean_environment(ns_main_name: str):
 
     except Exception as e:
         print(e)
-        
-    # and just to be really sure
-    print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
-    output = subprocess.run(shlex.split(
-        f"""sh results/delete_all_osm_resources.sh"""
-    ))
-    print(output)
-    
+
     print(f"\n\n\n<{time.time()}> - Delete our results container\n")
     output = subprocess.run(shlex.split(
         f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
