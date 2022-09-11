@@ -1,3 +1,0 @@
-60fe0cc4063ac016df74b8f26c6d0d69	tutorial_ns/tutorial_nsd.yaml
-f061ee450391e5d6b3b74d304a21208d	tutorial_ns/tutorial_ns.tar.gz
-acf787c4ff6ccc27aad2cb079a1a5e05	tutorial_ns/README.md

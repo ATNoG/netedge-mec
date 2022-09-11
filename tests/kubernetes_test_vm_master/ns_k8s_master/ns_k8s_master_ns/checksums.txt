@@ -1,2 +1,0 @@
-ab6bd80101b6a28565329fb8571a192d	ns_k8s_master_ns/ns_k8s_master_nsd.yaml
-03d21c54fb9012d667c7facff0ac3596	ns_k8s_master_ns/README.md
