@@ -8,25 +8,24 @@ additionalParamsForVnf:
     controller_password: olaadeus
     subnet_address: 172.16.0.0/24
 
-    cluster_name: k8s_test
-    osm_url: "https://10.0.13.166:9999"
-    osm_user: admin
-    osm_password: admin
-    vim: NetEdge
+    cluster_name: k8s_new_test
+    osm_url: "https://10.0.12.98:9999"
+    osm_user: k8s_user
+    osm_password: "Olaadeus!1"
+    vim: 236ebe71-2074-4119-9cc4-281dc556e556
 
     # worker VDUs
     worker_username: worker
     worker_password: olaadeus
 
-- member-vnf-index: 'osm_cnf'
+- member-vnf-index: 'mec_cnf'
   additionalParamsForKdu:
-  - kdu_name: osm-kdu
-    k8s-namespace: osm-test
   - kdu_name: mep-kdu
-    k8s-namespace: osm-test
+    k8s-namespace: osm
 
 vnf:
 - member-vnf-index: 'cluster_vnf'
+  vimAccountId: 3bfd2f56-282b-402e-9ef2-442b2c717c09
   internal-vld:
   - name: internal-vl
     ip-profile:
@@ -34,3 +33,5 @@ vnf:
       subnet-address: 172.16.0.0/24
       dhcp-params:
         enabled: true
+- member-vnf-index: 'mec_cnf'
+  vimAccountId: 6afb447f-6a44-4f24-8543-63fceff368e3

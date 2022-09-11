@@ -1,0 +1,33 @@
+nsd:
+  nsd:
+  - id: k8s_cluster_nsd
+    name: k8s_cluster_nsd
+    designer: OSM
+    description: NS for the K8s cluster VNFs
+    version: '1.0'
+    vnfd-id:
+    - k8s_cluster_vnf
+    - mec_cnf
+    df:
+    - id: default-df
+      vnf-profile:
+      - id: 'cluster_vnf'
+        vnfd-id: k8s_cluster_vnf
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: 'cluster_vnf'
+            constituent-cpd-id: vnf-controller-ext
+          - constituent-base-element-id: 'cluster_vnf'
+            constituent-cpd-id: vnf-worker-ext
+          virtual-link-profile-id: mgmt-net
+      - id: mec_cnf
+        vnfd-id: mec_cnf
+        virtual-link-connectivity:
+        - constituent-cpd-id:
+          - constituent-base-element-id: mec_cnf
+            constituent-cpd-id: mgmtnet-ext
+          virtual-link-profile-id: mgmt-net
+    virtual-link-desc:
+    - id: mgmt-net
+      mgmt-network: true
+      vim-network-name: proj_net

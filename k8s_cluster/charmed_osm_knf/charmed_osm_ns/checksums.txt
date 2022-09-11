@@ -1,2 +1,0 @@
-2ee86dddcf5efae2fa8bc31716dcc88d	charmed_osm_ns/README.md
-6abcc07aba6c86f7292b643c2c27a179	charmed_osm_ns/charmed_osm_nsd.yaml

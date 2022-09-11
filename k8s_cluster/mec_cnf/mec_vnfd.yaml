@@ -1,0 +1,19 @@
+vnfd:
+  description: K8s containers deployment of MEC
+  df:
+  - id: default-df
+  ext-cpd:
+  - id: mgmtnet-ext
+    k8s-cluster-net: mgmtnet
+  id: mec_cnf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: mep-kdu
+    helm-chart: netedge-mep/mepchart
+    helm-version: v3
+  mgmt-cp: mgmtnet-ext
+  product-name: mec_cnf
+  provider: IT
+  version: '1.0'
