@@ -10,51 +10,24 @@
 [submodule "tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/charms.osm"]
 	path = tests/kubernetes_controller_vnf/k8s_controller/k8s_controller_vnf/test/mod/charms.osm
 	url = https://github.com/charmed-osm/charms.osm
-[submodule "tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/operator"]
-	path = tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/operator
-	url = https://github.com/canonical/operator
-[submodule "tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm"]
-	path = tests/k8s_cluster_vnf/k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm
-	url = https://github.com/charmed-osm/charms.osm
-[submodule "k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/operator"]
-	path = k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/operator
-	url = https://github.com/canonical/operator
-[submodule "k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm"]
-	path = k8s_cluster/k8s_cluster_vnf/charms/k8s_cluster_installer/mod/charms.osm
-	url = https://github.com/charmed-osm/charms.osm
 [submodule "k8s_osm_requirements/mod/operator"]
 	path = k8s_osm_requirements/mod/operator
 	url = https://github.com/canonical/operator
 [submodule "k8s_osm_requirements/mod/charms.osm"]
 	path = k8s_osm_requirements/mod/charms.osm
 	url = https://github.com/charmed-osm/charms.osm
-[submodule "k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/operator"]
-	path = k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/operator
-	url = https://github.com/canonical/operator
-[submodule "k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/charms.osm"]
-	path = k8s_cluster/k8s_cluster_vnf/charms/k8s_osm_requirements/mod/charms.osm
-	url = https://github.com/charmed-osm/charms.osm
-[submodule "cluster_vnf_charmed_kubernetes"]
+[submodule "charmed_osm_vnf_charmed_kubernetes"]
 	path = k8s_cluster/k8s_cluster_vnf/charms
 	url = git@github.com:ATNoG/charmed-kubernetes.git
-[submodule "charmed_osm_vnf_charmed_kubernetes"]
-	path = k8s_cluster/k8s_osm_cluster_vnf/charms
+[submodule "k8s_cluster/k8s_cluster/k8s_cluster_vnf/charms"]
+	path = k8s_cluster/k8s_cluster/k8s_cluster_vnf/charms
 	url = git@github.com:ATNoG/charmed-kubernetes.git
-[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s-operator"]
-	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/zookeeper-k8s-operator
-	url = https://github.com/canonical/zookeeper-k8s-operator
-[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/keystone-operator"]
-	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/keystone-operator
-	url = https://github.com/davigar15/keystone-operator
-[submodule "k8s_cluster/k8s_cluster/k8s_osm_cluster_vnf/charms"]
-	path = k8s_cluster/k8s_cluster/k8s_osm_cluster_vnf/charms
+[submodule "k8s_cluster/k8s_cluster_vnf/charms"]
+	path = k8s_cluster/k8s_cluster_vnf/charms
 	url = git@github.com:ATNoG/charmed-kubernetes.git
-[submodule "k8s_cluster/k8s_osm_cluster_vnf/charms"]
-	path = k8s_cluster/k8s_osm_cluster_vnf/charms
-	url = git@github.com:ATNoG/charmed-kubernetes.git
-[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/helm-chart-v3s/netedge-mep"]
-	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/helm-chart-v3s/netedge-mep
+[submodule "k8s_cluster/mec_cnf/helm-chart-v3s/netedge-mep"]
+	path = k8s_cluster/mec_cnf/helm-chart-v3s/netedge-mep
 	url = git@github.com:ATNoG/netedge-mep.git
-[submodule "k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/nbi-custom-operator/mod/operator"]
-	path = k8s_cluster/charmed_osm_knf/charmed_osm_vnf/juju-bundles/charms/nbi-custom-operator/mod/operator
+[submodule "k8s_cluster/mec_cnf/juju-bundles/charms/nbi-custom-operator/mod/operator"]
+	path = k8s_cluster/mec_cnf/juju-bundles/charms/nbi-custom-operator/mod/operator
 	url = https://github.com/canonical/operator
