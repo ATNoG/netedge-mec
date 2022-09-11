@@ -161,17 +161,6 @@ def clean_environment(ns_main_name: str):
     except Exception as e:
         print(e)
         
-        # edit the NS config file for the second cluster
-        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
-            data_yaml = yaml.safe_load(file)
-
-        data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] + '-oops'
-        data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] + '-oops'
-        CHARMED_OSM_NAMESPACE = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace']
-
-        with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
-            yaml.safe_dump(data_yaml, file)
-        
     # and just to be really sure
     print(f"\n\n\n<{time.time()}> - Delete all OSM resources\n")
     output = subprocess.run(shlex.split(
@@ -221,18 +210,6 @@ def main():
             f"""juju models --all"""
         ), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(output)
-
-        global CHARMED_OSM_NAMESPACE
-        if CHARMED_OSM_NAMESPACE in output.stdout.decode('utf-8'):
-            with open(PATH_CLUSTER_NS_CONFIG_FILE, 'r') as file:
-                data_yaml = yaml.safe_load(file)
-
-            data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][0]['k8s-namespace'] + '-oops'
-            data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace'] + '-oops'
-            CHARMED_OSM_NAMESPACE = data_yaml['additionalParamsForVnf'][1]['additionalParamsForKdu'][1]['k8s-namespace']
-    
-            with open(PATH_CLUSTER_NS_CONFIG_FILE, 'w') as file:
-                yaml.safe_dump(data_yaml, file)
         
         # create directory for this iteration results
         results_path = f"./results_iteration_{i}/"
