@@ -1,20 +1,6 @@
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662965849746
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662965854764
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662965859782
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662965979804
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966099827
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966219861
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966339889
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966459910
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966579929
-Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: e4210b5cf393}
- in topic admin with key b'ping' create with timestamp 1662966699949
+Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: 9e48981e2f7d}
+ in topic admin with key b'ping' create with timestamp 1663009636487
+Received message {_id: z4MmgVK9N9HHxXDG8OU6XkbElcLC46Xj}
+ in topic admin with key b'revoke_token' create with timestamp 1663009754411
+Received message {from: lcm, to: lcm, version: 7.0.1.post18, worker_id: 9e48981e2f7d}
+ in topic admin with key b'ping' create with timestamp 1663009756512

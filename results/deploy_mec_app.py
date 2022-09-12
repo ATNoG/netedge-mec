@@ -7,7 +7,7 @@ import yaml
 import requests
 import re
 
-NUMBER_TESTS = 25
+NUMBER_TESTS = 32
 
 USER_MAIN = 'netedge'
 PASSWORD_MAIN = 'Olaadeus1!'
@@ -137,7 +137,7 @@ def clean_environment():
 def main():
     # init_environment()
     
-    for i in range(2, NUMBER_TESTS):
+    for i in range(25, NUMBER_TESTS):
 
         print("#######################################################################")
         print(f"Test <{i}>")
