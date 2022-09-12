@@ -7,7 +7,7 @@ import yaml
 import requests
 import re
 
-NUMBER_TESTS = 1
+NUMBER_TESTS = 25
 
 USER_MAIN = 'netedge'
 PASSWORD_MAIN = 'Olaadeus1!'
@@ -30,11 +30,6 @@ PATH_JOIN_PARAMS_FILE = 'k8s_cluster/join_k8s_workers_params.yaml'
 CLUSTER_FOR_OSM_NAME = 'osm-cluster'
 CHARMED_OSM_NAME = 'osm'
 
-USER_CHARMED_OSM = 'admin'
-PASSWORD_CHARMED_OSM = 'admin'
-PROJECT_CHARMED_OSM = 'admin'
-VIM_CHARMED_OSM = 'NetEdge'
-
 DIR_MEC_APP_VNF = '/home/escaleira@av.it.pt/mp1-test-app-mec/osm/mp1_test_application_vnf'
 DIR_MEC_APP_NS = '/home/escaleira@av.it.pt/mp1-test-app-mec/osm/mp1_test_application_ns'
 
@@ -51,22 +46,22 @@ def instantiate_mec_app():
     # instantiate MEC APP
     print(f"\n\n\n<{time.time()}> - Create VNF package for the MEC APP\n")
     output = subprocess.run(shlex.split(
-        f"""osm --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+        f"""osm --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} 
         nfpkg-create {DIR_MEC_APP_VNF}"""
     ))
     print(output)
 
     print(f"\n\n\n<{time.time()}> - Create NS package for the MEC APP\n")
     output = subprocess.run(shlex.split(
-        f"""osm --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} 
+        f"""osm --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} 
         nspkg-create {DIR_MEC_APP_NS}"""
     ))
     print(output)
 
     print(f"\n\n\n<{time.time()}> - Instantiate MEC APP\n")
     output = subprocess.run(shlex.split(
-        f"""osm --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} ns-create 
-        --ns_name mp1 --nsd_name mp1_test_application_ns --vim_account {VIM_CHARMED_OSM} --wait"""
+        f"""osm --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-create 
+        --ns_name mp1 --nsd_name mp1_test_application_ns --vim_account {VIM_ACCOUNT_MAIN} --wait"""
     ))
     print(output)
     
@@ -121,16 +116,11 @@ def gather_timestamps_from_kafka(results_path: str):
     ))
     print(output)
 
-def clean_environment(charmed_osm_master_ip: str):
-
-    output = subprocess.run(shlex.split(
-        f"""kubectl delete deployment kafka-dump -n osm-charm-oops"""
-    ))
-    print(output)
+def clean_environment():
 
     print(f"\n\n\n<{time.time()}> - Delete mp1\n")
     output = subprocess.run(shlex.split(
-        f"""osm --user {USER_CHARMED_OSM} --password '{PASSWORD_CHARMED_OSM}' --project {PROJECT_CHARMED_OSM} ns-delete 
+        f"""osm --user {USER_MAIN} --password '{PASSWORD_MAIN}' --project {PROJECT_MAIN} ns-delete 
         mp1 --wait"""
     ), timeout=5*60)
     print(output)
@@ -147,7 +137,7 @@ def clean_environment(charmed_osm_master_ip: str):
 def main():
     # init_environment()
     
-    for i in range(0, NUMBER_TESTS):
+    for i in range(2, NUMBER_TESTS):
 
         print("#######################################################################")
         print(f"Test <{i}>")
