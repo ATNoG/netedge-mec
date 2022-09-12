@@ -1,0 +1,308 @@
+Received message {_id: 7e5ce7bc-1638-4797-bcf7-2c321fdbb712}
+ in topic vnfd with key b'created' create with timestamp 1662911853407
+Received message {_id: 7e5ce7bc-1638-4797-bcf7-2c321fdbb712, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]},
+                {execution-environment-ref: controller-ee, name: get-k8s-controller-info,
+                  parameter: [{default-value: <subnet_address>, hidden: true, name: subnet-address,
+                      read-only: true}]}], execution-environment-list: [{id: controller-ee,
+                  juju: {charm: k8s_cluster_installer, proxy: true}}], id: controller,
+              initial-config-primitive: [{execution-environment-ref: controller-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-ee, name: add-partitions,
+                  parameter: [{data-type: INTEGER, name: number-partitions, value: 15}],
+                  seq: 2}, {execution-environment-ref: controller-ee, name: deploy-k8s-controller,
+                  seq: 3}, {execution-environment-ref: controller-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 4}, {
+                  execution-environment-ref: controller-ee, name: prepare-charm-base,
+                  seq: 5}, {execution-environment-ref: controller-ee, name: add-k8s-cluster-to-osm,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 6}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1},
+                {execution-environment-ref: worker-ee, name: add-partitions, parameter: [
+                    {data-type: INTEGER, name: number-partitions, value: 15}], seq: 2},
+                {execution-environment-ref: worker-ee, name: deploy-k8s-workers, seq: 3},
+                {execution-environment-ref: worker-ee, name: prepare-charm-base, seq: 5}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage, openebs-device-storage]}, {cloud-init-file: cloud-init-worker.cfg,
+      description: VMs for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out,
+          virtual-network-interface-requirement: [{name: worker-out, virtual-interface: {
+                type: PARAVIRT}}]}, {id: worker-int-in, int-virtual-link-desc: internal-vl,
+          virtual-network-interface-requirement: [{name: worker-in, virtual-interface: {
+                type: PARAVIRT}}]}], name: worker, sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute,
+      virtual-storage-desc: [worker-storage, openebs-device-storage]}], version: '1.0',
+  virtual-compute-desc: [{id: controller-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}, {id: worker-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}], virtual-storage-desc: [{id: controller-storage,
+      size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}, {id: openebs-device-storage,
+      size-of-storage: 36, type-of-storage: persistent-storage}]}
+ in topic vnfd with key b'edited' create with timestamp 1662911855212
+Received message {_id: 055419a0-27e1-4c0f-8dad-680c4d3a43f0}
+ in topic vnfd with key b'created' create with timestamp 1662911871480
+Received message {_id: 055419a0-27e1-4c0f-8dad-680c4d3a43f0, description: K8s containers deployment
+    of MEC, df: [{id: default-df}], ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}],
+  id: mec_cnf, k8s-cluster: {nets: [{id: mgmtnet}]}, kdu: [{helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: mec_cnf,
+  provider: IT, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1662911873100
+Received message {_id: 7e5ce7bc-1638-4797-bcf7-2c321fdbb712}
+ in topic vnfd with key b'deleted' create with timestamp 1662912949953
+Received message {_id: b5f158ba-a8ef-4206-83d1-605ba67160f9}
+ in topic vnfd with key b'created' create with timestamp 1662912969212
+Received message {_id: cbe55b1d-6462-470c-9d89-311fa6383b9b}
+ in topic vnfd with key b'created' create with timestamp 1662913002514
+Received message {_id: 0d07cf1c-85d4-4339-8129-d910c0b2837f}
+ in topic vnfd with key b'created' create with timestamp 1662913044509
+Received message {_id: b4ddbb51-0daa-4415-b95c-9bfc8dc280ff}
+ in topic vnfd with key b'created' create with timestamp 1662913093554
+Received message {_id: 89230763-ea63-424a-814c-dc5983659646}
+ in topic vnfd with key b'created' create with timestamp 1662913142087
+Received message {_id: e365be7b-7406-4b72-a695-2a4226d0cdf6}
+ in topic vnfd with key b'created' create with timestamp 1662913162862
+Received message {_id: cef8b4ad-1692-4e25-a53c-fb60b17e7157}
+ in topic vnfd with key b'created' create with timestamp 1662913172036
+Received message {_id: e13193f6-251a-4d6d-8606-de89372434ab}
+ in topic vnfd with key b'created' create with timestamp 1662913285204
+Received message {_id: 836c024b-7c50-47f9-8d4e-b8d55b2159b2}
+ in topic vnfd with key b'created' create with timestamp 1662913403136
+Received message {_id: fd748159-a035-4687-9f23-9468e12b42a9}
+ in topic vnfd with key b'created' create with timestamp 1662913501019
+Received message {_id: fd748159-a035-4687-9f23-9468e12b42a9, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]},
+                {execution-environment-ref: controller-ee, name: get-k8s-controller-info,
+                  parameter: [{default-value: <subnet_address>, hidden: true, name: subnet-address,
+                      read-only: true}]}], execution-environment-list: [{id: controller-ee,
+                  juju: {charm: k8s_cluster_installer, proxy: true}}], id: controller,
+              initial-config-primitive: [{execution-environment-ref: controller-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-ee, name: add-partitions,
+                  parameter: [{data-type: INTEGER, name: number-partitions, value: 15}],
+                  seq: 2}, {execution-environment-ref: controller-ee, name: deploy-k8s-controller,
+                  seq: 3}, {execution-environment-ref: controller-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 4}, {
+                  execution-environment-ref: controller-ee, name: prepare-charm-base,
+                  seq: 5}, {execution-environment-ref: controller-ee, name: add-k8s-cluster-to-osm,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 6}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1},
+                {execution-environment-ref: worker-ee, name: add-partitions, parameter: [
+                    {data-type: INTEGER, name: number-partitions, value: 15}], seq: 2},
+                {execution-environment-ref: worker-ee, name: deploy-k8s-workers, seq: 3},
+                {execution-environment-ref: worker-ee, name: prepare-charm-base, seq: 5}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage, openebs-device-storage]}, {cloud-init-file: cloud-init-worker.cfg,
+      description: VMs for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out,
+          virtual-network-interface-requirement: [{name: worker-out, virtual-interface: {
+                type: PARAVIRT}}]}, {id: worker-int-in, int-virtual-link-desc: internal-vl,
+          virtual-network-interface-requirement: [{name: worker-in, virtual-interface: {
+                type: PARAVIRT}}]}], name: worker, sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute,
+      virtual-storage-desc: [worker-storage, openebs-device-storage]}], version: '1.0',
+  virtual-compute-desc: [{id: controller-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}, {id: worker-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}], virtual-storage-desc: [{id: controller-storage,
+      size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}, {id: openebs-device-storage,
+      size-of-storage: 36, type-of-storage: persistent-storage}]}
+ in topic vnfd with key b'edited' create with timestamp 1662913505396
+Received message {_id: 055419a0-27e1-4c0f-8dad-680c4d3a43f0}
+ in topic vnfd with key b'deleted' create with timestamp 1662914380158
+Received message {_id: 8d60822c-8fb5-4e52-87d9-11bd75937962}
+ in topic vnfd with key b'created' create with timestamp 1662914401198
+Received message {_id: 8d60822c-8fb5-4e52-87d9-11bd75937962, description: K8s containers deployment
+    of MEC, df: [{id: default-df}], ext-cpd: [{id: mgmtnet-ext, k8s-cluster-net: mgmtnet}],
+  id: mec_cnf, k8s-cluster: {nets: [{id: mgmtnet}]}, kdu: [{helm-chart: netedge-mep/mepchart,
+      helm-version: v3, name: mep-kdu}], mgmt-cp: mgmtnet-ext, product-name: mec_cnf,
+  provider: IT, version: '1.0'}
+ in topic vnfd with key b'edited' create with timestamp 1662914402846
+Received message {_id: fd748159-a035-4687-9f23-9468e12b42a9}
+ in topic vnfd with key b'deleted' create with timestamp 1662914671123
+Received message {_id: 6d4b6d75-8cab-41f1-b7bb-d46844b78dd5}
+ in topic vnfd with key b'created' create with timestamp 1662914673958
+Received message {_id: 6d4b6d75-8cab-41f1-b7bb-d46844b78dd5, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]},
+                {execution-environment-ref: controller-ee, name: get-k8s-controller-info,
+                  parameter: [{default-value: <subnet_address>, hidden: true, name: subnet-address,
+                      read-only: true}]}], execution-environment-list: [{id: controller-ee,
+                  juju: {charm: k8s_cluster_installer, proxy: true}}], id: controller,
+              initial-config-primitive: [{execution-environment-ref: controller-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-ee, name: add-partitions,
+                  parameter: [{data-type: INTEGER, name: number-partitions, value: 15}],
+                  seq: 2}, {execution-environment-ref: controller-ee, name: deploy-k8s-controller,
+                  seq: 3}, {execution-environment-ref: controller-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 4}, {
+                  execution-environment-ref: controller-ee, name: prepare-charm-base,
+                  seq: 5}, {execution-environment-ref: controller-ee, name: add-k8s-cluster-to-osm,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 6}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1},
+                {execution-environment-ref: worker-ee, name: add-partitions, parameter: [
+                    {data-type: INTEGER, name: number-partitions, value: 15}], seq: 2},
+                {execution-environment-ref: worker-ee, name: deploy-k8s-workers, seq: 3},
+                {execution-environment-ref: worker-ee, name: prepare-charm-base, seq: 5}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage, openebs-device-storage]}, {cloud-init-file: cloud-init-worker.cfg,
+      description: VMs for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out,
+          virtual-network-interface-requirement: [{name: worker-out, virtual-interface: {
+                type: PARAVIRT}}]}, {id: worker-int-in, int-virtual-link-desc: internal-vl,
+          virtual-network-interface-requirement: [{name: worker-in, virtual-interface: {
+                type: PARAVIRT}}]}], name: worker, sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute,
+      virtual-storage-desc: [worker-storage, openebs-device-storage]}], version: '1.0',
+  virtual-compute-desc: [{id: controller-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}, {id: worker-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}], virtual-storage-desc: [{id: controller-storage,
+      size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}, {id: openebs-device-storage,
+      size-of-storage: 36, type-of-storage: persistent-storage}]}
+ in topic vnfd with key b'edited' create with timestamp 1662914676929
+Received message {_id: 6d4b6d75-8cab-41f1-b7bb-d46844b78dd5}
+ in topic vnfd with key b'deleted' create with timestamp 1662933725102
+Received message {_id: e29ace2b-e14e-4c27-9dc2-5acd9444210d}
+ in topic vnfd with key b'created' create with timestamp 1662933759234
+Received message {_id: e29ace2b-e14e-4c27-9dc2-5acd9444210d, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}, {number-of-instances: 1, vdu-id: worker}]}], lcm-operations-configuration: {
+        operate-vnf-op-config: {day1-2: [{config-primitive: [{execution-environment-ref: controller-ee,
+                  name: remove-k8s-worker, parameter: [{data-type: STRING, name: node}]},
+                {execution-environment-ref: controller-ee, name: get-k8s-controller-info,
+                  parameter: [{default-value: <subnet_address>, hidden: true, name: subnet-address,
+                      read-only: true}]}], execution-environment-list: [{id: controller-ee,
+                  juju: {charm: k8s_cluster_installer, proxy: true}}], id: controller,
+              initial-config-primitive: [{execution-environment-ref: controller-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <controller_username>}, {name: ssh-password,
+                      value: <controller_password>}, {name: entity, value: controller}],
+                  seq: 1}, {execution-environment-ref: controller-ee, name: add-partitions,
+                  parameter: [{data-type: INTEGER, name: number-partitions, value: 15}],
+                  seq: 2}, {execution-environment-ref: controller-ee, name: deploy-k8s-controller,
+                  seq: 3}, {execution-environment-ref: controller-ee, name: install-requirements,
+                  parameter: [{name: ip-address, value: <rw_mgmt_ip>}], seq: 4}, {
+                  execution-environment-ref: controller-ee, name: add-k8s-cluster-to-osm,
+                  parameter: [{name: cluster-name, value: <cluster_name>}, {name: master-ip,
+                      value: <rw_mgmt_ip>}, {name: osm-url, value: <osm_url>}, {name: osm-user,
+                      value: <osm_user>}, {name: osm-password, value: <osm_password>},
+                    {name: vim, value: <vim>}], seq: 5}]}, {config-primitive: [{execution-environment-ref: worker-ee,
+                  name: join-k8s-workers, parameter: [{data-type: STRING, name: ip},
+                    {data-type: STRING, name: host}, {data-type: INTEGER, name: port},
+                    {data-type: STRING, name: token}, {data-type: STRING, name: cert}]}],
+              execution-environment-list: [{id: worker-ee, juju: {charm: k8s_cluster_installer,
+                    proxy: true}}], id: worker, initial-config-primitive: [{execution-environment-ref: worker-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: <worker_username>}, {name: ssh-password,
+                      value: <worker_password>}, {name: entity, value: worker}], seq: 1},
+                {execution-environment-ref: worker-ee, name: add-partitions, parameter: [
+                    {data-type: INTEGER, name: number-partitions, value: 15}], seq: 2},
+                {execution-environment-ref: worker-ee, name: deploy-k8s-workers, seq: 3}]}]}},
+      scaling-aspect: [{aspect-delta-details: {deltas: [{id: worker-scale-delta, vdu-delta: [
+                  {id: worker, number-of-instances: 1}]}]}, id: worker-scale, name: worker-scale,
+          scaling-policy: [{cooldown-time: 5, name: manual-worker-scaling, scaling-type: manual}]}],
+      vdu-profile: [{id: controller, max-number-of-instances: 1, min-number-of-instances: 1},
+        {id: worker, max-number-of-instances: 10, min-number-of-instances: 1}]}],
+  ext-cpd: [{id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}},
+    {id: vnf-worker-ext, int-cpd: {cpd: worker-int-out, vdu-id: worker}}], id: k8s_cluster_vnf,
+  int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: k8s_cluster_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage, openebs-device-storage]}, {cloud-init-file: cloud-init-worker.cfg,
+      description: VMs for the Kubernetes' workers, id: worker, int-cpd: [{id: worker-int-out,
+          virtual-network-interface-requirement: [{name: worker-out, virtual-interface: {
+                type: PARAVIRT}}]}, {id: worker-int-in, int-virtual-link-desc: internal-vl,
+          virtual-network-interface-requirement: [{name: worker-in, virtual-interface: {
+                type: PARAVIRT}}]}], name: worker, sw-image-desc: clean-ubuntu, virtual-compute-desc: worker-compute,
+      virtual-storage-desc: [worker-storage, openebs-device-storage]}], version: '1.0',
+  virtual-compute-desc: [{id: controller-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}, {id: worker-compute, virtual-cpu: {num-virtual-cpu: 4},
+      virtual-memory: {size: 18}}], virtual-storage-desc: [{id: controller-storage,
+      size-of-storage: 32}, {id: worker-storage, size-of-storage: 64}, {id: openebs-device-storage,
+      size-of-storage: 36, type-of-storage: persistent-storage}]}
+ in topic vnfd with key b'edited' create with timestamp 1662933762173

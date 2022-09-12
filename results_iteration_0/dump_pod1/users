@@ -1,0 +1,11 @@
+Received message {_id: 299a5b85-99d4-4228-8c85-639cb994e6c0, changes: {project_role_mappings: [{project: admin,
+        role: system_admin}, {project: netedge, role: system_admin}]}}
+ in topic users with key b'edited' create with timestamp 1662833059512
+Received message {_id: 990af366-9841-4927-a447-fe9f8459bc73, changes: {project_role_mappings: [{project: netedge,
+        role: k8s_access}, {project: admin, role: k8s_access}]}}
+ in topic users with key b'edited' create with timestamp 1662912396818
+Received message {_id: 990af366-9841-4927-a447-fe9f8459bc73, changes: {remove_project_role_mappings: [
+      {project: netedge, role: k8s_access}]}}
+ in topic users with key b'edited' create with timestamp 1662919669079
+Received message {_id: 299a5b85-99d4-4228-8c85-639cb994e6c0, changes: {password: Olaadeus1!}}
+ in topic users with key b'edited' create with timestamp 1662934621676

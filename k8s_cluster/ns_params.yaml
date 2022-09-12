@@ -8,7 +8,7 @@ additionalParamsForVnf:
     controller_password: olaadeus
     subnet_address: 172.16.0.0/24
 
-    cluster_name: k8s_new_test
+    cluster_name: k8s_test
     osm_url: "https://10.0.12.98:9999"
     osm_user: k8s_user
     osm_password: "Olaadeus!1"

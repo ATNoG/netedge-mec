@@ -1,5 +1,5 @@
-cert: "d34ec6fcf28fcd4b070dc66fc2735e7a7b7154f1d487533865f4e193c39777dd"
-host: "controller"
-ip: "172.16.0.98"
+cert: 98341180f18788e8caf69faed54432429ecaa5a44028a984b9c65a1fa76f7eca
+host: controller
+ip: 172.16.0.57
 port: 6443
-token: "nxn9aa.imlfn30im36juocy"
+token: 0jw5ae.9tfh00xgi204kpcn

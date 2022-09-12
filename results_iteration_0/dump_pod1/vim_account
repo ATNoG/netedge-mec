@@ -1,0 +1,8 @@
+Received message {_id: 236ebe71-2074-4119-9cc4-281dc556e556, config: {location: ',,'}, description: null,
+  name: NetEdgeDummy, op_id: '236ebe71-2074-4119-9cc4-281dc556e556:0', schema_type: '',
+  schema_version: '1.11', vim_password: qaU6x9cjkmTHtF2l7oZMdQ==, vim_tenant_name: NetEdgeDummy,
+  vim_type: dummy, vim_url: 'http://1.1.1.1', vim_user: NetEdgeDummy}
+ in topic vim_account with key b'created' create with timestamp 1662911232665
+Received message dummy message
+...
+ in topic vim_account with key b'echo' create with timestamp 1662914218725

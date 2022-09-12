@@ -1,0 +1,59 @@
+Received message {autoremove: true, nslcmop_id: 34cc26da-cd58-4232-8170-5794ff16b49c, nsr_id: ae90aeb0-837f-4ab4-af53-ce2b4624d78c,
+  operationState: COMPLETED}
+ in topic ns with key b'terminated' create with timestamp 1662943748938
+Received message {_id: ae90aeb0-837f-4ab4-af53-ce2b4624d78c}
+ in topic ns with key b'deleted' create with timestamp 1662943748974
+Received message {_admin: {created: 1662943876.5274935, modified: 1662943876.5274935, projects_read: [
+      4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0], projects_write: [4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0]},
+  _id: 9a8b5488-3b9d-49af-86a2-e082dd0c8c0d, detailedStatus: null, errorMessage: null,
+  id: 9a8b5488-3b9d-49af-86a2-e082dd0c8c0d, isAutomaticInvocation: false, isCancelPending: false,
+  lcmOperationType: instantiate, links: {nsInstance: /osm/nslcm/v1/ns_instances/a34e94e1-c189-41c5-a0b3-14b49afde892,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/9a8b5488-3b9d-49af-86a2-e082dd0c8c0d}, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationParams: {additionalParamsForVnf: '[{"member-vnf-index": "cluster_vnf",
+      "additionalParams": {"controller_username": "controller", "controller_password":
+      "olaadeus", "subnet_address": "172.16.0.0/24", "cluster_name": "k8s_test", "osm_url":
+      "https://10.0.12.98:9999", "osm_user": "k8s_user", "osm_password": "Olaadeus!1",
+      "vim": "236ebe71-2074-4119-9cc4-281dc556e556", "worker_username": "worker",
+      "worker_password": "olaadeus"}}, {"member-vnf-index": "mec_cnf", "additionalParamsForKdu":
+      [{"kdu_name": "mep-kdu", "k8s-namespace": "osm"}]}]', lcmOperationType: instantiate,
+    nsDescription: default description, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+    nsName: edge, nsdId: c2e93057-b5f8-480b-ba65-c7ed6e3d377c, nsr_id: a34e94e1-c189-41c5-a0b3-14b49afde892,
+    vimAccountId: 3bfd2f56-282b-402e-9ef2-442b2c717c09, vnf: [{internal-vld: [{ip-profile: {
+              dhcp-params: {enabled: true}, ip-version: ipv4, subnet-address: 172.16.0.0/24},
+            name: internal-vl}], member-vnf-index: cluster_vnf, vimAccountId: 3bfd2f56-282b-402e-9ef2-442b2c717c09},
+      {member-vnf-index: mec_cnf, vimAccountId: 6afb447f-6a44-4f24-8543-63fceff368e3}]},
+  operationState: PROCESSING, queuePosition: null, stage: null, startTime: 1662943876.5274441,
+  statusEnteredTime: 1662943876.5274441}
+ in topic ns with key b'instantiate' create with timestamp 1662943876543
+Received message {nslcmop_id: 9a8b5488-3b9d-49af-86a2-e082dd0c8c0d, nsr_id: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationState: COMPLETED}
+ in topic ns with key b'instantiated' create with timestamp 1662944399607
+Received message {_admin: {created: 1662944401.0767872, modified: 1662944401.0767872, projects_read: [
+      4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0], projects_write: [4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0]},
+  _id: 1ebff66e-a7aa-4516-ab42-0b54bc78c8ce, detailedStatus: null, errorMessage: null,
+  id: 1ebff66e-a7aa-4516-ab42-0b54bc78c8ce, isAutomaticInvocation: false, isCancelPending: false,
+  lcmOperationType: action, links: {nsInstance: /osm/nslcm/v1/ns_instances/a34e94e1-c189-41c5-a0b3-14b49afde892,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/1ebff66e-a7aa-4516-ab42-0b54bc78c8ce}, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationParams: {lcmOperationType: action, member_vnf_index: cluster_vnf, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+    primitive: get-k8s-controller-info, primitive_params: {}, vdu_id: controller},
+  operationState: PROCESSING, queuePosition: null, stage: null, startTime: 1662944401.0767415,
+  statusEnteredTime: 1662944401.0767415}
+ in topic ns with key b'action' create with timestamp 1662944401091
+Received message {nslcmop_id: 1ebff66e-a7aa-4516-ab42-0b54bc78c8ce, nsr_id: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationState: COMPLETED}
+ in topic ns with key b'actioned' create with timestamp 1662944417123
+Received message {_admin: {created: 1662944421.9778132, modified: 1662944421.9778132, projects_read: [
+      4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0], projects_write: [4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0]},
+  _id: b2fa92fe-79b5-4bfa-b9b4-fe271c7fefe8, detailedStatus: null, errorMessage: null,
+  id: b2fa92fe-79b5-4bfa-b9b4-fe271c7fefe8, isAutomaticInvocation: false, isCancelPending: false,
+  lcmOperationType: action, links: {nsInstance: /osm/nslcm/v1/ns_instances/a34e94e1-c189-41c5-a0b3-14b49afde892,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/b2fa92fe-79b5-4bfa-b9b4-fe271c7fefe8}, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationParams: {lcmOperationType: action, member_vnf_index: cluster_vnf, nsInstanceId: a34e94e1-c189-41c5-a0b3-14b49afde892,
+    primitive: join-k8s-workers, primitive_params: '{"cert": "e0dfd9f0a9175ea6e2531e609b224f9e9d1e928e52aa388b9d73e0b07bf40a40",
+      "host": "controller", "ip": "172.16.0.121", "port": 6443, "token": "0bcmwg.xpx73zx5nu62i0lo"}',
+    vdu_count_index: 0, vdu_id: worker}, operationState: PROCESSING, queuePosition: null,
+  stage: null, startTime: 1662944421.9777672, statusEnteredTime: 1662944421.9777672}
+ in topic ns with key b'action' create with timestamp 1662944421991
+Received message {nslcmop_id: b2fa92fe-79b5-4bfa-b9b4-fe271c7fefe8, nsr_id: a34e94e1-c189-41c5-a0b3-14b49afde892,
+  operationState: COMPLETED}
+ in topic ns with key b'actioned' create with timestamp 1662944440610

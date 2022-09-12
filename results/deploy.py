@@ -131,6 +131,11 @@ def gather_timestamps_from_kafka(results_path: str):
         """
     ))
     print(dump_pod1)
+
+    output = subprocess.run(shlex.split(
+        f"""kubectl delete deployment kafka-dump -n osm"""
+    ))
+    print(output)
     
 
 def clean_environment(ns_main_name: str):
@@ -161,14 +166,14 @@ def clean_environment(ns_main_name: str):
     except Exception as e:
         print(e)
 
-    print(f"\n\n\n<{time.time()}> - Delete our results container\n")
-    output = subprocess.run(shlex.split(
-        f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
-    ))
-    output = subprocess.run(shlex.split(
-        f"""kubectl delete deployment kafka-dump -n osm"""
-    ))
-    print(output)
+    #print(f"\n\n\n<{time.time()}> - Delete our results container\n")
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl scale deployment kafka-dump -n osm --replicas=0"""
+    #))
+    #output = subprocess.run(shlex.split(
+    #    f"""kubectl delete deployment kafka-dump -n osm"""
+    #))
+    #print(output)
     
     print(f"\n\n\n<{time.time()}> - Destroy and init LCM\n")
     output = subprocess.run(shlex.split(
@@ -191,7 +196,7 @@ def clean_environment(ns_main_name: str):
 def main():
     # init_environment()
     
-    for i in range(6, NUMBER_TESTS+3):
+    for i in range(2, NUMBER_TESTS+3):
 
         print("#######################################################################")
         print(f"Test <{i}>")
@@ -224,90 +229,6 @@ def main():
         }, verify=False)
 
         print(response.status_code)
-
-        token = response.json()['id']
-        trials = 0
-        while True:
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} vnf-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} vim-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} k8s-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} vnfd-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} vca-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} user-list"""
-            ))
-            subprocess.run(shlex.split(
-               f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} project-list"""
-            ))
-
-            response = requests.get(f"{osm_url}/osm/nslcm/v1/ns_instances", headers={
-                "Authorization": f"Bearer {token}",
-                "Accept": "application/json"
-            }, verify=False)
-
-            if response.status_code != 200:
-                error_info = f"Response with status code: <{response.status_code}>; Response: <{response.json()}>"
-                print(error_info)
-    
-            nsi_ids = []
-            for ns_instance in response.json():
-                print(ns_instance)
-                if CLUSTER_NAME == ns_instance['name']:
-                    nsi_ids.append(ns_instance['_id'])
-
-            print(f"NSIs: {nsi_ids}")
-    
-            for i in nsi_ids:
-                response = requests.get(f"{osm_url}/osm/nslcm/v1/ns_instances/{i}?vcaStatusRefresh=true", headers={
-                    "Authorization": f"Bearer {token}",
-                    "Accept": "application/json"
-                }, verify=False)
-                print(f"{response.status_code} -> {response.json()}\n\n\n")
-
-            time.sleep(60)
-
-            for ns_name in (CLUSTER_NAME, ):      # , CHARMED_OSM_NAME
-                print(f"\n\n\n<{time.time()}> - Obtain the NS instantiation details\n")
-                subprocess.run(shlex.split(
-                    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-show 
-                    {ns_name} --literal"""
-                ))
-                time.sleep(20)
-                output = subprocess.run(shlex.split(
-                    f"""osm --hostname {IP_ADDR} --user {USER_MAIN} --password {PASSWORD_MAIN} --project {PROJECT_MAIN} ns-show 
-                    {ns_name} --literal"""
-                ), stdout=subprocess.PIPE)
-
-                with open(f"{results_path}{ns_name}.yaml", 'w') as file:
-                    file.write(output.stdout.decode('utf-8'))
-            if trials > 1:
-                break
-
-            nsi_ids = []
-
-            print(f"NSIs: {nsi_ids}")
-    
-            for i in nsi_ids:
-                response = requests.get(f"{osm_url}/osm/nslcm/v1/ns_instances/{i}?vcaStatusRefresh=true", headers={
-                    "Authorization": f"Bearer {token}",
-                    "Accept": "application/json"
-                }, verify=False)
-                print(f"{response.status_code} -> {response.json()}\n\n\n")
-
-            trials += 1
 
         # Start cleaning for the next iteration
         clean_environment(ns_main_name=CLUSTER_NAME)
