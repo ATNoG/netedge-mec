@@ -82,7 +82,6 @@ def gather_timestamps_from_kafka(results_path: str):
         """
     ))
     print(copy_pod1)
-    
 
     dump_pod1 = subprocess.run(shlex.split(
         f"""
@@ -124,6 +123,7 @@ def main():
         output = subprocess.run(shlex.split(
             f"""kubectl delete deployment kafka-dump -n osm"""
         ))
+        time.sleep(180)
         print(output)
         print(f"\n\n\n<{time.time()}> - Remove tmp directory\n")
         output = subprocess.run(shlex.split(
