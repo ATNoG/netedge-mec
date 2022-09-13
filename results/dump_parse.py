@@ -124,19 +124,26 @@ def main():
     mep_data = []
     osm_data = []
     count=0
-    for dumpdir in os.listdir():
-      try:
-        if re.match("^results.*",dumpdir):
-            print(dumpdir)
-            # enter directory and iterate known dumps
-            pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data,count)
-            #osm_yaml(dumpdir,osm_data,count)
-            count+=1
-      except Exception as e:
-         print(e)
-         print(f"Iteration {dumpdir} had an unexpected error please manually remove the directory")
+    operation = "scale"
+    for dumpdir in sorted(os.listdir(), key=lambda x:int(x.split("_")[-1]) if re.match("^results.*", x) else -1):
+        try:
+            if re.match("^results.*", dumpdir):
+                print(dumpdir)
+                if operation == "scale":
+                    with open(f"{dumpdir}/dump_pod1/ns") as file:
+                       for line in file.readlines():
+                           if "b'scale" in line:
+                               print(line) 
+                else:
+                    # enter directory and iterate known dumps
+                    pod_dump(dumpdir,main_ns_data,charmed_ns_data,mep_data,count)
+                    #osm_yaml(dumpdir,osm_data,count)
+                    count+=1
+        except Exception as e:
+           print(e)
+           print(f"Iteration {dumpdir} had an unexpected error please manually remove the directory")
 
-    write_parsed_data("main_ns_data.csv",main_ns_data)
+    #write_parsed_data("main_ns_data.csv",main_ns_data)
     #write_parsed_data("charmed_ns_data.csv",charmed_ns_data)
     #write_parsed_data("mep_data.csv",mep_data)
     # different file easier than creating something proper since this is single use
