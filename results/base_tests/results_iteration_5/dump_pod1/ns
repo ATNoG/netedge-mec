@@ -1,0 +1,15 @@
+Received message {_admin: {created: 1663113767.3943243, modified: 1663113767.3943243, projects_read: [
+      67db30fa-5f69-46a2-80c5-4616583357f1], projects_write: [67db30fa-5f69-46a2-80c5-4616583357f1]},
+  _id: 80ef19a3-0d8c-4683-a6b1-b26e5916e88a, detailedStatus: null, errorMessage: null,
+  id: 80ef19a3-0d8c-4683-a6b1-b26e5916e88a, isAutomaticInvocation: false, isCancelPending: false,
+  lcmOperationType: instantiate, links: {nsInstance: /osm/nslcm/v1/ns_instances/03fd32f7-b2b1-448f-a32f-c9842ec05b5e,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/80ef19a3-0d8c-4683-a6b1-b26e5916e88a}, nsInstanceId: 03fd32f7-b2b1-448f-a32f-c9842ec05b5e,
+  operationParams: {lcmOperationType: instantiate, nsDescription: default description,
+    nsInstanceId: 03fd32f7-b2b1-448f-a32f-c9842ec05b5e, nsName: base_ns, nsdId: b6e9a2cb-9bab-4d7c-aaa2-5418fe52bce8,
+    nsr_id: 03fd32f7-b2b1-448f-a32f-c9842ec05b5e, vimAccountId: 3bfd2f56-282b-402e-9ef2-442b2c717c09},
+  operationState: PROCESSING, queuePosition: null, stage: null, startTime: 1663113767.3942738,
+  statusEnteredTime: 1663113767.3942738}
+ in topic ns with key b'instantiate' create with timestamp 1663113767408
+Received message {nslcmop_id: 80ef19a3-0d8c-4683-a6b1-b26e5916e88a, nsr_id: 03fd32f7-b2b1-448f-a32f-c9842ec05b5e,
+  operationState: COMPLETED}
+ in topic ns with key b'instantiated' create with timestamp 1663113979211

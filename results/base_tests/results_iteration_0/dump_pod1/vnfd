@@ -1,0 +1,56 @@
+Received message {_id: 0dd2a796-681d-4d61-8ef2-5a01f298fd92}
+ in topic vnfd with key b'created' create with timestamp 1663110012568
+Received message {_id: 0dd2a796-681d-4d61-8ef2-5a01f298fd92, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}]}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{execution-environment-list: [{external-connection-point-ref: vnf-controller-ext,
+                  id: controller-init-ee, juju: {charm: k8s_cluster_installer, proxy: true}}],
+              id: controller, initial-config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: controller}, {name: ssh-password,
+                      value: olaadeus}], seq: 1}]}]}}, vdu-profile: [{id: controller,
+          max-number-of-instances: 1, min-number-of-instances: 1}]}], ext-cpd: [{
+      id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}}],
+  id: base_vnf, int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: base_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage]}], version: '1.0', virtual-compute-desc: [{id: controller-compute,
+      virtual-cpu: {num-virtual-cpu: 4}, virtual-memory: {size: 18}}], virtual-storage-desc: [
+    {id: controller-storage, size-of-storage: 32}]}
+ in topic vnfd with key b'edited' create with timestamp 1663110014789
+Received message {_id: 0dd2a796-681d-4d61-8ef2-5a01f298fd92}
+ in topic vnfd with key b'deleted' create with timestamp 1663110867841
+Received message {_id: 1645e022-f813-459d-9f13-7d0d63bc603d}
+ in topic vnfd with key b'created' create with timestamp 1663110875695
+Received message {_id: 1645e022-f813-459d-9f13-7d0d63bc603d, description: K8s cluster VNF, df: [{id: default-df,
+      instantiation-level: [{id: default-instantiation-level, vdu-level: [{number-of-instances: 1,
+              vdu-id: controller}]}], lcm-operations-configuration: {operate-vnf-op-config: {
+          day1-2: [{execution-environment-list: [{external-connection-point-ref: vnf-controller-ext,
+                  id: controller-init-ee, juju: {charm: k8s_cluster_installer, proxy: true}}],
+              id: controller, initial-config-primitive: [{execution-environment-ref: controller-init-ee,
+                  name: config, parameter: [{name: ssh-hostname, value: <rw_mgmt_ip>},
+                    {name: ssh-username, value: controller}, {name: ssh-password,
+                      value: olaadeus}], seq: 1}]}]}}, vdu-profile: [{id: controller,
+          max-number-of-instances: 1, min-number-of-instances: 1}]}], ext-cpd: [{
+      id: vnf-controller-ext, int-cpd: {cpd: controller-int-out, vdu-id: controller}}],
+  id: base_vnf, int-virtual-link-desc: [{flavour: [{id: internal-vl-flavor}], id: internal-vl}],
+  mgmt-cp: vnf-controller-ext, product-name: base_vnf, provider: OSM, sw-image-desc: [
+    {id: clean-ubuntu, image: Ubuntu Server 20.04, name: Ubuntu Server 20.04}], vdu: [
+    {cloud-init-file: cloud-init-controller.cfg, description: VMs for the Kubernetes'
+        controller plane, id: controller, int-cpd: [{id: controller-int-out, virtual-network-interface-requirement: [
+            {name: controller-out, virtual-interface: {type: PARAVIRT}}]}, {id: controller-int-in,
+          int-virtual-link-desc: internal-vl, virtual-network-interface-requirement: [
+            {name: controller-in, virtual-interface: {type: PARAVIRT}}]}], name: controller,
+      sw-image-desc: clean-ubuntu, virtual-compute-desc: controller-compute, virtual-storage-desc: [
+        controller-storage]}], version: '1.0', virtual-compute-desc: [{id: controller-compute,
+      virtual-cpu: {num-virtual-cpu: 4}, virtual-memory: {size: 18}}], virtual-storage-desc: [
+    {id: controller-storage, size-of-storage: 32}]}
+ in topic vnfd with key b'edited' create with timestamp 1663110877680
+Received message {_id: 904cc381-5350-49c3-ba22-9e9cec428934}
+ in topic vnfd with key b'created' create with timestamp 1663111264373

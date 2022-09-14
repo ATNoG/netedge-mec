@@ -44,7 +44,7 @@ def gather_timestamps_from_kafka(results_path: str):
     # Create container
     output = subprocess.run(shlex.split(
         f"""
-        kubectl apply -f ./results/deployment.yaml -n osm
+        kubectl apply -f ../deployment.yaml -n osm
         """
     ))
     print(output)

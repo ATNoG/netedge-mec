@@ -1,0 +1,2 @@
+04cecd6b78b1257c798d2cd546062cca	base_ns/base_nsd.yaml
+4a55d379a8b8f11a9957bf0079aad7d5	base_ns/README.md
