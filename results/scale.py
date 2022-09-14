@@ -130,7 +130,7 @@ def main():
             f"""rm -rf /tmp/dump_pod1"""
         ))
         print(output)
-   
+
 if __name__ == '__main__':
     main()
     #clean_environment(ns_osm_name=CLUSTER_FOR_OSM_NAME, ns_main_name=CHARMED_OSM_NAME)

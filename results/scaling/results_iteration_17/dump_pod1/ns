@@ -1,17 +1,28 @@
-Received message {nslcmop_id: 8586cab8-dbf0-49de-a04f-52db4b6ba88a, nsr_id: 27867349-d42e-4fe6-9448-d3116d22ab9d,
-  operationState: COMPLETED}
- in topic ns with key b'scaled' create with timestamp 1663030168795
-Received message {_admin: {created: 1663030169.7719097, modified: 1663030169.7719097, projects_read: [
+Received message {_admin: {created: 1663087932.3384697, modified: 1663087932.3384697, projects_read: [
       4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0], projects_write: [4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0]},
-  _id: f88c842a-c7e2-46c3-972b-5d0778f5b8ff, detailedStatus: null, errorMessage: null,
-  id: f88c842a-c7e2-46c3-972b-5d0778f5b8ff, isAutomaticInvocation: false, isCancelPending: false,
+  _id: 0e4cec54-10ef-486f-a1b5-a51ad41021fd, detailedStatus: null, errorMessage: null,
+  id: 0e4cec54-10ef-486f-a1b5-a51ad41021fd, isAutomaticInvocation: false, isCancelPending: false,
   lcmOperationType: scale, links: {nsInstance: /osm/nslcm/v1/ns_instances/27867349-d42e-4fe6-9448-d3116d22ab9d,
-    self: /osm/nslcm/v1/ns_lcm_op_occs/f88c842a-c7e2-46c3-972b-5d0778f5b8ff}, nsInstanceId: 27867349-d42e-4fe6-9448-d3116d22ab9d,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/0e4cec54-10ef-486f-a1b5-a51ad41021fd}, nsInstanceId: 27867349-d42e-4fe6-9448-d3116d22ab9d,
+  operationParams: {lcmOperationType: scale, nsInstanceId: 27867349-d42e-4fe6-9448-d3116d22ab9d,
+    scaleType: SCALE_VNF, scaleVnfData: {scaleByStepData: {member-vnf-index: cluster_vnf,
+        scaling-group-descriptor: worker-scale}, scaleVnfType: SCALE_OUT}}, operationState: PROCESSING,
+  queuePosition: null, stage: null, startTime: 1663087932.3384054, statusEnteredTime: 1663087932.3384054}
+ in topic ns with key b'scale' create with timestamp 1663087932353
+Received message {nslcmop_id: 0e4cec54-10ef-486f-a1b5-a51ad41021fd, nsr_id: 27867349-d42e-4fe6-9448-d3116d22ab9d,
+  operationState: COMPLETED}
+ in topic ns with key b'scaled' create with timestamp 1663088388237
+Received message {_admin: {created: 1663088391.2229433, modified: 1663088391.2229433, projects_read: [
+      4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0], projects_write: [4e4c7123-ac7e-4c0a-b8d8-0d2b5535a8d0]},
+  _id: f76c9ff8-d329-49df-a614-4adc3d74dde0, detailedStatus: null, errorMessage: null,
+  id: f76c9ff8-d329-49df-a614-4adc3d74dde0, isAutomaticInvocation: false, isCancelPending: false,
+  lcmOperationType: scale, links: {nsInstance: /osm/nslcm/v1/ns_instances/27867349-d42e-4fe6-9448-d3116d22ab9d,
+    self: /osm/nslcm/v1/ns_lcm_op_occs/f76c9ff8-d329-49df-a614-4adc3d74dde0}, nsInstanceId: 27867349-d42e-4fe6-9448-d3116d22ab9d,
   operationParams: {lcmOperationType: scale, nsInstanceId: 27867349-d42e-4fe6-9448-d3116d22ab9d,
     scaleType: SCALE_VNF, scaleVnfData: {scaleByStepData: {member-vnf-index: cluster_vnf,
         scaling-group-descriptor: worker-scale}, scaleVnfType: SCALE_IN}}, operationState: PROCESSING,
-  queuePosition: null, stage: null, startTime: 1663030169.7718482, statusEnteredTime: 1663030169.7718482}
- in topic ns with key b'scale' create with timestamp 1663030169786
-Received message {nslcmop_id: f88c842a-c7e2-46c3-972b-5d0778f5b8ff, nsr_id: 27867349-d42e-4fe6-9448-d3116d22ab9d,
+  queuePosition: null, stage: null, startTime: 1663088391.2228537, statusEnteredTime: 1663088391.2228537}
+ in topic ns with key b'scale' create with timestamp 1663088391244
+Received message {nslcmop_id: f76c9ff8-d329-49df-a614-4adc3d74dde0, nsr_id: 27867349-d42e-4fe6-9448-d3116d22ab9d,
   operationState: COMPLETED}
- in topic ns with key b'scaled' create with timestamp 1663030207378
+ in topic ns with key b'scaled' create with timestamp 1663088438813

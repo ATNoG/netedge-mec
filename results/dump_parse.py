@@ -21,17 +21,17 @@ def read_ns(dir,count):
             # get the key value 
             # file should follow order of ns_data otherwise something went wrong :(
             # obtain key value since it is dumped as "key b'<data>'"
-            search = re.search("key b'instantiate.?'",data)
+            search = re.search("key b'scale.?'",data)
             if search:
                 # append timestamp
-                if search.group()=="key b'instantiate'":
+                if search.group()=="key b'scale'":
                     ns_values.append(int(data.split(" ")[-1])/1000)
-                elif search.group() == "key b'instantiated'":
-                    instantiate_start_time = ns_values[-1]
-                    instantiated_time = int(data.split(" ")[-1])/1000
-                    ns_values.append(instantiated_time)
+                elif search.group() == "key b'scaled'":
+                    scale_start_time = ns_values[-1]
+                    scaled_time = int(data.split(" ")[-1])/1000
+                    ns_values.append(scaled_time)
                     # delta time
-                    ns_values.append(instantiated_time-instantiate_start_time)
+                    ns_values.append(scaled_time-scale_start_time)
     
     # loop indexes for csv write and zip
     ns_fields = [ns_data[0]]+[(ns_data[1:] * len(ns_values))][0][:len(ns_values)-1]
@@ -124,7 +124,7 @@ def main():
     mep_data = []
     osm_data = []
     count=0
-    operation = "scale"
+    operation = "" #"scale"
     for dumpdir in sorted(os.listdir(), key=lambda x:int(x.split("_")[-1]) if re.match("^results.*", x) else -1):
         try:
             if re.match("^results.*", dumpdir):
@@ -143,7 +143,7 @@ def main():
            print(e)
            print(f"Iteration {dumpdir} had an unexpected error please manually remove the directory")
 
-    #write_parsed_data("main_ns_data.csv",main_ns_data)
+    write_parsed_data("main_ns_data.csv",main_ns_data)
     #write_parsed_data("charmed_ns_data.csv",charmed_ns_data)
     #write_parsed_data("mep_data.csv",mep_data)
     # different file easier than creating something proper since this is single use
