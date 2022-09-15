@@ -1,0 +1,11 @@
+Received message {_id: 64bc04ea-7ce0-4a63-bccb-6f0ad55be84a}
+ in topic nsd with key b'created' create with timestamp 1663173070797
+Received message {_id: 64bc04ea-7ce0-4a63-bccb-6f0ad55be84a, description: NS for the K8s cluster for
+    OSM, designer: OSM, df: [{id: default-df, vnf-profile: [{id: base_knf_vnf, virtual-link-connectivity: [
+            {constituent-cpd-id: [{constituent-base-element-id: base_knf_vnf, constituent-cpd-id: mgmt-ext}],
+              virtual-link-profile-id: mgmt-net}], vnfd-id: base_knf_vnf}]}], id: base_knf_nsd,
+  name: base_knf_nsd, version: '1.0', virtual-link-desc: [{id: mgmt-net, mgmt-network: true,
+      vim-network-name: proj_net}], vnfd-id: [base_knf_vnf]}
+ in topic nsd with key b'edited' create with timestamp 1663173071297
+Received message {_id: d5256941-55d4-4759-9021-471d65bf92cc}
+ in topic nsd with key b'created' create with timestamp 1663173124593

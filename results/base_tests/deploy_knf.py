@@ -4,13 +4,13 @@ import shlex
 import subprocess
 import re
 
-NUMBER_TESTS = 20
+NUMBER_TESTS = 35
 
-USER_MAIN = 'netedge'
-PASSWORD_MAIN = ''
+USER_MAIN = 'admin'
+PASSWORD_MAIN = 'Olaadeus1!'
 PROJECT_MAIN = 'netedge'
 IP_ADDR = '10.0.12.98'
-VIM_ACCOUNT_MAIN = 'NetEdge'
+VIM_ACCOUNT_MAIN = 'NetEdgeDummy'
 
 
 def init_environment():
@@ -44,7 +44,7 @@ def gather_timestamps_from_kafka(results_path: str):
     # Create container
     output = subprocess.run(shlex.split(
         f"""
-        kubectl apply -f ./results/deployment.yaml -n osm
+        kubectl apply -f ../deployment.yaml -n osm
         """
     ))
     print(output)
