@@ -41,7 +41,7 @@ def plot_hist(data, labels, title, color=None, **kwargs):
 def box_plot(data, labels, title, color=None, **kwargs):
     df = pd.DataFrame(data)
 
-    fig = px.box(df, x=labels[0], y=labels[1], color=color, title=title, points="all", **kwargs)
+    fig = px.box(df, x=labels[0], y=labels[1], color=color, title=title, **kwargs)      #, points="all"
     fig.update_layout(clickmode="event+select")
     return fig
 
@@ -66,7 +66,8 @@ DATA_LOCATIONS = {
     "mec-app-ns": "mec_app_ns/mec_app_ns.csv",
     "scale-out": "scaling/scaling_ns_data.csv",
     "scale-in": "scaling/scaling_ns_data.csv",
-    "base-vnf": "base_tests/results_base_vnf/base_data.csv"
+    "base-vnf": "base_tests/results_base_vnf/base_data.csv",
+    "base-cnf": "base_tests/results_base_cnf/base_data.csv",
 }
 
 def main(logs_path):
