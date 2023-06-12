@@ -26,7 +26,7 @@ def replace_keys(data,replacement):
     return data
 
 
-def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None, quantiles=[0.25,0.50,0.75]):
+def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None):
     final_data = [data[key] for key in data]
     fig = plt.figure(figsize =(10, 7))
     ax = fig.add_subplot(111)
@@ -76,16 +76,16 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None, quanti
     ax.get_yaxis().tick_left()
     
     # quantiles
-    quantiles_values = []
+    quantiles = []
     for box in final_data:
-        quantiles_values.append(np.quantile(box, np.array(quantiles)))
+        quantiles.append(np.quantile(box, np.array([0.25, 0.50, 0.75])))
     
-    for idx,quantile_list in enumerate(quantiles_values):
+    for idx,quantile_list in enumerate(quantiles):
         for quantile in quantile_list:
-         ax.text(idx+1,quantile,f"{round(quantile,2)}",ha="center",va="center",fontweight="bold",size=13,color="white",bbox=dict(facecolor="#445A64"))
-
+            plt.annotate(round(quantile,2),(idx+1.17,quantile), fontsize=13)
+        
     plt.ylabel('Time in seconds',fontsize=15)
-    plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 10})
+    plt.title(title, fontdict={'family': 'normal', 'weight': 'bold', 'size': 17})
     
     for label in (ax.get_xticklabels()):
         label.set_fontsize(15)
@@ -100,11 +100,9 @@ def draw_diagram(data,fields,yaxis_title,title,filename,xaxis_range=None, quanti
 
 def main():
     # Also replaces keys due to plotly not allowing much change from what isn't in the data source
-    """
-    main_ns_data = open_csv_files("main_ns_data.csv",["delta0","delta1","delta2","delta3"])
-    main_ns_data = replace_keys(main_ns_data,[("delta0","k8s-osm-cluster-ns"),("delta1","mec-env-ns"),("delta2","manual-ns")])
+    main_ns_data = open_csv_files("main_ns_data.csv",["delta0","delta1"])
+    main_ns_data = replace_keys(main_ns_data,[("delta0","k8s-osm-cluster-ns"),("delta1","mec-env-ns")])
     draw_diagram(main_ns_data,fields=["k8s-osm-cluster-ns","mec-env-ns"],yaxis_title="Time in seconds",title="Deployment time of k8s-osm-cluster-ns and mec-env-ns NSs",xaxis_range=[570,730],filename="deploy_time_ns.pdf")
-
     
     charmed_ns_data = open_csv_files("charmed_ns_data.csv",["delta0"])
     charmed_ns_data = replace_keys(charmed_ns_data,[("delta0","charmed-osm")])
@@ -117,12 +115,7 @@ def main():
                              ("delta2","Subscription Creation"),
                              ("delta3","Service Query")])
     draw_diagram(mep_data,fields=["Application Ready","Service Creation","Subscription Creation","Service Query"],yaxis_title="Time in seconds",title="MEC Application execution time",xaxis_range=[275,425],filename="mep.pdf")
-    """
-    manual_ns_data = open_csv_files("manual_ns_data.csv",["k8s-osm-cluster-ns","osm-cluster-manual"])
-    draw_diagram(manual_ns_data,fields=["k8s-osm-cluster-ns","osm-cluster-manual"],yaxis_title="Time in seconds",title="Deployment time of k8s-osm-cluster-ns and osm-cluster-manual", filename="deploy_time_manual_osm.pdf",quantiles=[0.50])
-    manual_ns_data = open_csv_files("manual_ns_data.csv",["mec-env-ns","mec-manual"])
-    draw_diagram(manual_ns_data,fields=["mec-env-ns","mec-manual"],yaxis_title="Time in seconds",title="Deployment time of mec-env-ns and mec-env-ns-manual", filename="deploy_time_manual_edge.pdf",quantiles=[0.50])
-
+    
 
 if __name__ == "__main__":
     main()
